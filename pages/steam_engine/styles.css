@@ -1,0 +1,79 @@
+:root {
+	--gray: #777777;
+}
+body {   
+	background-color: black;
+	color: white;
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+}
+button {
+	font-family: inherit;
+}
+h1 {
+	margin-left: auto;
+	margin-right: auto;
+}
+hr {
+	color: var(--gray);
+}
+header {
+	display: flex;
+}
+img {
+	display: block;
+	height: 150px;
+}
+svg {
+	display: block;
+}
+table {
+	border-collapse: collapse;
+}
+td, th, tr {
+	padding: 10px;
+	padding-top: 0px;
+}
+.blaze {
+	padding: 0px;
+}
+.diagramBar {
+	border: 1px solid white;
+	padding: 0px;
+}
+.diagramLabel {
+	padding-bottom: 0px;
+	text-align: right;
+}
+.icon {
+	display: inline-block;
+	height: 40px;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 40px;
+}
+.notOptimal {
+	color: red;
+}
+.optimizeButtons {
+	border: 1px solid white;
+	padding: 20px;
+	text-align: center;	
+}
+.outerTd {
+	padding-left: 40px;
+	padding-right: 40px;
+	vertical-align: top;
+}
+.rangeSlider {
+	width: 500px;
+}
+@media (prefers-color-scheme: light) {
+	body {
+		background-color: white;
+		color: black;
+	}
+	.diagramBar {
+		border: 1px solid black;
+	}
+}

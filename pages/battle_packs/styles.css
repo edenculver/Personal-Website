@@ -1,0 +1,85 @@
+:root {
+	--gray: #777777;
+}
+a {
+	text-align: center;
+	text-decoration: none;
+}
+body {
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+}
+div {
+	padding: 10px;
+}
+h1 {
+	margin-left: auto;
+	margin-right: auto;
+}
+header {
+	display: flex;
+}
+hr {
+	clear: left;
+	color: var(--gray);
+}
+i {
+	font-size: 0.9em;
+}
+p {
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+table {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+table, td, tr {
+	padding: 5px;
+	vertical-align: top;
+}
+.blid {
+	color: var(--gray);
+}
+.icon {
+	margin-left: 5px;
+	margin-top: 5px;
+	padding: 0px;
+	width: 40px;
+}
+.info {
+	float: left;
+	min-height: 350px;
+}
+.minifig {
+	float: left;
+	text-align: center;
+}
+.minifig-pic {
+	max-width: 100px;
+}
+.minifig-name {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.set {
+	float: left;
+	min-height: 350px;
+}
+.set-pic {
+	margin-bottom: 20px;
+	max-width: 400px;
+}
+.spacer {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.unique {
+	font-weight: bold;
+}
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: black;
+		color: white;
+	}
+}

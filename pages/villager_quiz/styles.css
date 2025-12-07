@@ -1,0 +1,61 @@
+body {
+	background-image: url("media/darkdirt.png");
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+	text-align: center;
+}
+h1 {
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 30px;
+	text-align: center;
+}
+h2 {
+	padding: 20px;
+	padding-bottom: 10px;
+	padding-top: 0px;
+}
+header {
+	background-color: black;
+	display: flex;
+	margin-bottom: 50px;
+	text-align: left;
+}
+img {
+	height: 50vh;
+	max-height: 825px;
+}
+.button {
+	background-color: #c6c6c6;
+	border: 10px solid transparent;
+	border-image: url("media/buttongray.png") 10 stretch;
+	color: #4c4c4c;
+	font-family: Verdana, Tahoma, sans-serif;
+	font-size: 12pt;
+	margin: 10px;
+	max-width: 700px;
+	padding: 20px;
+	width: 80vw;
+}
+.button:hover {
+	background-color: #218306;
+	border-image: url("media/buttongreen.png") 10 stretch;
+	color: white;
+}
+.icon {
+	height: 40px;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 40px;
+}
+#home {
+	text-align: left;
+}
+#main {
+	background-color: white;
+	margin: auto;
+	min-height: 100vh;
+	max-width: 1000px;
+	text-align: center;
+}

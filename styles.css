@@ -1,0 +1,119 @@
+:root {
+	--gray: #777777;
+}
+a {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	border: 1px solid var(--gray);
+	border-radius: 10px;
+	height: 89px;
+	margin: 16px;
+	margin-left: 0px;
+	padding: 15px;
+}
+a:hover {
+	background-color: var(--gray);
+	transition: 0.2s;
+}
+a:link, a:visited {
+	color: white;
+	text-decoration: none;
+}
+body {
+	background-color: black;
+	color: white;
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+}
+h1 {
+	margin: 0px;
+	margin-left: 20px;
+	overflow-x: hidden;
+	white-space: nowrap;
+}
+h2 {
+	margin-bottom: 0px;
+}
+header {
+	align-items: center;
+	background-color: white;
+	box-shadow: 0px 0px 5px black;
+	color: black;
+	display: flex;
+	height: 64px;
+	padding: 12px;
+	padding-left: 20px;
+	position: sticky;
+	top: 0px;
+}
+hr {
+	color: var(--gray);
+}
+span {
+	padding: 20px;
+}
+.pixel {
+	image-rendering: pixelated;
+}
+.section {
+	float: left;
+	margin: 20px;
+	margin-top: 5px;
+}
+.thumb {
+	height: 48px;
+	width: 48px;
+}
+.tree {
+	display: flex;
+}
+.treeBranch, .treeBranchTop {
+	border-bottom: 1px solid var(--gray);
+	border-left: 1px solid var(--gray);
+	box-sizing: border-box;
+	height: 105px;
+	width: 50px;
+}
+.treeBranchTop {
+	height: 61px;
+}
+.treeTrunk {
+	margin-left: 10px;
+}
+#icon {
+	width: 64px;
+}
+#main {
+	margin-left: 25px;
+	margin-right: 25px;
+	overflow-y: scroll;
+}
+@media only screen and (max-width: 500px) {
+	h1 {
+		font-size: 150%;
+		margin-left: 15px;
+	}
+	h2 {
+		font-size: 120%;
+	}
+	header {
+		height: 32px;
+	}
+	span {
+		font-size: 90%;
+	}
+	.thumb {
+		height: 32px;
+		width: 32px;
+	}
+	.treeBranch, .treeBranchTop {
+		width: 15px;
+	}
+	#icon {
+		width: 32px;
+	}
+	#main {
+		margin: 0px;
+	}
+}

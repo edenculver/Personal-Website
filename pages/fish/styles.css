@@ -1,0 +1,93 @@
+:root {
+	--darktan: #965C3A;
+	--rain: #8388FD;
+	--sky: #80EAFF;
+	--sun: #FEFF00;
+	--tan: #F9BA66;
+	--verydarktan: #5B2B2A;
+	--wind: #FF9200; 
+}
+body {
+	background-color: var(--darktan);
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+h1 {
+	margin-left: auto;
+	margin-right: auto;
+}
+h2 {
+	margin-top: 30px;
+	text-align: center;
+}
+header {
+	background-color: var(--tan);
+	border: 1px solid var(--verydarktan);
+	display: flex;
+	margin: 10px;
+}
+img {
+	image-rendering: pixelated;
+	width: 32px;
+	vertical-align: middle;
+}
+span {
+	height: 32px;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+svg {
+	height: 1px;
+	overflow: visible;
+	width: 1px;
+}
+table {
+	background-color: var(--tan);
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	text-align: left;
+}
+td, th, tr {
+	border: 1px solid var(--verydarktan);
+	padding: 10px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+}
+th {
+	min-width: 20px;
+	text-align: center;
+}
+.any {
+	background-color: var(--sky);
+}
+.barleft {
+	border-right: none;
+}
+.barright {
+	border-left: none;
+}
+.centered {
+	text-align: center;
+}
+.icon {
+	height: 40px;
+	image-rendering: auto;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 40px;
+}
+.rain {
+	background-color: var(--rain);
+}
+.svgholder {
+	position: relative;
+}
+.sun {
+	background-color: var(--sun);
+}
+.sunorwind {
+	background-color: var(--wind);
+}

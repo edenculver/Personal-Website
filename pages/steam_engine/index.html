@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Build and optimize steam engines from the Minecraft Create mod.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minecraft Create Mod Steam Engine Simulator | edenculver.net</title>
+	<link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" type="module"></script>
+</head>
+<body>
+	<header>
+		<a href="/">
+			<img class="icon" src="/icon/icon.svg" alt="Home">
+		</a>
+		<h1>Minecraft Create Mod Steam Engine Simulator</h1>
+		<div class="icon"></div>
+	</header>
+	<hr>
+	<table height="520px">
+		<tr>
+			<td class="outerTd">
+				<h2>Size</h2>
+				<table>
+					<tr>
+						<td width="70px">
+							<p>Footprint</p>
+							<input type="radio" id="footprint2x2" name="footprint" checked>
+							<label for="2x2">2x2</label><br>
+							<input type="radio" id="footprint3x3" name="footprint">
+							<label for="2x2">3x3</label>
+						</td>
+						<td width="560px">
+							<p id="heightDisplay">Height: 0 blocks</p>
+							1 <input type="range" id="heightRange" class="rangeSlider" min="1" max="16" value="1"> 16
+						</td>
+						<td>
+							<p id="volumeDisplay">Volume: 0 blocks</p>
+							<button type="button" id="optimizeForSizeButton">Optimize for this size</button>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<h2>Water</h2>
+				<table>
+					<tr>
+						<td width="70px">
+							<p>Pumps</p>
+							<input type="radio" id="pumps1" name="pumps" checked>
+							<label for="pumps1">1</label><br>
+							<input type="radio" id="pumps2" name="pumps">
+							<label for="pumps2">2</label>
+						</td>
+						<td width="560px">
+							<p id="rpmDisplay">Pump speed: 0 RPM</p>
+							0 <input type="range" id="rpmRange" class="rangeSlider" min="0" max="26" value="0"> 256
+						</td>
+						<td width="230px">
+							<p id="combinedRPMdisplay">Combined RPM: 0</p>
+							<p id="thruputDisplay">Throughput: 0 mB per Tick</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td class="outerTd">
+				<h2>Heat</h2>
+				<table>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<td class="blaze" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze 3only" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+								</tr>
+								<tr>
+									<td class="blaze" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze 3only" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+								</tr>
+								<tr>
+									<td class="blaze 3only" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze 3only" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+									<td class="blaze 3only" title="0"><img src="media/blaze0.png" alt="Blaze Burner"></td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<p>Blaze Burners</p>
+							<p id="heatDisplay">Total heat: 0</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<table>
+		<tr>
+			<td class="outerTd">
+				<h2 id="statusDisplay">Boiler Status: Lvl 0 (Passive)</h2>
+				<table>
+					<tr>
+						<td class="diagramLabel" width="50px">Size</td>
+						<td id="sizeBar" title="Lvl 1" class="diagramBar">
+							<svg height="50px" width="540px">
+								<rect id="sizeRed" y="5px" height="40px" width="0px" fill="red"></rect>
+								<rect id="sizeGreen" y="5px" height="40px" width="0px" fill="green"></rect>
+								<rect id="sizeLime" height="50px" width="30px" fill="lime"></rect>
+							</svg>
+						</td>
+					</tr>
+					<tr>
+						<td class="diagramLabel">Water</td>
+						<td id="waterBar" title="Lvl 0" class="diagramBar">
+							<svg id="waterSvg" height="50px" width="540px">
+								<rect id="waterRed" y="5px" height="40px" width="0px" fill="red"></rect>
+								<rect id="waterGreen" y="5px" height="40px" width="0px" fill="green"></rect>
+								<rect id="waterLime" height="50px" width="30px" fill="lime"></rect>
+							</svg>
+						</td>
+					</tr>
+					<tr>
+						<td class="diagramLabel">Heat</td>
+						<td id="heatBar" title="Lvl 0" class="diagramBar">
+							<svg id="heatSvg" height="50px" width="540px">
+								<rect id="heatRed" y="5px" height="40px" width="0px" fill="red"></rect>
+								<rect id="heatGreen" y="5px" height="40px" width="0px" fill="green"></rect>
+								<rect id="heatLime" height="50px" width="30px" fill="lime"></rect>
+							</svg>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td class="outerTd" width="220px">
+				<p id="capacityDisplay">Stress capacity: 0su</p>
+				<p id="enginesDisplay">Engines required: 0</p>
+				<p id="speedDisplay">Output speed: 0 RPM</p>
+			</td>
+			<td class="outerTd">
+				<h3>Optimize for Lvl</h3>
+				<table>
+					<tr>
+						<td class="optimizeButtons">1</td>
+						<td class="optimizeButtons">2</td>
+						<td class="optimizeButtons">3</td>
+						<td class="optimizeButtons">4</td>
+						<td class="optimizeButtons">5</td>
+						<td class="optimizeButtons">6</td>
+					</tr>
+					<tr>
+						<td class="optimizeButtons">7</td>
+						<td class="optimizeButtons">8</td>
+						<td class="optimizeButtons">9</td>
+						<td class="optimizeButtons notOptimal" title="This boiler level cannot be perfectly optimized">10</td>
+						<td class="optimizeButtons">11</td>
+						<td class="optimizeButtons notOptimal" title="This boiler level cannot be perfectly optimized">12</td>
+					</tr>
+					<tr>
+						<td class="optimizeButtons">13</td>
+						<td class="optimizeButtons notOptimal" title="This boiler level cannot be perfectly optimized">14</td>
+						<td class="optimizeButtons">15</td>
+						<td class="optimizeButtons notOptimal" title="This boiler level cannot be perfectly optimized">16</td>
+						<td class="optimizeButtons notOptimal" title="This boiler level cannot be perfectly optimized">17</td>
+						<td class="optimizeButtons">18</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

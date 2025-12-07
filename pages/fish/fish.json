@@ -1,0 +1,591 @@
+{
+	"Ocean": [
+		{
+			"fish_name": "Albacore",
+			"base_price": 75,
+			"season": "Fall, Winter",
+			"weather": null,
+			"time": "6am-11am, 6pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Anchovy",
+			"base_price": 30,
+			"season": "Spring, Fall",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Eel",
+			"base_price": 85,
+			"season": "Spring, Fall",
+			"weather": "Rain",
+			"time": "4pm-2am",
+			"bundle": "Night Fishing Bundle"
+		},
+		{
+			"fish_name": "Flounder",
+			"base_price": 100,
+			"season": "Spring, Summer",
+			"weather": null,
+			"time": "6am-8pm",
+			"bundle": null
+		},
+		{
+			"fish_name": "Halibut",
+			"base_price": 80,
+			"season": "Spring, Summer, Winter",
+			"weather": null,
+			"time": "6am-11am, 7pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Herring",
+			"base_price": 30,
+			"season": "Spring, Winter",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Octopus",
+			"base_price": 150,
+			"season": "Summer",
+			"weather": null,
+			"time": "6am-1pm",
+			"bundle": null
+		},
+		{
+			"fish_name": "Pufferfish",
+			"base_price": 200,
+			"season": "Summer",
+			"weather": "Sun",
+			"time": "12pm-4pm",
+			"bundle": "Specialty Fish Bundle"
+		},
+		{
+			"fish_name": "Red Mullet",
+			"base_price": 50,
+			"season": "Summer, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": null
+		},
+		{
+			"fish_name": "Red Snapper",
+			"base_price": 50,
+			"season": "Summer, Fall, Winter (with Rain Totem)",
+			"weather": "Rain",
+			"time": "6am-7pm",
+			"bundle": "Ocean Fish Bundle"
+		},
+		{
+			"fish_name": "Sardine",
+			"base_price": 40,
+			"season": "Spring, Fall, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": "Ocean Fish Bundle"
+		},
+		{
+			"fish_name": "Sea Cucumber",
+			"base_price": 75,
+			"season": "Fall, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": null
+		},
+		{
+			"fish_name": "Squid",
+			"base_price": 80,
+			"season": "Winter",
+			"weather": null,
+			"time": "6pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Super Cucumber",
+			"base_price": 250,
+			"season": "Summer, Fall",
+			"weather": null,
+			"time": "6pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Tilapia",
+			"base_price": 75,
+			"season": "Summer, Fall",
+			"weather": null,
+			"time": "6am-2pm",
+			"bundle": "Ocean Fish Bundle"
+		},
+		{
+			"fish_name": "Tuna",
+			"base_price": 100,
+			"season": "Summer, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": "Ocean Fish Bundle"
+		}
+	],
+	"Forest Pond": [
+		{
+			"fish_name": "Midnight Carp",
+			"base_price": 150,
+			"season": "Fall, Winter",
+			"weather": null,
+			"time": "10pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Perch",
+			"base_price": 55,
+			"season": "Winter",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Pike",
+			"base_price": 100,
+			"season": "Summer, Winter",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Smallmouth Bass",
+			"base_price": 50,
+			"season": "Spring, Fall",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Walleye",
+			"base_price": 105,
+			"season": "Fall, Winter (with Rain Totem)",
+			"weather": "Rain",
+			"time": "12pm-2am",
+			"bundle": "Night Fishing Bundle"
+		}
+	],
+	"Mountain Lake": [
+		{
+			"fish_name": "Bullhead",
+			"base_price": 75,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Carp",
+			"base_price": 30,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Chub",
+			"base_price": 50,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"bundle": "Field Research Bundle"
+		},
+		{
+			"fish_name": "Largemouth Bass",
+			"base_price": 100,
+			"season": null,
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Lingcod",
+			"base_price": 120,
+			"season": "Winter",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Midnight Carp",
+			"base_price": 150,
+			"season": "Fall, Winter",
+			"weather": null,
+			"time": "10pm-2am",
+			"bundle": null
+		},
+		{
+			"fish_name": "Perch",
+			"base_price": 55,
+			"season": "Winter",
+			"weather": null,
+			"time": null,
+			"bundle": null
+		},
+		{
+			"fish_name": "Rainbow Trout",
+			"base_price": 65,
+			"season": "Summer",
+			"weather": "Sun",
+			"time": "6am-7pm",
+			"bundle": null
+		},
+		{
+			"fish_name": "Sturgeon",
+			"base_price": 200,
+			"season": "Summer, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Walleye",
+			"base_price": 105,
+			"season": "Fall, Winter (with Rain Totem)",
+			"weather": "Rain",
+			"time": "12pm-2am",
+			"bundle": "Night Fishing Bundle"
+		}
+	],
+	"Secret Woods Pond": [
+		{
+			"fish_name": "Carp",
+			"base_price": 30,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Catfish",
+			"base_price": 200,
+			"season": "Spring, Summer",
+			"weather": "Rain",
+			"time": "6am-12am",
+			"bundle": "River Fish Bundle"
+		},
+		{
+			"fish_name": "Woodskip",
+			"base_price": 75,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"bundle": "Specialty Fish Bundle"
+		}
+	],
+	"Forest Waterfall": [
+		{
+			"fish_name": "Goby",
+			"base_price": 150,
+			"season": null
+		},
+		{
+			"fish_name": "Salmon",
+			"base_price": 75,
+			"season": "Fall"
+		}
+	],
+	"River": [
+		{
+			"fish_name": "Chub",
+			"base_price": 50,
+			"season": null,
+			"weather": null,
+			"time": null,
+			"location": "Forest",
+			"bundle": "Field Research Bundle"
+		},
+		{
+			"fish_name": "Dorado",
+			"base_price": 100,
+			"season": "Summer",
+			"weather": null,
+			"time": "6am-7pm",
+			"location": "Forest",
+			"bundle": null
+		},
+		{
+			"fish_name": "Bream",
+			"base_price": 45,
+			"season": null,
+			"weather": null,
+			"time": "6pm-2am",
+			"location": "Both",
+			"bundle": "Night Fishing Bundle"
+		},
+		{
+			"fish_name": "Catfish",
+			"base_price": 200,
+			"season": "Spring, Fall, Winter (with Rain Totem)",
+			"weather": "Rain",
+			"time": "6am-12am",
+			"location": "Both",
+			"bundle": "River Fish Bundle"
+		},
+		{
+			"fish_name": "Lingcod",
+			"base_price": 120,
+			"season": "Winter",
+			"weather": null,
+			"time": null,
+			"location": "Both",
+			"bundle": null
+		},
+		{
+			"fish_name": "Perch",
+			"base_price": 55,
+			"season": "Winter",
+			"weather": null,
+			"time": null,
+			"location": "Both",
+			"bundle": null
+		},
+		{
+			"fish_name": "Pike",
+			"base_price": 100,
+			"season": "Summer, Winter",
+			"weather": null,
+			"time": null,
+			"location": "Both",
+			"bundle": null
+		},
+		{
+			"fish_name": "Rainbow Trout",
+			"base_price": 65,
+			"season": "Summer",
+			"weather": "Sun",
+			"time": "6am-7pm",
+			"location": "Both",
+			"bundle": null
+		},
+		{
+			"fish_name": "Salmon",
+			"base_price": 75,
+			"season": "Fall",
+			"weather": null,
+			"time": "6am-7pm",
+			"location": "Both",
+			"bundle": null
+		},
+		{
+			"fish_name": "Shad",
+			"base_price": 60,
+			"season": "Spring, Summer, Fall",
+			"weather": "Rain",
+			"time": "9am-2am",
+			"location": "Both",
+			"bundle": "River Fish Bundle"
+		},
+		{
+			"fish_name": "Sunfish",
+			"base_price": 30,
+			"season": "Spring, Summer",
+			"weather": "Sun or wind",
+			"time": "6am-7pm",
+			"location": "Both",
+			"bundle": "River Fish Bundle"
+		},
+		{
+			"fish_name": "Tiger Trout",
+			"base_price": 150,
+			"season": "Fall, Winter",
+			"weather": null,
+			"time": "6am-7pm",
+			"location": "Both",
+			"bundle": "River Fish Bundle"
+		},
+		{
+			"fish_name": "Walleye",
+			"base_price": 105,
+			"season": "Fall, Winter (with Rain Totem)",
+			"weather": "Rain",
+			"time": "12pm-2am",
+			"location": "Both",
+			"bundle": "Night Fishing Bundle"
+		},
+		{
+			"fish_name": "Smallmouth Bass",
+			"base_price": 50,
+			"season": "Spring, Fall",
+			"weather": null,
+			"time": null,
+			"location": "Town",
+			"bundle": null
+		}
+	],
+	"Mines": [
+		{
+			"fish_name": "Stonefish",
+			"base_price": 300,
+			"level": "20F",
+			"bundle": null
+		},
+		{
+			"fish_name": "Ghostfish",
+			"base_price": 45,
+			"level": "20F, 60F",
+			"bundle": "Specialty Fish Bundle"
+		},
+		{
+			"fish_name": "Ice Pip",
+			"base_price": 500,
+			"level": "60F",
+			"bundle": null
+		},
+		{
+			"fish_name": "Lava Eel",
+			"base_price": 700,
+			"level": "100F",
+			"bundle": null
+		}
+	],
+	"Ginger Island": [
+		{
+			"fish_name": "Blue Discus",
+			"base_price": 120,
+			"weather": null,
+			"time": null,
+			"location": "Pond, River",
+			"bundle": null
+		},
+		{
+			"fish_name": "Midnight Carp",
+			"base_price": 150,
+			"weather": null,
+			"time": "10pm-2am",
+			"location": "Pond, River",
+			"bundle": null
+		},
+		{
+			"fish_name": "Tilapia",
+			"base_price": 75,
+			"weather": null,
+			"time": "6am-2pm",
+			"location": "River",
+			"bundle": "Ocean Fish Bundle"
+		},
+		{
+			"fish_name": "Flounder",
+			"base_price": 100,
+			"weather": null,
+			"time": "6am-8pm",
+			"location": "Ocean",
+			"bundle": null
+		},
+		{
+			"fish_name": "Lionfish",
+			"base_price": 100,
+			"weather": null,
+			"time": null,
+			"location": "Ocean",
+			"bundle": null
+		},
+		{
+			"fish_name": "Octopus",
+			"base_price": 150,
+			"weather": null,
+			"time": "6am-1pm",
+			"location": "Ocean",
+			"bundle": null
+		},
+		{
+			"fish_name": "Pufferfish",
+			"base_price": 200,
+			"weather": "Sun",
+			"time": "12pm-4pm",
+			"location": "Ocean",
+			"bundle": "Specialty Fish Bundle"
+		},
+		{
+			"fish_name": "Super Cucumber",
+			"base_price": 250,
+			"weather": null,
+			"time": "6pm-2am",
+			"location": "Ocean",
+			"bundle": null
+		},
+		{
+			"fish_name": "Tuna",
+			"base_price": 100,
+			"weather": null,
+			"time": "6am-7pm",
+			"location": "Ocean",
+			"bundle": "Ocean Fish Bundle"
+		}
+	],
+	"Special": [
+		{
+			"fish_name": "Carp",
+			"base_price": 30,
+			"weather": null,
+			"time": null,
+			"location": "Sewer",
+			"bundle": "Lake Fish Bundle"
+		},
+		{
+			"fish_name": "Catfish",
+			"base_price": 200,
+			"weather": "Rain",
+			"time": "6am-12am",
+			"location": "Witch's Swamp",
+			"bundle": null
+		},
+		{
+			"fish_name": "Lava Eel",
+			"base_price": 700,
+			"weather": null,
+			"time": null,
+			"location": "Volcano Caldera",
+			"bundle": null
+		},
+		{
+			"fish_name": "Sandfish",
+			"base_price": 75,
+			"weather": null,
+			"time": "6am-8pm",
+			"location": "Desert",
+			"bundle": "Specialty Fish Bundle"
+		},
+		{
+			"fish_name": "Scorpion Carp",
+			"base_price": 150,
+			"weather": null,
+			"time": "6am-8pm",
+			"location": "Desert",
+			"bundle": null
+		},
+		{
+			"fish_name": "Slimejack",
+			"base_price": 100,
+			"weather": null,
+			"time": null,
+			"location": "Mutant Bug Lair",
+			"bundle": null
+		},
+		{
+			"fish_name": "Stingray",
+			"base_price": 180,
+			"weather": null,
+			"time": null,
+			"location": "Pirate Cove",
+			"bundle": null
+		},
+		{
+			"fish_name": "Void Salmon",
+			"base_price": 150,
+			"weather": null,
+			"time": null,
+			"location": "Witch's Swamp",
+			"bundle": "The Missing Bundle"
+		}
+	],
+	"Night Market": [],
+	"Legendary": [],
+	"Crab Pot": []
+}

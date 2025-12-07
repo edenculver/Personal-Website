@@ -1,0 +1,61 @@
+body {
+	background-color: #b89869;
+	color: white;
+	font-family: Verdana, Tahoma, sans-serif;
+	margin: 0px;
+}
+h1 {
+	font-size: 130%;
+	margin: 0px;
+}
+h2 {
+	font-size: 110%;
+	margin: 0px;
+}
+header {
+	background-color: black;
+	box-shadow: 0px 0px 5px black;
+	position: sticky;
+	top: 0px;
+}
+.flagdiv {
+	overflow-x: scroll;
+	width: 100%;
+}
+.flaginput {
+	font-family: Verdana, Tahoma, sans-serif;
+	font-size: 100%;
+}
+.flagoptionsheadertd {
+	text-align: center;
+}
+.flagoptionstd {
+	padding: 10px;
+	text-align: right;
+}
+.flagsfield {
+	padding: 20px;
+}
+.flagtd {
+	padding: 10px;
+}
+.flagtoptable {
+	padding: 30px;
+	padding-top: 0px;
+}
+.icon {
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 40px;
+}
+#padCol {
+	width: 60px;
+}
+@media (prefers-color-scheme: light) {
+	body {
+		color: black;
+	}
+	header {
+		background-color: white;
+	}
+}

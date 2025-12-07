@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Calculate IPv4 supernets (route summarization) - network address, host address range, broadcast address, CIDR, subnet mask, wildcard mask, subnet type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Supernet Calculator | edenculver.net</title>
+	<link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<script src="supernet.js" type="module"></script>
+</head>
+<body>
+	<div id="header">
+		<span id="homeTab" class="tab">
+			<a href="/">Home</a>
+		</span>
+		<span id="subnetTab" class="tab">
+			<a href="subnet.html">Subnet Calculator</a>
+		</span>
+		<span id="supernetTab" class="tab tabSelected">
+			<a href="supernet.html">Supernet Calculator</a>
+		</span>
+	</div>
+	<div id="input">
+		<label for="inputAddresses">Addresses:</label>
+		<br>
+		<textarea id="inputAddresses" rows="5">192.168.1.0/24&#013;&#010;192.168.2.0/24&#013;&#010;192.168.3.0 255.255.255.0</textarea>
+		<br>
+		<label for="checkboxStrict" title="Loose: Summarize to one supernet.&#013;&#010;Strict: Summarize without including address space that isn't included in the input addresses. This usually results in multiple supernets.">Strict?</label>
+		<input id="checkboxStrict" type="checkbox">
+		<span id="warning" for="addressesInput" hidden>Invalid input</span>
+	</div>
+	<div id="output">
+		<span>Summary address(es):</span>
+		<div id="outputAddresses">192.168.0.0/22</div>
+		<br>
+		<table>
+			<tr id="trNetworkAddress">
+				<td>Network Address:</td>
+			</tr>
+			<tr id="trUsableRange">
+				<td>Host Address Range:</td>
+			</tr>
+			<tr id="trBroadcastAddress">
+				<td>Broadcast Address:</td>
+			</tr>
+			<tr id="trTotalAddresses">
+				<td>Total Addresses:</td>
+			</tr>
+			<tr id="trSubnetMask">
+				<td>Subnet Mask:</td>
+			</tr>
+			<tr id="trWildcardMask">
+				<td>Wildcard Mask:</td>
+			</tr>
+			<tr id="trSubnetType">
+				<td>Subnet Type:</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

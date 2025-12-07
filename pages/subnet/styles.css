@@ -1,0 +1,98 @@
+:root {
+	--green: #00ff00;
+	--gray: #777777;
+}
+a:link, a:visited {
+	color: white;
+	padding: 20px;
+	text-decoration: none;
+}
+body {
+	background-color: black;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+}
+button {
+	background-color: black;
+	border: 1px solid var(--green);
+	color: var(--green);
+	font-family: "Courier New", Courier, monospace;
+	font-size: 100%;
+	margin-top: 10px;
+	padding: 10px;
+}
+button:active, button:hover {
+	background-color: var(--green);
+	color: black;
+}
+div {
+	margin: 20px;
+}
+label {
+	display: inline-block;
+	padding: 10px;
+}
+span {
+	padding: 10px;
+}
+table {
+	border-collapse: collapse;
+}
+td, tr {
+	border: 1px solid gray;
+	padding: 18px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+textarea {
+	background-color: black;
+	border: 1px solid white;
+	color: var(--green);
+	font-family: "Courier New", Courier, monospace;
+	font-size: 100%;
+	margin-top: 0px;
+	margin-bottom: 12px;
+	padding: 10px;
+	white-space: nowrap;
+	width: 330px;
+}
+.tab {
+	border-bottom: 1px solid var(--gray);
+	padding: 16px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.tabSelected {
+	border: 1px solid white;
+	border-bottom: none;
+}
+.thinButton {
+	width: 100px;
+}
+.wideButton {
+	width: 180px;
+}
+#checkboxStrict {
+	accent-color: var(--green);
+	margin-left: 0px;
+	margin-right: 50px;
+}
+#header {
+	margin-top: 25px;
+}
+#inputAddress {
+	background-color: black;
+	border: 1px solid white;
+	color: var(--green);
+	font-family: "Courier New", Courier, monospace;
+	font-size: 100%;
+	margin-bottom: 12px;
+	padding: 10px;
+	width: 330px;
+}
+#outputAddresses {
+	color: var(--green);
+}
+#warning {
+	color: red;
+}

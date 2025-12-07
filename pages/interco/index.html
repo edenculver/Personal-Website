@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Translate a message into International Code of Signals (INTERCO) flags.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>International Code of Signals Translator | edenculver.net</title>
+	<link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" type="module"></script>
+</head>
+<body>
+	<header>
+		<a href="/">
+			<img class="icon" src="/icon/icon.svg" alt="Home">
+		</a>
+		<table class="flagtoptable">
+			<tr>
+				<td class="flagtitletd" rowspan="2">
+					<h1>Translate a message to <a href=https://en.wikipedia.org/wiki/International_Code_of_Signals>International Code of Signals (INTERCO)</a> flags</h1>
+					<br>
+					<input id="msgInput" class="flaginput" type="text" size="80" autocomplete="off" placeholder="Message..." tabindex="0">
+				</td>
+				<td id="padCol" rowspan="2"></td>
+				<td class="flagoptionsheadertd">
+					<h2>Options</h2>
+				</td>
+				<td class="flagoptionsheadertd" colspan="2">
+					<h2>Colors</h2>
+				</td>
+			</tr>
+			<tr>
+				<td class="flagoptionstd">
+					<label>Width:</label>
+					<input id="wInput" class="flaginput" type="number" size="5" autocomplete="off" tabindex="0" value="100">
+					<br>
+					<label>Height:</label>
+					<input id="hInput" class="flaginput" type="number" size="5" autocomplete="off" tabindex="0" value="100">
+					<br>
+					<br>
+					<input id="subInput" class="flaginput" type="checkbox" autocomplete="off" tabindex="0" checked>
+					<label>Use substitutes?</label>
+				</td>
+				<td class="flagoptionstd">
+					<label>Background:</label>
+					<input id="bgInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#b89869">
+					<br>
+					<label>Black:</label>
+					<input id="blackInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#000000">
+					<br>
+					<label>White:</label>
+					<input id="whiteInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#ffffff">
+				</td>
+				<td class="flagoptionstd">
+					<label>Red:</label>
+					<input id="redInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#ff0000">
+					<br>
+					<label>Yellow:</label>
+					<input id="yellowInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#ffcc00">
+					<br>
+					<label>Blue:</label>
+					<input id="blueInput" class="flaginput" type="color" autocomplete="off" tabindex="0" value="#000080">
+				</td>
+			</tr>
+		</table>
+	</header>
+	<div id="flagdiv" class="flagdiv">
+		<table id="flagsField" class="flagsfield"></table>
+	</div>
+</body>
+</html>

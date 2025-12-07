@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Calculate IPv4 subnets - network address, host address range, broadcast address, CIDR, subnet mask, wildcard mask, subnet type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Subnet Calculator | edenculver.net</title>
+	<link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<script src="subnet.js" type="module"></script>
+</head>
+<body>
+	<div id="header">
+		<span id="homeTab" class="tab">
+			<a href="/">Home</a>
+		</span>
+		<span id="subnetTab" class="tab tabSelected">
+			<a href="subnet.html">Subnet Calculator</a>
+		</span>
+		<span id="supernetTab" class="tab">
+			<a href="supernet.html">Supernet Calculator</a>
+		</span>
+	</div>
+	<div id="input">
+		<label for="inputAddress">IP address with CIDR or mask:</label>
+		<br>
+		<input id="inputAddress" type="text" value="192.168.0.1/24" maxlength="100">
+		<span id="warning" for="inputAddress" hidden>Invalid input</span>
+		<br>
+		<button id="buttonCidrIncr" class="thinButton">CIDR +</button>
+		<button id="buttonNext" class="wideButton">Next Subnet</button>
+		<br>
+		<button id="buttonCidrDecr" class="thinButton">CIDR -</button>
+		<button id="buttonPrevious" class="wideButton">Previous Subnet</button>
+	</div>
+	<div id="output">
+		<table>
+			<tr>
+				<td>IPv4 Address:</td>
+				<td id="tdIpAddress"></td>
+			</tr>
+			<tr>
+				<td>Network Address:</td>
+				<td id="tdNetworkAddress"></td>
+			</tr>
+			<tr>
+				<td>Host Address Range:</td>
+				<td id="tdUsableRange"></td>
+			</tr>
+			<tr>
+				<td>Broadcast Address:</td>
+				<td id="tdBroadcastAddress"></td>
+			</tr>
+			<tr>
+				<td>Total Addresses:</td>
+				<td id="tdTotalAddresses"></td>
+			</tr>
+			<tr>
+				<td>Subnet Mask:</td>
+				<td id="tdSubnetMask"></td>
+			</tr>
+			<tr>
+				<td>Wildcard Mask:</td>
+				<td id="tdWildcardMask"></td>
+			</tr>
+			<tr>
+				<td>Subnet Type:</td>
+				<td id="tdSubnetType"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

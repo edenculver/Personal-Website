@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Answer these 12 questions to learn which Minecraft villager you are!">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Which Minecraft Villager Are You? | edenculver.net</title>
+	<link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" type="module"></script>
+</head>
+<body>
+	<div id="main">
+		<header>
+			<a href="/">
+				<img class="icon" src="/icon/icon.svg" alt="Home">
+			</a>
+			<h1>Which Minecraft Villager Are You?</h1>
+			<div class="icon"></div>
+		</header>
+		<div id="startDiv">
+			<button id="startButton" class="button">Start</button>
+			<button id="testButton" class="button" hidden>Run stress test</button>
+		</div>
+		<div id="questionDiv" hidden>
+			<h2>This is a question?</h2>
+			<button class="button">This is a button</button>
+			<button class="button">Dear god</button>
+			<button class="button">There's more</button>
+			<button class="button">No</button>
+		</div>
+		<div id="resultsDiv" hidden>
+			<p>You are:</p>
+			<h2 id="villagerName">Villager</h2>
+			<img id="villagerImg" src="" alt="">
+			<p id="bio1"></p>
+			<p id="bio2"></p>
+			<button id="shareButton" class="button">Share (copy to clipboard)</button>
+			<button id="restartButton" class="button">Take the quiz again!</button>
+		</div>
+	</div>
+</body>
+</html>

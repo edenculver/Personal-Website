@@ -1,0 +1,353 @@
+{
+	"bank": [
+		{
+			"text": "What's your favorite ice cream flavor?",
+			"a": {
+				"text": "Vanilla",
+				"score": ["b_plains", "b_snowy", "p_butcher", "p_fisherman", "p_shepherd"]
+			},
+			"b": {
+				"text": "Chocolate",
+				"score": ["b_jungle", "p_cartographer", "p_librarian", "p_stone_mason", "p_unemployed"]
+			},
+			"c": {
+				"text": "Strawberry",
+				"score": ["b_taiga", "p_armorer", "p_farmer", "p_leatherworker"]
+			},
+			"d": {
+				"text": "Mint chocolate chip",
+				"score": ["p_cleric", "p_fletcher", "p_nitwit", "p_toolsmith", "p_weaponsmith"]
+			}
+		},
+		{
+			"text": "Where would you rather live?",
+			"a": {
+				"text": "Wisconsin",
+				"score": ["b_snowy", "b_taiga", "p_farmer"]
+			},
+			"b": {
+				"text": "Texas",
+				"score": ["b_desert", "b_plains", "p_weaponsmith"]
+			},
+			"c": {
+				"text": "Florida",
+				"score": ["b_swamp", "b_jungle", "p_fisherman", "p_nitwit"]
+			},
+			"d": {
+				"text": "California",
+				"score": ["b_desert", "b_savanna"]
+			}
+		},
+		{
+			"text": "What's your dream job?",
+			"a": {
+				"text": "Something in STEM",
+				"score": ["p_armorer", "p_cartographer", "p_fletcher", "p_stone_mason", "p_toolsmith", "p_weaponsmith"]
+			},
+			"b": {
+				"text": "Something in the service industry",
+				"score": ["p_butcher", "p_cleric", "p_librarian"]
+			},
+			"c": {
+				"text": "Something in agriculture",
+				"score": ["p_farmer", "p_fisherman", "p_leatherworker", "p_shepherd"]
+			},
+			"d": {
+				"text": "To not work",
+				"score": ["p_nitwit", "p_unemployed"]
+			}
+		},
+		{
+			"text": "What's your favorite type of pizza?",
+			"a": {
+				"text": "Pepperoni",
+				"score": ["p_leatherworker", "p_stone_mason", "p_toolsmith"]
+			},
+			"b": {
+				"text": "Sausage",
+				"score": ["p_armorer", "p_butcher", "p_farmer", "p_weaponsmith"]
+			},
+			"c": {
+				"text": "Hawaiian",
+				"score": ["p_cartographer", "p_fisherman", "p_nitwit"]
+			},
+			"d": {
+				"text": "Just cheese",
+				"score": ["p_cleric", "p_fletcher", "p_librarian", "p_shepherd", "p_unemployed"]
+			}
+		},
+		{
+			"text": "What's your favorite season?",
+			"a": {
+				"text": "Winter",
+				"score": ["b_snowy"]
+			},
+			"b": {
+				"text": "Spring",
+				"score": ["b_plains", "b_savanna"]
+			},
+			"c": {
+				"text": "Summer",
+				"score": ["b_desert", "b_jungle", "b_swamp"]
+			},
+			"d": {
+				"text": "Fall",
+				"score": ["b_taiga"]
+			}
+		},
+		{
+			"text": "What do you like to do on a Friday night?",
+			"a": {
+				"text": "Go to the bar",
+				"score": ["p_fisherman", "p_nitwit", "p_stone_mason"]
+			},
+			"b": {
+				"text": "Hang out with friends",
+				"score": ["p_armorer", "p_butcher", "p_fletcher", "p_librarian"]
+			},
+			"c": {
+				"text": "Watch TV",
+				"score": ["p_cartographer", "p_toolsmith", "p_unemployed", "p_weaponsmith"]
+			},
+			"d": {
+				"text": "Work",
+				"score": ["p_cleric", "p_farmer", "p_leatherworker", "p_shepherd"]
+			}
+		},
+		{
+			"text": "What's your favorite dinosaur?",
+			"a": {
+				"text": "T-Rex",
+				"score": ["p_butcher", "p_nitwit", "p_unemployed", "p_weaponsmith"]
+			},
+			"b": {
+				"text": "Stegosaurus",
+				"score": ["p_cartographer", "p_leatherworker", "p_stone_mason"]
+			},
+			"c": {
+				"text": "Velociraptor",
+				"score": ["p_cleric", "p_fisherman", "p_fletcher", "p_librarian", "p_toolsmith"]
+			},
+			"d": {
+				"text": "Triceratops",
+				"score": ["p_armorer", "p_farmer", "p_shepherd"]
+			}
+		},
+		{
+			"text": "Where would you rather go on vacation?",
+			"a": {
+				"text": "South America",
+				"score": ["b_jungle", "b_swamp"]
+			},
+			"b": {
+				"text": "Europe",
+				"score": ["b_plains", "b_taiga"]
+			},
+			"c": {
+				"text": "Australia",
+				"score": ["b_desert", "b_savanna"]
+			},
+			"d": {
+				"text": "Antarctica",
+				"score": ["b_snowy"]
+			}
+		},
+		{
+			"text": "What would you do in the zombie apocalypse?",
+			"a": {
+				"text": "Hide in my bunker",
+				"score": ["p_butcher", "p_fisherman", "p_librarian", "p_stone_mason"]
+			},
+			"b": {
+				"text": "Fend for myself",
+				"score": ["p_armorer", "p_fletcher", "p_toolsmith", "p_weaponsmith"]
+			},
+			"c": {
+				"text": "Start a commune",
+				"score": ["p_cleric", "p_farmer", "p_shepherd"]
+			},
+			"d": {
+				"text": "Die",
+				"score": ["p_cartographer", "p_leatherworker", "p_nitwit", "p_unemployed"]
+			}
+		},
+		{
+			"text": "Do you have blue hair and pronouns?",
+			"a": {
+				"text": "Blue hair and pronouns",
+				"score": ["p_butcher", "p_farmer", "p_librarian", "p_leatherworker"]
+			},
+			"b": {
+				"text": "Blue hair, but no pronouns",
+				"score": ["p_armorer", "p_fletcher", "p_toolsmith", "p_weaponsmith"]
+			},
+			"c": {
+				"text": "Pronouns, but no blue hair",
+				"score": ["p_cartographer", "p_fisherman", "p_shepherd", "p_unemployed"]
+			},
+			"d": {
+				"text": "No blue hair and no pronouns",
+				"score": ["p_cleric", "p_nitwit", "p_stone_mason"]
+			}
+		},
+		{
+			"text": "You're hiking in a quiet, peaceful forest. Suddenly, you hear the sound of a twig snapping behind you. You turn around and see Bigfoot. Before you can react, it runs into the trees, and you quickly lose sight of it. What do you do?",
+			"a": {
+				"text": "Dedicate your life to trying to capture Bigfoot",
+				"score": ["p_butcher", "p_fletcher", "p_unemployed", "p_weaponsmith"]
+			},
+			"b": {
+				"text": "Pretend this never happened",
+				"score": ["p_farmer", "p_fisherman", "p_stone_mason", "p_shepherd"]
+			},
+			"c": {
+				"text": "Report this to the Department of Natural Resources",
+				"score": ["p_armorer", "p_nitwit", "p_toolsmith"]
+			},
+			"d": {
+				"text": "See a therapist to treat your schizophrenia",
+				"score": ["p_cartographer", "p_cleric", "p_leatherworker", "p_librarian"]
+			}
+		},
+		{
+			"text": "What's your favorite color?",
+			"a": {
+				"text": "Red",
+				"score": ["b_savanna", "p_librarian"]
+			},
+			"b": {
+				"text": "Green",
+				"score": ["b_desert", "b_jungle", "p_nitwit"]
+			},
+			"c": {
+				"text": "Blue",
+				"score": ["b_snowy"]
+			},
+			"d": {
+				"text": "Purple",
+				"score": ["b_swamp", "p_cleric"]
+			}
+		}
+	],
+	"imgs": {
+		"b_desert": {
+			"p_armorer": "https://minecraft.wiki/images/Desert_Armorer.png?43024&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Desert_Butcher.png?7afe6&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Desert_Cartographer.png?1a289&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Desert_Cleric.png?78f26&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Desert_Farmer.png?ce9f8&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Desert_Fisherman.png?d7057&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Desert_Fletcher.png?81259&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Desert_Leatherworker.png?a4c1a&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Desert_Librarian.png?3f416&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Desert_Nitwit.png?08aa4&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Desert_Mason.png?06eff&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Desert_Shepherd.png?1f6ee&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Desert_Toolsmith.png?f32b0&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Desert_Villager_Base_JE2.png?744cf&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Desert_Weaponsmith.png?c4169&format=original"
+		},
+		"b_jungle": {
+			"p_armorer": "https://minecraft.wiki/images/Jungle_Armorer.png?4fc31&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Jungle_Butcher.png?f03cd&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Jungle_Cartographer.png?b0c12&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Jungle_Cleric.png?c7489&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Jungle_Farmer.png?70c98&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Jungle_Fisherman.png?68956&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Jungle_Fletcher.png?8dc57&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Jungle_Leatherworker.png?fb90d&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Jungle_Librarian.png?008da&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Jungle_Nitwit.png?422b3&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Jungle_Mason.png?cd112&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Jungle_Shepherd.png?e2334&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Jungle_Toolsmith.png?57e3b&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Jungle_Villager_Base_JE2.png?5869f&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Jungle_Weaponsmith.png?11927&format=original"
+		},
+		"b_plains": {
+			"p_armorer": "https://minecraft.wiki/images/Plains_Armorer.png?0dee1&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Plains_Butcher.png?795c2&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Plains_Cartographer.png?f6b50&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Plains_Cleric.png?817d6&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Plains_Farmer.png?b8e42&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Plains_Fisherman.png?2e0a5&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Plains_Fletcher.png?cacd0&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Plains_Leatherworker.png?b6aae&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Plains_Librarian.png?f9177&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Plains_Nitwit.png?01c04&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Plains_Mason.png?59e6b&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Plains_Shepherd.png?5b307&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Plains_Toolsmith.png?d03a0&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Plains_Villager_Base_JE2.png?a2fcc&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Plains_Weaponsmith.png?e38a6&format=original"
+		},
+		"b_savanna": {
+			"p_armorer": "https://minecraft.wiki/images/Savanna_Armorer.png?9447f&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Savanna_Butcher.png?0aa07&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Savanna_Cartographer.png?de821&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Savanna_Cleric.png?fa396&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Savanna_Farmer.png?88933&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Savanna_Fisherman.png?80c84&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Savanna_Fletcher.png?7a6d5&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Savanna_Leatherworker.png?fc455&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Savanna_Librarian.png?fe99d&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Savanna_Nitwit.png?84986&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Savanna_Mason.png?70b1e&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Savanna_Shepherd.png?69467&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Savanna_Toolsmith.png?e51bf&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Savanna_Villager_Base_JE2.png?80a98&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Savanna_Weaponsmith.png?a873a&format=original"
+		},
+		"b_snowy": {
+			"p_armorer": "https://minecraft.wiki/images/Snowy_Armorer.png?3f323&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Snowy_Butcher.png?372e7&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Snowy_Cartographer.png?56beb&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Snowy_Cleric.png?f4c8e&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Snowy_Farmer.png?92453&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Snowy_Fisherman.png?2759a&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Snowy_Fletcher.png?50a56&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Snowy_Leatherworker.png?8c3c7&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Snowy_Librarian.png?53371&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Snowy_Nitwit.png?d4cf7&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Snowy_Mason.png?2feba&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Snowy_Shepherd.png?c2562&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Snowy_Toolsmith.png?3b875&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Snowy_Villager_Base_JE2.png?b51b3&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Snowy_Weaponsmith.png?c9c43&format=original"
+		},
+		"b_swamp": {
+			"p_armorer": "https://minecraft.wiki/images/Swamp_Armorer.png?9fce5&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Swamp_Butcher.png?c9dfb&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Swamp_Cartographer.png?d17b6&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Swamp_Cleric.png?b2a19&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Swamp_Farmer.png?e9719&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Swamp_Fisherman.png?3006e&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Swamp_Fletcher.png?26828&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Swamp_Leatherworker.png?d5824&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Swamp_Librarian.png?c8124&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Swamp_Nitwit.png?039d3&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Swamp_Mason.png?96ad5&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Swamp_Shepherd.png?3fdbf&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Swamp_Toolsmith.png?0338a&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Swamp_Villager_Base_JE2.png?3f630&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Swamp_Weaponsmith.png?ebb60&format=original"
+		},
+		"b_taiga": {
+			"p_armorer": "https://minecraft.wiki/images/Taiga_Armorer.png?22f8a&format=original",
+			"p_butcher": "https://minecraft.wiki/images/Taiga_Butcher.png?9eb4d&format=original",
+			"p_cartographer": "https://minecraft.wiki/images/Taiga_Cartographer.png?23f36&format=original",
+			"p_cleric": "https://minecraft.wiki/images/Taiga_Cleric.png?8e397&format=original",
+			"p_farmer": "https://minecraft.wiki/images/Taiga_Farmer.png?cc709&format=original",
+			"p_fisherman": "https://minecraft.wiki/images/Taiga_Fisherman.png?62c66&format=original",
+			"p_fletcher": "https://minecraft.wiki/images/Taiga_Fletcher.png?49432&format=original",
+			"p_leatherworker": "https://minecraft.wiki/images/Taiga_Leatherworker.png?05bc0&format=original",
+			"p_librarian": "https://minecraft.wiki/images/Taiga_Librarian.png?c2011&format=original",
+			"p_nitwit": "https://minecraft.wiki/images/Taiga_Nitwit.png?e056a&format=original",
+			"p_stone_mason": "https://minecraft.wiki/images/Taiga_Mason.png?463f7&format=original",
+			"p_shepherd": "https://minecraft.wiki/images/Taiga_Shepherd.png?ce0d6&format=original",
+			"p_toolsmith": "https://minecraft.wiki/images/Taiga_Toolsmith.png?4c313&format=original",
+			"p_unemployed": "https://minecraft.wiki/images/Taiga_Villager_Base_JE2.png?c95f1&format=original",
+			"p_weaponsmith": "https://minecraft.wiki/images/Taiga_Weaponsmith.png?4fcd2&format=original"
+		}
+	}
+}
