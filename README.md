@@ -7,17 +7,17 @@
 ### Dump
 
 ```bash
-sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
 
 ```bash
-sudo mysql -u root -p
+mysql -u root -p
 ```
 
 ```sql
-USE edenculver;
+USE edenculverdb;
 ```
 
 ### Common commands
@@ -50,6 +50,7 @@ Clone the repo
 ```bash
 cd /var/www/
 sudo git clone git@github.com:edenculver/Personal-Website.git
+sudo chown -R edenculver:edenculver Personal-Website
 ```
 
 Make a symlink from your home directory for convenience
@@ -178,7 +179,7 @@ sudo mysql_secure_installation
 Log in to the database as root
 
 ```bash
-sudo mysql -u root -p
+mysql -u root -p
 ```
 
 Create the read-only user
