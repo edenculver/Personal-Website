@@ -7,7 +7,7 @@
 ### Dump
 
 ```bash
-sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculver > /var/www/edenculver.net/database/edenculver.sql
+sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculver > /var/www/Personal-Website/database/edenculver.sql
 ```
 
 ### Log in
@@ -66,6 +66,9 @@ Generate a CSR
 openssl req -newkey rsa:2048 -keyout ~/culverpi.key -out ~/culverpi.csr
 ```
 
+- Fill out the information prompts as desired
+- Set the common name to `edenculver.net`
+
 Submit the CSR
 
 1. [SSL Certificates](https://ap.www.namecheap.com/ProductList/SslCertificates)
@@ -83,13 +86,19 @@ Follow the [instructions](https://www.namecheap.com/support/knowledgebase/articl
 6. Add New Record > CNAME Record
 7. Copy the Host (excluding .edenculver.net) and Target
 8. Save Changes (checkmark)
-9. [Test if the CNAME has been created correctly](https://mxtoolbox.com/CnameLookup.aspx)
+9. [Test if the CNAME has been created correctly](https://mxtoolbox.com/SuperTool.aspx?action=cname%3aedenculver.net&run=toolpage#). It will take a few hours before it succeeds.
 
 Install SSL files
 
-- Cert path: `/var/www/edenculver.net/ssl/edenculver_net.crt`
-- Key path: `/var/www/edenculver.net/ssl/culverpi.key`
-- If you put them somewhere else, put the paths in `/var/www/edenculver.net/.env`, such as:
+You will get an email with the cert file. Download it and copy the it onto the server: `/var/www/Personal-Website/ssl/edenculver_net.crt`
+
+The key file needs to not have a password. Remove the password from the key you generated earlier with:
+
+```bash
+openssl rsa -in ~/culverpi.key -out /var/www/Personal-Website/ssl/culverpi.key
+```
+
+If you put these files somewhere else, put the paths in `/var/www/Personal-Website/.env`, such as:
 
 ```bash
 CERT_PATH=ssl/domain.crt
@@ -110,10 +119,10 @@ server {
 server {
 	listen 443 ssl default_server;
 	server_name edenculver.net;
-	ssl_certificate /var/www/edenculver.net/ssl/edenculver_net.crt;
-	ssl_certificate_key /var/www/edenculver.net/ssl/culverpi.key;
+	ssl_certificate /var/www/Personal-Website/ssl/edenculver_net.crt;
+	ssl_certificate_key /var/www/Personal-Website/ssl/culverpi.key;
 
-	root /var/www/edenculver.net;
+	root /var/www/Personal-Website;
 	index index.html index.htm index.nginx-debian.html;
 
 	# edenculver.net
