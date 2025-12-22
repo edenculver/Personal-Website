@@ -7,7 +7,7 @@
 ### Dump
 
 ```bash
-sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculver > /var/www/Personal-Website/database/edenculver.sql
+sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
@@ -185,11 +185,11 @@ Create the read-only user
 
 ```sql
 CREATE USER 'edenculver_ro'@'localhost' IDENTIFIED BY 'password123';
-GRANT SELECT ON edenculver.* TO 'edenculver_ro'@'localhost';
+GRANT SELECT ON edenculverdb.* TO 'edenculver_ro'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-Build the database using `databases/edenculver.sql`
+Build the database using `databases/edenculverdb.sql`
 
 ### API Setup
 

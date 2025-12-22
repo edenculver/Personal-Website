@@ -28,7 +28,7 @@ const db = mysql.createConnection({
 	host: "localhost",
 	user: process.env.DB_USERNAME,
 	password: process.env.DB_PASSWORD,
-	database: "edenculver"
+	database: "edenculverdb"
 });
 db.connect((err) => {
 	if (err) throw err;
