@@ -1,7 +1,7 @@
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.5.28-MariaDB, for debian-linux-gnueabihf (armv8l)
 --
--- Host: localhost    Database: edenculver
+-- Host: localhost    Database: edenculverdb
 -- ------------------------------------------------------
 -- Server version	10.5.28-MariaDB-0+deb11u1
 
@@ -17,12 +17,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `edenculver`
+-- Current Database: `edenculverdb`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `edenculver` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `edenculverdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
-USE `edenculver`;
+USE `edenculverdb`;
 
 --
 -- Table structure for table `battle_pack`
@@ -1212,4 +1212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-11 22:45:36
+-- Dump completed on 2025-12-21 23:43:44
