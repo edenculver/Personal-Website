@@ -7,13 +7,13 @@
 ### Dump
 
 ```bash
-mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+mariadb-dump -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
 
 ```bash
-mysql -u root -p
+mysql
 ```
 
 ```sql
@@ -179,7 +179,15 @@ sudo mysql_secure_installation
 Log in to the database as root
 
 ```bash
-mysql -u root -p
+sudo mysql
+```
+
+Create your user
+
+```sql
+CREATE USER 'edenculver'@'localhost' IDENTIFIED VIA unix_socket;
+GRANT ALL PRIVILEGES ON edenculverdb.* TO 'edenculver'@'localhost';
+FLUSH PRIVILEGES;
 ```
 
 Create the read-only user
