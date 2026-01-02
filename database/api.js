@@ -20,20 +20,32 @@ const options = {
 };
 const server = https.createServer(options, app);
 server.listen(port, () => {
-	console.log(`App listening on https://localhost:${port}`);
+	console.log(`${timestamp} App listening on https://localhost:${port}`);
 });
 
-// connect to database
-const db = mysql.createConnection({
-	host: "localhost",
-	user: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD,
-	database: "edenculverdb"
-});
-db.connect((err) => {
-	if (err) throw err;
-	console.log("Connected to database");
-});
+async function connectToDB() {
+	let connectedToDB = false;
+	while (!connectedToDB) {
+		const db = mysql.createConnection({
+			host: "localhost",
+			user: process.env.DB_USERNAME,
+			password: process.env.DB_PASSWORD,
+			database: "edenculverdb"
+		});
+		db.connect((err) => {
+			if (err) {
+				console.log(`${timestamp} Failed to connect to database. Error message:\n${err.message}`);
+				console.log(`${timestamp} Waiting 5 seconds before retrying...`);
+			} else {
+				console.log(`${timestamp} Connected to database.`);
+				connectedToDB = true;
+			}
+		});
+		await sleep(5000);
+	}
+}
+
+connectToDB();
 
 // status endpoint
 app.get("/api", (req, res) => {
@@ -148,3 +160,7 @@ app.get("/api/leitmotifs/leitmotifs_in_songs", (req, res) => {
 		res.send(result);
 	});
 });
+
+function timestamp() {
+	return `[${new Date().toISOString()}]`;
+}
