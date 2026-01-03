@@ -7,16 +7,13 @@
 ### Dump
 
 ```bash
-mariadb-dump -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+sudo mariadb-dump -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
 
 ```bash
 mysql
-```
-
-```sql
 USE edenculverdb;
 ```
 

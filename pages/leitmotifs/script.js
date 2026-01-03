@@ -6,12 +6,18 @@ var links = [];
 window.addEventListener("DOMContentLoaded", () => {
 	buildNodesAndLinks()
 		.then(simulate);
-
-	// close info panel
-	canvas.addEventListener("click", (event) => {
-		if (event.target.id === "canvas") info_panel.setAttribute("hidden", true);
-	});
 });
+
+// event to simulate the user clicking on an element
+const simulateClick = new Event("click");
+
+[select_leitmotif, select_song].forEach(
+	element => element.addEventListener("change", () => {
+		const target_id = element.options[element.selectedIndex].id.substring(7);
+		const target_node = document.getElementById(target_id);
+		target_node.dispatchEvent(simulateClick);
+	})
+);
 
 async function buildNodesAndLinks() {
 	// add song nodes
@@ -42,6 +48,14 @@ function addSongNode(row) {
 		spotify_url: row.spotify_url
 	}
 	nodes.push(new_node);
+
+	// add to dropdown
+	let option = `<option id=option_${song_id}>${row.track_title}</option>`;
+	select_song.innerHTML += option;
+	// sort options
+	let options = Array.from(select_song.children);
+	options.sort((a, b) => a.textContent.localeCompare(b.textContent));
+	options.forEach(option => select_song.appendChild(option));
 }
 
 function addLeitmotifNode(row) {
@@ -52,6 +66,14 @@ function addLeitmotifNode(row) {
 		leitmotif_name: row.leitmotif_name
 	}
 	nodes.push(new_node);
+
+	// add to dropdown
+	let option = `<option id=option_${leitmotif_id}>${row.leitmotif_name}</option>`;
+	select_leitmotif.innerHTML += option;
+	// sort options
+	let options = Array.from(select_leitmotif.children);
+	options.sort((a, b) => a.textContent.localeCompare(b.textContent));
+	options.forEach(option => select_leitmotif.appendChild(option));
 }
 
 function addLink(row) {
@@ -65,10 +87,15 @@ function addLink(row) {
 }
 
 function simulate() {
+	const alphaDecay = 0.01; // rate of decay
+	const reheatAlpha = 0.3; // alpha when dragging or resizing
+	const xyStrength = 0.1; // stength of x and y force
+	const borderMoat = 10; // width of border
+
 	// initialize simulation
 	const svg = d3.select("#canvas");
 	const simulation = d3.forceSimulation(nodes)
-		.alphaDecay(0.01)
+		.alphaDecay(alphaDecay)
 		.force("link", d3.forceLink(links).id(d => d.id).distance(50))
 		.force("charge", d3.forceManyBody().strength(-100));
 
@@ -123,8 +150,6 @@ function simulate() {
 	// update positions each tick
 	simulation.on("tick", () => {
 		// update centering forces
-		const xyStrength = 0.1;
-		const borderMoat = 10;
 		simulation
 			.force("x", d3.forceX(canvas.clientWidth / 2).strength(xyStrength))
 			.force("y", d3.forceY(canvas.clientHeight / 2).strength(xyStrength))
@@ -145,7 +170,7 @@ function simulate() {
 	// reheat the simulation when drag starts
 	// fix the position of the subject (the node being dragged)
 	function dragStarted(event) {
-		if (!event.active) simulation.alphaTarget(0.3).restart();
+		if (!event.active) simulation.alphaTarget(reheatAlpha).restart();
 		event.subject.fx = event.subject.x;
 		event.subject.fy = event.subject.y;
 	}
@@ -164,6 +189,11 @@ function simulate() {
 		event.subject.fy = null;
 	}
 
+	// reheat simulation when window is resized
+	d3.select(window).on("resize", () => {
+		simulation.alpha(reheatAlpha).restart();
+	});
+
 	// failsafe
 	// invalidation.then(() => simulation.stop());
 }
@@ -177,10 +207,14 @@ function getSpriteOffset(node) {
 }
 
 function updateInfoPanel(event) {
-	info_panel.removeAttribute("hidden");
 	if (event.target.classList[0] === "leitmotif") {
-		// update info panel
 		const leitmotif_name = event.target.attributes.leitmotif_name.value;
+
+		// update dropdowns
+		select_leitmotif.value = leitmotif_name;
+		select_song.selectedIndex = 0;
+
+		// update info panel
 		selected_name.textContent = leitmotif_name;
 		selected_caption.textContent = "Leitmotif";
 		spotify_embed.setAttribute("hidden", true);
@@ -201,13 +235,17 @@ function updateInfoPanel(event) {
 		}
 		selected_list.innerHTML = list;
 	} else if (event.target.classList[0] === "song") {
-		// update info panel
 		const game_id = parseInt(event.target.attributes.game_id.value);
 		const game_title = event.target.attributes.game_title.value;
 		const track_number = parseInt(event.target.attributes.track_number.value);
 		const track_title = event.target.attributes.track_title.value;
 		const spotify_url = event.target.attributes.spotify_url.value.replace("track", "embed/track");
 
+		// update dropdowns
+		select_leitmotif.selectedIndex = 0;
+		select_song.value = track_title;
+
+		// update info panel
 		selected_name.textContent = track_title;
 		selected_caption.textContent = `${game_title.replace("Chapter", "Ch.")} OST #${track_number}`;
 		selected_sprite.setAttribute("hidden", true);

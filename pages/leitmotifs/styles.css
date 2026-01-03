@@ -97,3 +97,11 @@ span {
 #selected_sprite {
 	margin-left: 30px;
 }
+
+select {
+	font-family: Verdana, Tahoma, sans-serif;
+	width: 100px;
+}
+option {
+	font-family: Verdana, Tahoma, sans-serif;
+}
