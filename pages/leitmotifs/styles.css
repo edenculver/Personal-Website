@@ -1,5 +1,15 @@
 :root {
 	--bg: #111111;
+	--ch1: #851053;
+	--ch2: #31D989;
+	--ch3: #FEF960;
+	--ch4: #526AF3;
+	--highlight: white;
+	--info_bg: #222222;
+	--info_border: #00C000;
+	--link: white;
+	--text: white;
+	--undertale: #A349A4;
 }
 a {
 	text-align: center;
@@ -7,7 +17,7 @@ a {
 }
 body {
 	background-color: var(--bg);
-	color: white;
+	color: var(--text);
 	font-family: Verdana, Tahoma, sans-serif;
 	margin: 0px;
 }
@@ -45,19 +55,34 @@ span {
 	margin-top: 12px;
 }
 .g0 {
-	fill: #A349A4;
+	fill: var(--undertale);
 }
 .g1 {
-	fill: #851053;
+	fill: var(--ch1);
 }
 .g2 {
-	fill: #31D989;
+	fill: var(--ch2);
 }
 .g3 {
-	fill: #FEF960;
+	fill: var(--ch3);
 }
 .g4 {
-	fill: #526AF3;
+	fill: var(--ch4);
+}
+@keyframes leitmotif-highlight {
+	50% { filter: drop-shadow(0 0 10px var(--highlight)); }
+}
+.highlighted.leitmotif {
+	animation: leitmotif-highlight 1s linear infinite;
+}
+@keyframes song-highlight {
+	50% {
+		fill: var(--highlight);
+		filter: drop-shadow(0 0 10px var(--highlight));
+	}
+}
+.highlighted.song {
+	animation: song-highlight 1s linear infinite;
 }
 .icon {
 	image-rendering: auto;
@@ -72,7 +97,7 @@ span {
 	width: 20px;
 }
 .link {
-	stroke: white;
+	stroke: var(--link);
 	stroke-width: 2px;
 }
 #canvas {
@@ -83,8 +108,8 @@ span {
 	width: 100vw;
 }
 #info_panel {
-	background-color: #222222;
-	border: 3px solid #00C000;
+	background-color: var(--info_bg);
+	border: 3px solid var(--info_border);
 	left: 2vw;
 	max-width: 400px;
 	padding: 20px;

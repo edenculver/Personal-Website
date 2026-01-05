@@ -8,14 +8,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		.then(simulate);
 });
 
-// event to simulate the user clicking on an element
-const simulateClick = new Event("click");
-
 [select_leitmotif, select_song].forEach(
 	element => element.addEventListener("change", () => {
 		const target_id = element.options[element.selectedIndex].id.substring(7);
-		const target_node = document.getElementById(target_id);
-		target_node.dispatchEvent(simulateClick);
+		const target = document.getElementById(target_id);
+		setSelectedNode(target);
 	})
 );
 
@@ -87,17 +84,22 @@ function addLink(row) {
 }
 
 function simulate() {
-	const alphaDecay = 0.01; // rate of decay
-	const reheatAlpha = 0.3; // alpha when dragging or resizing
-	const xyStrength = 0.1; // stength of x and y force
-	const borderMoat = 10; // width of border
+	const alphaDecay = 0.01;
+	const borderWidth = 10;
+	const hitboxRadius = 6;
+	const linkDistance = 50;
+	const manyBodyStrength = -100;
+	const reheatAlpha = 0.5;
+	const songNodeRadius = 6;
+	const xyStrength = 0.1;
 
 	// initialize simulation
 	const svg = d3.select("#canvas");
 	const simulation = d3.forceSimulation(nodes)
 		.alphaDecay(alphaDecay)
-		.force("link", d3.forceLink(links).id(d => d.id).distance(50))
-		.force("charge", d3.forceManyBody().strength(-100));
+		.force("link", d3.forceLink(links).id(d => d.id).distance(linkDistance))
+		.force("charge", d3.forceManyBody().strength(manyBodyStrength))
+		.force("collide", d3.forceCollide(hitboxRadius));
 
 	// draw links
 	const link = svg.append("g")
@@ -115,7 +117,7 @@ function simulate() {
 		.join("circle")
 		.attr("id", d => d.id)
 		.attr("class", d => `song g${d.id.substring(0, 1)}`)
-		.attr("r", 6)
+		.attr("r", songNodeRadius)
 		.attr("game_id", d => d.game_id)
 		.attr("game_title", d => d.game_title)
 		.attr("track_number", d => d.track_number)
@@ -123,7 +125,7 @@ function simulate() {
 		.attr("spotify_url", d => d.spotify_url);
 	song.append("title")
 		.text(d => d.track_title);
-	song.on("click", event => updateInfoPanel(event));
+	song.on("click", event => setSelectedNode(event.target));
 	song.call(d3.drag()
 		.on("start", dragStarted)
 		.on("drag", dragged)
@@ -141,7 +143,7 @@ function simulate() {
 		.attr("leitmotif_name", d => d.leitmotif_name);
 	leitmotif.append("title")
 		.text(d => d.leitmotif_name);
-	leitmotif.on("click", event => updateInfoPanel(event));
+	leitmotif.on("click", event => setSelectedNode(event.target));
 	leitmotif.call(d3.drag()
 		.on("start", dragStarted)
 		.on("drag", dragged)
@@ -153,7 +155,7 @@ function simulate() {
 		simulation
 			.force("x", d3.forceX(canvas.clientWidth / 2).strength(xyStrength))
 			.force("y", d3.forceY(canvas.clientHeight / 2).strength(xyStrength))
-			.force("boundary", forceBoundary(borderMoat, borderMoat, canvas.clientWidth - borderMoat, canvas.clientHeight - borderMoat));
+			.force("boundary", forceBoundary(borderWidth, borderWidth, canvas.clientWidth - borderWidth, canvas.clientHeight - borderWidth));
 		link
 			.attr("x1", d => d.source.x)
 			.attr("y1", d => d.source.y)
@@ -206,9 +208,14 @@ function getSpriteOffset(node) {
 	return [x, y];
 }
 
-function updateInfoPanel(event) {
-	if (event.target.classList[0] === "leitmotif") {
-		const leitmotif_name = event.target.attributes.leitmotif_name.value;
+function setSelectedNode(element) {
+	// highlight node
+	const focusClass = "highlighted";
+	Array.from(document.getElementsByClassName(focusClass)).forEach(e => e.classList.remove(focusClass));
+	element.classList.add(focusClass);
+
+	if (element.classList[0] === "leitmotif") {
+		const leitmotif_name = element.attributes.leitmotif_name.value;
 
 		// update dropdowns
 		select_leitmotif.value = leitmotif_name;
@@ -222,7 +229,7 @@ function updateInfoPanel(event) {
 
 		// update sprite
 		selected_sprite.src = `media/${leitmotif_name.replace("?", "")}.png`;
-		const rect = document.getElementById(event.target.id).getBoundingClientRect();
+		const rect = document.getElementById(element.id).getBoundingClientRect();
 		selected_sprite.width = rect.width * 2;
 		selected_sprite.removeAttribute("hidden");
 
@@ -234,12 +241,12 @@ function updateInfoPanel(event) {
 			}
 		}
 		selected_list.innerHTML = list;
-	} else if (event.target.classList[0] === "song") {
-		const game_id = parseInt(event.target.attributes.game_id.value);
-		const game_title = event.target.attributes.game_title.value;
-		const track_number = parseInt(event.target.attributes.track_number.value);
-		const track_title = event.target.attributes.track_title.value;
-		const spotify_url = event.target.attributes.spotify_url.value.replace("track", "embed/track");
+	} else if (element.classList[0] === "song") {
+		const game_id = parseInt(element.attributes.game_id.value);
+		const game_title = element.attributes.game_title.value;
+		const track_number = parseInt(element.attributes.track_number.value);
+		const track_title = element.attributes.track_title.value;
+		const spotify_url = element.attributes.spotify_url.value.replace("track", "embed/track");
 
 		// update dropdowns
 		select_leitmotif.selectedIndex = 0;
