@@ -3,6 +3,15 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 var nodes = [];
 var links = [];
 
+const alphaDecay = 0.01;
+const borderWidth = 10;
+const collideIterations = 2;
+const linkDistance = 50;
+const manyBodyStrength = -100;
+const reheatAlpha = 0.5;
+const songRadius = 6;
+const xyStrength = 0.08;
+
 window.addEventListener("DOMContentLoaded", () => {
 	buildNodesAndLinks()
 		.then(simulate);
@@ -38,6 +47,7 @@ function addSongNode(row) {
 	let new_node = {
 		id: song_id,
 		class: "song",
+		r: songRadius,
 		game_id: row.game_id,
 		game_title: row.game_title,
 		track_number: row.track_number,
@@ -60,6 +70,7 @@ function addLeitmotifNode(row) {
 	let new_node = {
 		id: leitmotif_id,
 		class: "leitmotif",
+		r: songRadius, // placeholder until sprite loads
 		leitmotif_name: row.leitmotif_name
 	}
 	nodes.push(new_node);
@@ -84,22 +95,17 @@ function addLink(row) {
 }
 
 function simulate() {
-	const alphaDecay = 0.01;
-	const borderWidth = 10;
-	const hitboxRadius = 6;
-	const linkDistance = 50;
-	const manyBodyStrength = -100;
-	const reheatAlpha = 0.5;
-	const songNodeRadius = 6;
-	const xyStrength = 0.1;
-
 	// initialize simulation
 	const svg = d3.select("#canvas");
+	const collide = d3.forceCollide(d => d.r).iterations(collideIterations); // needed for re-initializing later
 	const simulation = d3.forceSimulation(nodes)
 		.alphaDecay(alphaDecay)
 		.force("link", d3.forceLink(links).id(d => d.id).distance(linkDistance))
 		.force("charge", d3.forceManyBody().strength(manyBodyStrength))
-		.force("collide", d3.forceCollide(hitboxRadius));
+		.force("collide", collide)
+		.force("x", d3.forceX(canvas.clientWidth / 2).strength(xyStrength))
+		.force("y", d3.forceY(canvas.clientHeight / 2).strength(xyStrength))
+		.force("boundary", forceBoundary(borderWidth, borderWidth, canvas.clientWidth - borderWidth, canvas.clientHeight - borderWidth));
 
 	// draw links
 	const link = svg.append("g")
@@ -117,7 +123,7 @@ function simulate() {
 		.join("circle")
 		.attr("id", d => d.id)
 		.attr("class", d => `song g${d.id.substring(0, 1)}`)
-		.attr("r", songNodeRadius)
+		.attr("r", d => d.r)
 		.attr("game_id", d => d.game_id)
 		.attr("game_title", d => d.game_title)
 		.attr("track_number", d => d.track_number)
@@ -151,11 +157,6 @@ function simulate() {
 
 	// update positions each tick
 	simulation.on("tick", () => {
-		// update centering forces
-		simulation
-			.force("x", d3.forceX(canvas.clientWidth / 2).strength(xyStrength))
-			.force("y", d3.forceY(canvas.clientHeight / 2).strength(xyStrength))
-			.force("boundary", forceBoundary(borderWidth, borderWidth, canvas.clientWidth - borderWidth, canvas.clientHeight - borderWidth));
 		link
 			.attr("x1", d => d.source.x)
 			.attr("y1", d => d.source.y)
@@ -165,8 +166,23 @@ function simulate() {
 			.attr("cx", d => d.x)
 			.attr("cy", d => d.y);
 		leitmotif
-			.attr("x", d => getSpriteOffset(d)[0])
-			.attr("y", d => getSpriteOffset(d)[1]);
+			.attr("width", d => d.w)
+			.attr("height", d => d.h)
+			.attr("x", d => d.x - d.w / 2)
+			.attr("y", d => d.y - d.h / 2);
+
+		// console.log(nodes);
+	});
+
+	// update leitmotif size and radius once the sprites load
+	leitmotif.each(function (d) {
+		this.onload = () => {
+			const rect = this.getBoundingClientRect();
+			d.w = rect.width;
+			d.h = rect.height;
+			d.r = Math.hypot(d.w, d.h) / 2;
+			collide.initialize(nodes);
+		};
 	});
 
 	// reheat the simulation when drag starts
@@ -198,14 +214,6 @@ function simulate() {
 
 	// failsafe
 	// invalidation.then(() => simulation.stop());
-}
-
-function getSpriteOffset(node) {
-	const sprite = document.getElementById(node.id);
-	const rect = sprite.getBoundingClientRect();
-	const x = node.x - (rect.width / 2);
-	const y = node.y - (rect.height / 2);
-	return [x, y];
 }
 
 function setSelectedNode(element) {

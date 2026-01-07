@@ -98,7 +98,7 @@ span {
 }
 .link {
 	stroke: var(--link);
-	stroke-width: 2px;
+	stroke-width: 1.2px;
 }
 #canvas {
 	height: 93vh;
