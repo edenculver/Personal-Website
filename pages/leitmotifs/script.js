@@ -222,6 +222,8 @@ function setSelectedNode(element) {
 	Array.from(document.getElementsByClassName(focusClass)).forEach(e => e.classList.remove(focusClass));
 	element.classList.add(focusClass);
 
+	// todo: if simulation is paused, nudge node upwards and restart?
+
 	if (element.classList[0] === "leitmotif") {
 		const leitmotif_name = element.attributes.leitmotif_name.value;
 
@@ -245,7 +247,7 @@ function setSelectedNode(element) {
 		let list = "";
 		for (let link of links) {
 			if (link.source.leitmotif_name === leitmotif_name) {
-				list += `<p>${link.target.game_id.toString().replace("0", "U")}-${link.target.track_number}. ${link.target.track_title}</p>`;
+				list += `<p class="hyperlink" data-hyperlink="${link.target.id}">${link.target.id.replace("0-", "U-")}. ${link.target.track_title}</p>`;
 			}
 		}
 		selected_list.innerHTML = list;
@@ -272,7 +274,7 @@ function setSelectedNode(element) {
 		let list = "";
 		for (let link of links) {
 			if (link.target.game_id === game_id && link.target.track_number === track_number) {
-				list += `<p>${link.source.leitmotif_name}</p>`;
+				list += `<p class="hyperlink" data-hyperlink="${link.source.id}">${link.source.leitmotif_name}</p>`;
 			}
 		}
 		if (list === "") {
@@ -280,4 +282,11 @@ function setSelectedNode(element) {
 		}
 		selected_list.innerHTML = list;
 	}
+
+	// add event listeners
+	Array.from(document.getElementsByClassName("hyperlink")).forEach(
+		e => e.addEventListener("click", () => {
+			setSelectedNode(document.getElementById(e.dataset.hyperlink));
+		})
+	);
 }

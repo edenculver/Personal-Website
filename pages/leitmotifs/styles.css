@@ -40,9 +40,16 @@ header {
 image, img {
 	image-rendering: pixelated;
 }
+option {
+	font-family: Verdana, Tahoma, sans-serif;
+}
 p {
 	margin-bottom: 7px;
 	margin-top: 7px;
+}
+select {
+	font-family: Verdana, Tahoma, sans-serif;
+	width: 100px;
 }
 span {
 	align-items: center;
@@ -84,6 +91,12 @@ span {
 .highlighted.song {
 	animation: song-highlight 1s linear infinite;
 }
+.hyperlink {
+	cursor: pointer;
+}
+.hyperlink:hover {
+	text-decoration: underline;
+}
 .icon {
 	image-rendering: auto;
 	margin-left: 5px;
@@ -121,12 +134,4 @@ span {
 }
 #selected_sprite {
 	margin-left: 30px;
-}
-
-select {
-	font-family: Verdana, Tahoma, sans-serif;
-	width: 100px;
-}
-option {
-	font-family: Verdana, Tahoma, sans-serif;
 }
