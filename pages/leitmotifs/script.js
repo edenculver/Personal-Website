@@ -70,7 +70,9 @@ function addLeitmotifNode(row) {
 	let new_node = {
 		id: leitmotif_id,
 		class: "leitmotif",
-		r: songRadius, // placeholder until sprite loads
+		w: 1, // placeholder until sprite loads
+		h: 1, // placeholder until sprite loads
+		r: 1, // placeholder until sprite loads
 		leitmotif_name: row.leitmotif_name
 	}
 	nodes.push(new_node);
@@ -95,17 +97,22 @@ function addLink(row) {
 }
 
 function simulate() {
-	// initialize simulation
+	// dynamic forces
+	const collide = d3.forceCollide(d => d.r).iterations(collideIterations);
+	const forceX = d3.forceX(canvas.clientWidth / 2).strength(xyStrength);
+	const forceY = d3.forceY(canvas.clientHeight / 2).strength(xyStrength);
+	const boundary = forceBoundary(borderWidth, borderWidth, canvas.clientWidth - borderWidth, canvas.clientHeight - borderWidth);
+
+	// create simulation
 	const svg = d3.select("#canvas");
-	const collide = d3.forceCollide(d => d.r).iterations(collideIterations); // needed for re-initializing later
 	const simulation = d3.forceSimulation(nodes)
 		.alphaDecay(alphaDecay)
 		.force("link", d3.forceLink(links).id(d => d.id).distance(linkDistance))
 		.force("charge", d3.forceManyBody().strength(manyBodyStrength))
 		.force("collide", collide)
-		.force("x", d3.forceX(canvas.clientWidth / 2).strength(xyStrength))
-		.force("y", d3.forceY(canvas.clientHeight / 2).strength(xyStrength))
-		.force("boundary", forceBoundary(borderWidth, borderWidth, canvas.clientWidth - borderWidth, canvas.clientHeight - borderWidth));
+		.force("x", forceX)
+		.force("y", forceY)
+		.force("boundary", boundary);
 
 	// draw links
 	const link = svg.append("g")
@@ -166,8 +173,6 @@ function simulate() {
 			.attr("cx", d => d.x)
 			.attr("cy", d => d.y);
 		leitmotif
-			.attr("width", d => d.w)
-			.attr("height", d => d.h)
 			.attr("x", d => d.x - d.w / 2)
 			.attr("y", d => d.y - d.h / 2);
 
@@ -207,8 +212,15 @@ function simulate() {
 		event.subject.fy = null;
 	}
 
-	// reheat simulation when window is resized
+	// update dynamic forces when the window resizes
 	d3.select(window).on("resize", () => {
+		forceX.x(canvas.clientWidth / 2);
+		forceY.y(canvas.clientHeight / 2);
+		boundary
+			.x0(borderWidth)
+			.y0(borderWidth)
+			.x1(canvas.clientWidth - borderWidth)
+			.y1(canvas.clientHeight - borderWidth);
 		simulation.alpha(reheatAlpha).restart();
 	});
 
