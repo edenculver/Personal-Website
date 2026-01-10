@@ -7,7 +7,7 @@
 ### Dump
 
 ```bash
-sudo mariadb-dump -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
