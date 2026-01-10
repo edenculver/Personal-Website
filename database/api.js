@@ -15,6 +15,10 @@ async function startAPI() {
 	// connect to DB
 	const db = await connectToDB();
 
+	// initialize app
+	const app = express();
+	app.use(express.json());
+
 	// initialize server
 	const options = {
 		cert: fs.readFileSync(cert_path, "utf8"),
@@ -22,12 +26,8 @@ async function startAPI() {
 	};
 	const server = https.createServer(options, app);
 	server.listen(port, () => {
-		console.log(`${timestamp()} App listening on https://localhost:${port}`);
+		log(`App listening on https://localhost:${port}`);
 	});
-
-	// initialize app
-	const app = express();
-	app.use(express.json());
 
 	// status endpoint
 	app.get("/api", (req, res) => {
@@ -45,7 +45,7 @@ async function startAPI() {
 
 	// battle packs endpoint
 	app.get("/api/battle_packs", (req, res) => {
-		query = `
+		const query = `
 		SELECT set_number, set_name, release_year, piece_count, msrp, 
 		JSON_OBJECT (
 			'title', title,
@@ -94,7 +94,7 @@ async function startAPI() {
 
 	// leitmotifs/songs endpoint
 	app.get("/api/leitmotifs/songs", (req, res) => {
-		query = `
+		const query = `
 		SELECT game_id, game_title, track_number, track_title, spotify_url
 		FROM song
 		JOIN game USING (game_id);
@@ -111,7 +111,7 @@ async function startAPI() {
 
 	// leitmotifs/leitmotifs endpoint
 	app.get("/api/leitmotifs/leitmotifs", (req, res) => {
-		query = `
+		const query = `
 		SELECT leitmotif_id, leitmotif_name
 		FROM leitmotif;
 	`;
@@ -127,7 +127,7 @@ async function startAPI() {
 
 	// leitmotifs/leitmotifs_in_songs endpoint
 	app.get("/api/leitmotifs/leitmotifs_in_songs", (req, res) => {
-		query = `
+		const query = `
 		SELECT leitmotif_name, game_id, track_number
 		FROM song
 		JOIN leitmotif_in_song USING (game_id, track_number)
@@ -144,32 +144,35 @@ async function startAPI() {
 	});
 }
 
-
 async function connectToDB() {
-	let connectedToDB = false;
-	while (!connectedToDB) {
+	while (true) {
 		const db = mysql.createConnection({
 			host: "localhost",
 			user: process.env.DB_USERNAME,
 			password: process.env.DB_PASSWORD,
 			database: "edenculverdb"
 		});
-		db.connect((err) => {
-			if (err) {
-				console.log(`${timestamp()} Failed to connect to database. Error message:\n${err.message}`);
-				console.log(`${timestamp()} Waiting 5 seconds before retrying...`);
-			} else {
-				console.log(`${timestamp()} Connected to database.`);
-				connectedToDB = true;
-				return db;
-			}
-		});
-		await sleep(5000);
+
+		try {
+			await new Promise((resolve, reject) => {
+				db.connect(err => {
+					if (err) reject(err);
+					else resolve();
+				});
+			});
+
+			log("Connected to database.");
+			return db;
+		} catch (err) {
+			log(`Failed to connect to database. Error message:\n${err.message}`);
+			log("Waiting 5 seconds before retrying...");
+			await sleep(5000);
+		}
 	}
 }
 
-function timestamp() {
-	return `[${new Date().toISOString()}]`;
+function log(msg) {
+	console.log(`[${new Date().toISOString()}] ${msg}`);
 }
 
 function sleep(ms) {
