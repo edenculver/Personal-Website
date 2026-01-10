@@ -49,7 +49,7 @@ p {
 }
 select {
 	font-family: Verdana, Tahoma, sans-serif;
-	width: 100px;
+	width: 100%;
 }
 span {
 	align-items: center;
@@ -123,11 +123,11 @@ span {
 #info_panel {
 	background-color: var(--info_bg);
 	border: 3px solid var(--info_border);
-	left: 2vw;
-	max-width: 400px;
+	left: 20px;
+	width: 300px;
 	padding: 20px;
 	position: absolute;
-	top: 12vh;
+	top: 100px;
 }
 #selected_list {
 	margin-left: 10px;

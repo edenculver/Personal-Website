@@ -18,10 +18,15 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 [select_leitmotif, select_song].forEach(
-	element => element.addEventListener("change", () => {
-		const target_id = element.options[element.selectedIndex].id.substring(7);
-		const target = document.getElementById(target_id);
-		setSelectedNode(target);
+	select => select.addEventListener("change", () => {
+		const target_id = select.options[select.selectedIndex].dataset.option;
+
+		if (target_id == "x") {
+			info_panel.setAttribute("hidden", true);
+		} else {
+			const target = document.getElementById(target_id);
+			setSelectedNode(target);
+		}
 	})
 );
 
@@ -57,7 +62,7 @@ function addSongNode(row) {
 	nodes.push(new_node);
 
 	// add to dropdown
-	let option = `<option id=option_${song_id}>${row.track_title}</option>`;
+	let option = `<option data-option="${song_id}">${row.track_title}</option>`;
 	select_song.innerHTML += option;
 	// sort options
 	let options = Array.from(select_song.children);
@@ -78,7 +83,7 @@ function addLeitmotifNode(row) {
 	nodes.push(new_node);
 
 	// add to dropdown
-	let option = `<option id=option_${leitmotif_id}>${row.leitmotif_name}</option>`;
+	let option = `<option data-option="${leitmotif_id}">${row.leitmotif_name}</option>`;
 	select_leitmotif.innerHTML += option;
 	// sort options
 	let options = Array.from(select_leitmotif.children);
@@ -234,7 +239,7 @@ function setSelectedNode(element) {
 	Array.from(document.getElementsByClassName(focusClass)).forEach(e => e.classList.remove(focusClass));
 	element.classList.add(focusClass);
 
-	// todo: if simulation is paused, nudge node upwards and restart?
+	info_panel.removeAttribute("hidden");
 
 	if (element.classList[0] === "leitmotif") {
 		const leitmotif_name = element.attributes.leitmotif_name.value;
