@@ -22,7 +22,9 @@ window.addEventListener("DOMContentLoaded", () => {
 		const target_id = select.options[select.selectedIndex].dataset.option;
 
 		if (target_id == "x") {
+			// hide info panel and unhighlight nodes
 			info_panel.setAttribute("hidden", true);
+			Array.from(document.getElementsByClassName("highlighted")).forEach(e => e.classList.remove("highlighted"));
 		} else {
 			const target = document.getElementById(target_id);
 			setSelectedNode(target);
@@ -235,9 +237,8 @@ function simulate() {
 
 function setSelectedNode(element) {
 	// highlight node
-	const focusClass = "highlighted";
-	Array.from(document.getElementsByClassName(focusClass)).forEach(e => e.classList.remove(focusClass));
-	element.classList.add(focusClass);
+	Array.from(document.getElementsByClassName("highlighted")).forEach(e => e.classList.remove("highlighted"));
+	element.classList.add("highlighted");
 
 	info_panel.removeAttribute("hidden");
 
