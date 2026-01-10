@@ -20,7 +20,7 @@ const options = {
 };
 const server = https.createServer(options, app);
 server.listen(port, () => {
-	console.log(`${timestamp} App listening on https://localhost:${port}`);
+	console.log(`${timestamp()} App listening on https://localhost:${port}`);
 });
 
 async function connectToDB() {
@@ -34,10 +34,10 @@ async function connectToDB() {
 		});
 		db.connect((err) => {
 			if (err) {
-				console.log(`${timestamp} Failed to connect to database. Error message:\n${err.message}`);
-				console.log(`${timestamp} Waiting 5 seconds before retrying...`);
+				console.log(`${timestamp()} Failed to connect to database. Error message:\n${err.message}`);
+				console.log(`${timestamp()} Waiting 5 seconds before retrying...`);
 			} else {
-				console.log(`${timestamp} Connected to database.`);
+				console.log(`${timestamp()} Connected to database.`);
 				connectedToDB = true;
 			}
 		});
