@@ -9,62 +9,43 @@ const cert_path = process.env.CERT_PATH || "ssl/edenculver_net.crt";
 const key_path = process.env.KEY_PATH || "ssl/culverpi.key";
 const port = process.env.PORT || 3000;
 
-// initialize app
-const app = express();
-app.use(express.json());
+startAPI();
 
-// initialize server
-const options = {
-	cert: fs.readFileSync(cert_path, "utf8"),
-	key: fs.readFileSync(key_path, "utf8")
-};
-const server = https.createServer(options, app);
-server.listen(port, () => {
-	console.log(`${timestamp()} App listening on https://localhost:${port}`);
-});
+async function startAPI() {
+	// connect to DB
+	const db = await connectToDB();
 
-async function connectToDB() {
-	let connectedToDB = false;
-	while (!connectedToDB) {
-		const db = mysql.createConnection({
-			host: "localhost",
-			user: process.env.DB_USERNAME,
-			password: process.env.DB_PASSWORD,
-			database: "edenculverdb"
-		});
-		db.connect((err) => {
-			if (err) {
-				console.log(`${timestamp()} Failed to connect to database. Error message:\n${err.message}`);
-				console.log(`${timestamp()} Waiting 5 seconds before retrying...`);
-			} else {
-				console.log(`${timestamp()} Connected to database.`);
-				connectedToDB = true;
-			}
-		});
-		await sleep(5000);
-	}
-	return db;
-}
-
-const db = connectToDB();
-
-// status endpoint
-app.get("/api", (req, res) => {
-	const status = {
-		"status": "Running",
-		"endpoints": [
-			"/api/battle_packs",
-			"/api/leitmotifs/songs",
-			"/api/leitmotifs/leitmotifs",
-			"/api/leitmotifs/leitmotifs_in_songs"
-		]
+	// initialize server
+	const options = {
+		cert: fs.readFileSync(cert_path, "utf8"),
+		key: fs.readFileSync(key_path, "utf8")
 	};
-	res.send(status);
-});
+	const server = https.createServer(options, app);
+	server.listen(port, () => {
+		console.log(`${timestamp()} App listening on https://localhost:${port}`);
+	});
 
-// battle packs endpoint
-app.get("/api/battle_packs", (req, res) => {
-	query = `
+	// initialize app
+	const app = express();
+	app.use(express.json());
+
+	// status endpoint
+	app.get("/api", (req, res) => {
+		const status = {
+			"status": "Running",
+			"endpoints": [
+				"/api/battle_packs",
+				"/api/leitmotifs/songs",
+				"/api/leitmotifs/leitmotifs",
+				"/api/leitmotifs/leitmotifs_in_songs"
+			]
+		};
+		res.send(status);
+	});
+
+	// battle packs endpoint
+	app.get("/api/battle_packs", (req, res) => {
+		query = `
 		SELECT set_number, set_name, release_year, piece_count, msrp, 
 		JSON_OBJECT (
 			'title', title,
@@ -87,81 +68,110 @@ app.get("/api/battle_packs", (req, res) => {
 		JOIN source USING (source_id)
 		ORDER BY release_year, set_number;
 	`;
-	db.query(query, (err, result) => {
-		if (err) {
-			res.status(500).send("Server encountered an error :(");
-			throw err;
-		}
+		db.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send("Server encountered an error :(");
+				throw err;
+			}
 
-		// parse json
-		for (let set of result) {
-			set.source = JSON.parse(set.source);
-			set.minifigs = JSON.parse(set.minifigs);
-		}
+			// parse json
+			for (let set of result) {
+				set.source = JSON.parse(set.source);
+				set.minifigs = JSON.parse(set.minifigs);
+			}
 
-		// make bools into real bools
-		for (let set of result) {
-			if (set.minifigs) {
-				for (let minifig of set.minifigs) {
-					minifig.is_unique = !!minifig.is_unique;
+			// make bools into real bools
+			for (let set of result) {
+				if (set.minifigs) {
+					for (let minifig of set.minifigs) {
+						minifig.is_unique = !!minifig.is_unique;
+					}
 				}
 			}
-		}
-		res.send(result);
+			res.send(result);
+		});
 	});
-});
 
-// leitmotifs/songs endpoint
-app.get("/api/leitmotifs/songs", (req, res) => {
-	query = `
+	// leitmotifs/songs endpoint
+	app.get("/api/leitmotifs/songs", (req, res) => {
+		query = `
 		SELECT game_id, game_title, track_number, track_title, spotify_url
 		FROM song
 		JOIN game USING (game_id);
 	`;
-	db.query(query, (err, result) => {
-		if (err) {
-			res.status(500).send("Server encountered an error :(");
-			throw err;
-		}
+		db.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send("Server encountered an error :(");
+				throw err;
+			}
 
-		res.send(result);
+			res.send(result);
+		});
 	});
-});
 
-// leitmotifs/leitmotifs endpoint
-app.get("/api/leitmotifs/leitmotifs", (req, res) => {
-	query = `
+	// leitmotifs/leitmotifs endpoint
+	app.get("/api/leitmotifs/leitmotifs", (req, res) => {
+		query = `
 		SELECT leitmotif_id, leitmotif_name
 		FROM leitmotif;
 	`;
-	db.query(query, (err, result) => {
-		if (err) {
-			res.status(500).send("Server encountered an error :(");
-			throw err;
-		}
+		db.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send("Server encountered an error :(");
+				throw err;
+			}
 
-		res.send(result);
+			res.send(result);
+		});
 	});
-});
 
-// leitmotifs/leitmotifs_in_songs endpoint
-app.get("/api/leitmotifs/leitmotifs_in_songs", (req, res) => {
-	query = `
+	// leitmotifs/leitmotifs_in_songs endpoint
+	app.get("/api/leitmotifs/leitmotifs_in_songs", (req, res) => {
+		query = `
 		SELECT leitmotif_name, game_id, track_number
 		FROM song
 		JOIN leitmotif_in_song USING (game_id, track_number)
 		JOIN leitmotif USING (leitmotif_id);
 	`;
-	db.query(query, (err, result) => {
-		if (err) {
-			res.status(500).send("Server encountered an error :(");
-			throw err;
-		}
+		db.query(query, (err, result) => {
+			if (err) {
+				res.status(500).send("Server encountered an error :(");
+				throw err;
+			}
 
-		res.send(result);
+			res.send(result);
+		});
 	});
-});
+}
+
+
+async function connectToDB() {
+	let connectedToDB = false;
+	while (!connectedToDB) {
+		const db = mysql.createConnection({
+			host: "localhost",
+			user: process.env.DB_USERNAME,
+			password: process.env.DB_PASSWORD,
+			database: "edenculverdb"
+		});
+		db.connect((err) => {
+			if (err) {
+				console.log(`${timestamp()} Failed to connect to database. Error message:\n${err.message}`);
+				console.log(`${timestamp()} Waiting 5 seconds before retrying...`);
+			} else {
+				console.log(`${timestamp()} Connected to database.`);
+				connectedToDB = true;
+				return db;
+			}
+		});
+		await sleep(5000);
+	}
+}
 
 function timestamp() {
 	return `[${new Date().toISOString()}]`;
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
