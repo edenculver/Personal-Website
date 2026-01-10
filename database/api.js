@@ -43,9 +43,10 @@ async function connectToDB() {
 		});
 		await sleep(5000);
 	}
+	return db;
 }
 
-connectToDB();
+const db = connectToDB();
 
 // status endpoint
 app.get("/api", (req, res) => {
