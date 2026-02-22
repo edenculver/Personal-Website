@@ -13,8 +13,7 @@ sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/ww
 ### Log in
 
 ```bash
-mysql
-USE edenculverdb;
+sudo -u postgres psql
 ```
 
 ### Common commands
@@ -28,6 +27,17 @@ INSERT INTO minifig VALUES ('sw1416', 'Death Trooper', 'Thrawn', 1);
 UPDATE battle_pack SET msrp='9.99' WHERE set_number=7654;
 DELETE FROM leitmotif WHERE leitmotif_id=25;
 COMMIT;
+```
+
+```sql
+\dt
+\d table_name
+select * from table_name;
+begin;
+insert into table_name (id, name) values (1, 'hello');
+update table_name set name='world' where id=1;
+delete from table_name where id=1;
+commit;
 ```
 
 ## Restart API after server reboot
@@ -159,40 +169,29 @@ Point Namecheap DNS to your router
 
 ### Database Setup
 
-Install MariaDB
+Install PostgreSQL
 
 ```bash
-sudo apt install mariadb-server
+sudo apt install postgresql
 ```
 
-Secure the installation
+Create database
 
 ```bash
-sudo mysql_secure_installation
+createdb edenculverdb
+psql edenculverdb
 ```
 
-- Take the default value for all prompts except `Change the root password? [Y/n]`. Answer `n` to that one.
+Copy and paste in [`tables.sql`](database/tables.sql)
 
-Log in to the database as root
-
-```bash
-sudo mysql
-```
-
-Create your user
+Create read-only user
 
 ```sql
-CREATE USER 'edenculver'@'localhost' IDENTIFIED VIA unix_socket;
-GRANT ALL PRIVILEGES ON edenculverdb.* TO 'edenculver'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-Create the read-only user
-
-```sql
-CREATE USER 'edenculver_ro'@'localhost' IDENTIFIED BY 'password123';
-GRANT SELECT ON edenculverdb.* TO 'edenculver_ro'@'localhost';
-FLUSH PRIVILEGES;
+create user readonly with encrypted password 'password123';
+grant connect on database edenculverdb to readonly;
+grant usage on schema public to readonly;
+grant select on all tables in schema public to readonly;
+alter default privileges in schema public grant select on tables to readonly;
 ```
 
 Build the database using `databases/edenculverdb.sql`
@@ -207,7 +206,7 @@ Set up Node.js
 sudo npm init
 sudo npm install dotenv
 sudo npm install express
-sudo npm install mysql
+sudo npm install node-postgres
 sudo npm install pm2
 ```
 
@@ -216,7 +215,7 @@ Configure environment variables
 - Create file .env like the following:
 
 ```bash
-DB_USERNAME=edenculver_ro
+DB_USERNAME=readonly
 DB_PASSWORD=password123
 ```
 
