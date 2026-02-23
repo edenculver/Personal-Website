@@ -7,7 +7,7 @@
 ### Dump
 
 ```bash
-sudo mariadb-dump -u root -p -x -B --skip-extended-insert edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+sudo -u postgres pg_dump edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 ```
 
 ### Log in
@@ -17,17 +17,6 @@ sudo -u postgres psql
 ```
 
 ### Common commands
-
-```sql
-SHOW tables;
-DESCRIBE battle_pack;
-SELECT * FROM battle_pack;
-START TRANSACTION;
-INSERT INTO minifig VALUES ('sw1416', 'Death Trooper', 'Thrawn', 1);
-UPDATE battle_pack SET msrp='9.99' WHERE set_number=7654;
-DELETE FROM leitmotif WHERE leitmotif_id=25;
-COMMIT;
-```
 
 ```sql
 \dt
@@ -182,8 +171,6 @@ createdb edenculverdb
 psql edenculverdb
 ```
 
-Copy and paste in [`tables.sql`](database/tables.sql)
-
 Create read-only user
 
 ```sql
@@ -192,6 +179,16 @@ grant connect on database edenculverdb to readonly;
 grant usage on schema public to readonly;
 grant select on all tables in schema public to readonly;
 alter default privileges in schema public grant select on tables to readonly;
+```
+
+Allow remote connections (for testing purposes)
+
+1. Open `/etc/postgresql/13/main/postgresql.conf` and change the line `#listen_addresses = 'localhost'` to `listen_addresses = '*'`
+2. Open `/etc/postgresql/13/main/pg_hba.conf` and add `host all readonly 192.168.1.10/32 md5` to the bottom
+3. Restart postgresql
+
+```bash
+sudo systemctl restart postgresql
 ```
 
 Build the database using `databases/edenculverdb.sql`
@@ -206,7 +203,7 @@ Set up Node.js
 sudo npm init
 sudo npm install dotenv
 sudo npm install express
-sudo npm install node-postgres
+sudo npm install pg
 sudo npm install pm2
 ```
 

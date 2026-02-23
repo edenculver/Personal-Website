@@ -2,9 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
-const mysql = require("mysql");
+const { Client } = require("pg");
 
 // env vars
+const db_host = process.env.DB_HOST || "localhost";
+const db_name = process.env.DB_NAME || "edenculverdb";
+const db_username = process.env.DB_USERNAME;
+const db_password = process.env.DB_PASSWORD;
 const cert_path = process.env.CERT_PATH || "ssl/edenculver_net.crt";
 const key_path = process.env.KEY_PATH || "ssl/culverpi.key";
 const port = process.env.PORT || 3000;
@@ -44,113 +48,91 @@ async function startAPI() {
 	});
 
 	// battle packs endpoint
-	app.get("/api/battle_packs", (req, res) => {
+	app.get("/api/battle_packs", async (req, res) => {
 		const query = `
-		SELECT set_number, set_name, release_year, piece_count, msrp, 
-		JSON_OBJECT (
-			'title', title,
-			'short_title', short_title
-		) AS source, (
-			SELECT JSON_ARRAYAGG(
-				JSON_OBJECT(
-					'bl_id', bl_id,
-					'minifig_name', minifig_name,
-					'specification', specification,
-					'count', count,
-					'is_unique', is_unique
-				)
-			)
-			FROM battle_pack_has_minifig bp_m
-			JOIN minifig m USING (bl_id)
-			WHERE bp.set_number = bp_m.set_number 
-		) AS minifigs
-		FROM battle_pack bp
-		JOIN source USING (source_id)
-		ORDER BY release_year, set_number;
-	`;
-		db.query(query, (err, result) => {
-			if (err) {
-				res.status(500).send("Server encountered an error :(");
-				throw err;
-			}
-
-			// parse json
-			for (let set of result) {
-				set.source = JSON.parse(set.source);
-				set.minifigs = JSON.parse(set.minifigs);
-			}
-
-			// make bools into real bools
-			for (let set of result) {
-				if (set.minifigs) {
-					for (let minifig of set.minifigs) {
-						minifig.is_unique = !!minifig.is_unique;
-					}
-				}
-			}
-			res.send(result);
-		});
+			select
+				b.set_number,
+				b.set_name,
+				b.release_year,
+				b.piece_count,
+				b.msrp,
+				json_build_object(
+					'title', s.title,
+					'short_title', s.short_title
+				) as source,
+				(
+					select json_agg(
+						json_build_object(
+							'bricklink_id', m.bricklink_id,
+							'name', m.name,
+							'specification', m.specification,
+							'count', m_b.count,
+							'is_unique', m.is_unique
+						)
+					)
+					from minifig_in_battle_pack m_b
+					join minifig m on m_b.minifig = m.id
+					where b.id = m_b.battle_pack
+				) as minifigs
+			from battle_pack b
+			join source s on b.source = s.id
+			order by release_year, set_number;
+		`;
+		res.json(await db.query(query));
 	});
 
 	// leitmotifs/songs endpoint
-	app.get("/api/leitmotifs/songs", (req, res) => {
+	app.get("/api/leitmotifs/songs", async (req, res) => {
 		const query = `
-		SELECT game_id, game_title, track_number, track_title, spotify_url
-		FROM song
-		JOIN game USING (game_id);
-	`;
-		db.query(query, (err, result) => {
-			if (err) {
-				res.status(500).send("Server encountered an error :(");
-				throw err;
-			}
-
-			res.send(result);
-		});
+			select
+				g.number,
+				g.title,
+				s.track_number,
+				s.title,
+				s.url
+			from song s
+			join game g on s.game = g.id
+			order by g.number, s.track_number;
+		`;
+		res.json(await db.query(query));
 	});
 
 	// leitmotifs/leitmotifs endpoint
-	app.get("/api/leitmotifs/leitmotifs", (req, res) => {
+	app.get("/api/leitmotifs/leitmotifs", async (req, res) => {
 		const query = `
-		SELECT leitmotif_id, leitmotif_name
-		FROM leitmotif;
-	`;
-		db.query(query, (err, result) => {
-			if (err) {
-				res.status(500).send("Server encountered an error :(");
-				throw err;
-			}
-
-			res.send(result);
-		});
+			select
+				l.name
+			from leitmotif l
+			order by l.name;
+		`;
+		res.json(await db.query(query));
 	});
 
 	// leitmotifs/leitmotifs_in_songs endpoint
-	app.get("/api/leitmotifs/leitmotifs_in_songs", (req, res) => {
+	app.get("/api/leitmotifs/leitmotifs_in_songs", async (req, res) => {
 		const query = `
-		SELECT leitmotif_name, game_id, track_number
-		FROM song
-		JOIN leitmotif_in_song USING (game_id, track_number)
-		JOIN leitmotif USING (leitmotif_id);
-	`;
-		db.query(query, (err, result) => {
-			if (err) {
-				res.status(500).send("Server encountered an error :(");
-				throw err;
-			}
-
-			res.send(result);
-		});
+			select
+				l.name,
+				g.number,
+				s.track_number,
+				s.title
+			from song s
+			join game g on s.game = g.id
+			join leitmotif_in_song l_s on l_s.song = s.id
+			join leitmotif l on l_s.leitmotif = l.id
+			order by l.name, g.number, s.track_number;
+		`;
+		res.json(await db.query(query));
 	});
 }
 
 async function connectToDB() {
 	while (true) {
-		const db = mysql.createConnection({
-			host: "localhost",
-			user: process.env.DB_USERNAME,
-			password: process.env.DB_PASSWORD,
-			database: "edenculverdb"
+		const db = new Client({
+			user: db_username,
+			password: db_password,
+			host: db_host,
+			database: db_name
 		});
 
 		try {
