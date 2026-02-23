@@ -58,13 +58,13 @@ function addSongNode(song) {
 		game_number: song.game_number,
 		game_title: song.game_title,
 		track_number: song.track_number,
-		track_title: song.track_title,
+		title: song.title,
 		spotify_url: song.url
 	}
 	nodes.push(new_node);
 
 	// add to dropdown
-	let option = `<option data-option="${song_id}">${song.track_title}</option>`;
+	let option = `<option data-option="${song_id}">${song.title}</option>`;
 	select_song.innerHTML += option;
 	// sort options
 	let options = Array.from(select_song.children);
@@ -141,10 +141,10 @@ function simulate() {
 		.attr("game_number", d => d.game_number)
 		.attr("game_title", d => d.game_title)
 		.attr("track_number", d => d.track_number)
-		.attr("track_title", d => d.track_title)
+		.attr("title", d => d.title)
 		.attr("spotify_url", d => d.spotify_url);
 	song.append("title")
-		.text(d => d.track_title);
+		.text(d => d.title);
 	song.on("click", event => setSelectedNode(event.target));
 	song.call(d3.drag()
 		.on("start", dragStarted)
@@ -265,7 +265,7 @@ function setSelectedNode(element) {
 		let list = "";
 		for (let link of links) {
 			if (link.source.leitmotif_name === leitmotif_name) {
-				list += `<p class="hyperlink" data-hyperlink="${link.target.id}">${link.target.id.replace("0-", "U-")}. ${link.target.track_title}</p>`;
+				list += `<p class="hyperlink" data-hyperlink="${link.target.id}">${link.target.id.replace("0-", "U-")}. ${link.target.title}</p>`;
 			}
 		}
 		selected_list.innerHTML = list;
@@ -273,15 +273,15 @@ function setSelectedNode(element) {
 		const game_number = parseInt(element.attributes.game_number.value);
 		const game_title = element.attributes.game_title.value;
 		const track_number = parseInt(element.attributes.track_number.value);
-		const track_title = element.attributes.track_title.value;
+		const title = element.attributes.title.value;
 		const spotify_url = element.attributes.spotify_url.value.replace("track", "embed/track");
 
 		// update dropdowns
 		select_leitmotif.selectedIndex = 0;
-		select_song.value = track_title;
+		select_song.value = title;
 
 		// update info panel
-		selected_name.textContent = track_title;
+		selected_name.textContent = title;
 		selected_caption.textContent = `${game_title.replace("Chapter", "Ch.")} OST #${track_number}`;
 		selected_sprite.setAttribute("hidden", true);
 		spotify_embed.removeAttribute("hidden");
