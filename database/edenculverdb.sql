@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict NkevmruYU5twPuwEuIj4czUOE449NgVAeLs0zWvy4vQX2e8WlnELKMDEwkdnkAB
+\restrict aB6mip8Dyh4xGbrIx0GMVyniQjAfWjbFtIlbgA0R36ETmVlhlT11GaSfxKefKLB
 
 -- Dumped from database version 13.23 (Raspbian 13.23-0+deb11u1)
 -- Dumped by pg_dump version 13.23 (Raspbian 13.23-0+deb11u1)
@@ -184,6 +184,7 @@ b0fb314c-15b9-4e90-b8e0-7c67336d0c74	df33b025-935f-4a1b-9658-9bf6bc8a3cab	19.99	
 b704356b-0483-49a9-94a6-c9d114084b15	6049e287-86a6-4551-8c63-574d6f02bd7a	19.99	109	2024	Ambush on Mandalore Battle Pack	75373
 15f102e6-6560-476c-85f5-1203e1ba9a3d	3bd7dc2f-360c-43d1-9a25-e69cb30b501a	19.99	119	2025	Death Trooper & Night Trooper Battle Pack	75412
 094fac7a-d456-436d-9102-9a5bbb724a03	8017ffe2-04d4-4ed6-b6aa-acd7b308b50d	44.99	258	2025	327th Star Corps Clone Troopers Battle Pack	75431
+ab64eb59-7a4a-4118-9a26-151d7b5e83cd	efc2bb2f-50ef-4c3d-9c92-1acb0dee893a	22.99	116	2026	Siege of Mandalore Battle Pack	75449
 \.
 
 
@@ -738,7 +739,6 @@ edd9b15e-e32b-430d-80ce-d09106d494da	sw1246	t	Clone Officer	501st Legion
 82ff8c2d-3a2d-4d2d-8e3c-af8a0fa552af	sw1248	t	Clone Specialist	501st Legion
 f299b2fa-7c81-4dcd-a173-d4b85b6538d0	sw1276	t	Clone Trooper	501st Legion, 332nd Company
 0dad5e59-f9db-428d-9975-7bfc62994ac8	sw1277	t	Captain Vaughn	501st Legion, 332nd Company
-b1806865-42e7-4bfd-bef6-d721f9e2ce1c	sw1278	t	Clone Trooper	501st Legion, 332nd Company
 80939592-9d3c-43da-a52d-8d9ec57aff2d	sw1305	t	Clone Shock Trooper	Coruscant Guard
 fc62c3e3-6c9b-4b78-951b-769b8eb1bf1b	sw1319	t	Clone Trooper	Phase II
 d8a4c98b-8f95-4b2c-b7dc-7ad579bc0ae3	sw1320	t	Battle Droid	\N
@@ -749,6 +749,11 @@ e7751bbb-ceb5-4fc2-a9bc-15cecd457250	sw1345	t	Mandalorian Warrior	\N
 3876bccc-4ba1-4082-bfa8-2e14bc2789aa	sw1358	t	Night Trooper	\N
 bf22aa6c-6c8e-4e76-adbe-a7d51c50b3f1	sw1416	t	Death Trooper	Thrawn
 2a978cdb-c4b2-4a25-9f21-1eb1c4b8d97b	sw1417	t	Night Trooper	\N
+53767b5f-3dc7-4371-b81f-3f400f2ac46b	sw1422	t	Clone Trooper	327th Star Corps
+323d3c51-3697-498d-941f-68b206a6c3d4	sw1423	t	Clone Trooper	327th Star Corps
+0f93d61b-d703-4726-aea0-d9e43b0f0ad1	sw1487	t	Mandalorian Super Commando	\N
+f5a3c67b-1ea6-4481-9de6-66a9ee3bfdbb	sw1486	t	Mandalorian Super Commando	\N
+b1806865-42e7-4bfd-bef6-d721f9e2ce1c	sw1278	f	Clone Trooper	501st Legion, 332nd Company
 \.
 
 
@@ -896,6 +901,12 @@ b704356b-0483-49a9-94a6-c9d114084b15	44c7039f-774e-400b-98be-c40d82c4aa7f	2
 15f102e6-6560-476c-85f5-1203e1ba9a3d	3876bccc-4ba1-4082-bfa8-2e14bc2789aa	1
 15f102e6-6560-476c-85f5-1203e1ba9a3d	bf22aa6c-6c8e-4e76-adbe-a7d51c50b3f1	2
 15f102e6-6560-476c-85f5-1203e1ba9a3d	2a978cdb-c4b2-4a25-9f21-1eb1c4b8d97b	1
+094fac7a-d456-436d-9102-9a5bbb724a03	53767b5f-3dc7-4371-b81f-3f400f2ac46b	3
+094fac7a-d456-436d-9102-9a5bbb724a03	323d3c51-3697-498d-941f-68b206a6c3d4	1
+094fac7a-d456-436d-9102-9a5bbb724a03	e9e1754c-e8d3-483a-a423-df7ea9cd01e6	3
+ab64eb59-7a4a-4118-9a26-151d7b5e83cd	b1806865-42e7-4bfd-bef6-d721f9e2ce1c	2
+ab64eb59-7a4a-4118-9a26-151d7b5e83cd	0f93d61b-d703-4726-aea0-d9e43b0f0ad1	1
+ab64eb59-7a4a-4118-9a26-151d7b5e83cd	f5a3c67b-1ea6-4481-9de6-66a9ee3bfdbb	1
 \.
 
 
@@ -1344,6 +1355,14 @@ ALTER TABLE ONLY public.leitmotif_in_song
 
 
 --
+-- Name: minifig_in_battle_pack minifig_in_battle_pack_battle_pack_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.minifig_in_battle_pack
+    ADD CONSTRAINT minifig_in_battle_pack_battle_pack_fkey FOREIGN KEY (battle_pack) REFERENCES public.battle_pack(id);
+
+
+--
 -- Name: minifig_in_battle_pack minifig_in_battle_pack_minifig_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1433,5 +1452,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT SELECT ON TABL
 -- PostgreSQL database dump complete
 --
 
-\unrestrict NkevmruYU5twPuwEuIj4czUOE449NgVAeLs0zWvy4vQX2e8WlnELKMDEwkdnkAB
+\unrestrict aB6mip8Dyh4xGbrIx0GMVyniQjAfWjbFtIlbgA0R36ETmVlhlT11GaSfxKefKLB
 
