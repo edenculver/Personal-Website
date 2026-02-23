@@ -86,7 +86,8 @@ async function startAPI() {
 	app.get("/api/leitmotifs/songs", async (req, res) => {
 		const query = `
 			select
-				g.number,
+				g.number as game_number,
+				g.title as game_title,
 				g.title,
 				s.track_number,
 				s.title,
@@ -116,7 +117,7 @@ async function startAPI() {
 		const query = `
 			select
 				l.name,
-				g.number,
+				g.number as game_number,
 				s.track_number,
 				s.title
 			from song s

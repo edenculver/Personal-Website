@@ -49,22 +49,22 @@ async function buildNodesAndLinks() {
 	data3.forEach(row => addLink(row));
 }
 
-function addSongNode(row) {
-	const song_id = `${row.game_id}-${row.track_number}`;
+function addSongNode(song) {
+	const song_id = `${song.game_number}-${song.track_number}`;
 	let new_node = {
 		id: song_id,
 		class: "song",
 		r: songRadius,
-		game_id: row.game_id,
-		game_title: row.game_title,
-		track_number: row.track_number,
-		track_title: row.track_title,
-		spotify_url: row.spotify_url
+		game_number: song.game_number,
+		game_title: song.game_title,
+		track_number: song.track_number,
+		track_title: song.track_title,
+		spotify_url: song.url
 	}
 	nodes.push(new_node);
 
 	// add to dropdown
-	let option = `<option data-option="${song_id}">${row.track_title}</option>`;
+	let option = `<option data-option="${song_id}">${song.track_title}</option>`;
 	select_song.innerHTML += option;
 	// sort options
 	let options = Array.from(select_song.children);
@@ -72,20 +72,20 @@ function addSongNode(row) {
 	options.forEach(option => select_song.appendChild(option));
 }
 
-function addLeitmotifNode(row) {
-	const leitmotif_id = row.leitmotif_name.replaceAll(/[^\w]/g, "");
+function addLeitmotifNode(leitmotif) {
+	const leitmotif_id = leitmotif.name.replaceAll(/[^\w]/g, "");
 	let new_node = {
 		id: leitmotif_id,
 		class: "leitmotif",
 		w: 1, // placeholder until sprite loads
 		h: 1, // placeholder until sprite loads
 		r: 1, // placeholder until sprite loads
-		leitmotif_name: row.leitmotif_name
+		leitmotif_name: leitmotif.name
 	}
 	nodes.push(new_node);
 
 	// add to dropdown
-	let option = `<option data-option="${leitmotif_id}">${row.leitmotif_name}</option>`;
+	let option = `<option data-option="${leitmotif_id}">${leitmotif.name}</option>`;
 	select_leitmotif.innerHTML += option;
 	// sort options
 	let options = Array.from(select_leitmotif.children);
@@ -93,9 +93,9 @@ function addLeitmotifNode(row) {
 	options.forEach(option => select_leitmotif.appendChild(option));
 }
 
-function addLink(row) {
-	const song_id = `${row.game_id}-${row.track_number}`;
-	const leitmotif_id = row.leitmotif_name.replaceAll(/[^\w]/g, "");
+function addLink(link) {
+	const song_id = `${link.game_number}-${link.track_number}`;
+	const leitmotif_id = link.name.replaceAll(/[^\w]/g, "");
 	const new_link = {
 		source: leitmotif_id,
 		target: song_id
@@ -138,7 +138,7 @@ function simulate() {
 		.attr("id", d => d.id)
 		.attr("class", d => `song g${d.id.substring(0, 1)}`)
 		.attr("r", d => d.r)
-		.attr("game_id", d => d.game_id)
+		.attr("game_number", d => d.game_number)
 		.attr("game_title", d => d.game_title)
 		.attr("track_number", d => d.track_number)
 		.attr("track_title", d => d.track_title)
@@ -270,7 +270,7 @@ function setSelectedNode(element) {
 		}
 		selected_list.innerHTML = list;
 	} else if (element.classList[0] === "song") {
-		const game_id = parseInt(element.attributes.game_id.value);
+		const game_number = parseInt(element.attributes.game_number.value);
 		const game_title = element.attributes.game_title.value;
 		const track_number = parseInt(element.attributes.track_number.value);
 		const track_title = element.attributes.track_title.value;
@@ -291,7 +291,7 @@ function setSelectedNode(element) {
 		// find connections
 		let list = "";
 		for (let link of links) {
-			if (link.target.game_id === game_id && link.target.track_number === track_number) {
+			if (link.target.game_number === game_number && link.target.track_number === track_number) {
 				list += `<p class="hyperlink" data-hyperlink="${link.source.id}">${link.source.leitmotif_name}</p>`;
 			}
 		}
