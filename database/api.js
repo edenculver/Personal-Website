@@ -78,7 +78,8 @@ async function startAPI() {
 			join source s on b.source = s.id
 			order by release_year, set_number;
 		`;
-		res.json(await db.query(query));
+		const result = await db.query(query);
+		res.json(result.rows);
 	});
 
 	// leitmotifs/songs endpoint
@@ -94,7 +95,8 @@ async function startAPI() {
 			join game g on s.game = g.id
 			order by g.number, s.track_number;
 		`;
-		res.json(await db.query(query));
+		const result = await db.query(query);
+		res.json(result.rows);
 	});
 
 	// leitmotifs/leitmotifs endpoint
@@ -105,7 +107,8 @@ async function startAPI() {
 			from leitmotif l
 			order by l.name;
 		`;
-		res.json(await db.query(query));
+		const result = await db.query(query);
+		res.json(result.rows);
 	});
 
 	// leitmotifs/leitmotifs_in_songs endpoint
@@ -122,7 +125,8 @@ async function startAPI() {
 			join leitmotif l on l_s.leitmotif = l.id
 			order by l.name, g.number, s.track_number;
 		`;
-		res.json(await db.query(query));
+		const result = await db.query(query);
+		res.json(result.rows);
 	});
 }
 
