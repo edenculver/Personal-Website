@@ -3,6 +3,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 var nodes = [];
 var links = [];
 
+// simulation magic numbers
 const alphaDecay = 0.01;
 const borderWidth = 10;
 const collideIterations = 2;
@@ -12,19 +13,28 @@ const reheatAlpha = 0.5;
 const songRadius = 6;
 const xyStrength = 0.08;
 
+// start simulation on load
 window.addEventListener("DOMContentLoaded", () => {
 	buildNodesAndLinks()
 		.then(simulate);
 });
 
+// when an audio starts playing, pause the last audio
+var lastPlayedAudio = null;
+document.addEventListener("play", event => {
+	if (lastPlayedAudio !== null && lastPlayedAudio !== event.target) {
+		lastPlayedAudio.pause();
+	}
+	lastPlayedAudio = event.target;
+}, true);
+
+// dropdown event listeners
 [select_leitmotif, select_song].forEach(
 	select => select.addEventListener("change", () => {
 		const target_id = select.options[select.selectedIndex].dataset.option;
 
-		if (target_id == "x") {
-			// hide info panel and unhighlight nodes
-			info_panel.setAttribute("hidden", true);
-			Array.from(document.getElementsByClassName("highlighted")).forEach(e => e.classList.remove("highlighted"));
+		if (target_id === "x") {
+			clearSelectedNode();
 		} else {
 			const target = document.getElementById(target_id);
 			setSelectedNode(target);
@@ -80,7 +90,8 @@ function addLeitmotifNode(leitmotif) {
 		w: 1, // placeholder until sprite loads
 		h: 1, // placeholder until sprite loads
 		r: 1, // placeholder until sprite loads
-		leitmotif_name: leitmotif.name
+		leitmotif_name: leitmotif.name,
+		subthemes: leitmotif.subthemes || ""
 	}
 	nodes.push(new_node);
 
@@ -159,8 +170,9 @@ function simulate() {
 		.join("image")
 		.attr("id", d => d.id)
 		.attr("class", "leitmotif")
-		.attr("href", d => `media/${d.leitmotif_name.replace("?", "")}.png`)
-		.attr("leitmotif_name", d => d.leitmotif_name);
+		.attr("href", d => `images/${d.leitmotif_name.replace("?", "")}.png`)
+		.attr("leitmotif_name", d => d.leitmotif_name)
+		.attr("subthemes", d => d.subthemes);
 	leitmotif.append("title")
 		.text(d => d.leitmotif_name);
 	leitmotif.on("click", event => setSelectedNode(event.target));
@@ -235,15 +247,29 @@ function simulate() {
 	// invalidation.then(() => simulation.stop());
 }
 
-function setSelectedNode(element) {
-	// highlight node
+function clearSelectedNode() {
+	// unhighlight node
 	Array.from(document.getElementsByClassName("highlighted")).forEach(e => e.classList.remove("highlighted"));
+
+	// clear info panel
+	selected_name.textContent = "";
+	selected_caption.textContent = "";
+	selected_media.setAttribute("hidden", true);
+	selected_list_name.textContent = "";
+	selected_list.innerHTML = "";
+}
+
+function setSelectedNode(element) {
+	clearSelectedNode();
+
+	// highlight node
 	element.classList.add("highlighted");
 
-	info_panel.removeAttribute("hidden");
+	selected_media.removeAttribute("hidden");
 
 	if (element.classList[0] === "leitmotif") {
 		const leitmotif_name = element.attributes.leitmotif_name.value;
+		const subthemes = element.attributes.subthemes.value.split(",");
 
 		// update dropdowns
 		select_leitmotif.value = leitmotif_name;
@@ -256,10 +282,22 @@ function setSelectedNode(element) {
 		selected_list_name.textContent = "Appears in:";
 
 		// update sprite
-		selected_sprite.src = `media/${leitmotif_name.replace("?", "")}.png`;
+		selected_sprite.src = `images/${leitmotif_name.replace("?", "")}.png`;
 		const rect = document.getElementById(element.id).getBoundingClientRect();
 		selected_sprite.width = rect.width * 2;
 		selected_sprite.removeAttribute("hidden");
+
+		// update audios
+		let audios = "";
+		if (subthemes) {
+			for (let subtheme of subthemes) {
+				audios += `<tr><td class="audio_name">${subtheme}</td><td><audio controls><source src="audio/${leitmotif_name} ${subtheme}.mp3"></audio></td></tr>`;
+			}
+		} else {
+			audios = `<table><tr><td><audio controls><source src="audio/${leitmotif_name}.mp3"></audio></td></tr></table>`;
+		}
+		selected_audios.innerHTML = audios;
+		selected_audios.removeAttribute("hidden");
 
 		// find connections
 		let list = "";
@@ -284,6 +322,7 @@ function setSelectedNode(element) {
 		selected_name.textContent = title;
 		selected_caption.textContent = `${game_title.replace("Chapter", "Ch.")} OST #${track_number}`;
 		selected_sprite.setAttribute("hidden", true);
+		selected_audios.setAttribute("hidden", true);
 		spotify_embed.removeAttribute("hidden");
 		spotify_embed.src = spotify_url;
 		selected_list_name.textContent = "Leitmotifs:"
