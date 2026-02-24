@@ -104,7 +104,8 @@ async function startAPI() {
 	app.get("/api/leitmotifs/leitmotifs", async (req, res) => {
 		const query = `
 			select
-				l.name
+				l.name,
+				l.subthemes
 			from leitmotif l
 			order by l.name;
 		`;

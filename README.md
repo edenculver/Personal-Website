@@ -13,7 +13,7 @@ sudo -u postgres pg_dump edenculverdb > /var/www/Personal-Website/database/edenc
 ### Log in
 
 ```bash
-sudo -u postgres psql
+sudo -u postgres psql edenculverdb
 ```
 
 ### Common commands
