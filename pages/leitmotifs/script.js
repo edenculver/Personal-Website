@@ -289,7 +289,7 @@ function setSelectedNode(element) {
 
 		// update audios
 		let audios = "";
-		if (subthemes) {
+		if (subthemes.length > 1) {
 			for (let subtheme of subthemes) {
 				audios += `<tr><td class="audio_name">${subtheme}</td><td><audio controls><source src="audio/${leitmotif_name} ${subtheme}.mp3"></audio></td></tr>`;
 			}
