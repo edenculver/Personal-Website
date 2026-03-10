@@ -255,7 +255,10 @@ function clearSelectedNode() {
 	selected_name.textContent = "";
 	selected_caption.textContent = "";
 	selected_media.setAttribute("hidden", true);
-	spotify_embed.src = "";
+	let spotify_embed = document.getElementById("spotify_embed");
+	if (spotify_embed) {
+		spotify_embed.remove();
+	}
 	selected_list_name.textContent = "";
 	selected_list.innerHTML = "";
 }
@@ -279,7 +282,6 @@ function setSelectedNode(element) {
 		// update info panel
 		selected_name.textContent = leitmotif_name;
 		selected_caption.textContent = "Leitmotif";
-		spotify_embed.setAttribute("hidden", true);
 		selected_list_name.textContent = "Appears in:";
 
 		// update sprite
@@ -324,8 +326,7 @@ function setSelectedNode(element) {
 		selected_caption.textContent = `${game_title.replace("Chapter", "Ch.")} OST #${track_number}`;
 		selected_sprite.setAttribute("hidden", true);
 		selected_audios.setAttribute("hidden", true);
-		spotify_embed.removeAttribute("hidden");
-		spotify_embed.src = spotify_url;
+		selected_media.innerHTML += `<iframe id="spotify_embed" src="${spotify_url}" width="100%" height="152" frameBorder="0" loading="lazy"></iframe>`;
 		selected_list_name.textContent = "Leitmotifs:"
 
 		// find connections
