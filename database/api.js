@@ -38,10 +38,10 @@ async function startAPI() {
 		const status = {
 			"status": "Running",
 			"endpoints": [
-				"/api/battle_packs",
-				"/api/leitmotifs/songs",
-				"/api/leitmotifs/leitmotifs",
-				"/api/leitmotifs/leitmotifs_in_songs"
+				"https://edenculver.net/api/battle_packs",
+				"https://edenculver.net/api/leitmotifs/songs",
+				"https://edenculver.net/api/leitmotifs/leitmotifs",
+				"https://edenculver.net/api/leitmotifs/leitmotifs_in_songs"
 			]
 		};
 		res.send(status);
