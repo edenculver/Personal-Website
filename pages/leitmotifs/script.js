@@ -255,6 +255,7 @@ function clearSelectedNode() {
 	selected_name.textContent = "";
 	selected_caption.textContent = "";
 	selected_media.setAttribute("hidden", true);
+	spotify_embed.src = "";
 	selected_list_name.textContent = "";
 	selected_list.innerHTML = "";
 }
