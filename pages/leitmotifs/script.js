@@ -255,21 +255,17 @@ function clearSelectedNode() {
 	selected_name.textContent = "";
 	selected_caption.textContent = "";
 	selected_media.setAttribute("hidden", true);
-	let spotify_embed = document.getElementById("spotify_embed");
-	if (spotify_embed) {
-		spotify_embed.remove();
-	}
+	selected_media.innerHTML = "";
 	selected_list_name.textContent = "";
 	selected_list.innerHTML = "";
 }
 
 function setSelectedNode(element) {
 	clearSelectedNode();
+	selected_media.removeAttribute("hidden");
 
 	// highlight node
 	element.classList.add("highlighted");
-
-	selected_media.removeAttribute("hidden");
 
 	if (element.classList[0] === "leitmotif") {
 		const leitmotif_name = element.attributes.leitmotif_name.value;
@@ -284,13 +280,13 @@ function setSelectedNode(element) {
 		selected_caption.textContent = "Leitmotif";
 		selected_list_name.textContent = "Appears in:";
 
-		// update sprite
-		selected_sprite.src = `images/${leitmotif_name.replace("?", "")}.png`;
+		// create sprite
+		selected_media.innerHTML = `<img id="selected_sprite" src="images/${leitmotif_name.replace("?", "")}.png">`;
 		const rect = document.getElementById(element.id).getBoundingClientRect();
 		selected_sprite.width = rect.width * 2;
-		selected_sprite.removeAttribute("hidden");
 
-		// update audios
+		// create audios
+		selected_media.innerHTML += `<table id="selected_audios"></table>`;
 		let audios = "";
 		if (subthemes.length > 1) {
 			for (let subtheme of subthemes) {
@@ -300,7 +296,6 @@ function setSelectedNode(element) {
 			audios = `<table><tr><td><audio controls><source src="audio/${leitmotif_name}.mp3"></audio></td></tr></table>`;
 		}
 		selected_audios.innerHTML = audios;
-		selected_audios.removeAttribute("hidden");
 
 		// find connections
 		let list = "";
@@ -324,10 +319,10 @@ function setSelectedNode(element) {
 		// update info panel
 		selected_name.textContent = title;
 		selected_caption.textContent = `${game_title.replace("Chapter", "Ch.")} OST #${track_number}`;
-		selected_sprite.setAttribute("hidden", true);
-		selected_audios.setAttribute("hidden", true);
-		selected_media.innerHTML += `<iframe id="spotify_embed" src="${spotify_url}" width="100%" height="152" frameBorder="0" loading="lazy"></iframe>`;
 		selected_list_name.textContent = "Leitmotifs:"
+
+		// create spotify embed
+		selected_media.innerHTML += `<iframe id="spotify_embed" src="${spotify_url}" width="100%" height="152" frameBorder="0" loading="lazy"></iframe>`;
 
 		// find connections
 		let list = "";
