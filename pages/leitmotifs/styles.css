@@ -15,6 +15,9 @@ a {
 	text-align: center;
 	text-decoration: none;
 }
+audio {
+	width: 100%;
+}
 body {
 	background-color: var(--sprite_bg);
 	color: var(--text);
@@ -25,12 +28,13 @@ h1 {
 	font-size: 150%;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 }
 h2 {
 	margin: 20px;
 	margin-bottom: 5px;
 }
-image, img {
+img {
 	image-rendering: pixelated;
 }
 option {
@@ -48,6 +52,13 @@ span {
 	display: inline-flex;
 	font-size: 70%;
 	margin: 10px;
+	white-space: nowrap;
+}
+table, td:last-child {
+	width: 100%;
+}
+.audio_name {
+	padding-right: 10px;
 }
 .g0 {
 	fill: var(--undertale);
@@ -116,6 +127,25 @@ span {
 	flex-flow: column;
 	height: 100vh;
 }
+#container_bottom {
+	display: flex;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+#container_bottom_left {
+	border-right: var(--border);
+	width: 20vw;
+	min-height: 0;
+	min-width: 300px;
+	display: flex;
+	flex-flow: column;
+	background-color: var(--bg);
+}
+#container_bottom_right {
+	display: flex;
+	flex-flow: column;
+	flex: 1 1 auto;
+}
 #footer {
 	background-color: black;
 	border-top: var(--border);
@@ -126,18 +156,11 @@ span {
 	background-color: black;
 	display: flex;
 }
-#container_bottom_left {
-	border-right: var(--border);
-	width: 20vw;
-	min-height: 0;
-	display: flex;
-	flex-flow: column;
-	background-color: var(--bg);
+#selected_audios {
+	padding: 0px 10px;
 }
-#container_bottom {
-	display: flex;
-	flex: 1 1 auto;
-	min-height: 0;
+#selected_caption {
+	margin: 10px 20px 20px;
 }
 #selected_list {
 	padding-left: 30px;
@@ -145,37 +168,17 @@ span {
 	flex: 1 1 auto;
 	padding-right: 10px;
 }
-#container_bottom_right {
-	display: flex;
-	flex-flow: column;
-	flex: 1 1 auto;
-}
-audio {
-	width: 100%;
-}
-table, td:last-child {
-	width: 100%;
-}
-#selects {
-	padding: 10px;
+#selected_list_name {
+	margin: 20px 20px 10px;
 }
 #selected_media {
 	background-color: var(--sprite_bg);
 	padding: 10px;
 	text-align: center;
 }
-#selected_caption {
-	margin: 10px 20px 20px;
-}
 #selected_sprite {
 	margin: 10px;
 }
-#selected_list_name {
-	margin: 20px 20px 10px;
-}
-#selected_audios {
-	padding: 0px 10px;
-}
-.audio_name {
-	padding-right: 10px;
+#selects {
+	padding: 10px;
 }
