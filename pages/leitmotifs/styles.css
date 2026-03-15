@@ -117,10 +117,10 @@ table, td:last-child {
 	stroke-width: 1.2px;
 }
 #canvas {
+	flex: 1 1 auto;
 	height: 100%;
 	margin: 0px;
 	width: 100%;
-	flex: 1 1 auto;
 }
 #container {
 	display: flex;
@@ -133,18 +133,18 @@ table, td:last-child {
 	min-height: 0;
 }
 #container_bottom_left {
+	background-color: var(--bg);
 	border-right: var(--border);
-	width: 20vw;
-	min-height: 0;
-	min-width: 300px;
 	display: flex;
 	flex-flow: column;
-	background-color: var(--bg);
+	min-height: 0;
+	min-width: 300px;
+	width: 20vw;
 }
 #container_bottom_right {
 	display: flex;
-	flex-flow: column;
 	flex: 1 1 auto;
+	flex-flow: column;
 }
 #footer {
 	background-color: black;
@@ -152,8 +152,8 @@ table, td:last-child {
 	text-align: right;
 }
 #header {
-	border-bottom: var(--border);
 	background-color: black;
+	border-bottom: var(--border);
 	display: flex;
 }
 #selected_audios {
@@ -162,10 +162,14 @@ table, td:last-child {
 #selected_caption {
 	margin: 10px 20px 20px;
 }
+#selected_description {
+	padding: 10px;
+	text-align: left;
+}
 #selected_list {
-	padding-left: 30px;
-	overflow-y: scroll;
 	flex: 1 1 auto;
+	overflow-y: scroll;
+	padding-left: 30px;
 	padding-right: 10px;
 }
 #selected_list_name {

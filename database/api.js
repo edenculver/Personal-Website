@@ -105,7 +105,8 @@ async function startAPI() {
 		const query = `
 			select
 				l.name,
-				l.subthemes
+				l.subthemes,
+				l.description
 			from leitmotif l
 			order by l.name;
 		`;

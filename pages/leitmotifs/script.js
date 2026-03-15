@@ -91,7 +91,8 @@ function addLeitmotifNode(leitmotif) {
 		h: 1, // placeholder until sprite loads
 		r: 1, // placeholder until sprite loads
 		leitmotif_name: leitmotif.name,
-		subthemes: leitmotif.subthemes || ""
+		subthemes: leitmotif.subthemes || "",
+		description: leitmotif.description || ""
 	}
 	nodes.push(new_node);
 
@@ -172,7 +173,8 @@ function simulate() {
 		.attr("class", "leitmotif")
 		.attr("href", d => `images/${d.leitmotif_name.replace("?", "")}.png`)
 		.attr("leitmotif_name", d => d.leitmotif_name)
-		.attr("subthemes", d => d.subthemes);
+		.attr("subthemes", d => d.subthemes)
+		.attr("description", d => d.description);
 	leitmotif.append("title")
 		.text(d => d.leitmotif_name);
 	leitmotif.on("click", event => setSelectedNode(event.target));
@@ -270,6 +272,7 @@ function setSelectedNode(element) {
 	if (element.classList[0] === "leitmotif") {
 		const leitmotif_name = element.attributes.leitmotif_name.value;
 		const subthemes = element.attributes.subthemes.value.split(",");
+		const description = element.attributes.description.value;
 
 		// update dropdowns
 		select_leitmotif.value = leitmotif_name;
@@ -296,6 +299,11 @@ function setSelectedNode(element) {
 			audios = `<table><tr><td><audio controls><source src="audio/${leitmotif_name}.mp3"></audio></td></tr></table>`;
 		}
 		selected_audios.innerHTML = audios;
+
+		// create description
+		if (description) {
+			selected_media.innerHTML += `<p id="selected_description">${description}</p>`;
+		}
 
 		// find connections
 		let list = "";
