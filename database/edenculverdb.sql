@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict UbxXJSTLlzXPdlEbJk17bM09OEPylu6td9posxv92rUJaLf6Xf8EWfUlNiLPMFD
+\restrict g7ITUonaAd3pvKXZWBTXR25PdXBa1EBESIuLEmefQ0tK5cBY5Vr15nA8DIKtCJ8
 
 -- Dumped from database version 13.23 (Raspbian 13.23-0+deb11u1)
 -- Dumped by pg_dump version 13.23 (Raspbian 13.23-0+deb11u1)
@@ -229,7 +229,6 @@ c8cfb9c9-e343-4b3e-b787-519f6dd71835	Field of Hopes and Dreams	\N	\N
 a2e97c67-9a48-43d4-99f8-c72fa60f1e89	King	\N	\N
 bba34e6a-b2e4-4a07-a437-75f1b29eeb94	Rouxls Kaard	\N	\N
 3bf9c862-b120-4427-a9b0-51e8bd945904	Hip Shop	\N	\N
-1c00ff55-2b09-4074-a063-bb7c6103c96c	Darkness Falls	\N	\N
 1944a25c-6f22-486c-864f-8772ea91e1f9	Cyber City	\N	\N
 feedb901-15f2-4966-aa43-adbe815d20aa	Powers Combined	\N	\N
 e4476218-b7fb-46fc-8c7e-01141726b14d	Flashback	\N	\N
@@ -240,12 +239,14 @@ adcccd92-790f-41ec-bda8-b5639dd6e964	Mike	\N	\N
 4c8d2893-e3e6-4f38-8750-3b98cc386f07	Once Upon a Time	A,B,C	This is the main theme of Undertale. It appears in 17 tracks from Undertale, and is the most widespread leitmotif in the game. It also appears in a few Light World tracks in Deltarune.
 1f465eb3-0bf3-4b70-bb2c-e9f21b922ec7	Mettaton	A (It's Showtime!),B (Metal Crusher)	\N
 a4791f74-6026-4b03-b0c3-2689d7b428ef	TV Time (HEY EVERY !)	\N	This leitmotif is the theme song of the TV Time game show.
-c64e5087-6838-4c4e-92b1-07081503b2b6	The Legend	A,B,C	\N
+a0049164-1ac1-4d83-b388-f3dae95f0c32	Gerson	\N	Interestingly, all songs that contain Gerson's leitmotif also contain Undyne's. Their battles also share a SOUL mode.
 d26f0150-4332-40b9-9cef-362609586701	Lancer	A,B	\N
+c64e5087-6838-4c4e-92b1-07081503b2b6	The Legend	A,B,C	This leitmotif is associated with the prophecy and Castle Town.
 0d19f646-5bea-4735-bf98-ae091d489dfd	Sweet Cap'n Cakes	A,B	\N
 36236ea7-314f-4c8f-bc59-e137f9112344	Spamton	A,B	\N
 392f6198-ddd9-49cd-9b57-58e9989ee4b7	Hotel	\N	\N
 7adf7534-6d47-47d7-b98f-b8d7a981b39f	Ghost Fight	A,A Bass,B	\N
+1c00ff55-2b09-4074-a063-bb7c6103c96c	Darkness Falls	\N	Deltarune's game over theme.
 fe306722-253b-481c-b615-5488f6d51925	Undyne	\N	This leitmotif is often syncopated.
 eff2beef-104c-4a1d-aac6-08689486ef62	Uwa!!	\N	This leitmotif is associated with...weather, I guess?
 295aca21-7594-4512-b156-15c3cc25dd91	Determination (Ruins)	\N	I believe this leitmotif represents Determination. It appears in many of Undyne and Gerson's tracks.
@@ -253,22 +254,21 @@ eff2beef-104c-4a1d-aac6-08689486ef62	Uwa!!	\N	This leitmotif is associated with.
 1e0c01ed-3940-4cd6-bdac-d83848dfb883	Enemy Approaching	Original,Dogsong Variant	\N
 6f737841-8385-4be2-98ad-11777c1deb7a	Berdly	A,B	\N
 60af1344-d7ac-4a91-bfb9-4bb5c1d8a3e2	Freedom (The World Revolving)	A,B	This leitmotif is commonly known as the Freedom motif.
-80a87b09-030a-401c-8f37-a5f303aed044	The Holy	A,B	\N
 b0fa7f8f-ee10-4487-8f56-d6002db4d5ea	Monster (Snowdin)	A,B	This leitmotif first appears in Snowy and Snowdin Town, but it later appears in unrelated places. I believe it represents all monsters.
 4b5ed6ed-0ff4-4e2a-932c-9ac5001e4f1f	Queen	A,B,C	\N
 09f67641-9722-4e82-bb8b-ef9d41231715	Roaring Knight	\N	\N
 29346f17-7569-48cd-a290-184746526cb5	Alphys	A,B	It's not known why Alphys' leitmotif appears in "Bird That Carries You Over A Disproportionately Small Gap". The bird doesn't seem to be related to Alphys at all.
 5cfedc63-a2d0-4686-97ce-abac8e62f02d	Another Medium	\N	I would call this the Hotland leitmotif if it didn't also appear in Waterfall.
 f8575489-195e-44f1-89f1-9bb1033ebf69	Dess	\N	I believe that this leitmotif, which is commonly known as Lost Girl, will turn out to be Dess' theme.
+80a87b09-030a-401c-8f37-a5f303aed044	The Holy	A,B	It's currently unclear what this leitmotif represents.
 27bec2ba-e975-475c-9f3f-31c990f6682e	Don't Forget	\N	This is the main theme of Deltarune. It appears in 27 tracks as of Chapter 4, making it by far the most widespread leitmotif.
 0aef2ab8-a3e8-4fe8-913b-9c2bc7497d46	Dummy Coda	\N	This isn't really a leitmotif, but BIG SHOT samples it.
 ef4f3b91-afcb-4c1a-9a51-a439f75a51cf	Game Over (Determination)	\N	It may be a stretch to say this appears in Rude Buster, but it sounds pretty similar.
 f7dcf7fd-4d37-4b8b-b655-b8faedd1ecfd	Gaster	\N	This leitmotif first appears in Gaster's Theme, which is not part of the official Undertale soundtrack.
-a0049164-1ac1-4d83-b388-f3dae95f0c32	Gerson Boom	\N	Interestingly, all songs that contain Gerson's leitmotif also contain Undyne's. Their battles also share a SOUL mode.
 e2be06db-6028-42f5-97df-a228dccbd30c	Noelle	A,B	Noelle B appears in Friends, which plays in a scene that has no relation to Noelle. Depending on how this leitmotif is used in future chapters, I may break it out into its own leitmotif that represents friendship.
 3a975d33-87d5-498d-8375-481f082c0f20	Tenna	\N	This leitmotif appears in the most tracks apart from the main themes of each game.
 b404c069-0951-4cc2-acec-857b108b6110	Roots	\N	This leitmotif sounds similar to Spamton A, but the melody is different.
-73271dd7-fb45-4b11-ad67-8aa551d8b54a	The Dark Truth	\N	This leitmotif sounds similar to Your Best Nightmare, but the melody is different.
+73271dd7-fb45-4b11-ad67-8aa551d8b54a	The Dark Truth	\N	This leitmotif seems to be associated with the Roaring.
 \.
 
 
@@ -1463,5 +1463,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT SELECT ON TABL
 -- PostgreSQL database dump complete
 --
 
-\unrestrict UbxXJSTLlzXPdlEbJk17bM09OEPylu6td9posxv92rUJaLf6Xf8EWfUlNiLPMFD
+\unrestrict g7ITUonaAd3pvKXZWBTXR25PdXBa1EBESIuLEmefQ0tK5cBY5Vr15nA8DIKtCJ8
 
