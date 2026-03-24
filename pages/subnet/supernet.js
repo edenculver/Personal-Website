@@ -1,5 +1,5 @@
 import IpAddress from "./IpAddress.js";
-import VisitLogger from "../database/VisitLogger.js";
+import VisitLogger from "/database/VisitLogger.js";
 
 VisitLogger.log("supernet");
 

@@ -122,14 +122,14 @@ server {
 	root /var/www/Personal-Website;
 	index index.html index.htm index.nginx-debian.html;
 
-	# redirect to home page
-	location = / {
-		try_files /pages/home /pages/home/ =404;
+	# home page
+		location = / {
+		return 301 /pages/home/;
 	}
 
-	# alias to make /pages and .html in URLs optional
-	location / {
-		try_files $uri $uri/ $uri.html /pages/$uri /pages/$uri/ /pages/$uri.html =404;
+	# pages
+		location / {
+		try_files $uri $uri/ =404;
 	}
 
 	# API

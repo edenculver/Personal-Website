@@ -30,6 +30,6 @@ function buildTree(section_name, section_list) {
 		let tree_leaf = document.createElement("a");
 		tree_leaf.setAttribute("href", link.link);
 
-		
+		let thumb = document.createElement("")
 	});
 }

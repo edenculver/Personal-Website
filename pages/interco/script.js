@@ -1,5 +1,5 @@
 import FlagMaker from "./FlagMaker.js";
-import VisitLogger from "../database/VisitLogger.js";
+import VisitLogger from "/database/VisitLogger.js";
 
 VisitLogger.log("interco");
 

@@ -1,4 +1,4 @@
-import VisitLogger from "../database/VisitLogger.js";
+import VisitLogger from "/database/VisitLogger.js";
 
 VisitLogger.log("chords");
 
