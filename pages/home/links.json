@@ -1,0 +1,134 @@
+{
+	"pages": [
+		{
+			"name": "Subnet/Supernet Calculator",
+			"link": "/subnet/subnet",
+			"thumbnail": "media/router.svg",
+			"alt_text": "Router",
+			"extra_classes": null
+		},
+		{
+			"name": "LEGO Star Wars Battle Packs Catalog",
+			"link": "/battle_packs",
+			"thumbnail": "media/legostarwars.png",
+			"alt_text": "LEGO Star Wars",
+			"extra_classes": null
+		},
+		{
+			"name": "Undertale/Deltarune Leitmotifs Graph",
+			"link": "/leitmotifs",
+			"thumbnail": "media/soul.png",
+			"alt_text": "SOUL",
+			"extra_classes": "pixel"
+		},
+		{
+			"name": "International Code of Signals Translator",
+			"link": "/interco",
+			"thumbnail": "media/interco.png",
+			"alt_text": "INTERCO",
+			"extra_classes": null
+		},
+		{
+			"name": "Which Minecraft Villager Are You?",
+			"link": "/villager_quiz",
+			"thumbnail": "media/emerald.png",
+			"alt_text": "Emerald",
+			"extra_classes": "pixel"
+		},
+		{
+			"name": "Minecraft Create Mod Steam Engine Simulator",
+			"link": "/steam_engine",
+			"thumbnail": "media/steam_engine.png",
+			"alt_text": "Steam Engine",
+			"extra_classes": null
+		},
+		{
+			"name": "Stardew Valley Fish Cheat Sheet",
+			"link": "/fish",
+			"thumbnail": "/pages/fish/media/Bullhead.png",
+			"alt_text": "Bullhead",
+			"extra_classes": "pixel"
+		},
+		{
+			"name": "Chord Builder (WIP)",
+			"link": "/chords",
+			"thumbnail": "",
+			"alt_text": "WIP",
+			"extra_classes": null
+		}
+	],
+	"links": [
+		{
+			"name": "GitHub",
+			"link": "https://github.com/edenculver",
+			"thumbnail": "https://icon.horse/icon/github.com",
+			"alt_text": "github.com",
+			"extra_classes": null
+		},
+		{
+			"name": "LinkedIn",
+			"link": "https://www.linkedin.com/in/edenculver/",
+			"thumbnail": "https://icon.horse/icon/www.linkedin.com",
+			"alt_text": "linkedin.com",
+			"extra_classes": null
+		},
+		{
+			"name": "Email me",
+			"link": "mailto:edenculver27@gmail.com",
+			"thumbnail": "https://icon.horse/icon/mail.google.com",
+			"alt_text": "Gmail",
+			"extra_classes": null
+		}
+	],
+	"Cool stuff other people have made": [
+		{
+			"name": "BGP Tools",
+			"link": "https://bgp.tools/",
+			"thumbnail": "https://icon.horse/icon/bgp.tools",
+			"alt_text": "bgp.tools",
+			"extra_classes": null
+		},
+		{
+			"name": "Flag Color Codes",
+			"link": "https://www.flagcolorcodes.com/",
+			"thumbnail": "https://icon.horse/icon/www.flagcolorcodes.com",
+			"alt_text": "flagcolorcodes.com",
+			"extra_classes": null
+		},
+		{
+			"name": "LEGO Color List",
+			"link": "https://ryliehowerter.net/colors.php",
+			"thumbnail": "https://icon.horse/icon/ryliehowerter.net",
+			"alt_text": "ryliehowerter.net",
+			"extra_classes": null
+		},
+		{
+			"name": "Regex101",
+			"link": "https://regex101.com/",
+			"thumbnail": "https://icon.horse/icon/regex101.com",
+			"alt_text": "regex101.com",
+			"extra_classes": null
+		},
+		{
+			"name": "Toki Pona Dictionary",
+			"link": "https://linku.la/",
+			"thumbnail": "https://icon.horse/icon/linku.la",
+			"alt_text": "linku.la",
+			"extra_classes": null
+		},
+		{
+			"name": "Unicode Character Table",
+			"link": "https://symbl.cc/en/unicode-table/",
+			"thumbnail": "https://icon.horse/icon/symbl.cc",
+			"alt_text": "symbl.cc",
+			"extra_classes": null
+		},
+		{
+			"name": "US Flags Design Guide",
+			"link": "https://usflags.design/",
+			"thumbnail": "https://icon.horse/icon/usflags.design",
+			"alt_text": "usflags.design",
+			"extra_classes": null
+		}
+	]
+}

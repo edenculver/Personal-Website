@@ -122,10 +122,16 @@ server {
 	root /var/www/Personal-Website;
 	index index.html index.htm index.nginx-debian.html;
 
-	# edenculver.net
-	location / {
-		try_files $uri $uri/ =404;
+	# redirect to home page
+	location = / {
+		try_files /pages/home /pages/home/ =404;
 	}
+
+	# alias to make /pages and .html in URLs optional
+	location / {
+		try_files $uri $uri/ $uri.html /pages/$uri /pages/$uri/ /pages/$uri.html =404;
+	}
+
 	# API
 	location /api {
 		proxy_pass https://localhost:3000;

@@ -1,3 +1,7 @@
+import VisitLogger from "../database/VisitLogger.js";
+
+VisitLogger.log("villager_quiz");
+
 const biomes = [
 	"b_desert",
 	"b_jungle",

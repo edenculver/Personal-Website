@@ -1,4 +1,7 @@
 import FlagMaker from "./FlagMaker.js";
+import VisitLogger from "../database/VisitLogger.js";
+
+VisitLogger.log("interco");
 
 const flagMaker = new FlagMaker();
 var useSubs = null;

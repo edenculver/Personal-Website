@@ -1,3 +1,7 @@
+import VisitLogger from "../database/VisitLogger.js";
+
+VisitLogger.log("fish");
+
 window.addEventListener("DOMContentLoaded", () => {
 	buildTableOcean();
 	buildTableForestPond();

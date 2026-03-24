@@ -84,9 +84,8 @@ span {
 #icon {
 	width: 64px;
 }
-#main {
-	margin-left: 25px;
-	margin-right: 25px;
+#container {
+	display: flex;
 	overflow-y: scroll;
 }
 @media only screen and (max-width: 500px) {

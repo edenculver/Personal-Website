@@ -1,3 +1,7 @@
+import VisitLogger from "../database/VisitLogger.js";
+
+VisitLogger.log("chords");
+
 const pianoKeys = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"]; // the indexes of these are used as pitch values
 const noteNames = "CDEFGAB";
 const qualities = {

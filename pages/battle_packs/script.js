@@ -1,3 +1,7 @@
+import VisitLogger from "../database/VisitLogger.js";
+
+VisitLogger.log("battle_packs");
+
 window.addEventListener("DOMContentLoaded", () => {
 	fetch("https://edenculver.net/api/battle_packs")
 		.then((response) => response.json())

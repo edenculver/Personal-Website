@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
@@ -21,6 +22,7 @@ async function startAPI() {
 
 	// initialize app
 	const app = express();
+	app.use(cors());
 	app.use(express.json());
 
 	// initialize server
@@ -38,6 +40,7 @@ async function startAPI() {
 		const status = {
 			"status": "Running",
 			"endpoints": [
+				"https://edenculver.net/api/ping",
 				"https://edenculver.net/api/battle_packs",
 				"https://edenculver.net/api/leitmotifs/songs",
 				"https://edenculver.net/api/leitmotifs/leitmotifs",
@@ -45,6 +48,19 @@ async function startAPI() {
 			]
 		};
 		res.send(status);
+	});
+
+	// ping endpoint
+	app.post("/api/ping", (req, res) => {
+		const visiting_page = req.body && "page" in req.body ? req.body["page"] : "Unknown";
+		const client_ip = req.ip;
+		const user_agent = req.get("User-Agent");
+		const is_mobile = req.get("Sec-CH-UA-Mobile") === "?1";
+		const lagnuages = req.acceptsLanguages();
+		
+		log(`${visiting_page} visited by ${client_ip}, user-agent: "${user_agent}", mobile: ${is_mobile}, languages: "${lagnuages}"`);
+
+		res.send("pong");
 	});
 
 	// battle packs endpoint
