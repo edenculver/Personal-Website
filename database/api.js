@@ -39,13 +39,17 @@ async function startAPI() {
 	app.get("/api", (req, res) => {
 		const status = {
 			"status": "Running",
-			"endpoints": [
-				"https://edenculver.net/api/ping",
-				"https://edenculver.net/api/battle_packs",
-				"https://edenculver.net/api/leitmotifs/songs",
-				"https://edenculver.net/api/leitmotifs/leitmotifs",
-				"https://edenculver.net/api/leitmotifs/leitmotifs_in_songs"
-			]
+			"endpoints": {
+				"GET": [
+					"https://edenculver.net/api/battle_packs",
+					"https://edenculver.net/api/leitmotifs/songs",
+					"https://edenculver.net/api/leitmotifs/leitmotifs",
+					"https://edenculver.net/api/leitmotifs/leitmotifs_in_songs"
+				],
+				"POST": [
+					"https://edenculver.net/api/ping"
+				]
+			}
 		};
 		res.send(status);
 	});
@@ -55,10 +59,9 @@ async function startAPI() {
 		const visiting_page = req.body && "page" in req.body ? req.body["page"] : "Unknown";
 		const client_ip = req.ip;
 		const user_agent = req.get("User-Agent");
-		const is_mobile = req.get("Sec-CH-UA-Mobile") === "?1";
-		const lagnuages = req.acceptsLanguages();
+		const languages = req.acceptsLanguages();
 		
-		log(`${visiting_page} visited by ${client_ip}, user-agent: "${user_agent}", mobile: ${is_mobile}, languages: "${lagnuages}"`);
+		log(`${visiting_page} visited by ${client_ip}, user-agent: "${user_agent}", languages: "${languages}"`);
 
 		res.send("pong");
 	});
