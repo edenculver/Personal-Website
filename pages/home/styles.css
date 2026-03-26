@@ -47,9 +47,6 @@ header {
 	position: sticky;
 	top: 0px;
 }
-hr {
-	color: var(--gray);
-}
 span {
 	padding: 20px;
 }
@@ -68,17 +65,17 @@ span {
 .tree {
 	display: flex;
 }
-.treeBranch, .treeBranchTop {
+.tree_branch {
 	border-bottom: 1px solid var(--gray);
 	border-left: 1px solid var(--gray);
 	box-sizing: border-box;
 	height: 105px;
 	width: 50px;
 }
-.treeBranchTop {
+.tree_branch:first-child {
 	height: 61px;
 }
-.treeTrunk {
+.tree_trunk {
 	margin-left: 10px;
 }
 #icon {
@@ -106,13 +103,13 @@ span {
 		height: 32px;
 		width: 32px;
 	}
-	.treeBranch, .treeBranchTop {
+	.tree_branch {
 		width: 15px;
 	}
 	#icon {
 		width: 32px;
 	}
-	#main {
+	#container {
 		margin: 0px;
 	}
 }

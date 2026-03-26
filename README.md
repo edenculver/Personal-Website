@@ -206,11 +206,12 @@ Install Node.js
 Set up Node.js
 
 ```bash
-sudo npm init
-sudo npm install dotenv
-sudo npm install express
-sudo npm install pg
-sudo npm install pm2
+npm init
+npm install cors
+npm install dotenv
+npm install express
+npm install pg
+npm install pm2
 ```
 
 Configure environment variables

@@ -1,5 +1,5 @@
 {
-	"pages": [
+	"Pages": [
 		{
 			"name": "Subnet/Supernet Calculator",
 			"link": "/pages/subnet/subnet.html",
@@ -57,7 +57,7 @@
 			"extra_classes": null
 		}
 	],
-	"links": [
+	"Links": [
 		{
 			"name": "GitHub",
 			"link": "https://github.com/edenculver",
