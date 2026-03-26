@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
@@ -22,6 +23,12 @@ async function startAPI() {
 	// initialize app
 	const app = express();
 	app.use(express.json());
+	
+	// CORS
+	const cors_options = {
+		allowed_headers: ["Content-Type"]
+	}
+	app.use(cors(cors_options));
 
 	// initialize server
 	const options = {

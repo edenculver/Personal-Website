@@ -13,13 +13,6 @@ export default class VisitLogger {
 				page: page
 			})
 		}
-
-		try {
-			fetch("https://edenculver.net/api/ping", options);
-			return true;
-		} catch (error) {
-			console.log("Failed to log visit: " + error.message);
-			return false;
-		}
+		fetch("https://edenculver.net/api/ping", options);
 	}
 }
