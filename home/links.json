@@ -2,56 +2,56 @@
 	"Pages": [
 		{
 			"name": "Subnet/Supernet Calculator",
-			"link": "/pages/subnet/subnet.html",
+			"link": "/subnet/subnet.html",
 			"thumbnail": "media/router.svg",
 			"alt_text": "Router",
 			"extra_classes": null
 		},
 		{
 			"name": "LEGO Star Wars Battle Packs Catalog",
-			"link": "/pages/battle_packs",
+			"link": "/battle_packs",
 			"thumbnail": "media/legostarwars.png",
 			"alt_text": "LEGO Star Wars",
 			"extra_classes": null
 		},
 		{
 			"name": "Undertale/Deltarune Leitmotifs Graph",
-			"link": "/pages/leitmotifs",
+			"link": "/leitmotifs",
 			"thumbnail": "media/soul.png",
 			"alt_text": "SOUL",
 			"extra_classes": "pixel"
 		},
 		{
 			"name": "International Code of Signals Translator",
-			"link": "/pages/interco",
+			"link": "/interco",
 			"thumbnail": "media/interco.png",
 			"alt_text": "INTERCO",
 			"extra_classes": null
 		},
 		{
 			"name": "Which Minecraft Villager Are You?",
-			"link": "/pages/villager_quiz",
+			"link": "/villager_quiz",
 			"thumbnail": "media/emerald.png",
 			"alt_text": "Emerald",
 			"extra_classes": "pixel"
 		},
 		{
 			"name": "Minecraft Create Mod Steam Engine Simulator",
-			"link": "/pages/steam_engine",
+			"link": "/steam_engine",
 			"thumbnail": "media/steam_engine.png",
 			"alt_text": "Steam Engine",
 			"extra_classes": null
 		},
 		{
 			"name": "Stardew Valley Fish Cheat Sheet",
-			"link": "/pages/fish",
-			"thumbnail": "/pages/fish/media/Bullhead.png",
+			"link": "/fish",
+			"thumbnail": "/fish/media/Bullhead.png",
 			"alt_text": "Bullhead",
 			"extra_classes": "pixel"
 		},
 		{
 			"name": "Chord Builder (WIP)",
-			"link": "/pages/chords",
+			"link": "/chords",
 			"thumbnail": "",
 			"alt_text": "WIP",
 			"extra_classes": null

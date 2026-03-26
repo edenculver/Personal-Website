@@ -122,9 +122,9 @@ server {
 	root /var/www/Personal-Website;
 	index index.html index.htm index.nginx-debian.html;
 
-	# home page
+	# redirect from root to home page
 		location = / {
-		return 301 /pages/home/;
+		return 301 /home/;
 	}
 
 	# pages
