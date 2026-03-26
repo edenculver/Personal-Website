@@ -168,7 +168,6 @@ table, td:last-child {
 }
 #selected_list {
 	flex: 1 1 auto;
-	overflow-y: scroll;
 	padding-left: 30px;
 	padding-right: 10px;
 }

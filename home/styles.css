@@ -78,12 +78,11 @@ span {
 .tree_trunk {
 	margin-left: 10px;
 }
-#icon {
-	width: 64px;
-}
 #container {
 	display: flex;
-	overflow-y: scroll;
+}
+#icon {
+	width: 64px;
 }
 @media only screen and (max-width: 500px) {
 	h1 {
@@ -106,10 +105,10 @@ span {
 	.tree_branch {
 		width: 15px;
 	}
-	#icon {
-		width: 32px;
-	}
 	#container {
 		margin: 0px;
+	}
+	#icon {
+		width: 32px;
 	}
 }

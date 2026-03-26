@@ -19,7 +19,7 @@ header {
 	top: 0px;
 }
 .flagdiv {
-	overflow-x: scroll;
+	overflow-x: auto;
 	width: 100%;
 }
 .flaginput {
