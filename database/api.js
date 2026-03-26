@@ -23,6 +23,7 @@ async function startAPI() {
 	// initialize app
 	const app = express();
 	app.use(express.json());
+	app.set("trust proxy", true);
 	
 	// CORS
 	const cors_options = {

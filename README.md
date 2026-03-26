@@ -104,7 +104,7 @@ KEY_PATH=ssl/domain.key
 
 Change `/etc/nginx/sites-available/default` to this:
 
-```
+```conf
 # redirect to HTTPS
 server {
 	listen 80;
@@ -123,12 +123,12 @@ server {
 	index index.html index.htm index.nginx-debian.html;
 
 	# redirect from root to home page
-		location = / {
+	location = / {
 		return 301 /home/;
 	}
 
 	# pages
-		location / {
+	location / {
 		try_files $uri $uri/ =404;
 	}
 
@@ -139,10 +139,12 @@ server {
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection 'upgrade';
 		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_cache_bypass $http_upgrade;
-		add_header Access-Control-Allow-Origin * always;
 	}
 }
+
 ```
 
 - Make sure to change the SSL paths if needed
