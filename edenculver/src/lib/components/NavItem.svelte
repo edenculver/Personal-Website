@@ -9,7 +9,7 @@
 	let { title, href }: Props = $props();
 </script>
 
-<a class={page.data.title === title ? "active" : ""} {href}>{title}</a>
+<a class={page.url.pathname === href ? "active" : ""} {href}>{title}</a>
 
 <style>
 	a {

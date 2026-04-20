@@ -24,9 +24,9 @@
 		align-items: center;
 		border: 1px solid gray;
 		border-radius: 10px;
+		flex: 1;
 		margin: 10px;
 		min-width: 300px;
-		flex: 1;
 	}
 	a:hover {
 		background-color: gray;
@@ -38,8 +38,8 @@
 		text-decoration: none;
 	}
 	.titleBar {
-		display: flex;
 		align-items: center;
+		display: flex;
 	}
 	img {
 		height: 48px;

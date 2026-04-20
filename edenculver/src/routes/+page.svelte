@@ -22,14 +22,14 @@
 		<Card
 			title="Subnet/Supernet Calculator"
 			description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total adresses, summary addresses, and more."
-			href="/subnet"
+			href="/subnet-calculator"
 			src="/images/home/router.svg"
 			alt="Icon of a short blue cylinder with four white arrows on the top, representing a router."
 		/>
 		<Card
 			title="Battle Packs Catalog"
 			description="A complete catalog of every LEGO Star Wars Battle Pack."
-			href="/battle_packs"
+			href="/battle-packs"
 			src="/images/home/legostarwars.png"
 			alt="LEGO Star Wars logo."
 		/>
@@ -44,7 +44,7 @@
 		<Card
 			title="Signal Flags Translator"
 			description="Translate messages into International Code of Signals (INTERCO) flags."
-			href="/interco"
+			href="/signal-flags"
 			src="/images/home/interco.png"
 			alt="Four square signal flags: A yellow square with a black circle in the center; a 4x4 blue and white checkerboard; five horizontal stripes of blue, white, red, white, blue; and a square divided diagonally from top left to bottom right, with the top right half red and the bottom left half yellow. The message translates to IN CO."
 		/>
@@ -52,7 +52,7 @@
 			title="Create Steam Engine Simulator"
 			description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
 			href="/steam_engine"
-			src="/images/home/steam_engine.png"
+			src="/images/home/steam-engine.png"
 			alt="A stylized piston made of copper and brass."
 		/>
 		<Card
@@ -66,7 +66,7 @@
 		<Card
 			title="Which Minecraft Villager Are You?"
 			description="Take this personality quiz to find out which Minecraft villager you are!"
-			href="/villager_quiz"
+			href="/villager-quiz"
 			src="/images/home/emerald.png"
 			alt="Pixel art of a bright green emerald."
 			pixelated={true}
@@ -148,15 +148,8 @@
 		/>
 	</div>
 </div>
-<footer></footer>
 
 <style>
-	:global(body) {
-		background-color: black;
-		color: white;
-		font-family: Verdana, Tahoma, sans-serif;
-		margin: 0px;
-	}
 	header {
 		align-items: center;
 		background-color: white;
