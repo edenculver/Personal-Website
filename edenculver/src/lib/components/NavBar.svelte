@@ -5,7 +5,7 @@
 
 <nav>
 	<NavItem title="Home" href="/" />
-	<NavItem title="Subnet Calc" href="/subnet-calculator" />
+	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />
 	<NavItem title="Leitmotifs" href="/leitmotifs" />
 	<NavItem title="Signal Flags" href="/signal-flags" />

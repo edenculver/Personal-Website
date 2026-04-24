@@ -22,7 +22,7 @@
 		<Card
 			title="Subnet/Supernet Calculator"
 			description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total adresses, summary addresses, and more."
-			href="/subnet-calculator"
+			href="/ip-calculator"
 			src="/images/home/router.svg"
 			alt="Icon of a short blue cylinder with four white arrows on the top, representing a router."
 		/>

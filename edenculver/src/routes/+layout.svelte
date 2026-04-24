@@ -8,7 +8,11 @@
 </script>
 
 <svelte:head>
-	<title>{title} | EdenCulver.net</title>
+	{#if title === "default"}
+		<title>EdenCulver.net</title>
+	{:else}
+		<title>{title} | EdenCulver.net</title>
+	{/if}
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
@@ -20,5 +24,11 @@
 		color: white;
 		font-family: Verdana, Tahoma, sans-serif;
 		margin: 0px;
+	}
+	:global(.flex) {
+		display: flex;
+	}
+	:global(.column) {
+		flex-direction: column;
 	}
 </style>
