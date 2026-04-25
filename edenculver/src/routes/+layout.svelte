@@ -25,6 +25,12 @@
 		font-family: Verdana, Tahoma, sans-serif;
 		margin: 0px;
 	}
+	@media (prefers-color-scheme: light) {
+		:global(body) {
+			background-color: white;
+			color: black;
+		}
+	}
 	:global(.flex) {
 		display: flex;
 	}

@@ -13,20 +13,20 @@
 		<priority>0.7</priority>
     </url>
     <url>
-        <loc>https://edenculver.net/interco/</loc>
-		<priority>0.8</priority>
+        <loc>https://edenculver.net/ip-calculator/</loc>
+		<priority>0.9</priority>
     </url>
     <url>
         <loc>https://edenculver.net/leitmotifs/</loc>
 		<priority>0.9</priority>
     </url>
     <url>
-        <loc>https://edenculver.net/steam_engine/</loc>
-		<priority>0.7</priority>
+        <loc>https://edenculver.net/signal-flags/</loc>
+		<priority>0.8</priority>
     </url>
     <url>
-        <loc>https://edenculver.net/subnet</loc>
-		<priority>0.9</priority>
+        <loc>https://edenculver.net/steam_engine/</loc>
+		<priority>0.7</priority>
     </url>
     <url>
         <loc>https://edenculver.net/villager_quiz/</loc>

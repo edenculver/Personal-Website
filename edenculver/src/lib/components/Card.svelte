@@ -8,7 +8,7 @@
 		pixelated?: boolean;
 	}
 
-	let { title, description, href, src, alt, pixelated=false }: Props = $props();
+	let { title, description, href, src, alt, pixelated = false }: Props = $props();
 </script>
 
 <a {href}>
@@ -22,7 +22,7 @@
 <style>
 	a {
 		align-items: center;
-		border: 1px solid gray;
+		border: 2px solid gray;
 		border-radius: 10px;
 		flex: 1;
 		margin: 10px;
@@ -54,5 +54,11 @@
 	}
 	.description {
 		margin: 0px 20px 20px;
+	}
+	@media (prefers-color-scheme: light) {
+		a:link,
+		a:visited {
+			color: black;
+		}
 	}
 </style>

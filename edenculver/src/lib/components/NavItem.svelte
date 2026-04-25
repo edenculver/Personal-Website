@@ -26,4 +26,9 @@
 	.active {
 		background-color: gray;
 	}
+	@media (prefers-color-scheme: light) {
+		a {
+			color: black;
+		}
+	}
 </style>

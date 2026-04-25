@@ -7,22 +7,14 @@
 		"Strict: Summarize without including address space that isn't included in the input addresses. This usually results in multiple supernets.\nLoose: Summarize to one supernet.";
 
 	// load states from sessionStorage (client-side only)
-	let mode: string = $state(
-		browser ? window.sessionStorage.getItem("mode") || "sub" : "sub",
-	);
-	let strict: boolean = $state(
-		browser
-			? window.sessionStorage.getItem("strict") === "true"
-			: true,
-	);
+	let mode: string = $state(browser ? window.sessionStorage.getItem("mode") || "sub" : "sub");
+	let strict: boolean = $state(browser ? window.sessionStorage.getItem("strict") === "true" : true);
 
 	let invalidInput: boolean = $state(false);
 	let ip = new IpAddress("192.168.0.1/24");
 
 	let inputAddress: string = $state("192.168.0.1/24");
-	let inputAddresses: string = $state(
-		"192.168.1.0/24\n192.168.2.0/24\n192.168.3.0 255.255.255.0",
-	);
+	let inputAddresses: string = $state("192.168.1.0/24\n192.168.2.0/24\n192.168.3.0 255.255.255.0");
 	// output fields
 	let address: string = $state("");
 	let summaryPrefixes: string = $state("");
@@ -62,19 +54,11 @@
 			}
 
 			networkPrefixes = ips.map((ip) => ip.networkPrefix);
-			broadcastAddresses = ips.map((ip) =>
-				ip.cidr <= 30 ? ip.broadcastAddress : "",
-			);
-			totalAddresses = ips.map(
-				(ip) =>
-					ip.totalAddresses +
-					(ip.usableHosts ? ` (${ip.usableHosts} usable)` : ""),
-			);
+			broadcastAddresses = ips.map((ip) => (ip.cidr <= 30 ? ip.broadcastAddress : ""));
+			totalAddresses = ips.map((ip) => ip.totalAddresses + (ip.usableHosts ? ` (${ip.usableHosts} usable)` : ""));
 			subnetMasks = ips.map((ip) => ip.subnetMask);
 			wildcardMasks = ips.map((ip) => ip.wildcardMask);
-			addressSpaceTypes = ips.map((ip) =>
-				ip.addressSpaceType.toString().replaceAll(",", "\n"),
-			);
+			addressSpaceTypes = ips.map((ip) => ip.addressSpaceType.toString().replaceAll(",", "\n"));
 		} catch (error) {
 			invalidInput = true;
 		}
@@ -87,9 +71,7 @@
 			return;
 		}
 		// increment network bits
-		networkBits = (parseInt(networkBits, 2) + 1)
-			.toString(2)
-			.padStart(ip.cidr, "0");
+		networkBits = (parseInt(networkBits, 2) + 1).toString(2).padStart(ip.cidr, "0");
 		inputAddress = `${IpAddress.bin2dec(networkBits + IpAddress.dec2bin(ip.address).substring(ip.cidr))}/${ip.cidr}`;
 	}
 
@@ -100,9 +82,7 @@
 			return;
 		}
 		// decrement network bits
-		networkBits = (parseInt(networkBits, 2) - 1)
-			.toString(2)
-			.padStart(ip.cidr, "0");
+		networkBits = (parseInt(networkBits, 2) - 1).toString(2).padStart(ip.cidr, "0");
 		inputAddress = `${IpAddress.bin2dec(networkBits + IpAddress.dec2bin(ip.address).substring(ip.cidr))}/${ip.cidr}`;
 	}
 
@@ -136,14 +116,8 @@
 			let firstInt = parseInt(IpAddress.dec2bin("255.255.255.255"), 2);
 			let lastInt = 0;
 			inputIps.forEach((ip) => {
-				let networkAddressInt = parseInt(
-					IpAddress.dec2bin(ip.networkAddress),
-					2,
-				);
-				let broadcastAddressInt = parseInt(
-					IpAddress.dec2bin(ip.broadcastAddress),
-					2,
-				);
+				let networkAddressInt = parseInt(IpAddress.dec2bin(ip.networkAddress), 2);
+				let broadcastAddressInt = parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2);
 				if (networkAddressInt < firstInt) {
 					firstInt = networkAddressInt;
 				}
@@ -157,17 +131,13 @@
 			let lastBin = lastInt.toString(2).padStart(32, "0");
 			let summaryCidr = 0;
 			while (summaryCidr < 32) {
-				if (
-					firstBin.charAt(summaryCidr) !== lastBin.charAt(summaryCidr)
-				) {
+				if (firstBin.charAt(summaryCidr) !== lastBin.charAt(summaryCidr)) {
 					break;
 				}
 				summaryCidr++;
 			}
 
-			return [
-				new IpAddress(`${IpAddress.bin2dec(firstBin)}/${summaryCidr}`),
-			];
+			return [new IpAddress(`${IpAddress.bin2dec(firstBin)}/${summaryCidr}`)];
 		}
 
 		// strict mode
@@ -185,16 +155,10 @@
 		// merge contiguous/overlapping ranges
 		let rangesMerged: number[][] = [];
 		ranges.forEach((range) => {
-			if (
-				rangesMerged.length === 0 ||
-				rangesMerged[rangesMerged.length - 1][1] < range[0] - 1
-			) {
+			if (rangesMerged.length === 0 || rangesMerged[rangesMerged.length - 1][1] < range[0] - 1) {
 				rangesMerged.push(range);
 			} else {
-				rangesMerged[rangesMerged.length - 1][1] = Math.max(
-					rangesMerged[rangesMerged.length - 1][1],
-					range[1],
-				);
+				rangesMerged[rangesMerged.length - 1][1] = Math.max(rangesMerged[rangesMerged.length - 1][1], range[1]);
 			}
 		});
 
@@ -207,20 +171,13 @@
 			let ip = new IpAddress(`${IpAddress.bin2dec(prefix)}/${cidr}`);
 
 			// increment CIDR until the network fits in the range
-			while (
-				parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) >
-				rangesMerged[i][1]
-			) {
+			while (parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) > rangesMerged[i][1]) {
 				ip.cidr++;
 			}
 
 			// if we undershot the end of the range, move the start of the range to after the end of our result and do it again
-			if (
-				parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) <
-				rangesMerged[i][1]
-			) {
-				rangesMerged[i][0] =
-					parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) + 1;
+			if (parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) < rangesMerged[i][1]) {
+				rangesMerged[i][0] = parseInt(IpAddress.dec2bin(ip.broadcastAddress), 2) + 1;
 				i--;
 			}
 
@@ -235,54 +192,29 @@
 <div class="main flex column">
 	<h1>IP Calculator</h1>
 	<div class="toggle">
-		<button
-			class={"toggle" + (mode === "sub" ? " active" : "")}
-			onclick={() => (mode = "sub")}>Subnet Mode</button
-		>
-		<button
-			class={"toggle" + (mode === "super" ? " active" : "")}
-			onclick={() => (mode = "super")}>Supernet Mode</button
-		>
+		<button class={"toggle" + (mode === "sub" ? " active" : "")} onclick={() => (mode = "sub")}>Subnet Mode</button>
+		<button class={"toggle" + (mode === "super" ? " active" : "")} onclick={() => (mode = "super")}>Supernet Mode</button>
 	</div>
 	{#if mode === "sub"}
 		<div class="flex column">
 			<label for="inputAddress">IP address with CIDR or mask:</label>
-			<input
-				id="inputAddress"
-				class={invalidInput ? "warning" : ""}
-				type="text"
-				maxlength="100"
-				bind:value={inputAddress}
-			/>
+			<input id="inputAddress" class={invalidInput ? "warning" : ""} type="text" maxlength="100" bind:value={inputAddress} />
 		</div>
 		<div class="flex">
 			<button class="wide" onclick={nextSubnet}>Next Subnet</button>
 			<button class="skinny" onclick={incrementCidr}>CIDR +</button>
 		</div>
 		<div class="flex">
-			<button class="wide" onclick={previousSubnet}
-				>Previous Subnet</button
-			>
+			<button class="wide" onclick={previousSubnet}>Previous Subnet</button>
 			<button class="skinny" onclick={decrementCidr}>CIDR -</button>
 		</div>
 	{:else}
 		<div class="flex column">
 			<label for="inputAddresses">IP addresses with CIDR or mask:</label>
-			<textarea
-				id="inputAddresses"
-				class={invalidInput ? "warning" : ""}
-				rows="5"
-				bind:value={inputAddresses}
-			></textarea>
+			<textarea id="inputAddresses" class={invalidInput ? "warning" : ""} rows="5" bind:value={inputAddresses}></textarea>
 			<div class="flex">
-				<label for="checkboxStrict" title={strictExplanation}
-					>Strict?</label
-				>
-				<input
-					id="checkboxStrict"
-					type="checkbox"
-					bind:checked={strict}
-				/>
+				<label for="checkboxStrict" title={strictExplanation}>Strict?</label>
+				<input id="checkboxStrict" type="checkbox" bind:checked={strict} />
 			</div>
 			<div class="output">Summary prefix(es):</div>
 			<div class="output summary">{summaryPrefixes}</div>
@@ -339,8 +271,8 @@
 <style>
 	.main {
 		align-items: center;
-		margin: 10px;
 		font-family: "Courier New", Courier, monospace;
+		margin: 10px;
 	}
 	h1 {
 		font-size: 150%;
@@ -351,8 +283,8 @@
 		margin: 20px;
 	}
 	button.toggle {
-		width: 200px;
 		margin: 0px;
+		width: 200px;
 	}
 	button {
 		background-color: black;
@@ -360,8 +292,8 @@
 		color: lime;
 		font-family: "Courier New", Courier, monospace;
 		font-size: 100%;
-		padding: 10px;
 		margin: 5px;
+		padding: 10px;
 	}
 	.active,
 	button:active,
@@ -379,9 +311,9 @@
 		color: lime;
 		font-family: "Courier New", Courier, monospace;
 		font-size: 100%;
+		margin: 0px 0px 20px 0px;
 		padding: 10px;
 		width: 400px;
-		margin: 0px 0px 20px 0px;
 	}
 	textarea {
 		white-space: pre-line;
@@ -404,9 +336,9 @@
 		margin: 10px;
 	}
 	.summary {
+		color: lime;
 		margin-left: 20px;
 		white-space: pre-line;
-		color: lime;
 	}
 	table {
 		border-collapse: collapse;
@@ -417,5 +349,11 @@
 		border: 1px solid gray;
 		padding: 18px 20px;
 		white-space: pre-line;
+	}
+	@media (prefers-color-scheme: light) {
+		.main {
+			background-color: black;
+			color: white;
+		}
 	}
 </style>

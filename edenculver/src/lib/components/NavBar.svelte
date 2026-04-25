@@ -13,11 +13,7 @@
 	<NavItem title="SV Fish" href="/fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chords" />
-	<img
-		class="icon"
-		src={favicon}
-		alt="Icon of two sandhill cranes on a blue hexagon."
-	/>
+	<img class="icon" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
 </nav>
 
 <style>
@@ -30,5 +26,10 @@
 		margin-left: auto;
 		margin-right: 10px;
 		width: 24px;
+	}
+	@media (prefers-color-scheme: light) {
+		nav {
+			border-bottom: 1px solid black;
+		}
 	}
 </style>

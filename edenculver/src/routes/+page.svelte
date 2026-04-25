@@ -5,11 +5,7 @@
 </script>
 
 <header>
-	<img
-		class="icon"
-		src={favicon}
-		alt="Icon of two sandhill cranes on a blue hexagon."
-	/>
+	<img class="icon" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
 	<h1>EdenCulver.net</h1>
 </header>
 <NavBar />
@@ -52,7 +48,7 @@
 			title="Create Steam Engine Simulator"
 			description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
 			href="/steam_engine"
-			src="/images/home/steam-engine.png"
+			src="/images/home/steam_engine.png"
 			alt="A stylized piston made of copper and brass."
 		/>
 		<Card
@@ -82,35 +78,14 @@
 	<hr />
 	<h2>Links</h2>
 	<div class="cardBox">
-		<Card
-			title="GitHub"
-			href="https://github.com/edenculver"
-			src="https://icon.horse/icon/github.com"
-			alt="Favicon of github.com."
-		/>
-		<Card
-			title="LinkedIn"
-			href="https://www.linkedin.com/in/edenculver/"
-			src="https://icon.horse/icon/www.linkedin.com"
-			alt="Favicon of linkedin.com."
-		/>
-		<Card
-			title="Email me!"
-			href="mailto:edenculver27@gmail.com"
-			src="https://icon.horse/icon/mail.google.com"
-			alt="Favicon of gmail.com."
-		/>
+		<Card title="GitHub" href="https://github.com/edenculver" src="https://icon.horse/icon/github.com" alt="Favicon of github.com." />
+		<Card title="LinkedIn" href="https://www.linkedin.com/in/edenculver/" src="https://icon.horse/icon/www.linkedin.com" alt="Favicon of linkedin.com." />
+		<Card title="Email me!" href="mailto:edenculver27@gmail.com" src="https://icon.horse/icon/mail.google.com" alt="Favicon of gmail.com." />
 	</div>
 	<hr />
 	<h2>Cool stuff other people have made</h2>
 	<div class="cardBox">
-		<Card
-			title="BGP Tools"
-			description="hello world"
-			href="https://bgp.tools/"
-			src="https://icon.horse/icon/bgp.tools"
-			alt="Favicon of bgp.tools."
-		/>
+		<Card title="BGP Tools" description="hello world" href="https://bgp.tools/" src="https://icon.horse/icon/bgp.tools" alt="Favicon of bgp.tools." />
 		<Card
 			title="Flag Color Codes"
 			description="hello world"
@@ -155,7 +130,7 @@
 		background-color: white;
 		color: black;
 		display: flex;
-		padding: 10px;
+		padding: 20px;
 	}
 	.icon {
 		width: 64px;
@@ -169,5 +144,11 @@
 	.cardBox {
 		display: flex;
 		flex-wrap: wrap;
+	}
+	@media (prefers-color-scheme: light) {
+		header {
+			background-color: black;
+			color: white;
+		}
 	}
 </style>
