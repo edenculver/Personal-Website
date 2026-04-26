@@ -21,12 +21,13 @@
 
 	let { battlePack }: Props = $props();
 
-	// svelte-ignore non_reactive_update
-	let totalMinifigs = 0;
-	// svelte-ignore state_referenced_locally
-	battlePack.minifigs.forEach((minifig) => {
-		totalMinifigs += minifig.count;
-	});
+	function getTotalMinifigs() {
+		let totalMinifigs = 0;
+		battlePack.minifigs.forEach((minifig) => {
+			totalMinifigs += minifig.count;
+		});
+		return totalMinifigs;
+	}
 </script>
 
 <div class="main">
@@ -49,7 +50,7 @@
 					</tr>
 					<tr>
 						<td><b>Minfigs</b></td>
-						<td>{totalMinifigs}</td>
+						<td>{getTotalMinifigs()}</td>
 					</tr>
 					<tr>
 						<td title="Manufacturer's Suggested Retail Price"><b>MSRP</b></td>

@@ -2,8 +2,8 @@
  * IPv4 address
  */
 export default class IpAddress {
-	_address: string = "0.0.0.0";
-	_cidr: number = 0;
+	_address = "0.0.0.0";
+	_cidr = 0;
 
 	/**
 	 * @param address

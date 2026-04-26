@@ -37,4 +37,7 @@
 	:global(.column) {
 		flex-direction: column;
 	}
+	:global(.centered) {
+		align-items: center;
+	}
 </style>
