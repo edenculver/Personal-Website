@@ -30,97 +30,88 @@
 	}
 </script>
 
-<div class="main">
-	<h2>{battlePack.set_number} {battlePack.set_name}</h2>
-	<div class="body flex">
-		<div class="flex column">
-			<table>
+<div class="bg-white border border-gray-500 flex flex-col gap-5 p-7 rounded-2xl text-black">
+	<h2 class="font-bold text-xl">{battlePack.set_number} {battlePack.set_name}</h2>
+	<div class="flex flex-wrap gap-5">
+		<div class="flex flex-col gap-3 m-2">
+			<table class="m-2">
 				<tbody>
 					<tr>
-						<td><b>Year</b></td>
+						<td class="font-bold">Year</td>
 						<td>{battlePack.release_year}</td>
 					</tr>
 					<tr>
-						<td><b>Source</b></td>
+						<td class="font-bold">Source</td>
 						<td title={battlePack.source.title}>{battlePack.source.short_title}</td>
 					</tr>
 					<tr>
-						<td><b>Pieces</b></td>
+						<td class="font-bold">Pieces</td>
 						<td>{battlePack.piece_count}</td>
 					</tr>
 					<tr>
-						<td><b>Minfigs</b></td>
+						<td class="font-bold">Minfigs</td>
 						<td>{getTotalMinifigs()}</td>
 					</tr>
 					<tr>
-						<td title="Manufacturer's Suggested Retail Price"><b>MSRP</b></td>
+						<td title="Manufacturer's Suggested Retail Price" class="font-bold">MSRP</td>
 						<td>${battlePack.msrp}</td>
 					</tr>
 					<tr>
-						<td title="Price Per Piece"><b>PPP</b></td>
+						<td title="Price Per Piece" class="font-bold">PPP</td>
 						<td>{Math.round((Number(battlePack.msrp) / Number(battlePack.piece_count)) * 1000) / 10}c</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="links flex">
+			<div class="flex gap-5 justify-center">
 				<a
-					href="https://www.lego.com/en-us/product/{battlePack.set_name.toLowerCase().replaceAll(' ', '-')}-{battlePack.set_number}"
+					href="https://www.lego.com/en-us/product/{battlePack.set_name
+						.toLowerCase()
+						.replaceAll(' ', '-')}-{battlePack.set_number}"
 					title="View on LEGO.com (not available for older sets)"
 				>
 					<img src="https://www.lego.com/favicon-32x32.png" alt="Favicon of LEGO.com." />
 				</a>
-				<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?S={battlePack.set_number}-1" title="View on Bricklink">
-					<img src="https://static.bricklink.com/renovate/img/favicon/favicon-32x32.png" alt="Favicon of BrickLink.com." />
+				<a
+					href="https://www.bricklink.com/v2/catalog/catalogitem.page?S={battlePack.set_number}-1"
+					title="View on Bricklink"
+				>
+					<img
+						src="https://static.bricklink.com/renovate/img/favicon/favicon-32x32.png"
+						alt="Favicon of BrickLink.com."
+					/>
 				</a>
 				<a
-					href="https://brickset.com/sets/{battlePack.set_number}-1/{battlePack.set_name.replace('& ', '').replace('.', '').replaceAll(' ', '-')}"
+					href="https://brickset.com/sets/{battlePack.set_number}-1/{battlePack.set_name
+						.replace('& ', '')
+						.replace('.', '')
+						.replaceAll(' ', '-')}"
 					title="View on Brickset"
 				>
-					<img src="https://brickset.com/assets/images/icons/favicon-32x32.png" alt="Favicon of Brickset.com." />
+					<img
+						src="https://brickset.com/assets/images/icons/favicon-32x32.png"
+						alt="Favicon of Brickset.com."
+					/>
 				</a>
 			</div>
 		</div>
-		<img class="setPic" src="https://img.bricklink.com/ItemImage/ON/0/{battlePack.set_number}-1.png" alt="Photograph of this set's box." />
+		<img
+			class="max-w-sm"
+			src="https://img.bricklink.com/ItemImage/ON/0/{battlePack.set_number}-1.png"
+			alt="Photograph of this set's box."
+		/>
 		<MinifigTable minifigs={battlePack.minifigs} />
 	</div>
 </div>
 
-<style>
-	.main {
-		background-color: white;
-		border: 2px solid gray;
-		border-radius: 10px;
-		color: black;
-	}
-	h2 {
-		font-size: 125%;
-		margin: 20px;
-	}
-	.body {
-		margin: 20px;
-		flex-wrap: wrap;
-	}
-	table {
-		border-collapse: collapse;
-		margin: 20px;
-	}
+<style lang="postcss">
+	@reference "../app.css";
 	tr {
-		border: 1px solid gray;
+		@apply border border-gray-500;
 	}
 	td {
-		padding: 7px 12px;
-	}
-	.links {
-		gap: 20px;
-		justify-content: center;
+		@apply px-4 py-1;
 	}
 	a {
-		color: black;
-		text-align: center;
-		text-decoration: none;
-	}
-	.setPic {
-		margin: 10px;
-		max-width: 400px;
+		@apply no-underline text-center;
 	}
 </style>

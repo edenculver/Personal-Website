@@ -3,7 +3,7 @@
 	import favicon from "$lib/assets/favicon.svg";
 </script>
 
-<nav>
+<nav class="border-b border-black dark:border-white flex flex-wrap">
 	<NavItem title="Home" href="/" />
 	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />
@@ -13,23 +13,5 @@
 	<NavItem title="SV Fish" href="/fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chords" />
-	<img class="icon" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
+	<img class="ml-auto mr-2 w-6" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
 </nav>
-
-<style>
-	nav {
-		border-bottom: 1px solid white;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	img {
-		margin-left: auto;
-		margin-right: 10px;
-		width: 24px;
-	}
-	@media (prefers-color-scheme: light) {
-		nav {
-			border-bottom: 1px solid black;
-		}
-	}
-</style>

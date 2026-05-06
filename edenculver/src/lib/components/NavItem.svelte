@@ -9,26 +9,12 @@
 	let { title, href }: Props = $props();
 </script>
 
-<a class={page.url.pathname === href ? "active" : ""} {href}>{title}</a>
-
-<style>
-	a {
-		color: white;
-		font-size: 10pt;
-		padding: 10px;
-		text-align: center;
-		text-decoration: none;
-	}
-	a:hover {
-		background-color: gray;
-		transition: 0.25s;
-	}
-	.active {
-		background-color: gray;
-	}
-	@media (prefers-color-scheme: light) {
-		a {
-			color: black;
-		}
-	}
-</style>
+<a
+	class="hover:bg-gray-500 duration-250 no-underline p-2 px-3 text-center text-sm text-black dark:text-white transition {page
+		.url.pathname === href
+		? 'bg-gray-500'
+		: null}"
+	{href}
+>
+	{title}
+</a>

@@ -18,7 +18,7 @@
 		// remove everything except letters, numbers, #, and space
 		msg = msg.replace(/[^A-Z0-9#\s]/g, "");
 		// squish spaces
-		msg = msg.replace(/\s+/g, " ");
+		msg = msg.trim().replace(/\s+/g, " ");
 		let msgArray = msg.split(" ");
 
 		// substitutes
@@ -48,60 +48,76 @@
 	}
 </script>
 
-<div class="background" style:background-color={background}>
-	<div class="headerBackground">
+<div class="h-dvh" style="background-color: {background};">
+	<div class="bg-white dark:bg-black">
 		<NavBar />
-		<div class="header flex">
-			<div>
-				<h1>
-					Translate a message to <a href="https://en.wikipedia.org/wiki/International_Code_of_Signals">International Code of Signals (INTERCO)</a> flags
+		<div class="flex flex-wrap gap-10 p-10">
+			<div class="flex flex-col gap-5 mt-5">
+				<h1 class="font-bold text-xl">
+					Translate a message to
+					<a
+						class="text-blue-400 underline hover:no-underline visited:text-purple-400"
+						href="https://en.wikipedia.org/wiki/International_Code_of_Signals"
+					>
+						International Code of Signals (INTERCO)
+					</a>
+					flags
 				</h1>
-				<input type="text" size="80" autocomplete="off" placeholder="Message..." bind:value={message} />
+				<input
+					class="p-2 rounded-md w-200"
+					type="text"
+					size="80"
+					placeholder="Message..."
+					bind:value={message}
+				/>
 			</div>
-			<div class="flex column centered">
-				<h2>Options</h2>
+			<div class="flex flex-col gap-2 items-center">
+				<h2 class="font-bold text-lg">Options</h2>
 				<table>
 					<tbody>
 						<tr>
 							<td>Width:</td>
 							<td>
-								<input type="number" bind:value={w} />
+								<input class="p-1 rounded-sm w-20" type="number" bind:value={w} />
 							</td>
 						</tr>
 						<tr>
 							<td>Height:</td>
 							<td>
-								<input type="number" bind:value={h} />
+								<input class="p-1 rounded-sm w-20" type="number" bind:value={h} />
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<div class="useSubs flex">
-					<input id="useSubs" type="checkbox" bind:checked={useSubs} />
-					<label for="useSubs" title="Replaces repeated flags with substitutes.">Use substitutes?</label>
-				</div>
+				<label
+					class="flex gap-3"
+					title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
+				>
+					<input type="checkbox" bind:checked={useSubs} />
+					Use substitutes?
+				</label>
 			</div>
-			<div class="flex column centered">
-				<h2>Colors</h2>
-				<div class="colors flex">
+			<div class="flex flex-col gap-2 items-center">
+				<h2 class="font-bold text-lg">Colors</h2>
+				<div class="flex gap-4">
 					<table>
 						<tbody>
 							<tr>
 								<td>Background:</td>
 								<td>
-									<input type="color" bind:value={background} />
+									<input class="rounded-md" type="color" bind:value={background} />
 								</td>
 							</tr>
 							<tr>
 								<td>Black:</td>
 								<td>
-									<input type="color" bind:value={black} />
+									<input class="rounded-md" type="color" bind:value={black} />
 								</td>
 							</tr>
 							<tr>
 								<td>White:</td>
 								<td>
-									<input type="color" bind:value={white} />
+									<input class="rounded-md" type="color" bind:value={white} />
 								</td>
 							</tr>
 						</tbody>
@@ -111,19 +127,19 @@
 							<tr>
 								<td>Red:</td>
 								<td>
-									<input type="color" bind:value={red} />
+									<input class="rounded-md" type="color" bind:value={red} />
 								</td>
 							</tr>
 							<tr>
 								<td>Yellow:</td>
 								<td>
-									<input type="color" bind:value={yellow} />
+									<input class="rounded-md" type="color" bind:value={yellow} />
 								</td>
 							</tr>
 							<tr>
 								<td>Blue:</td>
 								<td>
-									<input type="color" bind:value={blue} />
+									<input class="rounded-md" type="color" bind:value={blue} />
 								</td>
 							</tr>
 						</tbody>
@@ -132,9 +148,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="flags flex">
+	<div class="flex gap-20 p-10" style="background-color: {background};">
 		{#each parseMessage() as word}
-			<div class="flagsColumn flex column">
+			<div class="flex flex-col gap-5">
 				{#each word as char}
 					<SignalFlag {w} {h} {black} {white} {red} {yellow} {blue} {char} />
 				{/each}
@@ -143,56 +159,12 @@
 	</div>
 </div>
 
-<style>
-	.background {
-		height: 100vh;
-		width: 100vw;
-	}
-	.headerBackground {
-		background-color: black;
-		box-shadow: 0px 0px 5px black;
-	}
-	.header {
-		gap: 20px;
-		padding: 20px 20px 30px;
-	}
-	h1 {
-		font-size: 125%;
-	}
+<style lang="postcss">
+	@reference "../app.css";
 	input {
-		font-family: Verdana, Tahoma, sans-serif;
-		font-size: 100%;
-	}
-	input[type="text"] {
-		max-width: 800px;
-	}
-	h2 {
-		font-size: 100%;
-	}
-	input[type="number"] {
-		max-width: 80px;
+		@apply bg-white border border-gray-500 text-black;
 	}
 	td {
-		text-align: right;
-	}
-	.useSubs {
-		gap: 10px;
-		margin: 10px;
-	}
-	.colors {
-		gap: 20px;
-	}
-	.flags {
-		gap: 20px;
-		height: 100%;
-		margin: 40px;
-	}
-	.flagsColumn {
-		gap: 20px;
-	}
-	@media (prefers-color-scheme: light) {
-		.headerBackground {
-			background-color: white;
-		}
+		@apply px-1 text-right;
 	}
 </style>

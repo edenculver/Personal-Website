@@ -7,20 +7,9 @@
 </script>
 
 <NavBar />
-<div class="flex column">
-	<h1>LEGO Star Wars Battle Packs Catalog</h1>
+<div class="flex flex-col gap-8 items-stretch mx-10 my-5">
+	<h1 class="font-bold mx-auto text-3xl">LEGO Star Wars Battle Packs Catalog</h1>
 	{#each data.battlePacks as battlePack}
 		<BattlePack {battlePack} />
 	{/each}
 </div>
-
-<style>
-	div {
-		margin: 20px 50px;
-		align-items: stretch;
-		gap: 30px;
-	}
-	h1 {
-		margin: 10px auto 0px;
-	}	
-</style>

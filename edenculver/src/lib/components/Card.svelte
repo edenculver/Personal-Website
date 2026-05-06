@@ -13,7 +13,7 @@
 
 <a {href}>
 	<div class="titleBar">
-		<img class={pixelated ? "pixel" : ""} {src} {alt} />
+		<img class={pixelated ? "pixel" : undefined} {src} {alt} />
 		<b class="title">{title}</b>
 	</div>
 	<div class="description">{description}</div>

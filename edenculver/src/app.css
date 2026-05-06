@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@theme {
+	--font-sans: Verdana, Tahoma, sans-serif;
+	--font-mono: "Courier New", Courier, monospace;
+}
+html {
+	@apply dark:bg-black dark:text-white;
+}

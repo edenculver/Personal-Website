@@ -189,171 +189,114 @@
 </script>
 
 <NavBar />
-<div class="main flex column">
-	<h1>IP Calculator</h1>
-	<div class="toggle">
-		<button class={"toggle" + (mode === "sub" ? " active" : "")} onclick={() => (mode = "sub")}>Subnet Mode</button>
-		<button class={"toggle" + (mode === "super" ? " active" : "")} onclick={() => (mode = "super")}>Supernet Mode</button>
+<div class="flex flex-col font-mono gap-6 items-center m-6">
+	<h1 class="font-bold text-2xl">IP Calculator</h1>
+	<div class="flex gap-5">
+		<button class={"w-50" + (mode === "sub" ? " activeMode" : "")} onclick={() => (mode = "sub")}>
+			Subnet Mode
+		</button>
+		<button class={"w-50" + (mode === "super" ? " activeMode" : "")} onclick={() => (mode = "super")}>
+			Supernet Mode
+		</button>
 	</div>
 	{#if mode === "sub"}
-		<div class="flex column">
-			<label for="inputAddress">IP address with CIDR or mask:</label>
-			<input id="inputAddress" class={invalidInput ? "warning" : ""} type="text" maxlength="100" bind:value={inputAddress} />
+		<label class="flex flex-col gap-1">
+			IP address with CIDR or mask:
+			<input
+				class={"border p-3 w-100 " +
+					(invalidInput ? "border-red-600 text-red-600" : "border-white + text-green-500")}
+				type="text"
+				maxlength="100"
+				bind:value={inputAddress}
+			/>
+		</label>
+		<div class="flex gap-5">
+			<button class="w-45" onclick={nextSubnet}>Next Subnet</button>
+			<button class="w-25" onclick={incrementCidr}>CIDR +</button>
 		</div>
-		<div class="flex">
-			<button class="wide" onclick={nextSubnet}>Next Subnet</button>
-			<button class="skinny" onclick={incrementCidr}>CIDR +</button>
-		</div>
-		<div class="flex">
-			<button class="wide" onclick={previousSubnet}>Previous Subnet</button>
-			<button class="skinny" onclick={decrementCidr}>CIDR -</button>
+		<div class="flex gap-5">
+			<button class="w-45" onclick={previousSubnet}>Previous Subnet</button>
+			<button class="w-25" onclick={decrementCidr}>CIDR -</button>
 		</div>
 	{:else}
-		<div class="flex column">
-			<label for="inputAddresses">IP addresses with CIDR or mask:</label>
-			<textarea id="inputAddresses" class={invalidInput ? "warning" : ""} rows="5" bind:value={inputAddresses}></textarea>
-			<div class="flex">
-				<label for="checkboxStrict" title={strictExplanation}>Strict?</label>
-				<input id="checkboxStrict" type="checkbox" bind:checked={strict} />
-			</div>
-			<div class="output">Summary prefix(es):</div>
-			<div class="output summary">{summaryPrefixes}</div>
+		<div class="flex flex-col gap-4">
+			<label class="flex flex-col gap-1">
+				IP addresses with CIDR or mask:
+				<textarea
+					id="inputAddresses"
+					class={"border p-3 w-100 " +
+						(invalidInput ? "border-red-600 text-red-600" : "border-white + text-green-500")}
+					rows="5"
+					bind:value={inputAddresses}
+				></textarea>
+			</label>
+			<label class="flex gap-3 mt-3" title={strictExplanation}>
+				Strict?
+				<input class="accent-green-500" type="checkbox" bind:checked={strict} />
+			</label>
+			<div>Summary prefix(es):</div>
+			<div class="text-green-600 ml-3 whitespace-pre-line">{summaryPrefixes}</div>
 		</div>
 	{/if}
 	<table>
 		<tbody>
 			{#if mode === "sub"}
 				<tr>
-					<td>IP Address:</td>
+					<td class="font-bold">IP Address</td>
 					<td>{address}</td>
 				</tr>
 			{/if}
 			<tr>
-				<td>Network Prefix:</td>
+				<td class="font-bold">Network Prefix</td>
 				{#each networkPrefixes as networkPrefix}
 					<td>{networkPrefix}</td>
 				{/each}
 			</tr>
 			<tr>
-				<td>Broadcast Address:</td>
+				<td class="font-bold">Broadcast Address</td>
 				{#each broadcastAddresses as broadcastAddress}
 					<td>{broadcastAddress}</td>
 				{/each}
 			</tr>
 			<tr>
-				<td>Total Addresses:</td>
+				<td class="font-bold">Total Addresses</td>
 				{#each totalAddresses as totalAddress}
 					<td>{totalAddress}</td>
 				{/each}
 			</tr>
 			<tr>
-				<td>Subnet Mask:</td>
+				<td class="font-bold">Subnet Mask</td>
 				{#each subnetMasks as subnetMask}
 					<td>{subnetMask}</td>
 				{/each}
 			</tr>
 			<tr>
-				<td>Wildcard Mask:</td>
+				<td class="font-bold">Wildcard Mask</td>
 				{#each wildcardMasks as wildcardMask}
 					<td>{wildcardMask}</td>
 				{/each}
 			</tr>
 			<tr>
-				<td>Subnet Type:</td>
+				<td class="font-bold">Subnet Type</td>
 				{#each addressSpaceTypes as addressSpaceType}
-					<td>{addressSpaceType}</td>
+					<td class="whitespace-pre-line">{addressSpaceType}</td>
 				{/each}
 			</tr>
 		</tbody>
 	</table>
 </div>
 
-<style>
-	.main {
-		align-items: center;
-		font-family: "Courier New", Courier, monospace;
-		margin: 10px;
-	}
-	h1 {
-		font-size: 150%;
-		margin: 20px 20px 0px;
-	}
-	div.toggle {
-		display: flex;
-		margin: 20px;
-	}
-	button.toggle {
-		margin: 0px;
-		width: 200px;
-	}
+<style lang="postcss">
+	@reference "../app.css";
 	button {
-		background-color: black;
-		border: 1px solid lime;
-		color: lime;
-		font-family: "Courier New", Courier, monospace;
-		font-size: 100%;
-		margin: 5px;
-		padding: 10px;
+		@apply bg-black border-green-500 border text-green-500 text-base p-2 hover:bg-green-500 hover:text-black;
 	}
-	.active,
-	button:active,
-	button:hover {
-		background-color: lime;
-		color: black;
+	.activeMode {
+		@apply bg-green-500 text-black;
 	}
-	label {
-		margin: 10px;
-	}
-	#inputAddress,
-	textarea {
-		background-color: black;
-		border: 1px solid white;
-		color: lime;
-		font-family: "Courier New", Courier, monospace;
-		font-size: 100%;
-		margin: 0px 0px 20px 0px;
-		padding: 10px;
-		width: 400px;
-	}
-	textarea {
-		white-space: pre-line;
-	}
-	#checkboxStrict {
-		accent-color: lime;
-		margin: 10px;
-	}
-	.warning {
-		border: 1px solid red;
-		color: red;
-	}
-	.wide {
-		width: 180px;
-	}
-	.skinny {
-		width: 100px;
-	}
-	.output {
-		margin: 10px;
-	}
-	.summary {
-		color: lime;
-		margin-left: 20px;
-		white-space: pre-line;
-	}
-	table {
-		border-collapse: collapse;
-		margin: 20px;
-	}
-	td,
-	tr {
-		border: 1px solid gray;
-		padding: 18px 20px;
-		white-space: pre-line;
-	}
-	@media (prefers-color-scheme: light) {
-		.main {
-			background-color: black;
-			color: white;
-		}
+	table,
+	tr,
+	td {
+		@apply border border-gray-500 px-4 py-3;
 	}
 </style>
