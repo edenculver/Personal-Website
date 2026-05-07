@@ -4,10 +4,4 @@
 </script>
 
 <NavBar />
-<h1>{page.status}: {page.error ? page.error.message : "Unknown error"}</h1>
-
-<style>
-	h1 {
-		margin: 20px;
-	}
-</style>
+<h1 class="font-bold m-10 text-3xl">{page.status}: {page.error ? page.error.message : "Unknown error"}</h1>

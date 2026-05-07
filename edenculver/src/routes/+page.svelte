@@ -4,16 +4,16 @@
 	import Card from "$lib/components/Card.svelte";
 </script>
 
-<header class="bg-black dark:bg-white flex items-center p-4 text-white dark:text-black">
+<header class="bg-black dark:bg-white flex items-center gap-4 p-4 text-white dark:text-black">
 	<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
-	<h1 class="font-bold ml-5 text-3xl">EdenCulver.net</h1>
+	<h1 class="font-bold text-3xl">EdenCulver.net</h1>
 </header>
 <NavBar />
 <h2>About</h2>
-<p class="m-5">bio</p>
+<p class="m-6">bio</p>
 <hr />
 <h2>Pages</h2>
-<div class="flex flex-wrap m-5">
+<div class="flex flex-wrap gap-6 m-6">
 	<Card
 		title="Subnet/Supernet Calculator"
 		description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total addresses, summary addresses, and more."
@@ -76,7 +76,7 @@
 </div>
 <hr />
 <h2>Links</h2>
-<div class="flex flex-wrap m-5">
+<div class="flex flex-wrap gap-6 m-6">
 	<Card
 		title="GitHub"
 		href="https://github.com/edenculver"
@@ -98,7 +98,7 @@
 </div>
 <hr />
 <h2>Cool stuff other people have made</h2>
-<div class="flex flex-wrap m-5">
+<div class="flex flex-wrap gap-6 m-6">
 	<Card
 		title="BGP Tools"
 		description="hello world"
@@ -146,6 +146,6 @@
 <style lang="postcss">
 	@reference "../app.css";
 	h2 {
-		@apply m-5 text-xl;
+		@apply font-bold m-6 text-xl;
 	}
 </style>

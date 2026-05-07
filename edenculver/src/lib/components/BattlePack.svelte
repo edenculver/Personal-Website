@@ -105,13 +105,13 @@
 
 <style lang="postcss">
 	@reference "../app.css";
-	tr {
-		@apply border border-gray-500;
+	a {
+		@apply no-underline text-center;
 	}
 	td {
 		@apply px-4 py-1;
 	}
-	a {
-		@apply no-underline text-center;
+	tr {
+		@apply border border-gray-500;
 	}
 </style>

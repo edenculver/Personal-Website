@@ -288,15 +288,15 @@
 
 <style lang="postcss">
 	@reference "../app.css";
-	button {
-		@apply bg-black border-green-500 border text-green-500 text-base p-2 hover:bg-green-500 hover:text-black;
-	}
 	.activeMode {
 		@apply bg-green-500 text-black;
 	}
+	button {
+		@apply bg-black border-green-500 border text-green-500 text-base p-2 hover:bg-green-500 hover:text-black;
+	}
 	table,
-	tr,
-	td {
+	td,
+	tr {
 		@apply border border-gray-500 px-4 py-3;
 	}
 </style>

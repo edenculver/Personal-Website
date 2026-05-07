@@ -244,10 +244,10 @@
 		</div>
 	</div>
 	<div class="gap-6">
-		<div class="border border-white gap-8 p-6 rounded-md">
+		<div class="border border-black dark:border-white gap-8 p-6 rounded-md">
 			<div class="flex-col gap-6">
 				<h2>Boiler Status: {boilerLvlReadable}</h2>
-				<table class="border border-white">
+				<table class="border border-black dark:border-white">
 					<tbody>
 						{#each [{ name: "Size", lvl: sizeLvl }, { name: "Water", lvl: waterLvl }, { name: "Heat", lvl: heatLvl }] as row}
 							<tr title="Lvl {row.lvl}">
@@ -296,10 +296,10 @@
 <style lang="postcss">
 	@reference "../app.css";
 	button {
-		@apply bg-[#8b8b8b] hover:bg-gray-500 p-2 rounded-md text-black w-full;
+		@apply bg-black dark:bg-white hover:bg-gray-500 p-2 rounded-md text-white dark:text-black w-full;
 	}
 	.card {
-		@apply border border-white flex-col gap-6 p-6 rounded-md;
+		@apply border border-black dark:border-white flex-col gap-6 p-6 rounded-md;
 	}
 	div {
 		@apply flex;
@@ -308,8 +308,7 @@
 		@apply font-bold text-xl;
 	}
 	img {
-		@apply w-16;
-		image-rendering: pixelated;
+		@apply [image-rendering:pixelated] w-16;
 	}
 	.suboptimal {
 		@apply text-red-500;
