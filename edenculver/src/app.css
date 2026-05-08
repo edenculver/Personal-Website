@@ -1,8 +1,17 @@
 @import "tailwindcss";
+
 @theme {
 	--font-sans: Verdana, Tahoma, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
+	--sv-tan: #F9BA66;
+	--sv-darktan: #965C3A;
+	--sv-verydarktan: #5B2B2A;
+	--sv-rain: #8388FD;
+	--sv-sky: #80EAFF;
+	--sv-sun: #FEFF00;
+	--sv-wind: #FF9200;
 }
+
 html {
 	@apply dark:bg-black dark:text-white;
 }
