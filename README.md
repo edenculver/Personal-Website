@@ -227,5 +227,6 @@ Build the database using `databases/edenculverdb.sql`
 ## Development
 
 ```bash
+cd edenculver
 npm run dev -- --open
 ```
