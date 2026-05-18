@@ -15,7 +15,7 @@
 <h2>Pages</h2>
 <div class="flex flex-wrap gap-6 m-6">
 	<Card
-		title="Subnet/Supernet Calculator"
+		title="IP Calculator"
 		description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total addresses, summary addresses, and more."
 		href="/ip-calculator"
 		src="/images/home/router.svg"
@@ -67,9 +67,9 @@
 		pixelated={true}
 	/>
 	<Card
-		title="Chord Builder (WIP)"
+		title="Chord Builder"
 		description="Construct triads and 7th chords from a root note and stacked intervals."
-		href="/chords"
+		href="/chord-builder"
 		src=""
 		alt="WIP"
 	/>

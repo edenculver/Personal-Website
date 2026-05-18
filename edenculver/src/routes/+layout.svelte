@@ -4,15 +4,16 @@
 	import favicon from "$lib/assets/favicon.svg";
 
 	let { children } = $props();
-
-	let title = $derived(page.data.title || "default");
 </script>
 
 <svelte:head>
-	{#if title === "default"}
-		<title>EdenCulver.net</title>
+	{#if page.data.title}
+		<title>{page.data.title} | EdenCulver.net</title>
 	{:else}
-		<title>{title} | EdenCulver.net</title>
+		<title>EdenCulver.net</title>
+	{/if}
+	{#if page.data.description}
+		<meta name="description" content={page.data.description} />
 	{/if}
 	<link rel="icon" href={favicon} />
 </svelte:head>

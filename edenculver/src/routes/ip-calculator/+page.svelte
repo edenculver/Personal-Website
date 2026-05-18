@@ -204,7 +204,7 @@
 			IP address with CIDR or mask:
 			<input
 				class={"border p-3 w-100 " +
-					(invalidInput ? "border-red-600 text-red-600" : "border-white + text-green-500")}
+					(invalidInput ? "border-red-600 text-red-600" : "border-white text-green-500")}
 				type="text"
 				maxlength="100"
 				bind:value={inputAddress}

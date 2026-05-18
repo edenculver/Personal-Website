@@ -49,8 +49,8 @@
 </script>
 
 <div class="h-dvh" style="background-color: {background};">
+	<NavBar />
 	<div class="bg-white dark:bg-black">
-		<NavBar />
 		<div class="flex flex-wrap gap-10 p-10">
 			<div class="flex flex-col gap-5 mt-5">
 				<h1 class="font-bold text-xl">

@@ -97,23 +97,21 @@
 </script>
 
 <audio bind:this={audioPlayer} src={click_stereo}></audio>
-<div class="min-h-dvh bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col">
-	<div class="bg-white dark:bg-black">
-		<NavBar />
-	</div>
-	<div class="w-5xl bg-white mx-auto text-center flex-1">
-		<h1 class="bg-black font-bold text-2xl p-10 text-white">Which Minecraft Villager Are You?</h1>
+<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col min-h-dvh">
+	<NavBar />
+	<div class="bg-white flex-1 mx-auto text-center w-5xl">
+		<h1 class="bg-black font-bold p-10 text-2xl text-white">Which Minecraft Villager Are You?</h1>
 		<div class="flex flex-col gap-5 items-center p-10 text-black">
 			{#if qIndex === -1}
 				<button class="mt-5" onclick={start}>Start</button>
 			{:else if qIndex === 12}
-				<p class="text-lg mt-5">You are:</p>
+				<p class="mt-5 text-lg">You are:</p>
 				<p class="font-bold text-2xl">{biome} {profession}</p>
 				<img class="h-[50vh]" {src} alt="Minecraft Villager." />
 				<button onclick={share}>Share (copy to clipboard)</button>
 				<button onclick={restart}>Take the quiz again!</button>
 			{:else}
-				<p class="text-xl m-5">{qIndex + 1}. {bank[qIndex].text}</p>
+				<p class="m-5 text-xl">{qIndex + 1}. {bank[qIndex].text}</p>
 				<button onclick={() => answer(bank[qIndex].a.score)}>{bank[qIndex].a.text}</button>
 				<button onclick={() => answer(bank[qIndex].b.score)}>{bank[qIndex].b.text}</button>
 				<button onclick={() => answer(bank[qIndex].c.score)}>{bank[qIndex].c.text}</button>
