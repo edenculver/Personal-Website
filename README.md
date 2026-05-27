@@ -230,3 +230,21 @@ Build the database using `databases/edenculverdb.sql`
 cd edenculver
 npm run dev -- --open
 ```
+
+---
+
+## Development Standards
+
+- TS variable naming in camelCase, except when using postgresql column names
+- TS classes in PascalCase
+- All postgresql tables and columns in snake_case
+- Avoid <style></style> as much as possible
+- All Tailwind classes sorted in this order:
+	1. Margin
+	2. Border, border color
+	3. Padding
+	4. Width, height
+	5. BG color
+	6. Text alignment, text size, font weight
+	7. Flex, gap, items
+	8. Anything else

@@ -13,6 +13,29 @@
 	--mc-lightgray: #C6C6C6;
 	--mc-darkgray: #4C4C4C;
 	--mc-green: #218306;
+	--utdr-undertale: #A349A4;
+	--utdr-ch1: #851053;
+	--utdr-ch2: #31D989;
+	--utdr-ch3: #FEF960;
+	--utdr-ch4: #526AF3;
+	--utdr-border: #5F4F6C;
+
+	--animate-highlight-leitmotif: highlight-leitmotif 1s linear infinite;
+
+	@keyframes highlight-leitmotif {
+		50% {
+			filter: drop-shadow(0 0 10px white);
+		}
+	}
+
+	--animate-highlight-song: highlight-song 1s linear infinite;
+
+	@keyframes highlight-song {
+		50% {
+			fill: white;
+			filter: drop-shadow(0 0 10px white);
+		}
+	}
 }
 
 html {
