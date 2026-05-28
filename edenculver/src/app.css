@@ -19,18 +19,9 @@
 	--utdr-ch3: #FEF960;
 	--utdr-ch4: #526AF3;
 	--utdr-border: #5F4F6C;
+	--animate-highlight: highlight 1s linear infinite;
 
-	--animate-highlight-leitmotif: highlight-leitmotif 1s linear infinite;
-
-	@keyframes highlight-leitmotif {
-		50% {
-			filter: drop-shadow(0 0 10px white);
-		}
-	}
-
-	--animate-highlight-song: highlight-song 1s linear infinite;
-
-	@keyframes highlight-song {
+	@keyframes highlight {
 		50% {
 			fill: white;
 			filter: drop-shadow(0 0 10px white);

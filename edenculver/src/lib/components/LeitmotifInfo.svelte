@@ -6,15 +6,21 @@
 	}
 
 	let { name, subthemes, description }: Props = $props();
+	let naturalW = $state(0);
+	let naturalH = $state(0);
 </script>
 
 <div class="flex flex-col gap-4">
 	<p class="m-4 mb-0 text-xl font-bold">{name}</p>
-	<p class="mx-4 mb-2 italic">Leitmotif</p>
-	<div class="p-5 bg-gray-950 flex flex-col gap-3">
+	<p class="mx-4 italic">Leitmotif</p>
+	<div class="px-5 py-4 bg-gray-950 flex flex-col gap-3">
 		<img
-			class="mx-auto w-16 h-16 object-contain [image-rendering:pixelated]"
+			class="mx-auto [image-rendering:pixelated]"
 			src="/images/leitmotifs/{name.replace('?', '')}.png"
+			bind:naturalWidth={naturalW}
+			bind:naturalHeight={naturalH}
+			width={naturalW * 2}
+			height={naturalH * 2}
 			alt="Sprite representing {name}."
 		/>
 		{#if subthemes}

@@ -32,13 +32,14 @@
 	});
 
 	// simulation magic numbers
-	const alphaDecay = 0.01;
-	const collideIterations = 2;
-	const linkDistance = 50;
-	const manyBodyStrength = -100;
-	const reheatAlpha = 0.5;
 	const songRadius = 6;
-	const xyStrength = 0.08;
+	const alphaDecay = 0.02;
+	const reheatAlpha = 0.5;
+	const xStrength = 0.08;
+	const yStrength = 0.08;
+	const collideIterations = 2;
+	const manyBodyStrength = -100;
+	const linkDistance = 40;
 
 	const gameColorsBG = [
 		"bg-(--utdr-undertale)",
@@ -107,8 +108,8 @@
 
 		// dynamic forces
 		const collide = d3.forceCollide((d) => (d as any).r).iterations(collideIterations);
-		const forceX = d3.forceX(svgElement.clientWidth / 2).strength(xyStrength);
-		const forceY = d3.forceY(svgElement.clientHeight / 2).strength(xyStrength);
+		const forceX = d3.forceX(svgElement.clientWidth / 2).strength(xStrength);
+		const forceY = d3.forceY(svgElement.clientHeight / 2).strength(yStrength);
 
 		// create simulation
 		const simulation: d3.Simulation<any, any> = d3
@@ -137,7 +138,7 @@
 			.data(nodes.filter((d) => d.type === "s"))
 			.join("circle")
 			.attr("id", (d) => d.id)
-			.attr("class", (d) => gameColorsFill[d.gameNumber])
+			.attr("class", (d) => `${gameColorsFill[d.gameNumber]} origin-center transform-fill`)
 			.attr("r", (d) => d.r)
 			.attr("gameNumber", (d) => d.gameNumber)
 			.attr("gameTitle", (d) => d.gameTitle)
@@ -156,6 +157,7 @@
 			.data(nodes.filter((d) => d.type === "l"))
 			.join("image")
 			.attr("id", (d) => d.id)
+			.attr("class", "origin-center transform-fill")
 			.attr("href", (d) => `/images/leitmotifs/${d.name.replace("?", "")}.png`)
 			.attr("name", (d) => d.name)
 			.attr("subthemes", (d) => d.subthemes)
@@ -169,34 +171,21 @@
 
 		// update positions each tick
 		simulation.on("tick", () => {
-			vLeitmotifs
-				.attr("x", (d) => d.x - d.w / 2)
-				.attr("y", (d) => d.y - d.h / 2)
-				.attr(
-					"class",
-					(d) =>
-						gameColorsFill[d.gameNumber] +
-						(selectedNodeType === "l" && selectedNodeIndex === d.index
-							? " origin-center transform-fill animate-highlight-leitmotif"
-							: ""),
-				);
-			vSongs
-				.attr("cx", (d) => d.x)
-				.attr("cy", (d) => d.y)
-				.attr(
-					"class",
-					(d) =>
-						gameColorsFill[d.gameNumber] +
-						(selectedNodeType === "s" && selectedNodeIndex === d.index
-							? " origin-center transform-fill animate-highlight-song"
-							: ""),
-				);
+			vLeitmotifs.attr("x", (d) => d.x - d.w / 2).attr("y", (d) => d.y - d.h / 2);
+			vSongs.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
 			vLinks
 				.attr("x1", (d) => d.source.x)
 				.attr("y1", (d) => d.source.y)
 				.attr("x2", (d) => d.target.x)
 				.attr("y2", (d) => d.target.y);
-			// collide.initialize(nodes);
+			collide.initialize(nodes, Math.random);
+		});
+
+		// update dynamic forces when the window resizes
+		d3.select(window).on("resize", () => {
+			forceX.x(svgElement.clientWidth / 2);
+			forceY.y(svgElement.clientHeight / 2);
+			simulation.alpha(reheatAlpha).restart();
 		});
 
 		// reheat the simulation when drag starts
@@ -274,6 +263,17 @@
 		selectedNodeIndex = nodes.find((d) => d.id === dropdownSelectedSong).index;
 		selectedNodeType = "s";
 		dropdownSelectedLeitmotif = "x";
+	});
+
+	$effect(() => {
+		// remove highlights
+		document.querySelectorAll(".animate-highlight").forEach((d) => {
+			d.classList.remove("animate-highlight");
+		});
+		// highlight selected node
+		if (selectedNodeType) {
+			document.querySelector(`[id='${selectedNode.id}']`)?.classList.add("animate-highlight");
+		}
 	});
 </script>
 
