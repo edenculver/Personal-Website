@@ -64,7 +64,7 @@
 					flags
 				</h1>
 				<input
-					class="p-2 rounded-md w-200"
+					class="rounded-md w-200 p-2"
 					type="text"
 					size="80"
 					placeholder="Message..."
@@ -78,13 +78,13 @@
 						<tr>
 							<td>Width:</td>
 							<td>
-								<input class="p-1 rounded-sm w-20" type="number" bind:value={w} />
+								<input class="rounded-sm w-20 p-1" type="number" bind:value={w} />
 							</td>
 						</tr>
 						<tr>
 							<td>Height:</td>
 							<td>
-								<input class="p-1 rounded-sm w-20" type="number" bind:value={h} />
+								<input class="rounded-sm w-20 p-1" type="number" bind:value={h} />
 							</td>
 						</tr>
 					</tbody>

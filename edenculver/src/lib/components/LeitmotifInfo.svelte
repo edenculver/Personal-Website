@@ -13,7 +13,7 @@
 <div class="flex flex-col gap-4">
 	<p class="m-4 mb-0 text-xl font-bold">{name}</p>
 	<p class="mx-4 italic">Leitmotif</p>
-	<div class="px-5 py-4 bg-gray-950 flex flex-col gap-3">
+	<div class="px-5 py-4 bg-gray-300 dark:bg-gray-950 flex flex-col gap-3">
 		<img
 			class="mx-auto [image-rendering:pixelated]"
 			src="/images/leitmotifs/{name.replace('?', '')}.png"

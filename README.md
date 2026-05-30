@@ -240,11 +240,12 @@ npm run dev -- --open
 - All postgresql tables and columns in snake_case
 - Avoid <style></style> as much as possible
 - All Tailwind classes sorted in this order:
-	1. Margin
-	2. Border, border color
-	3. Padding
+	1. Positioning
+	2. Margin
+	3. Border, border color, rounded
 	4. Width, height
-	5. BG color
-	6. Text alignment, text size, font weight
-	7. Flex, gap, items
-	8. Anything else
+	5. Padding
+	6. BG color
+	7. Text alignment, text size, font weight
+	8. Flex, gap, items, justify
+	9. Anything else

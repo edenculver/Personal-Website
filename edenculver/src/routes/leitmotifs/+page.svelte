@@ -5,8 +5,25 @@
 	import NavBar from "$lib/components/NavBar.svelte";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
 	import SongInfo from "$lib/components/SongInfo.svelte";
+	import meatball from "$lib/assets/meatball.svg";
 
 	let { data }: PageProps = $props();
+
+	const gameColorsBG = [
+		"bg-(--utdr-undertale)",
+		"bg-(--utdr-ch1)",
+		"bg-(--utdr-ch2)",
+		"bg-(--utdr-ch3)",
+		"bg-(--utdr-ch4)",
+	];
+	const gameColorsFill = [
+		"fill-(--utdr-undertale)",
+		"fill-(--utdr-ch1)",
+		"fill-(--utdr-ch2)",
+		"fill-(--utdr-ch3)",
+		"fill-(--utdr-ch4)",
+	];
+
 	let nodes: any[] = $state([]);
 	let links: any[] = $state([]);
 	let svgElement: SVGSVGElement;
@@ -30,34 +47,25 @@
 		}
 		return linked;
 	});
+	let dropdownSelectedLeitmotif = $state("x");
+	let dropdownSelectedSong = $state("x");
+	let menuHidden = $state(true);
+
+	let simulation: d3.Simulation<any, any>;
 
 	// simulation magic numbers
+	let xStrength = $state(0.092);
+	let yStrength = $state(0.166);
 	const songRadius = 6;
 	const alphaDecay = 0.02;
 	const reheatAlpha = 0.5;
-	const xStrength = 0.08;
-	const yStrength = 0.08;
 	const collideIterations = 2;
 	const manyBodyStrength = -100;
 	const linkDistance = 40;
 
-	const gameColorsBG = [
-		"bg-(--utdr-undertale)",
-		"bg-(--utdr-ch1)",
-		"bg-(--utdr-ch2)",
-		"bg-(--utdr-ch3)",
-		"bg-(--utdr-ch4)",
-	];
-	const gameColorsFill = [
-		"fill-(--utdr-undertale)",
-		"fill-(--utdr-ch1)",
-		"fill-(--utdr-ch2)",
-		"fill-(--utdr-ch3)",
-		"fill-(--utdr-ch4)",
-	];
-
-	let dropdownSelectedLeitmotif = $state("x");
-	let dropdownSelectedSong = $state("x");
+	// empty dynamic forces
+	const forceX = d3.forceX();
+	const forceY = d3.forceY();
 
 	onMount(() => {
 		// when an audio starts playing, pause the last audio
@@ -86,6 +94,7 @@
 				r: 1, // placeholder until sprite loads
 			});
 		});
+		console.log(svgElement.clientWidth);
 		// create song nodes
 		data.songs.forEach((s) => {
 			nodes.push({
@@ -95,6 +104,7 @@
 				gameTitle: s.game_title,
 				trackNumber: s.track_number,
 				title: s.title,
+				numberTitle: getTrackListing(s),
 				r: songRadius,
 			});
 		});
@@ -106,13 +116,13 @@
 			});
 		});
 
-		// dynamic forces
+		// initialize dynamic forces
 		const collide = d3.forceCollide((d) => (d as any).r).iterations(collideIterations);
-		const forceX = d3.forceX(svgElement.clientWidth / 2).strength(xStrength);
-		const forceY = d3.forceY(svgElement.clientHeight / 2).strength(yStrength);
+		forceX.x(svgElement.clientWidth / 2).strength(xStrength);
+		forceY.y(svgElement.clientHeight / 2).strength(yStrength);
 
 		// create simulation
-		const simulation: d3.Simulation<any, any> = d3
+		simulation = d3
 			.forceSimulation(nodes)
 			.alphaDecay(alphaDecay)
 			.force(
@@ -129,7 +139,12 @@
 		let svg = d3.select(svgElement);
 
 		// draw links
-		const vLinks = svg.append("g").selectAll().data(links).join("line").attr("class", "stroke-[1.2] stroke-white");
+		const vLinks = svg
+			.append("g")
+			.selectAll()
+			.data(links)
+			.join("line")
+			.attr("class", "stroke-[1.2] stroke-black dark:stroke-white");
 
 		// draw song nodes
 		const vSongs = svg
@@ -157,7 +172,7 @@
 			.data(nodes.filter((d) => d.type === "l"))
 			.join("image")
 			.attr("id", (d) => d.id)
-			.attr("class", "origin-center transform-fill")
+			.attr("class", "origin-center transform-fill [image-rendering:pixelated]")
 			.attr("href", (d) => `/images/leitmotifs/${d.name.replace("?", "")}.png`)
 			.attr("name", (d) => d.name)
 			.attr("subthemes", (d) => d.subthemes)
@@ -181,7 +196,7 @@
 			collide.initialize(nodes, Math.random);
 		});
 
-		// update dynamic forces when the window resizes
+		// update dynamic forces when the window size changes
 		d3.select(window).on("resize", () => {
 			forceX.x(svgElement.clientWidth / 2);
 			forceY.y(svgElement.clientHeight / 2);
@@ -275,11 +290,26 @@
 			document.querySelector(`[id='${selectedNode.id}']`)?.classList.add("animate-highlight");
 		}
 	});
+
+	// reheat simulation when parameters are updated
+	$effect(() => {
+		forceX.strength(xStrength);
+		forceY.strength(yStrength);
+		simulation.alpha(reheatAlpha).restart();
+	});
+
+	function getTrackListing(song: any) {
+		return `${song.game_number ? song.game_number : "U"}-${song.track_number}. ${song.title}`;
+	}
+
+	function toggleMenu() {
+		menuHidden = !menuHidden;
+	}
 </script>
 
 <div class="h-dvh flex flex-col">
 	<NavBar />
-	<h1 class="border-b-2 border-b-(--utdr-border) p-4 text-center text-2xl font-bold">
+	<h1 class="border-b-2 border-b-(--utdr-border) p-3 text-center text-2xl font-bold">
 		Undertale/Deltarune Leitmotifs Graph
 	</h1>
 	<div class="min-h-0 flex-1 flex">
@@ -293,8 +323,11 @@
 				<p class="mx-4">Appearances:</p>
 				<div class="ml-6 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
 					{#each linkedNodes() as linkedSong}
-						<button class="hover:underline text-left leading-tight" onclick={() => selectSong(linkedSong)}>
-							{linkedSong.gameNumber ? linkedSong.gameNumber : "U"}-{linkedSong.trackNumber}. {linkedSong.title}
+						<button
+							class="hover:underline text-left leading-tight cursor-pointer"
+							onclick={() => selectSong(linkedSong)}
+						>
+							{linkedSong.numberTitle}
 						</button>
 					{/each}
 				</div>
@@ -308,7 +341,7 @@
 				<div class="ml-6 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
 					{#each linkedNodes() as linkedLeitmotif}
 						<button
-							class="hover:underline text-left leading-tight"
+							class="hover:underline text-left leading-tight cursor-pointer"
 							onclick={() => selectLeitmotif(linkedLeitmotif)}
 						>
 							{linkedLeitmotif.name}
@@ -316,35 +349,69 @@
 					{/each}
 				</div>
 			{/if}
-			<table class="m-3 mt-auto">
-				<tbody>
-					<tr>
-						<td>Leitmotif:</td>
-						<td class="pl-2 py-1">
-							<select class="p-2 w-full bg-gray-950" bind:value={dropdownSelectedLeitmotif}>
-								<option value="x">---</option>
-								{#each data.leitmotifs as leitmotif}
-									<option value={leitmotif.id}>{leitmotif.name}</option>
-								{/each}
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Song:</td>
-						<td class="pl-2 py-1">
-							<select class="p-2 w-full bg-gray-950" bind:value={dropdownSelectedSong}>
-								<option value="x">---</option>
-								{#each data.songs as song}
-									<option value={song.id}>{song.title}</option>
-								{/each}
-							</select>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="m-3 mt-auto flex flex-col gap-2">
+				<label class="flex items-center">
+					<p class="w-28">Leitmotif:</p>
+					<select
+						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-950"
+						bind:value={dropdownSelectedLeitmotif}
+					>
+						<option value="x">---</option>
+						{#each data.leitmotifs as leitmotif}
+							<option value={leitmotif.id}>{leitmotif.name}</option>
+						{/each}
+					</select>
+				</label>
+				<label class="flex items-center">
+					<p class="w-28">Song:</p>
+					<select
+						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-950"
+						bind:value={dropdownSelectedSong}
+					>
+						<option value="x">---</option>
+						{#each data.songs as song}
+							<option value={song.id}>{getTrackListing(song)}</option>
+						{/each}
+					</select>
+				</label>
+			</div>
 		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-x-(--utdr-border) bg-gray-950 flex-1"></svg>
-		<div class="m-3 mr-4 flex flex-col gap-1">
+		<svg bind:this={svgElement} class="border-x-2 border-x-(--utdr-border) bg-gray-300 dark:bg-gray-950 flex-1"
+		></svg>
+		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
+			<div class="relative">
+				<button class="rounded-sm w-8 p-2 hover:bg-gray-500" title="Simulation parameters" onclick={toggleMenu}>
+					<img src={meatball} alt="Meatball menu." />
+				</button>
+				<div
+					class={"absolute right-0 border-2 border-(--utdr-border) p-3 bg-white dark:bg-black flex flex-col gap-2 items-right" +
+						(menuHidden ? " hidden" : "")}
+				>
+					<label class="flex items-center gap-2 whitespace-nowrap">
+						X force strength:
+						<input
+							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-950"
+							type="number"
+							min="0"
+							max="1"
+							step="0.001"
+							bind:value={xStrength}
+						/>
+					</label>
+					<label class="flex items-center gap-2 whitespace-nowrap">
+						Y force strength:
+						<input
+							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-950"
+							type="number"
+							min="0"
+							max="1"
+							step="0.001"
+							bind:value={yStrength}
+						/>
+					</label>
+				</div>
+			</div>
+			<div class="h-1"></div>
 			{#each ["UT", "Ch. 1", "Ch. 2", "Ch. 3", "Ch. 4"] as game, i}
 				<div class="text-xs flex gap-2 items-center">
 					<div class="w-3 h-3 {gameColorsBG[i]}"></div>
