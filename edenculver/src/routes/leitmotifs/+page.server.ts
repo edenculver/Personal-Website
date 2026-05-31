@@ -2,37 +2,60 @@ import type { PageServerLoad } from "./$types";
 import db from "$lib/db";
 
 const leitmotifQuery = `
-	select
+	SELECT
 		l.id,
 		l.name,
 		l.subthemes,
+		array_agg(sl.name ORDER BY sl.sort_order, sl.name) AS subleitmotifs,
 		l.description
-	from leitmotif l
-	order by l.name;
+	FROM leitmotif l
+	LEFT JOIN subleitmotif sl
+		ON sl.leitmotif = l.id
+	GROUP BY l.id
+	ORDER BY l.name;
 `;
 const songQuery = `
-	select
+	SELECT
 		s.id,
+		g.number AS game_number,
+		g.title AS game_title,
+		s.track_number,
+		s.title
+	FROM song s
+	JOIN game g
+		ON s.game = g.id
+	ORDER BY g.number, s.track_number;
+`;
+const linkQuery = `
+	SELECT
+		l_s.leitmotif,
+		l.name,
+		array_agg(sl.name ORDER BY sl.sort_order, sl.name) AS subleitmotifs,
+		l_s.song,
 		g.number as game_number,
 		g.title as game_title,
 		s.track_number,
 		s.title
-	from song s
-	join game g on s.game = g.id
-	order by g.number, s.track_number;
-`;
-const linkQuery = `
-	select
+	FROM leitmotif_in_song l_s
+	LEFT JOIN subleitmotif_in_song sl_s
+		ON sl_s.song = l_s.song
+	LEFT JOIN subleitmotif sl
+		ON sl_s.subleitmotif = sl.id AND sl.leitmotif = l_s.leitmotif
+	JOIN leitmotif l
+		ON l_s.leitmotif = l.id
+	JOIN song s
+		ON l_s.song = s.id
+	JOIN game g
+		ON s.game = g.id
+	GROUP BY
 		l_s.leitmotif,
-		l_s.song,
 		l.name,
+		l_s.song,
 		g.number,
-		s.track_number
-	from leitmotif_in_song l_s
-	join leitmotif l on l_s.leitmotif = l.id
-	join song s on l_s.song = s.id
-	join game g on s.game = g.id
-	order by l.name, g.number, s.track_number;
+		g.title,
+		s.track_number,
+		s.title
+	ORDER BY l.name, g.number, s.track_number;
 `;
 
 export const load: PageServerLoad = async () => {

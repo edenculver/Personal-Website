@@ -106,7 +106,7 @@
 							{#each noteNames as noteName}
 								<td class="border border-black dark:border-white">
 									<button
-										class={"p-3 w-15 " +
+										class={"w-15 p-3 " +
 											(root === noteName + accidental
 												? "bg-blue-500"
 												: wrapPitch(getPitch(root)) ===
@@ -145,7 +145,7 @@
 						</td>
 						<td class="border border-black dark:border-white">
 							<button
-								class={"p-3 w-full " + (third1Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 " + (third1Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
 								onclick={() => (third1Quality = 3)}
 							>
 								minor
@@ -160,7 +160,7 @@
 						</td>
 						<td class="border border-black dark:border-white">
 							<button
-								class={"p-3 w-full " + (third2Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 " + (third2Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
 								onclick={() => (third2Quality = 3)}
 							>
 								minor
@@ -176,7 +176,7 @@
 						{#if useSeventh}
 							<td class="border border-black dark:border-white">
 								<button
-									class={"p-3 w-full " + (third3Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+									class={"w-full p-3 " + (third3Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
 									onclick={() => (third3Quality = 3)}
 								>
 									minor
@@ -194,7 +194,7 @@
 					<tr>
 						<td class="border border-black dark:border-white">
 							<button
-								class={"p-3 w-full " + (third1Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 " + (third1Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
 								onclick={() => (third1Quality = 4)}
 							>
 								major
@@ -202,7 +202,7 @@
 						</td>
 						<td class="border border-black dark:border-white">
 							<button
-								class={"p-3 w-full " + (third2Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 " + (third2Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
 								onclick={() => (third2Quality = 4)}
 							>
 								major
@@ -211,7 +211,7 @@
 						{#if useSeventh}
 							<td class="border border-black dark:border-white">
 								<button
-									class={"p-3 w-full " + (third3Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+									class={"w-full p-3 " + (third3Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
 									onclick={() => (third3Quality = 4)}
 								>
 									major

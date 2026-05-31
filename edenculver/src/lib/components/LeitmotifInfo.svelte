@@ -1,19 +1,19 @@
 <script lang="ts">
 	interface Props {
 		name: string;
-		subthemes?: string[];
-		description: string;
+		subleitmotifs?: string[];
+		description?: string;
 	}
 
-	let { name, subthemes, description }: Props = $props();
+	let { name, subleitmotifs, description }: Props = $props();
 	let naturalW = $state(0);
 	let naturalH = $state(0);
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-2">
 	<p class="m-4 mb-0 text-xl font-bold">{name}</p>
-	<p class="mx-4 italic">Leitmotif</p>
-	<div class="px-5 py-4 bg-gray-300 dark:bg-gray-950 flex flex-col gap-3">
+	<p class="mx-4 text-sm italic">Leitmotif</p>
+	<div class="p-4 bg-gray-300 dark:bg-gray-950 flex flex-col gap-3">
 		<img
 			class="mx-auto [image-rendering:pixelated]"
 			src="/images/leitmotifs/{name.replace('?', '')}.png"
@@ -23,16 +23,16 @@
 			height={naturalH * 2}
 			alt="Sprite representing {name}."
 		/>
-		{#if subthemes}
+		{#if subleitmotifs}
 			<table>
 				<tbody>
-					{#each subthemes as subtheme}
+					{#each subleitmotifs as subleitmotif}
 						<tr>
-							<td class="p-3 pl-0">{subtheme}</td>
+							<td class="p-3 pl-0">{subleitmotif}</td>
 							<td>
-								{#key `${name} ${subtheme}`}
+								{#key `${name} ${subleitmotif}`}
 									<audio class="w-full" controls>
-										<source src="/audio/{name} {subtheme}.mp3" />
+										<source src="/audio/leitmotifs/identities/{name} {subleitmotif}.mp3" />
 									</audio>
 								{/key}
 							</td>
@@ -43,7 +43,7 @@
 		{:else}
 			{#key name}
 				<audio class="w-full" controls>
-					<source src="/audio/{name}.mp3" />
+					<source src="/audio/leitmotifs/identities/{name}.mp3" />
 				</audio>
 			{/key}
 		{/if}
@@ -51,4 +51,5 @@
 			<p>{description}</p>
 		{/if}
 	</div>
+	<p class="mx-4">Appearances:</p>
 </div>

@@ -87,14 +87,14 @@
 				type: "l",
 				id: l.id,
 				name: l.name,
-				subthemes: l.subthemes ?? "",
-				description: l.description ?? "",
+				subleitmotifs: l.subleitmotifs.length > 1 ? l.subleitmotifs : null,
+				description: l.description,
 				w: 1, // placeholder until sprite loads
 				h: 1, // placeholder until sprite loads
 				r: 1, // placeholder until sprite loads
 			});
 		});
-		console.log(svgElement.clientWidth);
+
 		// create song nodes
 		data.songs.forEach((s) => {
 			nodes.push({
@@ -108,13 +108,18 @@
 				r: songRadius,
 			});
 		});
+
 		// create links
 		data.links.forEach((l_s) => {
 			links.push({
 				source: l_s.leitmotif,
 				target: l_s.song,
+				subleitmotifs: l_s.subleitmotifs,
 			});
 		});
+
+		// console.log($state.snapshot(nodes));
+		// console.log($state.snapshot(links));
 
 		// initialize dynamic forces
 		const collide = d3.forceCollide((d) => (d as any).r).iterations(collideIterations);
@@ -155,15 +160,11 @@
 			.attr("id", (d) => d.id)
 			.attr("class", (d) => `${gameColorsFill[d.gameNumber]} origin-center transform-fill`)
 			.attr("r", (d) => d.r)
-			.attr("gameNumber", (d) => d.gameNumber)
-			.attr("gameTitle", (d) => d.gameTitle)
-			.attr("trackNumber", (d) => d.trackNumber)
-			.attr("title", (d) => d.title)
 			.on("click", (event, d) => selectSong(d))
 			.call(
 				d3.drag<SVGCircleElement, unknown>().on("start", dragStarted).on("drag", dragged).on("end", dragEnded),
 			);
-		vSongs.append("title").text((d) => d.title);
+		vSongs.append("title").text((d) => d.numberTitle);
 
 		// draw leitmotif nodes
 		const vLeitmotifs = svg
@@ -174,9 +175,6 @@
 			.attr("id", (d) => d.id)
 			.attr("class", "origin-center transform-fill [image-rendering:pixelated]")
 			.attr("href", (d) => `/images/leitmotifs/${d.name.replace("?", "")}.png`)
-			.attr("name", (d) => d.name)
-			.attr("subthemes", (d) => d.subthemes)
-			.attr("description", (d) => d.description)
 			.on("load", (event, d) => setSpriteDimensions(event.target, d))
 			.on("click", (event, d) => selectLeitmotif(d))
 			.call(
@@ -230,28 +228,6 @@
 		}
 	});
 
-	function selectLeitmotif(d: any) {
-		selectedNodeIndex = d.index;
-		selectedNodeType = "l";
-		dropdownSelectedLeitmotif = d.id;
-		dropdownSelectedSong = "x";
-	}
-
-	function selectSong(d: any) {
-		selectedNodeIndex = d.index;
-		selectedNodeType = "s";
-		dropdownSelectedLeitmotif = "x";
-		dropdownSelectedSong = d.id;
-	}
-
-	// once sprite loads, set its node's size and radius
-	function setSpriteDimensions(target: SVGImageElement, d: any) {
-		const rect = target.getBoundingClientRect();
-		d.w = rect.width;
-		d.h = rect.height;
-		d.r = Math.hypot(d.w, d.h) / 2;
-	}
-
 	// set selected leitmotif from dropdown
 	$effect(() => {
 		if (dropdownSelectedLeitmotif === "x") {
@@ -298,6 +274,28 @@
 		simulation.alpha(reheatAlpha).restart();
 	});
 
+	function selectLeitmotif(d: any) {
+		selectedNodeIndex = d.index;
+		selectedNodeType = "l";
+		dropdownSelectedLeitmotif = d.id;
+		dropdownSelectedSong = "x";
+	}
+
+	function selectSong(d: any) {
+		selectedNodeIndex = d.index;
+		selectedNodeType = "s";
+		dropdownSelectedLeitmotif = "x";
+		dropdownSelectedSong = d.id;
+	}
+
+	// once sprite loads, set its node's size and radius
+	function setSpriteDimensions(target: SVGImageElement, d: any) {
+		const rect = target.getBoundingClientRect();
+		d.w = rect.width;
+		d.h = rect.height;
+		d.r = Math.hypot(d.w, d.h) / 2;
+	}
+
 	function getTrackListing(song: any) {
 		return `${song.game_number ? song.game_number : "U"}-${song.track_number}. ${song.title}`;
 	}
@@ -317,10 +315,9 @@
 			{#if selectedNodeType === "l"}
 				<LeitmotifInfo
 					name={selectedNode.name}
-					subthemes={selectedNode.subthemes ? selectedNode.subthemes.split(",") : null}
+					subleitmotifs={selectedNode.subleitmotifs}
 					description={selectedNode.description}
 				/>
-				<p class="mx-4">Appearances:</p>
 				<div class="ml-6 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
 					{#each linkedNodes() as linkedSong}
 						<button
@@ -333,20 +330,77 @@
 				</div>
 			{:else if selectedNodeType === "s"}
 				<SongInfo
+					title={selectedNode.title}
 					gameTitle={selectedNode.gameTitle}
-					title={selectedNode.gameTitle}
 					trackNumber={selectedNode.trackNumber}
 				/>
-				<p class="mx-4">Leitmotifs:</p>
-				<div class="ml-6 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
-					{#each linkedNodes() as linkedLeitmotif}
-						<button
-							class="hover:underline text-left leading-tight cursor-pointer"
-							onclick={() => selectLeitmotif(linkedLeitmotif)}
-						>
-							{linkedLeitmotif.name}
-						</button>
-					{/each}
+				<div class="min-h-0 p-4 bg-gray-300 dark:bg-gray-950 flex flex-col gap-5 overflow-y-auto">
+					{#if linkedNodes().length}
+						{#each linkedNodes() as linkedLeitmotif}
+							{#if linkedLeitmotif.subleitmotifs}
+								{#each data.links.find((link) => link.leitmotif === linkedLeitmotif.id && link.song === selectedNode.id).subleitmotifs as linkedSubleitmotif}
+									<div class="flex flex-col gap-1">
+										<button
+											class="mb-1 text-left font-bold leading-tight hover:underline cursor-pointer"
+											onclick={() => selectLeitmotif(linkedLeitmotif)}
+										>
+											{linkedLeitmotif.name}
+											{linkedSubleitmotif}
+										</button>
+										<div class="flex items-center">
+											<p class="w-16 text-xs">Identity</p>
+											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif}`}
+												<audio class="w-full" controls>
+													<source
+														src="/audio/leitmotifs/identities/{linkedLeitmotif.name} {linkedSubleitmotif}.mp3"
+													/>
+												</audio>
+											{/key}
+										</div>
+										<div class="flex items-center">
+											<p class="w-16 text-xs">Snippet</p>
+											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
+												<audio class="w-full" controls>
+													<source
+														src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {linkedSubleitmotif}_{selectedNode.numberTitle}.mp3"
+													/>
+												</audio>
+											{/key}
+										</div>
+									</div>
+								{/each}
+							{:else}
+								<div class="flex flex-col gap-1">
+									<button
+										class="mb-1 text-left font-bold leading-tight hover:underline cursor-pointer"
+										onclick={() => selectLeitmotif(linkedLeitmotif)}
+									>
+										{linkedLeitmotif.name}
+									</button>
+									<div class="flex items-center">
+										<p class="w-16 text-xs">Identity</p>
+										{#key linkedLeitmotif.name}
+											<audio class="w-full" controls>
+												<source src="/audio/leitmotifs/identities/{linkedLeitmotif.name}.mp3" />
+											</audio>
+										{/key}
+									</div>
+									<div class="flex items-center">
+										<p class="w-16 text-xs">Snippet</p>
+										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
+											<audio class="w-full" controls>
+												<source
+													src="/audio/leitmotifs/snippets/{linkedLeitmotif.name}_{selectedNode.numberTitle}.mp3"
+												/>
+											</audio>
+										{/key}
+									</div>
+								</div>
+							{/if}
+						{/each}
+					{:else}
+						<p>None</p>
+					{/if}
 				</div>
 			{/if}
 			<div class="m-3 mt-auto flex flex-col gap-2">
@@ -380,8 +434,13 @@
 		></svg>
 		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
 			<div class="relative">
-				<button class="rounded-sm w-8 p-2 hover:bg-gray-500" title="Simulation parameters" onclick={toggleMenu}>
-					<img src={meatball} alt="Meatball menu." />
+				<button
+					class={"rounded-sm w-8 p-2 hover:bg-gray-300 dark:hover:bg-gray-950" +
+						(menuHidden ? "" : " bg-gray-300 dark:bg-gray-950")}
+					title="Simulation parameters"
+					onclick={toggleMenu}
+				>
+					<img class="dark:invert" src={meatball} alt="Meatball menu." />
 				</button>
 				<div
 					class={"absolute right-0 border-2 border-(--utdr-border) p-3 bg-white dark:bg-black flex flex-col gap-2 items-right" +

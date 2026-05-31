@@ -203,7 +203,7 @@
 		<label class="flex flex-col gap-1">
 			IP address with CIDR or mask:
 			<input
-				class={"border p-3 w-100 " +
+				class={"border w-100 p-3 " +
 					(invalidInput ? "border-red-600 text-red-600" : "border-white text-green-500")}
 				type="text"
 				maxlength="100"
@@ -224,7 +224,7 @@
 				IP addresses with CIDR or mask:
 				<textarea
 					id="inputAddresses"
-					class={"border p-3 w-100 " +
+					class={"border w-100 p-3 " +
 						(invalidInput ? "border-red-600 text-red-600" : "border-white + text-green-500")}
 					rows="5"
 					bind:value={inputAddresses}

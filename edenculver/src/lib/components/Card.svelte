@@ -12,11 +12,11 @@
 </script>
 
 <a
-	class="hover:bg-gray-500 border border-gray-500 duration-250 flex flex-1 flex-col gap-4 min-w-md p-6 rounded-xl"
+	class="border border-gray-500 rounded-xl min-w-md p-6 hover:bg-gray-500 duration-250 flex-1 flex flex-col gap-4"
 	{href}
 >
 	<div class="flex gap-4 items-center">
-		<img class={"h-12 w-12" + (pixelated ? " [image-rendering:pixelated]" : "")} {src} {alt} />
+		<img class={"w-12 h-12" + (pixelated ? " [image-rendering:pixelated]" : "")} {src} {alt} />
 		<p class="font-bold text-lg">{title}</p>
 	</div>
 	<p>{description}</p>
