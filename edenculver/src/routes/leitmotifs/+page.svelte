@@ -114,7 +114,7 @@
 			links.push({
 				source: l_s.leitmotif,
 				target: l_s.song,
-				subleitmotifs: l_s.subleitmotifs,
+				subleitmotifs: l_s.subleitmotifs.length > 1 ? l_s.subleitmotifs : null,
 			});
 		});
 
@@ -362,7 +362,7 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {linkedSubleitmotif}_{selectedNode.numberTitle}.mp3"
+														src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {linkedSubleitmotif} {selectedNode.numberTitle}.mp3"
 													/>
 												</audio>
 											{/key}
@@ -390,7 +390,7 @@
 										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
 											<audio class="w-full" controls>
 												<source
-													src="/audio/leitmotifs/snippets/{linkedLeitmotif.name}_{selectedNode.numberTitle}.mp3"
+													src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {selectedNode.numberTitle}.mp3"
 												/>
 											</audio>
 										{/key}
