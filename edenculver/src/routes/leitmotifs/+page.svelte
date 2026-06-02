@@ -352,7 +352,7 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/identities/{linkedLeitmotif.name} {linkedSubleitmotif}.mp3"
+														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedLeitmotif.name} {linkedSubleitmotif}.mp3"
 													/>
 												</audio>
 											{/key}
@@ -362,7 +362,7 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {linkedSubleitmotif} {selectedNode.numberTitle}.mp3"
+														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedSubleitmotif} {selectedNode.numberTitle}.mp3"
 													/>
 												</audio>
 											{/key}
@@ -381,7 +381,9 @@
 										<p class="w-16 text-xs">Identity</p>
 										{#key linkedLeitmotif.name}
 											<audio class="w-full" controls>
-												<source src="/audio/leitmotifs/identities/{linkedLeitmotif.name}.mp3" />
+												<source
+													src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedLeitmotif.name}.mp3"
+												/>
 											</audio>
 										{/key}
 									</div>
@@ -390,7 +392,7 @@
 										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
 											<audio class="w-full" controls>
 												<source
-													src="/audio/leitmotifs/snippets/{linkedLeitmotif.name} {selectedNode.numberTitle}.mp3"
+													src="/audio/leitmotifs/{linkedLeitmotif.name}/{selectedNode.numberTitle}.mp3"
 												/>
 											</audio>
 										{/key}

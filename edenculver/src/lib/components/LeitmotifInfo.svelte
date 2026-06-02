@@ -32,7 +32,7 @@
 							<td>
 								{#key `${name} ${subleitmotif}`}
 									<audio class="w-full" controls>
-										<source src="/audio/leitmotifs/identities/{name} {subleitmotif}.mp3" />
+										<source src="/audio/leitmotifs/{name}/{name} {subleitmotif}.mp3" />
 									</audio>
 								{/key}
 							</td>
@@ -43,7 +43,7 @@
 		{:else}
 			{#key name}
 				<audio class="w-full" controls>
-					<source src="/audio/leitmotifs/identities/{name}.mp3" />
+					<source src="/audio/leitmotifs/{name}/{name}.mp3" />
 				</audio>
 			{/key}
 		{/if}
