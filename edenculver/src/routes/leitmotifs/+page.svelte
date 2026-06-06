@@ -87,7 +87,7 @@
 				type: "l",
 				id: l.id,
 				name: l.name,
-				subleitmotifs: l.subleitmotifs.length > 1 ? l.subleitmotifs : null,
+				subleitmotifs: l.subleitmotifs,
 				description: l.description,
 				w: 1, // placeholder until sprite loads
 				h: 1, // placeholder until sprite loads
@@ -104,7 +104,7 @@
 				gameTitle: s.game_title,
 				trackNumber: s.track_number,
 				title: s.title,
-				numberTitle: getTrackListing(s),
+				numberTitle: getNumberTitle(s),
 				r: songRadius,
 			});
 		});
@@ -114,7 +114,7 @@
 			links.push({
 				source: l_s.leitmotif,
 				target: l_s.song,
-				subleitmotifs: l_s.subleitmotifs.length > 1 ? l_s.subleitmotifs : null,
+				subleitmotifs: l_s.subleitmotifs,
 			});
 		});
 
@@ -296,8 +296,8 @@
 		d.r = Math.hypot(d.w, d.h) / 2;
 	}
 
-	function getTrackListing(song: any) {
-		return `${song.game_number ? song.game_number : "U"}-${song.track_number}. ${song.title}`;
+	function getNumberTitle(song: any) {
+		return `${song.game_number ? song.game_number : "U"}-${song.track_number} ${song.title}`;
 	}
 
 	function toggleMenu() {
@@ -426,7 +426,7 @@
 					>
 						<option value="x">---</option>
 						{#each data.songs as song}
-							<option value={song.id}>{getTrackListing(song)}</option>
+							<option value={song.id}>{getNumberTitle(song)}</option>
 						{/each}
 					</select>
 				</label>
@@ -473,7 +473,7 @@
 				</div>
 			</div>
 			<div class="h-1"></div>
-			{#each ["UT", "Ch. 1", "Ch. 2", "Ch. 3", "Ch. 4"] as game, i}
+			{#each ["UT", "Ch 1", "Ch 2", "Ch 3", "Ch 4"] as game, i}
 				<div class="text-xs flex gap-2 items-center">
 					<div class="w-3 h-3 {gameColorsBG[i]}"></div>
 					<p>{game}</p>

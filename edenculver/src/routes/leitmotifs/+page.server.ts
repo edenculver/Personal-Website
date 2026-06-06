@@ -6,7 +6,9 @@ const leitmotifQuery = `
 		l.id,
 		l.name,
 		l.subthemes,
-		array_agg(sl.name ORDER BY sl.sort_order, sl.name) AS subleitmotifs,
+		array_agg(sl.name ORDER BY sl.sort_order, sl.name)
+			FILTER (WHERE sl.id IS NOT NULL)
+			AS subleitmotifs,
 		l.description
 	FROM leitmotif l
 	LEFT JOIN subleitmotif sl
@@ -30,10 +32,11 @@ const linkQuery = `
 	SELECT
 		l_s.leitmotif,
 		l.name,
-		array_agg(sl.name ORDER BY sl.sort_order, sl.name) AS subleitmotifs,
+		array_agg(sl.name ORDER BY sl.sort_order, sl.name)
+			FILTER (WHERE sl.id IS NOT NULL)
+			AS subleitmotifs,
 		l_s.song,
 		g.number as game_number,
-		g.title as game_title,
 		s.track_number,
 		s.title
 	FROM leitmotif_in_song l_s
@@ -52,7 +55,6 @@ const linkQuery = `
 		l.name,
 		l_s.song,
 		g.number,
-		g.title,
 		s.track_number,
 		s.title
 	ORDER BY l.name, g.number, s.track_number;
