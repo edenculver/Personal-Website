@@ -362,7 +362,10 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedSubleitmotif} {selectedNode.numberTitle}.mp3"
+														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedSubleitmotif} {selectedNode.numberTitle.replaceAll(
+															'"',
+															'',
+														)}.mp3"
 													/>
 												</audio>
 											{/key}
@@ -392,7 +395,10 @@
 										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
 											<audio class="w-full" controls>
 												<source
-													src="/audio/leitmotifs/{linkedLeitmotif.name}/{selectedNode.numberTitle}.mp3"
+													src="/audio/leitmotifs/{linkedLeitmotif.name}/{selectedNode.numberTitle.replaceAll(
+														'"',
+														'',
+													)}.mp3"
 												/>
 											</audio>
 										{/key}
