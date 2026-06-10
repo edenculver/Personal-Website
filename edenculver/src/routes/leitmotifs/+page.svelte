@@ -303,6 +303,10 @@
 	function toggleMenu() {
 		menuHidden = !menuHidden;
 	}
+
+	function getAudioSrc(dir: string, ...file: string[]) {
+		return `/audio/leitmotifs/${dir}/${file.join(" ")}.mp3`.replaceAll('"', "").replaceAll("?", "");
+	}
 </script>
 
 <div class="h-dvh flex flex-col">
@@ -352,7 +356,11 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedLeitmotif.name} {linkedSubleitmotif}.mp3"
+														src={getAudioSrc(
+															linkedLeitmotif.name,
+															linkedLeitmotif.name,
+															linkedSubleitmotif,
+														)}
 													/>
 												</audio>
 											{/key}
@@ -362,10 +370,11 @@
 											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
 												<audio class="w-full" controls>
 													<source
-														src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedSubleitmotif} {selectedNode.numberTitle.replaceAll(
-															'"',
-															'',
-														)}.mp3"
+														src={getAudioSrc(
+															linkedLeitmotif.name,
+															linkedSubleitmotif,
+															selectedNode.numberTitle,
+														)}
 													/>
 												</audio>
 											{/key}
@@ -384,9 +393,7 @@
 										<p class="w-16 text-xs">Identity</p>
 										{#key linkedLeitmotif.name}
 											<audio class="w-full" controls>
-												<source
-													src="/audio/leitmotifs/{linkedLeitmotif.name}/{linkedLeitmotif.name}.mp3"
-												/>
+												<source src={getAudioSrc(linkedLeitmotif.name, linkedLeitmotif.name)} />
 											</audio>
 										{/key}
 									</div>
@@ -395,10 +402,7 @@
 										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
 											<audio class="w-full" controls>
 												<source
-													src="/audio/leitmotifs/{linkedLeitmotif.name}/{selectedNode.numberTitle.replaceAll(
-														'"',
-														'',
-													)}.mp3"
+													src={getAudioSrc(linkedLeitmotif.name, selectedNode.numberTitle)}
 												/>
 											</audio>
 										{/key}
