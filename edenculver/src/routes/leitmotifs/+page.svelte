@@ -62,12 +62,13 @@
 	const collideIterations = 2;
 	const manyBodyStrength = -100;
 	const linkDistance = 40;
+	const holdTime = 1000; // how long to wait after load before alpha decay starts
 
 	// empty dynamic forces
 	const forceX = d3.forceX();
 	const forceY = d3.forceY();
 
-	onMount(() => {
+	onMount(async () => {
 		// when an audio starts playing, pause the last audio
 		let lastPlayedAudio: HTMLAudioElement;
 		document.addEventListener(
@@ -129,6 +130,7 @@
 		// create simulation
 		simulation = d3
 			.forceSimulation(nodes)
+			.alphaTarget(1)
 			.alphaDecay(alphaDecay)
 			.force(
 				"link",
@@ -201,31 +203,9 @@
 			simulation.alpha(reheatAlpha).restart();
 		});
 
-		// reheat the simulation when drag starts
-		// fix the position of the subject (the node being dragged)
-		function dragStarted(event: any) {
-			if (!event.active) {
-				simulation.alphaTarget(reheatAlpha).restart();
-			}
-			event.subject.fx = event.subject.x;
-			event.subject.fy = event.subject.y;
-		}
-
-		// update the position of the subject
-		function dragged(event: any) {
-			event.subject.fx = event.x;
-			event.subject.fy = event.y;
-		}
-
-		// allow the simulation to cool
-		// unfix the position of the subject
-		function dragEnded(event: any) {
-			if (!event.active) {
-				simulation.alphaTarget(0);
-			}
-			event.subject.fx = null;
-			event.subject.fy = null;
-		}
+		// start decaying after hold time
+		await new Promise((f) => setTimeout(f, holdTime));
+		simulation.alphaTarget(0);
 	});
 
 	// set selected leitmotif from dropdown
@@ -274,6 +254,40 @@
 		simulation.alpha(reheatAlpha).restart();
 	});
 
+	// once sprite loads, set its node's size and radius
+	function setSpriteDimensions(target: SVGImageElement, d: any) {
+		const rect = target.getBoundingClientRect();
+		d.w = rect.width;
+		d.h = rect.height;
+		d.r = Math.hypot(d.w, d.h) / 2;
+	}
+
+	// reheat the simulation when drag starts
+	// fix the position of the subject (the node being dragged)
+	function dragStarted(event: any) {
+		if (!event.active) {
+			simulation.alphaTarget(reheatAlpha).restart();
+		}
+		event.subject.fx = event.subject.x;
+		event.subject.fy = event.subject.y;
+	}
+
+	// update the position of the subject
+	function dragged(event: any) {
+		event.subject.fx = event.x;
+		event.subject.fy = event.y;
+	}
+
+	// allow the simulation to cool
+	// unfix the position of the subject
+	function dragEnded(event: any) {
+		if (!event.active) {
+			simulation.alphaTarget(0);
+		}
+		event.subject.fx = null;
+		event.subject.fy = null;
+	}
+
 	function selectLeitmotif(d: any) {
 		selectedNodeIndex = d.index;
 		selectedNodeType = "l";
@@ -288,24 +302,16 @@
 		dropdownSelectedSong = d.id;
 	}
 
-	// once sprite loads, set its node's size and radius
-	function setSpriteDimensions(target: SVGImageElement, d: any) {
-		const rect = target.getBoundingClientRect();
-		d.w = rect.width;
-		d.h = rect.height;
-		d.r = Math.hypot(d.w, d.h) / 2;
-	}
-
 	function getNumberTitle(song: any) {
 		return `${song.game_number ? song.game_number : "U"}-${song.track_number} ${song.title}`;
 	}
 
-	function toggleMenu() {
-		menuHidden = !menuHidden;
-	}
-
 	function getAudioSrc(dir: string, ...file: string[]) {
 		return `/audio/leitmotifs/${dir}/${file.join(" ")}.mp3`.replaceAll('"', "").replaceAll("?", "");
+	}
+
+	function toggleMenu() {
+		menuHidden = !menuHidden;
 	}
 </script>
 
