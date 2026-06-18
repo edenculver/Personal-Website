@@ -307,7 +307,7 @@
 	}
 
 	function getAudioSrc(dir: string, ...file: string[]) {
-		return `/audio/leitmotifs/${dir}/${file.join(" ")}.mp3`.replaceAll('"', "").replaceAll("?", "");
+		return `/audio/leitmotifs/${dir}/${file.join(" ")}.mp3`.replaceAll('"', "-").replaceAll("?", "-");
 	}
 
 	function toggleMenu() {
