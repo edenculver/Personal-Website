@@ -10,18 +10,18 @@
 	let { data }: PageProps = $props();
 
 	const gameColorsBG = [
-		"bg-(--utdr-undertale)",
-		"bg-(--utdr-ch1)",
-		"bg-(--utdr-ch2)",
-		"bg-(--utdr-ch3)",
-		"bg-(--utdr-ch4)",
+		"bg-utdrut",
+		"bg-utdrch1",
+		"bg-utdrch2",
+		"bg-utdrch3)",
+		"bg-utdrch4)",
 	];
 	const gameColorsFill = [
-		"fill-(--utdr-undertale)",
-		"fill-(--utdr-ch1)",
-		"fill-(--utdr-ch2)",
-		"fill-(--utdr-ch3)",
-		"fill-(--utdr-ch4)",
+		"fill-utdrut",
+		"fill-utdrch1",
+		"fill-utdrch2",
+		"fill-utdrch3",
+		"fill-utdrch4",
 	];
 
 	let nodes: any[] = $state([]);
@@ -317,7 +317,7 @@
 
 <div class="h-dvh flex flex-col">
 	<NavBar />
-	<h1 class="border-b-2 border-b-(--utdr-border) p-3 text-center text-2xl font-bold">
+	<h1 class="border-b-2 border-b-utdrborder p-3 text-center text-2xl font-bold">
 		Undertale/Deltarune Leitmotifs Graph
 	</h1>
 	<div class="min-h-0 flex-1 flex">
@@ -448,7 +448,7 @@
 				</label>
 			</div>
 		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-x-(--utdr-border) bg-gray-300 dark:bg-gray-950 flex-1"
+		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-300 dark:bg-gray-950 flex-1"
 		></svg>
 		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
 			<div class="relative">
@@ -461,7 +461,7 @@
 					<img class="dark:invert" src={meatball} alt="Meatball menu." />
 				</button>
 				<div
-					class={"absolute right-0 border-2 border-(--utdr-border) p-3 bg-white dark:bg-black flex flex-col gap-2 items-right" +
+					class={"absolute right-0 border-2 border-utdrborder p-3 bg-white dark:bg-black flex flex-col gap-2 items-right" +
 						(menuHidden ? " hidden" : "")}
 				>
 					<label class="flex items-center gap-2 whitespace-nowrap">

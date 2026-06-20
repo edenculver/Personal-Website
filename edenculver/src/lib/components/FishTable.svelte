@@ -27,22 +27,22 @@
 			case null:
 				return undefined;
 			case "Rain":
-				return "bg-(--sv-rain)";
+				return "bg-svrain";
 			case "Sun":
-				return "bg-(--sv-sun)";
+				return "bg-svsun";
 			case "Wind":
-				return "bg-(--sv-wind)";
+				return "bg-svwind";
 			case "Sun or wind":
-				return "bg-(--sv-sky)";
+				return "bg-svsky";
 			default:
 				return "bg-red-500";
 		}
 	}
 </script>
 
-<div class="bg-(--sv-tan) border-3 border-(--sv-verydarktan) flex flex-col gap-4 p-6 rounded-lg">
+<div class="bg-svtan border-3 border-svverydarktan flex flex-col gap-4 p-6 rounded-lg">
 	<h2 class="font-bold text-xl">{location}</h2>
-	<table class="border border-(--sv-verydarktan)">
+	<table class="border border-svverydarktan">
 		<tbody>
 			<tr>
 				<th>Fish</th>
@@ -104,6 +104,6 @@
 	}
 	td,
 	th {
-		@apply border border-(--sv-verydarktan) px-3 py-2;
+		@apply border border-svverydarktan px-3 py-2;
 	}
 </style>

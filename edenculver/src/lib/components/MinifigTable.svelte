@@ -13,7 +13,7 @@
 	let { minifigs }: Props = $props();
 </script>
 
-<table class="bg-white text-black text-center">
+<table class="bg-white text-center text-black">
 	<tbody>
 		<tr class="align-bottom">
 			{#each minifigs as minifig}
@@ -37,11 +37,11 @@
 					>
 						{minifig.count > 1 ? minifig.name + " (x" + minifig.count + ")" : minifig.name}
 					</p>
-					<p class="italic m-2 text-sm">
+					<p class="m-2 text-sm italic">
 						{minifig.specification ? minifig.specification : ""}
 					</p>
 					<a
-						class="italic m-2 no-underline text-sm text-gray-500"
+						class="m-2 text-sm text-gray-500 italic no-underline"
 						href="https://www.bricklink.com/v2/catalog/catalogitem.page?M={minifig.bricklink_id}"
 					>
 						{minifig.bricklink_id}

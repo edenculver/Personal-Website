@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import NavItem from "$lib/components/NavItem.svelte";
 	import favicon from "$lib/assets/favicon.svg";
 </script>

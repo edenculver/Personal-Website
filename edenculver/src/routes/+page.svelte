@@ -1,19 +1,20 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.svg";
 	import NavBar from "$lib/components/NavBar.svelte";
+	import BigGrid from "$lib/components/BigGrid.svelte";
 	import Card from "$lib/components/Card.svelte";
 </script>
 
-<header class="bg-black dark:bg-white flex items-center gap-4 p-4 text-white dark:text-black">
+<header class="p-4 bg-black dark:bg-white flex items-center gap-4 text-white dark:text-black">
 	<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
-	<h1 class="font-bold text-3xl">EdenCulver.net</h1>
+	<h1 class="text-3xl font-bold">EdenCulver.net</h1>
 </header>
 <NavBar />
-<div class="flex flex-col gap-6 items-center m-10">
-	<h2 class="font-bold text-xl">About</h2>
+<div class="mx-16 my-10 flex flex-col gap-4 flex-1">
+	<h2 class="text-xl font-bold">About</h2>
 	<p>Hi! I'm Eden (she/her). Welcome to my website! I make things that I think are neat.</p>
-	<h2 class="font-bold mt-8 text-xl">Pages</h2>
-	<div class="flex flex-wrap gap-6">
+	<h2 class="mt-8 text-xl font-bold">Pages</h2>
+	<BigGrid>
 		<Card
 			title="IP Calculator"
 			description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total addresses, summary addresses, and more."
@@ -73,9 +74,9 @@
 			src="/images/home/triad.svg"
 			alt="A whole note triad."
 		/>
-	</div>
-	<h2 class="font-bold mt-8 text-xl">Links</h2>
-	<div class="flex flex-wrap gap-6">
+	</BigGrid>
+	<h2 class="mt-8 text-xl font-bold">Links</h2>
+	<BigGrid>
 		<Card
 			title="GitHub"
 			href="https://github.com/edenculver"
@@ -94,9 +95,9 @@
 			src="https://icon.horse/icon/mail.google.com"
 			alt="Favicon of gmail.com."
 		/>
-	</div>
-	<h2 class="font-bold mt-8 text-xl">Cool stuff other people have made</h2>
-	<div class="flex flex-wrap gap-6">
+	</BigGrid>
+	<h2 class="mt-8 text-xl font-bold">Cool stuff other people have made</h2>
+	<BigGrid>
 		<Card
 			title="Flag Color Codes"
 			description="A really cool site detailing the colors used in all sorts of official flags."
@@ -139,5 +140,5 @@
 			src="https://icon.horse/icon/usflags.design"
 			alt="Favicon of usflags.design."
 		/>
-	</div>
+	</BigGrid>
 </div>

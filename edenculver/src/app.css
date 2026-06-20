@@ -3,22 +3,28 @@
 @theme {
 	--font-sans: Verdana, Tahoma, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
-	--sv-tan: #F9BA66;
-	--sv-darktan: #965C3A;
-	--sv-verydarktan: #5B2B2A;
-	--sv-rain: #8388FD;
-	--sv-sky: #80EAFF;
-	--sv-sun: #FEFF00;
-	--sv-wind: #FF9200;
-	--mc-lightgray: #C6C6C6;
-	--mc-darkgray: #4C4C4C;
-	--mc-green: #218306;
-	--utdr-undertale: #A349A4;
-	--utdr-ch1: #851053;
-	--utdr-ch2: #31D989;
-	--utdr-ch3: #FEF960;
-	--utdr-ch4: #526AF3;
-	--utdr-border: #5F4F6C;
+
+	/* fish */
+	--color-svtan: #F9BA66;
+	--color-svdarktan: #965C3A;
+	--color-svverydarktan: #5B2B2A;
+	--color-svrain: #8388FD;
+	--color-svsky: #80EAFF;
+	--color-svsun: #FEFF00;
+	--color-svwind: #FF9200;
+
+	/* villager-quiz */
+	--color-mclightgray: #C6C6C6;
+	--color-mcdarkgray: #4C4C4C;
+	--color-mcgreen: #218306;
+
+	/* leitmotifs */
+	--color-utdrborder: #614E6B;
+	--color-utdrut: #A349A4;
+	--color-utdrch1: #851053;
+	--color-utdrch2: #31D989;
+	--color-utdrch3: #FEF960;
+	--color-utdrch4: #526AF3;
 	--animate-highlight: highlight 800ms linear infinite;
 
 	@keyframes highlight {

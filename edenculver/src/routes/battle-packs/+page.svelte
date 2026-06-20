@@ -7,8 +7,8 @@
 </script>
 
 <NavBar />
-<div class="flex flex-col gap-8 items-stretch mx-10 my-5">
-	<h1 class="font-bold mx-auto text-3xl">LEGO Star Wars Battle Packs Catalog</h1>
+<div class="px-16 py-10 bg-gray-100 dark:bg-gray-900 flex flex-col gap-8">
+	<h1 class="text-2xl font-bold">LEGO Star Wars Battle Packs Catalog</h1>
 	{#each data.battlePacks as battlePack}
 		<BattlePack {battlePack} />
 	{/each}

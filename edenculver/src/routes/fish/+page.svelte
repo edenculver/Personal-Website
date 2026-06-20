@@ -6,8 +6,8 @@
 </script>
 
 <NavBar />
-<div class="bg-(--sv-darktan) flex flex-col gap-6 items-center p-6 text-black">
-	<h1 class="bg-(--sv-tan) border-3 border-(--sv-verydarktan) font-bold px-20 py-5 rounded-lg text-2xl text-center">
+<div class="bg-svdarktan flex flex-col gap-6 items-center p-6 text-black">
+	<h1 class="bg-svtan border-3 border-svverydarktan font-bold px-20 py-5 rounded-lg text-2xl text-center">
 		Stardew Valley Fish Cheat Sheet
 	</h1>
 	{#each Object.keys(fish) as location}
