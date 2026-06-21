@@ -13,8 +13,8 @@
 		"bg-utdrut",
 		"bg-utdrch1",
 		"bg-utdrch2",
-		"bg-utdrch3)",
-		"bg-utdrch4)",
+		"bg-utdrch3",
+		"bg-utdrch4",
 	];
 	const gameColorsFill = [
 		"fill-utdrut",

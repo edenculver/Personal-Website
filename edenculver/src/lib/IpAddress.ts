@@ -2,8 +2,8 @@
  * IPv4 address
  */
 export default class IpAddress {
-	_address = "0.0.0.0";
-	_cidr = 0;
+	_address = 0;
+	_subnetMask = 0;
 
 	/**
 	 * @param address
@@ -14,8 +14,9 @@ export default class IpAddress {
 		this.address = address;
 	}
 
+	/** IPv4 address. */
 	get address() {
-		return this._address;
+		return IpAddress.int2addr(this._address);
 	}
 
 	/**
@@ -30,8 +31,8 @@ export default class IpAddress {
 				throw new Error();
 			}
 			let newAddress = regex.groups.address;
-			let newCidrStr = regex.groups.cidr;
-			let newMask = regex.groups.mask;
+			let newCidrString = regex.groups.cidr;
+			let newMaskString = regex.groups.mask;
 
 			// validate IP address
 			newAddress.split(".").forEach((octet) => {
@@ -40,103 +41,139 @@ export default class IpAddress {
 					throw new Error();
 				}
 			});
+			this._address = IpAddress.addr2int(newAddress);
 
 			// validate CIDR
-			let newCidr = 0;
-			if (newCidrStr && newMask) {
+			let newCidrInt = 0;
+			if (newCidrString && newMaskString) {
 				throw new Error();
 			}
-			else if (!newCidrStr && !newMask) {
-				newCidr = 32;
+			else if (!newCidrString && !newMaskString) {
+				newCidrInt = 32;
 			}
-			else if (newCidrStr) {
-				newCidr = parseInt(newCidrStr.substring(1));
+			else if (newCidrString) {
+				newCidrInt = parseInt(newCidrString.substring(1));
+			}
+			if (newCidrInt) {
+				this.prefixLength = newCidrInt;
 			}
 
 			// validate mask
-			if (newMask) {
-				let binaryMask = IpAddress.dec2bin(newMask);
+			if (newMaskString) {
+				let newMaskInt = IpAddress.addr2int(newMaskString);
+				let invertedMaskInt = ~newMaskInt >>> 0;
 
-				// convert wildcard mask to subnet mask
-				if (binaryMask.startsWith("0")) {
-					let oldMask = binaryMask.split("");
-					binaryMask = "";
-					oldMask.forEach((digit) => {
-						if (digit === "0") binaryMask += "1";
-						else binaryMask += "0";
-					});
+				// check if valid subnet mask
+				if ((invertedMaskInt & (invertedMaskInt + 1)) === 0) {
+					this._subnetMask = newMaskInt;
 				}
-
-				// convert subnet mask to CIDR
-				let countOf1 = 0;
-				while (countOf1 < 32) {
-					if (binaryMask.charAt(countOf1) !== "1") break;
-					countOf1++;
+				// check if valid wildcard mask
+				else if ((newMaskInt & (newMaskInt + 1)) === 0) {
+					this._subnetMask = invertedMaskInt;
 				}
-
-				let countOf0 = 31;
-				while (countOf0 > -1) {
-					if (binaryMask.charAt(countOf0) !== "0") break;
-					countOf0--;
+				else {
+					throw new Error();
 				}
-				countOf0 = 31 - countOf0;
-
-				if (countOf1 + countOf0 !== 32) throw new Error();
-				newCidr = countOf1;
 			}
-
-			this._address = newAddress;
-			this._cidr = newCidr;
 		} catch (error) {
 			throw new Error("Error while parsing IP address.");
 		}
 	}
 
-	get cidr() {
-		return this._cidr;
+	/** Prefix length. */
+	get prefixLength() {
+		return Math.clz32(~this._subnetMask);
 	}
 
 	/**
-	 * @param newCidr 0-32.
+	 * Prefix length.
+	 * @param newPrefixLength 0-32.
 	 */
-	set cidr(newCidr: number) {
-		if (newCidr < 0 || newCidr > 32) {
+	set prefixLength(newPrefixLength: number) {
+		if (newPrefixLength < 0 || newPrefixLength > 32) {
 			throw new Error("Invalid CIDR.");
 		}
-		this._cidr = newCidr;
+		this._subnetMask = newPrefixLength === 0 ? 0 : -1 << (32 - newPrefixLength);
 	}
 
-	get addressBin() {
-		return IpAddress.dec2bin(this.address);
+	/** Subnet mask. Ex: 255.255.255.0 */
+	get subnetMask() {
+		return IpAddress.int2addr(this._subnetMask);
 	}
 
+	/** Wildcard mask as integer. */
+	get wildcardMaskInt() {
+		return ~this._subnetMask >>> 0;
+	}
+
+	/* Wildcard mask. Ex: 0.0.0.255 */
+	get wildcardMask() {
+		return IpAddress.int2addr(this.wildcardMaskInt);
+	}
+
+	/** Network address as integer. */
+	get networkInt() {
+		return (this._address & this._subnetMask) >>> 0;
+	}
+
+	/** Network address. */
 	get networkAddress() {
-		return IpAddress.bin2dec(this.addressBin.substring(0, this.cidr) + "0".repeat(32 - this.cidr));
+		return IpAddress.int2addr(this.networkInt);
 	}
 
+	/** Network prefix. */
 	get networkPrefix() {
-		return `${this.networkAddress}/${this.cidr}`;
+		return `${this.networkAddress}/${this.prefixLength}`;
 	}
 
+	/** Host bits as integer. */
+	get hostInt() {
+		return (this._address & this.wildcardMaskInt) >>> 0;
+	}
+
+	/** Last address of the network as integer. */
+	get lastAddressInt() {
+		return (this._address | this.wildcardMaskInt) >>> 0;
+	}
+
+	/**
+	 * Broadcast address. Returns empty string if prefix length is 31 or 32.
+	 */
 	get broadcastAddress() {
-		return IpAddress.bin2dec(this.addressBin.substring(0, this.cidr) + "1".repeat(32 - this.cidr));
+		if (this.prefixLength > 30) {
+			return "";
+		}
+		return IpAddress.int2addr(this._address | this.wildcardMaskInt);
 	}
 
 	get totalAddresses() {
-		return 2 ** (32 - this.cidr);
+		return 2 ** (32 - this.prefixLength);
 	}
 
 	get usableHosts() {
-		if (this.cidr > 30) return 0;
-		return 2 ** (32 - this.cidr) - 2;
+		if (this.prefixLength > 30) {
+			return 0;
+		}
+		return 2 ** (32 - this.prefixLength) - 2;
 	}
 
-	get subnetMask() {
-		return IpAddress.bin2dec("1".repeat(this.cidr) + "0".repeat(32 - this.cidr));
+	/** First usable host in the network. */
+	get firstHost() {
+		if (this.prefixLength > 30) {
+			return this.address;
+		}
+		return IpAddress.int2addr(this.networkInt + 1);
 	}
 
-	get wildcardMask() {
-		return IpAddress.bin2dec("0".repeat(this.cidr) + "1".repeat(32 - this.cidr));
+	/** Last usable host in the network. */
+	get lastHost() {
+		if (this.prefixLength === 32) {
+			return this.address;
+		}
+		if (this.prefixLength === 31) {
+			return IpAddress.int2addr(this.networkInt + 1);
+		}
+		return IpAddress.int2addr((this._address | IpAddress.addr2int(this.wildcardMask)) - 1);
 	}
 
 	get addressSpaceType() {
@@ -168,18 +205,18 @@ export default class IpAddress {
 			{ start: "224.0.0.0", end: "233.251.255.255", type: "Multicast (224.0.0.0/4)" },
 			{ start: "233.252.0.0", end: "233.252.0.255", type: "Documentation (233.252.0.0/24)" },
 			{ start: "233.252.1.0", end: "239.255.255.255", type: "Multicast (224.0.0.0/4)" },
-			{ start: "240.0.0.0", end: "255.255.255.255", type: "Reserved (240.0.0.0/4)" }
-		]
+			{ start: "240.0.0.0", end: "255.255.255.255", type: "Reserved (240.0.0.0/4)" },
+		];
 
 		// check input against each range
-		let thisStart = parseInt(IpAddress.dec2bin(this.networkAddress), 2);
-		let thisEnd = parseInt(IpAddress.dec2bin(this.broadcastAddress), 2);
+		let thisStart = this.networkInt;
+		let thisEnd = this.lastAddressInt;
 		let types: string[] = [];
 		ranges.forEach((range) => {
-			let rangeStart = parseInt(IpAddress.dec2bin(range.start), 2);
-			let rangeEnd = parseInt(IpAddress.dec2bin(range.end), 2);
+			let rangeStart = IpAddress.addr2int(range.start);
+			let rangeEnd = IpAddress.addr2int(range.end);
 
-			if (!types.includes(range.type) && !(thisEnd < rangeStart || thisStart > rangeEnd)) {
+			if (!types.includes(range.type) && thisStart <= rangeEnd && thisEnd >= rangeStart) {
 				types.push(range.type);
 			}
 		});
@@ -188,24 +225,29 @@ export default class IpAddress {
 	}
 
 	/**
-	 * Convert a dotted decimal IP address to a binary string.
-	 * @param dec Dotted decimal IP address. Ex: "192.168.1.1"
-	 * @returns 32-bit binary string. Ex: "11000000101010000000000100000001"
+	 * Convert a dotted decimal IP address to an integer.
+	 * @param addr Dotted decimal IP address. Ex: "192.168.1.1"
+	 * @returns Integer value of the IP address. Ex: 3232235777
 	 */
-	static dec2bin(dec: string) {
-		let bin = "";
-		dec.split(".").forEach((octet) => {
-			bin += parseInt(octet).toString(2).padStart(8, "0");
-		});
-		return bin;
+	static addr2int(addr: string) {
+		const octets = addr.split(".").map(octet => parseInt(octet));
+		// concatenate octets and convert to unsigned integer
+		return ((octets[0] << 24) | (octets[1] << 16) | (octets[2] << 8) | octets[3]) >>> 0;
 	}
 
 	/**
-	 * Convert a binary string to a dotted decimal IP address.
-	 * @param bin 32-bit binary string. Ex: "11000000101010000000000100000001"
+	 * Convert an integer to a dotted decimal IP address.
+	 * @param int Integer. Ex: 3232235777
 	 * @returns Dotted decimal IP address. Ex: "192.168.1.1"
 	 */
-	static bin2dec(bin: string) {
-		return `${parseInt(bin.substring(0, 8), 2)}.${parseInt(bin.substring(8, 16), 2)}.${parseInt(bin.substring(16, 24), 2)}.${parseInt(bin.substring(24), 2)}`;
+	static int2addr(int: number) {
+		// split octets
+		const octets = [
+			(int >>> 24) & 255,
+			(int >>> 16) & 255,
+			(int >>> 8) & 255,
+			int & 255,
+		];
+		return octets.join(".");
 	}
 }
