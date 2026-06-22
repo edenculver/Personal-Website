@@ -41,54 +41,14 @@ sudo pm2 resurrect
 
 ### Repo Setup
 
-Clone the repo
 ```bash
+# clone the repo
 cd /var/www/
 sudo git clone git@github.com:edenculver/Personal-Website.git
 sudo chown -R edenculver:edenculver Personal-Website
-```
 
-Make a symlink from your home directory for convenience
-```bash
+# make a symlink from your home directory for convenience
 ln -s /var/www/Personal-Website/ ~/Personal-Website
-```
-
-#### Website Setup
-
-Install Node.js
-
-Install packages
-```bash
-cd /var/www/Personal-Website/edenculver/
-npm install
-```
-
-Start app server with pm2
-```bash
-sudo pm2 start ????? --name="edenculver" --watch
-sudo pm2 save
-```
-
-
-### API Setup
-
-Install packages
-```bash
-cd /var/www/Personal-Website/api/
-npm install
-```
-
-Configure environment variables
-- Create file .env like the following:
-```bash
-DB_USERNAME=readonly
-DB_PASSWORD=password123
-```
-
-Start app server with pm2
-```bash
-sudo pm2 start index.js --name="edenculverapi" --watch
-sudo pm2 save
 ```
 
 ### Web Server Setup
@@ -192,19 +152,17 @@ Point Namecheap DNS to your router
 
 ### Database Setup
 
-Install PostgreSQL
 ```bash
+# install PostgreSQL
 sudo apt install postgresql
-```
 
-Create database
-```bash
+# create database
 createdb edenculverdb
 psql edenculverdb
 ```
 
-Create read-only user
 ```sql
+-- create read-only user
 create user readonly with encrypted password 'password123';
 grant connect on database edenculverdb to readonly;
 grant usage on schema public to readonly;
@@ -221,6 +179,30 @@ sudo systemctl restart postgresql
 ```
 
 Build the database using `databases/edenculverdb.sql`
+
+#### Website Setup
+
+Configure environment variables
+- Add to `/var/www/Personal-Website/.env`:
+```bash
+DB_USERNAME=readonly
+DB_PASSWORD=password123
+```
+
+Install Node.js
+
+```bash
+# install packages
+cd /var/www/Personal-Website/edenculver/
+npm install
+
+# build production version
+npm run build
+
+# start server with pm2
+sudo pm2 start /var/www/Personal-Website/edenculver/build/index.js --name="edenculver" --watch
+sudo pm2 save
+```
 
 ---
 
