@@ -1,0 +1,436 @@
+[
+	{
+		"text": "What's your favorite ice cream flavor?",
+		"a": {
+			"text": "Vanilla",
+			"score": [
+				"bPlains",
+				"bSnowy",
+				"pButcher",
+				"pFisherman",
+				"pShepherd"
+			]
+		},
+		"b": {
+			"text": "Chocolate",
+			"score": [
+				"bJungle",
+				"pCartographer",
+				"pLibrarian",
+				"pStoneMason",
+				"pUnemployed"
+			]
+		},
+		"c": {
+			"text": "Strawberry",
+			"score": [
+				"bTaiga",
+				"pArmorer",
+				"pFarmer",
+				"pLeatherworker"
+			]
+		},
+		"d": {
+			"text": "Mint chocolate chip",
+			"score": [
+				"pCleric",
+				"pFletcher",
+				"pNitwit",
+				"pToolsmith",
+				"pWeaponsmith"
+			]
+		}
+	},
+	{
+		"text": "Where would you rather live?",
+		"a": {
+			"text": "Wisconsin",
+			"score": [
+				"bSnowy",
+				"bTaiga",
+				"pFarmer"
+			]
+		},
+		"b": {
+			"text": "Texas",
+			"score": [
+				"bDesert",
+				"bPlains",
+				"pWeaponsmith"
+			]
+		},
+		"c": {
+			"text": "Florida",
+			"score": [
+				"bSwamp",
+				"bJungle",
+				"pFisherman",
+				"pNitwit"
+			]
+		},
+		"d": {
+			"text": "California",
+			"score": [
+				"bDesert",
+				"bSavanna"
+			]
+		}
+	},
+	{
+		"text": "What's your dream job?",
+		"a": {
+			"text": "Something in STEM",
+			"score": [
+				"pArmorer",
+				"pCartographer",
+				"pFletcher",
+				"pStoneMason",
+				"pToolsmith",
+				"pWeaponsmith"
+			]
+		},
+		"b": {
+			"text": "Something in the service industry",
+			"score": [
+				"pButcher",
+				"pCleric",
+				"pLibrarian"
+			]
+		},
+		"c": {
+			"text": "Something in agriculture",
+			"score": [
+				"pFarmer",
+				"pFisherman",
+				"pLeatherworker",
+				"pShepherd"
+			]
+		},
+		"d": {
+			"text": "To not work",
+			"score": [
+				"pNitwit",
+				"pUnemployed"
+			]
+		}
+	},
+	{
+		"text": "What's your favorite type of pizza?",
+		"a": {
+			"text": "Pepperoni",
+			"score": [
+				"pLeatherworker",
+				"pStoneMason",
+				"pToolsmith"
+			]
+		},
+		"b": {
+			"text": "Sausage",
+			"score": [
+				"pArmorer",
+				"pButcher",
+				"pFarmer",
+				"pWeaponsmith"
+			]
+		},
+		"c": {
+			"text": "Hawaiian",
+			"score": [
+				"pCartographer",
+				"pFisherman",
+				"pNitwit"
+			]
+		},
+		"d": {
+			"text": "Just cheese",
+			"score": [
+				"pCleric",
+				"pFletcher",
+				"pLibrarian",
+				"pShepherd",
+				"pUnemployed"
+			]
+		}
+	},
+	{
+		"text": "What's your favorite season?",
+		"a": {
+			"text": "Winter",
+			"score": [
+				"bSnowy"
+			]
+		},
+		"b": {
+			"text": "Spring",
+			"score": [
+				"bPlains",
+				"bSavanna"
+			]
+		},
+		"c": {
+			"text": "Summer",
+			"score": [
+				"bDesert",
+				"bJungle",
+				"bSwamp"
+			]
+		},
+		"d": {
+			"text": "Fall",
+			"score": [
+				"bTaiga"
+			]
+		}
+	},
+	{
+		"text": "What do you like to do on a Friday night?",
+		"a": {
+			"text": "Go to the bar",
+			"score": [
+				"pFisherman",
+				"pNitwit",
+				"pStoneMason"
+			]
+		},
+		"b": {
+			"text": "Hang out with friends",
+			"score": [
+				"pArmorer",
+				"pButcher",
+				"pFletcher",
+				"pLibrarian"
+			]
+		},
+		"c": {
+			"text": "Watch TV",
+			"score": [
+				"pCartographer",
+				"pToolsmith",
+				"pUnemployed",
+				"pWeaponsmith"
+			]
+		},
+		"d": {
+			"text": "Work",
+			"score": [
+				"pCleric",
+				"pFarmer",
+				"pLeatherworker",
+				"pShepherd"
+			]
+		}
+	},
+	{
+		"text": "What's your favorite dinosaur?",
+		"a": {
+			"text": "T-Rex",
+			"score": [
+				"pButcher",
+				"pNitwit",
+				"pUnemployed",
+				"pWeaponsmith"
+			]
+		},
+		"b": {
+			"text": "Stegosaurus",
+			"score": [
+				"pCartographer",
+				"pLeatherworker",
+				"pStoneMason"
+			]
+		},
+		"c": {
+			"text": "Velociraptor",
+			"score": [
+				"pCleric",
+				"pFisherman",
+				"pFletcher",
+				"pLibrarian",
+				"pToolsmith"
+			]
+		},
+		"d": {
+			"text": "Triceratops",
+			"score": [
+				"pArmorer",
+				"pFarmer",
+				"pShepherd"
+			]
+		}
+	},
+	{
+		"text": "Where would you rather go on vacation?",
+		"a": {
+			"text": "South America",
+			"score": [
+				"bJungle",
+				"bSwamp"
+			]
+		},
+		"b": {
+			"text": "Europe",
+			"score": [
+				"bPlains",
+				"bTaiga"
+			]
+		},
+		"c": {
+			"text": "Australia",
+			"score": [
+				"bDesert",
+				"bSavanna"
+			]
+		},
+		"d": {
+			"text": "Antarctica",
+			"score": [
+				"bSnowy"
+			]
+		}
+	},
+	{
+		"text": "What would you do in the zombie apocalypse?",
+		"a": {
+			"text": "Hide in my bunker",
+			"score": [
+				"pButcher",
+				"pFisherman",
+				"pLibrarian",
+				"pStoneMason"
+			]
+		},
+		"b": {
+			"text": "Fend for myself",
+			"score": [
+				"pArmorer",
+				"pFletcher",
+				"pToolsmith",
+				"pWeaponsmith"
+			]
+		},
+		"c": {
+			"text": "Start a commune",
+			"score": [
+				"pCleric",
+				"pFarmer",
+				"pShepherd"
+			]
+		},
+		"d": {
+			"text": "Die",
+			"score": [
+				"pCartographer",
+				"pLeatherworker",
+				"pNitwit",
+				"pUnemployed"
+			]
+		}
+	},
+	{
+		"text": "Do you have blue hair and pronouns?",
+		"a": {
+			"text": "Blue hair and pronouns",
+			"score": [
+				"pButcher",
+				"pFarmer",
+				"pLibrarian",
+				"pLeatherworker"
+			]
+		},
+		"b": {
+			"text": "Blue hair, but no pronouns",
+			"score": [
+				"pArmorer",
+				"pFletcher",
+				"pToolsmith",
+				"pWeaponsmith"
+			]
+		},
+		"c": {
+			"text": "Pronouns, but no blue hair",
+			"score": [
+				"pCartographer",
+				"pFisherman",
+				"pShepherd",
+				"pUnemployed"
+			]
+		},
+		"d": {
+			"text": "No blue hair and no pronouns",
+			"score": [
+				"pCleric",
+				"pNitwit",
+				"pStoneMason"
+			]
+		}
+	},
+	{
+		"text": "You're hiking in a quiet, peaceful forest. Suddenly, you hear the sound of a twig snapping behind you. You turn around and see Bigfoot. Before you can react, it runs into the trees, and you quickly lose sight of it. What do you do?",
+		"a": {
+			"text": "Dedicate your life to trying to capture Bigfoot",
+			"score": [
+				"pButcher",
+				"pFletcher",
+				"pUnemployed",
+				"pWeaponsmith"
+			]
+		},
+		"b": {
+			"text": "Pretend this never happened",
+			"score": [
+				"pFarmer",
+				"pFisherman",
+				"pStoneMason",
+				"pShepherd"
+			]
+		},
+		"c": {
+			"text": "Report this to the Department of Natural Resources",
+			"score": [
+				"pArmorer",
+				"pNitwit",
+				"pToolsmith"
+			]
+		},
+		"d": {
+			"text": "See a therapist to treat your schizophrenia",
+			"score": [
+				"pCartographer",
+				"pCleric",
+				"pLeatherworker",
+				"pLibrarian"
+			]
+		}
+	},
+	{
+		"text": "What's your favorite color?",
+		"a": {
+			"text": "Red",
+			"score": [
+				"bSavanna",
+				"pLibrarian"
+			]
+		},
+		"b": {
+			"text": "Green",
+			"score": [
+				"bDesert",
+				"bJungle",
+				"pNitwit"
+			]
+		},
+		"c": {
+			"text": "Blue",
+			"score": [
+				"bSnowy"
+			]
+		},
+		"d": {
+			"text": "Purple",
+			"score": [
+				"bSwamp",
+				"pCleric"
+			]
+		}
+	}
+]

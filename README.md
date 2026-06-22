@@ -1,4 +1,4 @@
-# [edenculver.net](https://edenculver.net)
+# [edenculver.net](https://edenculver.net/)
 
 ---
 
@@ -41,40 +41,32 @@ sudo pm2 resurrect
 
 ### Repo Setup
 
-Clone the repo
-
 ```bash
+# clone the repo
 cd /var/www/
 sudo git clone git@github.com:edenculver/Personal-Website.git
 sudo chown -R edenculver:edenculver Personal-Website
-```
 
-Make a symlink from your home directory for convenience
-
-```bash
+# make a symlink from your home directory for convenience
 ln -s /var/www/Personal-Website/ ~/Personal-Website
 ```
 
 ### Web Server Setup
 
 Generate a CSR
-
 ```bash
 openssl req -newkey rsa:2048 -keyout ~/culverpi.key -out ~/culverpi.csr
 ```
-
 - Fill out the information prompts as desired
 - Set the common name to `edenculver.net`
 
 Submit the CSR
-
 1. [SSL Certificates](https://ap.www.namecheap.com/ProductList/SslCertificates)
 2. Activate > Next > Manually > Next
 3. Paste in the CSR
 4. Next > Next > Next > Submit
 
 Follow the [instructions](https://www.namecheap.com/support/knowledgebase/article.aspx/9637/68/how-can-i-complete-domain-control-validation-dcv-for-my-ssl-certificate/) for DNS validation
-
 1. [SSL Certificates](https://ap.www.namecheap.com/ProductList/SslCertificates)
 2. Details
 3. Click the link that says "from this page (Edit methods)"
@@ -90,20 +82,17 @@ Install SSL files
 You will get an email with the cert file. Download it and copy the it onto the server: `/var/www/Personal-Website/ssl/edenculver_net.crt`
 
 The key file needs to not have a password. Remove the password from the key you generated earlier with:
-
 ```bash
 openssl rsa -in ~/culverpi.key -out /var/www/Personal-Website/ssl/culverpi.key
 ```
 
 If you put these files somewhere else, put the paths in `/var/www/Personal-Website/.env`, such as:
-
 ```bash
 CERT_PATH=ssl/domain.crt
 KEY_PATH=ssl/domain.key
 ```
 
 Change `/etc/nginx/sites-available/default` to this:
-
 ```conf
 # redirect to HTTPS
 server {
@@ -146,11 +135,9 @@ server {
 }
 
 ```
-
 - Make sure to change the SSL paths if needed
 
 Restart nginx
-
 ```bash
 sudo nginx -t
 sudo systemctl restart nginx
@@ -159,29 +146,23 @@ sudo systemctl restart nginx
 Set up port forwarding on your router  
 
 Point Namecheap DNS to your router
-
 1. [Advanced DNS](https://ap.www.namecheap.com/Domains/DomainControlPanel/edenculver.net/advancedns)
 2. Change the value of the A Record to your router's public IP
 3. Save Changes (checkmark)
 
 ### Database Setup
 
-Install PostgreSQL
-
 ```bash
+# install PostgreSQL
 sudo apt install postgresql
-```
 
-Create database
-
-```bash
+# create database
 createdb edenculverdb
 psql edenculverdb
 ```
 
-Create read-only user
-
 ```sql
+-- create read-only user
 create user readonly with encrypted password 'password123';
 grant connect on database edenculverdb to readonly;
 grant usage on schema public to readonly;
@@ -190,44 +171,62 @@ alter default privileges in schema public grant select on tables to readonly;
 ```
 
 Allow remote connections (for testing purposes)
-
 1. Open `/etc/postgresql/13/main/postgresql.conf` and change the line `#listen_addresses = 'localhost'` to `listen_addresses = '*'`
 2. Open `/etc/postgresql/13/main/pg_hba.conf` and add `host all readonly 192.168.1.10/32 md5` to the bottom
 3. Restart postgresql
-
 ```bash
 sudo systemctl restart postgresql
 ```
 
 Build the database using `databases/edenculverdb.sql`
 
-### API Setup
-
-Install Node.js
-
-Set up Node.js
-
-```bash
-npm init
-npm install cors
-npm install dotenv
-npm install express
-npm install pg
-npm install pm2
-```
+#### Website Setup
 
 Configure environment variables
-
-- Create file .env like the following:
-
+- Add to `/var/www/Personal-Website/.env`:
 ```bash
 DB_USERNAME=readonly
 DB_PASSWORD=password123
 ```
 
-Start app server with pm2
+Install Node.js
 
 ```bash
-sudo pm2 start database/api.js --name="edenculverAPI" --watch
+# install packages
+cd /var/www/Personal-Website/edenculver/
+npm install
+
+# build production version
+npm run build
+
+# start server with pm2
+sudo pm2 start /var/www/Personal-Website/edenculver/build/index.js --name="edenculver" --watch
 sudo pm2 save
 ```
+
+---
+
+## Development
+
+```bash
+cd edenculver
+npm run dev -- --open
+```
+
+---
+
+## Development Standards
+
+- TS variable naming in camelCase, except when using postgresql column names
+- TS classes in PascalCase
+- All postgresql tables and columns in snake_case
+- All Tailwind classes sorted in this order:
+	1. Positioning
+	2. Margin
+	3. Border, border color, rounded
+	4. Width, height
+	5. Padding
+	6. BG color
+	7. Text alignment, text size, font weight
+	8. Flex, gap, items, justify
+	9. Anything else
