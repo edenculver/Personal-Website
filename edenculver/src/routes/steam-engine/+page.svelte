@@ -1,9 +1,10 @@
 <script lang="ts">
-	import range from "$lib/range";
-	import NavBar from "$lib/components/NavBar.svelte";
-	import blaze_idle from "$lib/assets/blaze_idle.png";
+	import Card from "$lib/components/Card.svelte";
 	import blaze from "$lib/assets/blaze.png";
+	import blaze_idle from "$lib/assets/blaze_idle.png";
 	import blaze_super from "$lib/assets/blaze_super.png";
+	import range from "$lib/range";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	// size
 	let width = $state(2);
@@ -159,15 +160,14 @@
 	}
 </script>
 
-<NavBar />
-<div class="flex-col gap-6 items-center m-6">
-	<h1 class="font-bold text-2xl">Minecraft Create Mod Steam Engine Simulator</h1>
-	<div class="gap-6">
-		<div class="flex-col gap-6">
-			<div class="card">
-				<h2>Size</h2>
-				<div class="gap-8">
-					<div class="flex-col">
+<StandardPageLayout>
+	<div class="mx-16 my-10 flex flex-col gap-6 items-start">
+		<h1 class="text-2xl font-bold">Minecraft Create Mod Steam Engine Simulator</h1>
+		<div class="grid grid-cols-[1fr_auto] gap-8">
+			<Card>
+				<h2 class="text-xl font-bold">Size</h2>
+				<div class="flex gap-8">
+					<div class="flex flex-col">
 						<p>Footprint</p>
 						<label class="flex gap-2">
 							<input type="radio" value={2} bind:group={width} />
@@ -178,24 +178,54 @@
 							<p>3x3</p>
 						</label>
 					</div>
-					<div class="flex-col gap-3">
+					<div class="flex flex-col gap-3">
 						<p>Height: {height} blocks</p>
-						<div class="gap-2">
+						<div class="flex gap-2">
 							<p>1</p>
 							<input class="w-80" type="range" min="1" max="16" bind:value={height} />
 							<p>16</p>
 						</div>
 					</div>
-					<div class="flex-col gap-3">
+					<div class="flex flex-col gap-3">
 						<p>Volume: {volume} blocks</p>
-						<button onclick={optimizeForSize}>Optimize for this size</button>
+						<button
+							class="rounded-md w-full p-2 bg-black dark:bg-white hover:bg-gray-500 text-white dark:text-black"
+							onclick={optimizeForSize}>Optimize for this size</button
+						>
 					</div>
 				</div>
+			</Card>
+			<div class="row-span-2">
+				<Card>
+					<h2 class="text-xl font-bold">Heat</h2>
+					<div class="flex gap-6">
+						<div class="grid gap-1 {width === 3 ? 'grid-cols-3' : 'grid-cols-2'}">
+							{#each activeBlazeIndices[width as keyof typeof activeBlazeIndices] as row}
+								{#each row as blaze}
+									<button
+										class="rounded-md w-full p-2 bg-black dark:bg-white hover:bg-gray-500 text-white dark:text-black"
+										onclick={() => addHeat(blaze)}
+									>
+										<img
+											class="w-16 [image-rendering:pixelated]"
+											src={blazeSprites[blazes[blaze]]}
+											alt="Blaze Burner."
+										/>
+									</button>
+								{/each}
+							{/each}
+						</div>
+						<div class="flex flex-col gap-3">
+							<p>Blaze Burners</p>
+							<p>Total heat: {heatLvl}</p>
+						</div>
+					</div>
+				</Card>
 			</div>
-			<div class="card">
-				<h2>Water</h2>
-				<div class="gap-8">
-					<div class="flex-col">
+			<Card>
+				<h2 class="text-xl font-bold">Water</h2>
+				<div class="flex gap-8">
+					<div class="flex flex-col">
 						<p>Pumps</p>
 						<label class="flex gap-2">
 							<input type="radio" value={1} bind:group={pumps} />
@@ -206,9 +236,9 @@
 							<p>2</p>
 						</label>
 					</div>
-					<div class="flex-col gap-3">
+					<div class="flex flex-col gap-3">
 						<p>Pump speed: {pumpSpeed} RPM</p>
-						<div class="gap-2">
+						<div class="flex gap-2">
 							<p>0</p>
 							<input class="w-100" type="range" min="0" max="256" bind:value={pumpSpeed} />
 							<p>256</p>
@@ -216,104 +246,53 @@
 					</div>
 					<p>Total RPM: {totalRpm}</p>
 				</div>
-			</div>
-		</div>
-		<div class="card">
-			<h2>Heat</h2>
-			<div class="gap-6">
-				<table>
-					<tbody>
-						{#each activeBlazeIndices[width as keyof typeof activeBlazeIndices] as row}
-							<tr>
-								{#each row as blaze}
-									<td>
-										<button onclick={() => addHeat(blaze)}>
-											<img src={blazeSprites[blazes[blaze]]} alt="Blaze Burner." />
-										</button>
-									</td>
+			</Card>
+			<Card>
+				<div class="flex flex-col gap-6">
+					<h2 class="text-xl font-bold">Boiler Status: {boilerLvlReadable}</h2>
+					<div class="flex flex-wrap gap-6">
+						<table class="border border-separate border-black dark:border-white w-70">
+							<tbody>
+								{#each [{ name: "Size", lvl: sizeLvl }, { name: "Water", lvl: waterLvl }, { name: "Heat", lvl: heatLvl }] as row}
+									<tr title="Lvl {row.lvl}">
+										<td class="p-3">{row.name}</td>
+										{#each range(1, 18) as i}
+											<td class="w-3 {getCellColor(i, row.lvl)}"></td>
+										{/each}
+									</tr>
 								{/each}
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-				<div class="flex-col gap-3">
-					<p>Blaze Burners</p>
-					<p>Total heat: {heatLvl}</p>
+							</tbody>
+						</table>
+						<div class="flex flex-col gap-3">
+							<p>Stress capacity: {stressCapacity.toLocaleString()} su</p>
+							<p>Engines required: {enginesRequired}</p>
+							<p>Output speed: {outputSpeed} RPM</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="gap-6">
-		<div class="border border-black dark:border-white gap-8 p-6 rounded-md">
-			<div class="flex-col gap-6">
-				<h2>Boiler Status: {boilerLvlReadable}</h2>
-				<table class="border border-black dark:border-white">
-					<tbody>
-						{#each [{ name: "Size", lvl: sizeLvl }, { name: "Water", lvl: waterLvl }, { name: "Heat", lvl: heatLvl }] as row}
-							<tr title="Lvl {row.lvl}">
-								<td class="p-3">{row.name}</td>
-								{#each range(1, 18) as i}
-									<td class="w-3 {getCellColor(i, row.lvl)}"></td>
-								{/each}
-							</tr>
+			</Card>
+			<Card>
+				<div class="flex flex-col gap-6 items-start">
+					<h3 class="font-bold">Optimize for Lvl</h3>
+					<div class="grid grid-cols-6 gap-1">
+						{#each range(1, 18) as lvl}
+							<button
+								class="rounded-md w-10 p-2 bg-black dark:bg-white hover:bg-gray-500 {suboptimalLvls.includes(
+									lvl,
+								)
+									? 'text-red-500'
+									: 'text-white dark:text-black'}"
+								title={suboptimalLvls.includes(lvl)
+									? "This boiler level cannot be perfectly optimized."
+									: undefined}
+								onclick={() => optimizeForLvl(lvl)}
+							>
+								{lvl}
+							</button>
 						{/each}
-					</tbody>
-				</table>
-			</div>
-			<div class="flex-col gap-3">
-				<p>Stress capacity: {stressCapacity.toLocaleString()} su</p>
-				<p>Engines required: {enginesRequired}</p>
-				<p>Output speed: {outputSpeed} RPM</p>
-			</div>
-		</div>
-		<div class="card">
-			<h3 class="font-bold">Optimize for Lvl</h3>
-			<table>
-				<tbody>
-					{#each [range(1, 6), range(7, 12), range(13, 18)] as row}
-						<tr>
-							{#each row as lvl}
-								<td>
-									<button
-										class={"w-2" + (suboptimalLvls.includes(lvl) ? " suboptimal" : "")}
-										title={suboptimalLvls.includes(lvl)
-											? "This boiler level cannot be perfectly optimized."
-											: undefined}
-										onclick={() => optimizeForLvl(lvl)}
-									>
-										{lvl}
-									</button>
-								</td>
-							{/each}
-						</tr>
-					{/each}
-				</tbody>
-			</table>
+					</div>
+				</div>
+			</Card>
 		</div>
 	</div>
-</div>
-
-<style lang="postcss">
-	@reference "../app.css";
-	button {
-		@apply bg-black dark:bg-white hover:bg-gray-500 p-2 rounded-md text-white dark:text-black w-full;
-	}
-	.card {
-		@apply border border-black dark:border-white flex-col gap-6 p-6 rounded-md;
-	}
-	div {
-		@apply flex;
-	}
-	h2 {
-		@apply font-bold text-xl;
-	}
-	img {
-		@apply [image-rendering:pixelated] w-16;
-	}
-	.suboptimal {
-		@apply text-red-500;
-	}
-	table {
-		@apply border-separate;
-	}
-</style>
+</StandardPageLayout>

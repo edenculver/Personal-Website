@@ -40,48 +40,55 @@
 	}
 </script>
 
-<div class="bg-svtan border-3 border-svverydarktan flex flex-col gap-4 p-6 rounded-lg">
-	<h2 class="font-bold text-xl">{location}</h2>
+<div class="border-3 border-svverydarktan rounded-lg p-6 bg-svtan flex flex-col gap-4">
+	<h2 class="text-xl font-bold">{location}</h2>
 	<table class="border border-svverydarktan">
 		<tbody>
 			<tr>
-				<th>Fish</th>
-				<th>Base Price</th>
+				<th class="border border-svverydarktan px-3 py-2">Fish</th>
+				<th class="border border-svverydarktan px-3 py-2">Base Price</th>
 				{#if locationsWithSublocations.includes(location)}
-					<th>Location</th>
+					<th class="border border-svverydarktan px-3 py-2">Location</th>
 				{/if}
 				{#if !locationsWithoutSeasons.includes(location)}
-					<th>Season</th>
+					<th class="border border-svverydarktan px-3 py-2">Season</th>
 				{/if}
 				{#if location !== "Mines"}
-					<th>Weather</th>
-					<th>Time</th>
+					<th class="border border-svverydarktan px-3 py-2">Weather</th>
+					<th class="border border-svverydarktan px-3 py-2">Time</th>
 				{/if}
-				<th>Bundle</th>
+				<th class="border border-svverydarktan px-3 py-2">Bundle</th>
 			</tr>
 			{#each fishes as fish}
 				<tr>
-					<td>
+					<td class="border border-svverydarktan px-3 py-2">
 						<div class="flex gap-3">
-							<img src="/images/fish/{fish.name.replace(' ', '_')}.png" alt="{fish.name} sprite." />
+							<img
+								class="w-8 h-8 [image-rendering:pixelated]"
+								src="/images/fish/{fish.name.replace(' ', '_')}.png"
+								alt="{fish.name} sprite."
+							/>
 							<p>{fish.name}</p>
 						</div>
 					</td>
-					<td class="text-right">{fish.base_price}g</td>
+					<td class="border border-svverydarktan px-3 py-2 text-right">{fish.base_price}g</td>
 					{#if locationsWithSublocations.includes(location)}
-						<td>{fish.sublocation}</td>
+						<td class="border border-svverydarktan px-3 py-2">{fish.sublocation}</td>
 					{/if}
 					{#if !locationsWithoutSeasons.includes(location)}
-						<td>{returnAnyIfFalsy(fish.season)}</td>
+						<td class="border border-svverydarktan px-3 py-2">{returnAnyIfFalsy(fish.season)}</td>
 					{/if}
 					{#if location !== "Mines"}
-						<td class={getWeatherColor(fish.weather)}>{returnAnyIfFalsy(fish.weather)}</td>
-						<td>{returnAnyIfFalsy(fish.time)}</td>
+						<td class="border border-svverydarktan px-3 py-2 {getWeatherColor(fish.weather)}">
+							{returnAnyIfFalsy(fish.weather)}
+						</td>
+						<td class="border border-svverydarktan px-3 py-2">{returnAnyIfFalsy(fish.time)}</td>
 					{/if}
 					{#if fish.bundle}
-						<td>
+						<td class="border border-svverydarktan px-3 py-2">
 							<div class="flex gap-3">
 								<img
+									class="w-8 h-8 [image-rendering:pixelated]"
 									src="/images/fish/{fish.bundle.replaceAll(' ', '_')}.png"
 									alt="{fish.bundle} sprite."
 								/>
@@ -89,21 +96,10 @@
 							</div>
 						</td>
 					{:else}
-						<td></td>
+						<td class="border border-svverydarktan px-3 py-2"></td>
 					{/if}
 				</tr>
 			{/each}
 		</tbody>
 	</table>
 </div>
-
-<style lang="postcss">
-	@reference "../app.css";
-	img {
-		@apply h-8 [image-rendering:pixelated] w-8;
-	}
-	td,
-	th {
-		@apply border border-svverydarktan px-3 py-2;
-	}
-</style>

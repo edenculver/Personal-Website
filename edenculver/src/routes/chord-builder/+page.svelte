@@ -1,5 +1,6 @@
 <script lang="ts">
-	import NavBar from "$lib/components/NavBar.svelte";
+	import Card from "$lib/components/Card.svelte";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	/*
 	Terms used:
@@ -93,200 +94,226 @@
 	}
 </script>
 
-<NavBar />
-<div class="flex flex-col items-center gap-10 m-6">
-	<h1 class="font-bold text-2xl text-center">Chord Builder</h1>
-	<div class="flex flex-wrap gap-10 justify-center">
-		<div class="flex flex-col items-center gap-4">
-			<h2 class="font-bold text-xl">Root</h2>
-			<table>
-				<tbody>
-					{#each accidentals as accidental}
+<StandardPageLayout>
+	<div class="mx-16 my-10 flex flex-col gap-8 items-start">
+		<h1 class="text-2xl font-bold">Chord Builder</h1>
+		<div class="grid grid-cols-[auto_auto] gap-8">
+			<Card>
+				<h2 class="text-xl font-bold">Root</h2>
+				<table>
+					<tbody>
+						{#each accidentals as accidental}
+							<tr>
+								{#each noteNames as noteName}
+									<td class="border border-black dark:border-white">
+										<button
+											class={"w-15 p-3 " +
+												(root === noteName + accidental
+													? "bg-blue-500"
+													: wrapPitch(getPitch(root)) ===
+														  wrapPitch(getPitch(noteName + accidental))
+														? "bg-sky-300 hover:bg-sky-700"
+														: "hover:bg-gray-500")}
+											onclick={() => (root = noteName + accidental)}
+										>
+											{noteName}{accidental}
+										</button>
+									</td>
+								{/each}
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</Card>
+			<Card>
+				<h2 class="font-bold text-xl">Interval Qualities</h2>
+				<table class="border border-black dark:border-white">
+					<tbody>
 						<tr>
-							{#each noteNames as noteName}
-								<td class="border border-black dark:border-white">
-									<button
-										class={"w-15 p-3 " +
-											(root === noteName + accidental
-												? "bg-blue-500"
-												: wrapPitch(getPitch(root)) ===
-													  wrapPitch(getPitch(noteName + accidental))
-													? "bg-sky-300 hover:bg-sky-700"
-													: "hover:bg-gray-500")}
-										onclick={() => (root = noteName + accidental)}
-									>
-										{noteName}{accidental}
-									</button>
-								</td>
-							{/each}
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-		<div class="flex flex-col items-center gap-4">
-			<h2 class="font-bold text-xl">Interval Qualities</h2>
-			<table class="border border-black dark:border-white">
-				<tbody>
-					<tr>
-						<th class="border border-black dark:border-white p-3">1</th>
-						<th class="border border-black dark:border-white p-3">third</th>
-						<th class="border border-black dark:border-white p-3">3</th>
-						<th class="border border-black dark:border-white p-3">third</th>
-						<th class="border border-black dark:border-white p-3">5</th>
-						{#if useSeventh}
+							<th class="border border-black dark:border-white p-3">1</th>
 							<th class="border border-black dark:border-white p-3">third</th>
-							<th class="border border-black dark:border-white p-3">7</th>
-						{/if}
-					</tr>
-					<tr>
-						<td class="border border-black dark:border-white text-center w-20" rowspan="2">
-							{root.replace("♮", "")}
-						</td>
-						<td class="border border-black dark:border-white">
-							<button
-								class={"w-full p-3 " + (third1Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
-								onclick={() => (third1Quality = 3)}
-							>
-								minor
-							</button>
-						</td>
-						<td
-							class={"border border-black dark:border-white text-center w-20" +
-								(three.includes("?") ? " text-red-500" : "")}
-							rowspan="2"
-						>
-							{three.replace("♮", "")}
-						</td>
-						<td class="border border-black dark:border-white">
-							<button
-								class={"w-full p-3 " + (third2Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
-								onclick={() => (third2Quality = 3)}
-							>
-								minor
-							</button>
-						</td>
-						<td
-							class={"border border-black dark:border-white text-center w-20" +
-								(five.includes("?") ? " text-red-500" : "")}
-							rowspan="2"
-						>
-							{five.replace("♮", "")}
-						</td>
-						{#if useSeventh}
+							<th class="border border-black dark:border-white p-3">3</th>
+							<th class="border border-black dark:border-white p-3">third</th>
+							<th class="border border-black dark:border-white p-3">5</th>
+							{#if useSeventh}
+								<th class="border border-black dark:border-white p-3">third</th>
+								<th class="border border-black dark:border-white p-3">7</th>
+							{/if}
+						</tr>
+						<tr>
+							<td class="border border-black dark:border-white text-center w-20" rowspan="2">
+								{root.replace("♮", "")}
+							</td>
 							<td class="border border-black dark:border-white">
 								<button
-									class={"w-full p-3 " + (third3Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
-									onclick={() => (third3Quality = 3)}
+									class={"w-full p-3 " + (third1Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+									onclick={() => (third1Quality = 3)}
 								>
 									minor
 								</button>
 							</td>
 							<td
 								class={"border border-black dark:border-white text-center w-20" +
-									(seven.includes("?") ? " text-red-500" : "")}
+									(three.includes("?") ? " text-red-500" : "")}
 								rowspan="2"
 							>
-								{seven.replace("♮", "")}
+								{three.replace("♮", "")}
 							</td>
-						{/if}
-					</tr>
-					<tr>
-						<td class="border border-black dark:border-white">
-							<button
-								class={"w-full p-3 " + (third1Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
-								onclick={() => (third1Quality = 4)}
-							>
-								major
-							</button>
-						</td>
-						<td class="border border-black dark:border-white">
-							<button
-								class={"w-full p-3 " + (third2Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
-								onclick={() => (third2Quality = 4)}
-							>
-								major
-							</button>
-						</td>
-						{#if useSeventh}
 							<td class="border border-black dark:border-white">
 								<button
-									class={"w-full p-3 " + (third3Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
-									onclick={() => (third3Quality = 4)}
+									class={"w-full p-3 " + (third2Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+									onclick={() => (third2Quality = 3)}
+								>
+									minor
+								</button>
+							</td>
+							<td
+								class={"border border-black dark:border-white text-center w-20" +
+									(five.includes("?") ? " text-red-500" : "")}
+								rowspan="2"
+							>
+								{five.replace("♮", "")}
+							</td>
+							{#if useSeventh}
+								<td class="border border-black dark:border-white">
+									<button
+										class={"w-full p-3 " +
+											(third3Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+										onclick={() => (third3Quality = 3)}
+									>
+										minor
+									</button>
+								</td>
+								<td
+									class={"border border-black dark:border-white text-center w-20" +
+										(seven.includes("?") ? " text-red-500" : "")}
+									rowspan="2"
+								>
+									{seven.replace("♮", "")}
+								</td>
+							{/if}
+						</tr>
+						<tr>
+							<td class="border border-black dark:border-white">
+								<button
+									class={"w-full p-3 " + (third1Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+									onclick={() => (third1Quality = 4)}
 								>
 									major
 								</button>
 							</td>
-						{/if}
-					</tr>
-					<tr>
-						<th class="border border-black dark:border-white p-3" colspan="5">
-							{qualities[(fivePitch - rootPitch) as keyof typeof qualities]} fifth
-						</th>
-					</tr>
-					{#if useSeventh}
+							<td class="border border-black dark:border-white">
+								<button
+									class={"w-full p-3 " + (third2Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+									onclick={() => (third2Quality = 4)}
+								>
+									major
+								</button>
+							</td>
+							{#if useSeventh}
+								<td class="border border-black dark:border-white">
+									<button
+										class={"w-full p-3 " +
+											(third3Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+										onclick={() => (third3Quality = 4)}
+									>
+										major
+									</button>
+								</td>
+							{/if}
+						</tr>
 						<tr>
-							<th class="p-3" colspan="7">
-								{qualities[(sevenPitch - rootPitch) as keyof typeof qualities]} seventh
+							<th class="border border-black dark:border-white p-3" colspan="5">
+								{qualities[(fivePitch - rootPitch) as keyof typeof qualities]} fifth
 							</th>
 						</tr>
-					{/if}
-				</tbody>
-			</table>
-			<label class="flex gap-2">
-				<input type="checkbox" bind:checked={useSeventh} />
-				Seventh?
-			</label>
-			{#if three.includes("?") || five.includes("?") || (useSeventh && seven.includes("?"))}
-				<div class="text-red-500">
-					<p>This chord is impossible! The notes in red do not exist.</p>
-					<p>Try an enharmonic root note (light blue).</p>
-				</div>
-			{/if}
+						{#if useSeventh}
+							<tr>
+								<th class="p-3" colspan="7">
+									{qualities[(sevenPitch - rootPitch) as keyof typeof qualities]} seventh
+								</th>
+							</tr>
+						{/if}
+					</tbody>
+				</table>
+				<label class="flex gap-2">
+					<input type="checkbox" bind:checked={useSeventh} />
+					Seventh?
+				</label>
+				{#if three.includes("?") || five.includes("?") || (useSeventh && seven.includes("?"))}
+					<div class="text-red-500">
+						<p>This chord is impossible! The notes in red do not exist.</p>
+						<p>Try an enharmonic root note (light blue).</p>
+					</div>
+				{/if}
+			</Card>
+			<div class="col-span-2">
+				<Card>
+					<p class="text-xl font-bold">
+						{chordNames[chordStack as keyof typeof chordNames].replaceAll("R", root.replace("♮", ""))}
+					</p>
+					<svg width="715px" height="202px">
+						<rect width="715" height="202" fill="black"></rect>
+						<rect x="1" y="1" width="50" height="200" fill={pitches.includes(0) ? "blue" : "white"}></rect>
+						<rect x="52" y="1" width="50" height="200" fill={pitches.includes(2) ? "blue" : "white"}></rect>
+						<rect x="103" y="1" width="50" height="200" fill={pitches.includes(4) ? "blue" : "white"}
+						></rect>
+						<rect x="154" y="1" width="50" height="200" fill={pitches.includes(5) ? "blue" : "white"}
+						></rect>
+						<rect x="205" y="1" width="50" height="200" fill={pitches.includes(7) ? "blue" : "white"}
+						></rect>
+						<rect x="256" y="1" width="50" height="200" fill={pitches.includes(9) ? "blue" : "white"}
+						></rect>
+						<rect x="307" y="1" width="50" height="200" fill={pitches.includes(11) ? "blue" : "white"}
+						></rect>
+						<rect x="358" y="1" width="50" height="200" fill={pitches.includes(12) ? "blue" : "white"}
+						></rect>
+						<rect x="409" y="1" width="50" height="200" fill={pitches.includes(14) ? "blue" : "white"}
+						></rect>
+						<rect x="460" y="1" width="50" height="200" fill={pitches.includes(16) ? "blue" : "white"}
+						></rect>
+						<rect x="511" y="1" width="50" height="200" fill={pitches.includes(17) ? "blue" : "white"}
+						></rect>
+						<rect x="562" y="1" width="50" height="200" fill={pitches.includes(19) ? "blue" : "white"}
+						></rect>
+						<rect x="613" y="1" width="50" height="200" fill={pitches.includes(21) ? "blue" : "white"}
+						></rect>
+						<rect x="664" y="1" width="50" height="200" fill={pitches.includes(23) ? "blue" : "white"}
+						></rect>
+						<rect x="34" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="85" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="187" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="238" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="289" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="391" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="442" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="442" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="544" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="595" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="646" y="1" width="35" height="126" fill="black"></rect>
+						<rect x="35" y="1" width="33" height="125" fill={pitches.includes(1) ? "blue" : "black"}></rect>
+						<rect x="86" y="1" width="33" height="125" fill={pitches.includes(3) ? "blue" : "black"}></rect>
+						<rect x="188" y="1" width="33" height="125" fill={pitches.includes(6) ? "blue" : "black"}
+						></rect>
+						<rect x="239" y="1" width="33" height="125" fill={pitches.includes(8) ? "blue" : "black"}
+						></rect>
+						<rect x="290" y="1" width="33" height="125" fill={pitches.includes(10) ? "blue" : "black"}
+						></rect>
+						<rect x="392" y="1" width="33" height="125" fill={pitches.includes(13) ? "blue" : "black"}
+						></rect>
+						<rect x="443" y="1" width="33" height="125" fill={pitches.includes(15) ? "blue" : "black"}
+						></rect>
+						<rect x="443" y="1" width="33" height="125" fill={pitches.includes(15) ? "blue" : "black"}
+						></rect>
+						<rect x="545" y="1" width="33" height="125" fill={pitches.includes(18) ? "blue" : "black"}
+						></rect>
+						<rect x="596" y="1" width="33" height="125" fill={pitches.includes(20) ? "blue" : "black"}
+						></rect>
+						<rect x="647" y="1" width="33" height="125" fill={pitches.includes(22) ? "blue" : "black"}
+						></rect>
+					</svg>
+				</Card>
+			</div>
 		</div>
 	</div>
-	<div class="flex flex-col items-center gap-4">
-		<p class="font-bold text-xl">
-			{chordNames[chordStack as keyof typeof chordNames].replaceAll("R", root.replace("♮", ""))}
-		</p>
-		<svg width="715px" height="202px">
-			<rect width="715" height="202" fill="black"></rect>
-			<rect x="1" y="1" width="50" height="200" fill={pitches.includes(0) ? "blue" : "white"}></rect>
-			<rect x="52" y="1" width="50" height="200" fill={pitches.includes(2) ? "blue" : "white"}></rect>
-			<rect x="103" y="1" width="50" height="200" fill={pitches.includes(4) ? "blue" : "white"}></rect>
-			<rect x="154" y="1" width="50" height="200" fill={pitches.includes(5) ? "blue" : "white"}></rect>
-			<rect x="205" y="1" width="50" height="200" fill={pitches.includes(7) ? "blue" : "white"}></rect>
-			<rect x="256" y="1" width="50" height="200" fill={pitches.includes(9) ? "blue" : "white"}></rect>
-			<rect x="307" y="1" width="50" height="200" fill={pitches.includes(11) ? "blue" : "white"}></rect>
-			<rect x="358" y="1" width="50" height="200" fill={pitches.includes(12) ? "blue" : "white"}></rect>
-			<rect x="409" y="1" width="50" height="200" fill={pitches.includes(14) ? "blue" : "white"}></rect>
-			<rect x="460" y="1" width="50" height="200" fill={pitches.includes(16) ? "blue" : "white"}></rect>
-			<rect x="511" y="1" width="50" height="200" fill={pitches.includes(17) ? "blue" : "white"}></rect>
-			<rect x="562" y="1" width="50" height="200" fill={pitches.includes(19) ? "blue" : "white"}></rect>
-			<rect x="613" y="1" width="50" height="200" fill={pitches.includes(21) ? "blue" : "white"}></rect>
-			<rect x="664" y="1" width="50" height="200" fill={pitches.includes(23) ? "blue" : "white"}></rect>
-			<rect x="34" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="85" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="187" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="238" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="289" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="391" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="442" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="442" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="544" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="595" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="646" y="1" width="35" height="126" fill="black"></rect>
-			<rect x="35" y="1" width="33" height="125" fill={pitches.includes(1) ? "blue" : "black"}></rect>
-			<rect x="86" y="1" width="33" height="125" fill={pitches.includes(3) ? "blue" : "black"}></rect>
-			<rect x="188" y="1" width="33" height="125" fill={pitches.includes(6) ? "blue" : "black"}></rect>
-			<rect x="239" y="1" width="33" height="125" fill={pitches.includes(8) ? "blue" : "black"}></rect>
-			<rect x="290" y="1" width="33" height="125" fill={pitches.includes(10) ? "blue" : "black"}></rect>
-			<rect x="392" y="1" width="33" height="125" fill={pitches.includes(13) ? "blue" : "black"}></rect>
-			<rect x="443" y="1" width="33" height="125" fill={pitches.includes(15) ? "blue" : "black"}></rect>
-			<rect x="443" y="1" width="33" height="125" fill={pitches.includes(15) ? "blue" : "black"}></rect>
-			<rect x="545" y="1" width="33" height="125" fill={pitches.includes(18) ? "blue" : "black"}></rect>
-			<rect x="596" y="1" width="33" height="125" fill={pitches.includes(20) ? "blue" : "black"}></rect>
-			<rect x="647" y="1" width="33" height="125" fill={pitches.includes(22) ? "blue" : "black"}></rect>
-		</svg>
-	</div>
-</div>
+</StandardPageLayout>

@@ -1,7 +1,9 @@
 <script lang="ts">
-	import NavBar from "$lib/components/NavBar.svelte";
-	import click_stereo from "$lib/assets/click_stereo.ogg";
 	import bank from "$lib/villager_quiz.json";
+	import click_stereo from "$lib/assets/click_stereo.ogg";
+	import McButton from "$lib/components/McButton.svelte";
+	import NavBar from "$lib/components/NavBar.svelte";
+	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
 
 	let audioPlayer: HTMLAudioElement;
 	let qIndex = $state(-1);
@@ -97,33 +99,31 @@
 </script>
 
 <audio bind:this={audioPlayer} src={click_stereo}></audio>
-<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col min-h-dvh">
+<div class="h-dvh flex flex-col">
 	<NavBar />
-	<div class="bg-white flex-1 mx-auto text-center w-5xl">
-		<h1 class="bg-black font-bold p-10 text-2xl text-white">Which Minecraft Villager Are You?</h1>
-		<div class="flex flex-col gap-5 items-center p-10 text-black">
-			{#if qIndex === -1}
-				<button class="mt-5" onclick={start}>Start</button>
-			{:else if qIndex === 12}
-				<p class="mt-5 text-lg">You are:</p>
-				<p class="font-bold text-2xl">{biome} {profession}</p>
-				<img class="h-[50vh]" {src} alt="Minecraft Villager." />
-				<button onclick={share}>Share (copy to clipboard)</button>
-				<button onclick={restart}>Take the quiz again!</button>
-			{:else}
-				<p class="m-5 text-xl">{qIndex + 1}. {bank[qIndex].text}</p>
-				<button onclick={() => answer(bank[qIndex].a.score)}>{bank[qIndex].a.text}</button>
-				<button onclick={() => answer(bank[qIndex].b.score)}>{bank[qIndex].b.text}</button>
-				<button onclick={() => answer(bank[qIndex].c.score)}>{bank[qIndex].c.text}</button>
-				<button onclick={() => answer(bank[qIndex].d.score)}>{bank[qIndex].d.text}</button>
-			{/if}
+	<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col flex-1">
+		<div class="bg-white flex-1 mx-auto text-center w-300">
+			<h1 class="p-10 bg-black text-2xl text-white font-bold">Which Minecraft Villager Are You?</h1>
+			<div class="p-10 text-black flex flex-col gap-5 items-center">
+				{#if qIndex === -1}
+					<div class="mt-5">
+						<McButton onclick={start}>Start</McButton>
+					</div>
+				{:else if qIndex === 12}
+					<p class="mt-5 text-lg">You are:</p>
+					<p class="text-2xl font-bold">{biome} {profession}</p>
+					<img class="h-100" {src} alt="Minecraft Villager." />
+					<McButton onclick={share}>Share (copy to clipboard)</McButton>
+					<McButton onclick={restart}>Take the quiz again!</McButton>
+				{:else}
+					<p class="m-5 text-xl">{qIndex + 1}. {bank[qIndex].text}</p>
+					<McButton onclick={() => answer(bank[qIndex].a.score)}>{bank[qIndex].a.text}</McButton>
+					<McButton onclick={() => answer(bank[qIndex].b.score)}>{bank[qIndex].b.text}</McButton>
+					<McButton onclick={() => answer(bank[qIndex].c.score)}>{bank[qIndex].c.text}</McButton>
+					<McButton onclick={() => answer(bank[qIndex].d.score)}>{bank[qIndex].d.text}</McButton>
+				{/if}
+			</div>
 		</div>
 	</div>
+	<PrivacyPolicy />
 </div>
-
-<style lang="postcss">
-	@reference "../app.css";
-	button {
-		@apply bg-(--mc-lightgray) hover:bg-(--mc-green) border-10 [border-image:url(/images/villager-quiz/mcbutton_gray.png)_10_stretch] hover:[border-image:url(/images/villager-quiz/mcbutton_green.png)_10_stretch] max-w-2xl p-5 text-(--mc-darkgray) hover:text-white w-[80vw];
-	}
-</style>

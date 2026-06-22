@@ -1,5 +1,6 @@
 <script lang="ts">
 	import NavBar from "$lib/components/NavBar.svelte";
+	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
 	import SignalFlag from "$lib/components/SignalFlag.svelte";
 
 	let message = $state("");
@@ -48,12 +49,12 @@
 	}
 </script>
 
-<div class="h-dvh" style="background-color: {background};">
+<div class="h-dvh flex flex-col">
 	<NavBar />
 	<div class="bg-white dark:bg-black">
-		<div class="flex flex-wrap gap-10 p-10">
-			<div class="flex flex-col gap-5 mt-5">
-				<h1 class="font-bold text-xl">
+		<div class="p-10 flex flex-wrap gap-10">
+			<div class="mt-5 flex flex-col gap-5">
+				<h1 class="text-xl font-bold">
 					Translate a message to
 					<a
 						class="text-blue-400 underline hover:no-underline visited:text-purple-400"
@@ -64,7 +65,7 @@
 					flags
 				</h1>
 				<input
-					class="rounded-md w-200 p-2"
+					class="border border-gray-500 rounded-md w-200 p-2 bg-white text-black"
 					type="text"
 					size="80"
 					placeholder="Message..."
@@ -72,23 +73,25 @@
 				/>
 			</div>
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="font-bold text-lg">Options</h2>
-				<table>
-					<tbody>
-						<tr>
-							<td>Width:</td>
-							<td>
-								<input class="rounded-sm w-20 p-1" type="number" bind:value={w} />
-							</td>
-						</tr>
-						<tr>
-							<td>Height:</td>
-							<td>
-								<input class="rounded-sm w-20 p-1" type="number" bind:value={h} />
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<h2 class="text-lg font-bold">Options</h2>
+				<div class="flex flex-col gap-1 items-end">
+					<label class="flex gap-2 items-center justify-right">
+						<p>Width:</p>
+						<input
+							class="border border-gray-500 rounded-sm w-20 p-1 bg-white text-black"
+							type="number"
+							bind:value={w}
+						/>
+					</label>
+					<label class="flex gap-2 items-center justify-right">
+						<p>Height:</p>
+						<input
+							class="border border-gray-500 rounded-sm w-20 p-1 bg-white text-black"
+							type="number"
+							bind:value={h}
+						/>
+					</label>
+				</div>
 				<label
 					class="flex gap-3"
 					title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
@@ -98,57 +101,45 @@
 				</label>
 			</div>
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="font-bold text-lg">Colors</h2>
+				<h2 class="text-lg font-bold">Colors</h2>
 				<div class="flex gap-4">
-					<table>
-						<tbody>
-							<tr>
-								<td>Background:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={background} />
-								</td>
-							</tr>
-							<tr>
-								<td>Black:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={black} />
-								</td>
-							</tr>
-							<tr>
-								<td>White:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={white} />
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table>
-						<tbody>
-							<tr>
-								<td>Red:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={red} />
-								</td>
-							</tr>
-							<tr>
-								<td>Yellow:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={yellow} />
-								</td>
-							</tr>
-							<tr>
-								<td>Blue:</td>
-								<td>
-									<input class="rounded-md" type="color" bind:value={blue} />
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="flex flex-col gap-1 items-end">
+						<label class="flex gap-2 items-center justify-right">
+							<p>Background:</p>
+							<input
+								class="border border-gray-500 rounded-md w-20"
+								type="color"
+								bind:value={background}
+							/>
+						</label>
+						<label class="flex gap-2 items-center justify-right">
+							<p>Black:</p>
+							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={black} />
+						</label>
+						<label class="flex gap-2 items-center justify-right">
+							<p>White:</p>
+							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={white} />
+						</label>
+					</div>
+					<div class="flex flex-col gap-1 items-end">
+						<label class="flex gap-2 items-center justify-right">
+							<p>Red:</p>
+							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={red} />
+						</label>
+						<label class="flex gap-2 items-center justify-right">
+							<p>Yellow:</p>
+							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={yellow} />
+						</label>
+						<label class="flex gap-2 items-center justify-right">
+							<p>Blue:</p>
+							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={blue} />
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="flex gap-20 p-10" style="background-color: {background};">
+	<div class="p-10 flex gap-20 flex-1" style="background-color: {background};">
 		{#each parseMessage() as word}
 			<div class="flex flex-col gap-5">
 				{#each word as char}
@@ -157,14 +148,5 @@
 			</div>
 		{/each}
 	</div>
+	<PrivacyPolicy />
 </div>
-
-<style lang="postcss">
-	@reference "../app.css";
-	input {
-		@apply bg-white border border-gray-500 text-black;
-	}
-	td {
-		@apply px-1 text-right;
-	}
-</style>

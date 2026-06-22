@@ -1,16 +1,17 @@
 <script lang="ts">
-	import NavBar from "$lib/components/NavBar.svelte";
-	import FishTable from "$lib/components/FishTable.svelte";
-	import type { Fish } from "$lib/components/FishTable.svelte";
 	import fish from "$lib/fish.json";
+	import FishTable from "$lib/components/FishTable.svelte";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+	import type { Fish } from "$lib/components/FishTable.svelte";
 </script>
 
-<NavBar />
-<div class="bg-svdarktan flex flex-col gap-6 items-center p-6 text-black">
-	<h1 class="bg-svtan border-3 border-svverydarktan font-bold px-20 py-5 rounded-lg text-2xl text-center">
-		Stardew Valley Fish Cheat Sheet
-	</h1>
-	{#each Object.keys(fish) as location}
-		<FishTable {location} fishes={fish[location as keyof typeof fish] as Fish[]} />
-	{/each}
-</div>
+<StandardPageLayout>
+	<div class="p-6 bg-svdarktan text-black flex flex-col gap-6 items-center">
+		<h1 class="border-svverydarktan border-3 rounded-lg px-20 py-5 bg-svtan text-center text-2xl font-bold">
+			Stardew Valley Fish Cheat Sheet
+		</h1>
+		{#each Object.keys(fish) as location}
+			<FishTable {location} fishes={fish[location as keyof typeof fish] as Fish[]} />
+		{/each}
+	</div>
+</StandardPageLayout>

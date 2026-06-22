@@ -1,28 +1,16 @@
 <script lang="ts">
-	import type { PageProps } from "./$types";
-	import { onMount } from "svelte";
 	import * as d3 from "d3";
-	import NavBar from "$lib/components/NavBar.svelte";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
-	import SongInfo from "$lib/components/SongInfo.svelte";
 	import meatball from "$lib/assets/meatball.svg";
+	import NavBar from "$lib/components/NavBar.svelte";
+	import { onMount } from "svelte";
+	import SongInfo from "$lib/components/SongInfo.svelte";
+	import type { PageProps } from "./$types";
 
 	let { data }: PageProps = $props();
 
-	const gameColorsBG = [
-		"bg-utdrut",
-		"bg-utdrch1",
-		"bg-utdrch2",
-		"bg-utdrch3",
-		"bg-utdrch4",
-	];
-	const gameColorsFill = [
-		"fill-utdrut",
-		"fill-utdrch1",
-		"fill-utdrch2",
-		"fill-utdrch3",
-		"fill-utdrch4",
-	];
+	const gameColorsBG = ["bg-utdrut", "bg-utdrch1", "bg-utdrch2", "bg-utdrch3", "bg-utdrch4"];
+	const gameColorsFill = ["fill-utdrut", "fill-utdrch1", "fill-utdrch2", "fill-utdrch3", "fill-utdrch4"];
 
 	let nodes: any[] = $state([]);
 	let links: any[] = $state([]);
@@ -448,8 +436,7 @@
 				</label>
 			</div>
 		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-300 dark:bg-gray-950 flex-1"
-		></svg>
+		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-300 dark:bg-gray-950 flex-1"></svg>
 		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
 			<div class="relative">
 				<button

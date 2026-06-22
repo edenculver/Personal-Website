@@ -238,7 +238,6 @@ npm run dev -- --open
 - TS variable naming in camelCase, except when using postgresql column names
 - TS classes in PascalCase
 - All postgresql tables and columns in snake_case
-- Avoid <style></style> as much as possible
 - All Tailwind classes sorted in this order:
 	1. Positioning
 	2. Margin

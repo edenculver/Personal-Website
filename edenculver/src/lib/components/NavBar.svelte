@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NavItem from "$lib/components/NavItem.svelte";
 	import favicon from "$lib/assets/favicon.svg";
+	import NavItem from "$lib/components/NavItem.svelte";
 </script>
 
-<nav class="bg-white dark:bg-black border-b border-black dark:border-white flex flex-wrap">
+<nav class="border-b border-black dark:border-white flex flex-wrap">
 	<NavItem title="Home" href="/" />
 	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />

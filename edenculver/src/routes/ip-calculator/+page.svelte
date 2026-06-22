@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IpAddress from "$lib/IpAddress";
-	import NavBar from "$lib/components/NavBar.svelte";
 	import { browser } from "$app/environment";
+	import IpAddress from "$lib/IpAddress";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	const strictExplanation =
 		"Strict: Summarize without including address space that isn't included in the input addresses. This usually results in multiple supernets.\nLoose: Summarize to one supernet.";
@@ -216,98 +216,101 @@
 	}
 </script>
 
-<NavBar />
-<div class="mx-16 my-10 font-mono flex flex-col gap-6 items-start">
-	<h1 class="text-2xl font-bold">IP Calculator</h1>
-	<div class="flex">
-		<button
-			class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
-				(mode === "sub" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
-			onclick={() => (mode = "sub")}
-		>
-			Subnet Mode
-		</button>
-		<button
-			class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
-				(mode === "super" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
-			onclick={() => (mode = "super")}
-		>
-			Supernet Mode
-		</button>
-	</div>
-	{#if mode === "sub"}
-		<label class="flex flex-col gap-1">
-			IP address with CIDR or mask:
-			<input
-				class={"border w-100 p-3 " +
-					(invalidInput ? "border-terminalred text-terminalred" : "border-white text-terminalgreen")}
-				type="text"
-				maxlength="100"
-				bind:value={inputAddress}
-			/>
-		</label>
-		<div class="grid grid-cols-2 gap-4">
+<StandardPageLayout>
+	<div class="mx-16 my-10 font-mono flex flex-col gap-6 items-start">
+		<h1 class="text-2xl font-bold">IP Calculator</h1>
+		<div class="flex">
 			<button
-				class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
-				onclick={nextSubnet}
+				class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
+					(mode === "sub" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
+				onclick={() => (mode = "sub")}
 			>
-				Next Subnet
+				Subnet Mode
 			</button>
 			<button
-				class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
-				onclick={incrementCidr}
+				class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
+					(mode === "super" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
+				onclick={() => (mode = "super")}
 			>
-				CIDR +
-			</button>
-			<button
-				class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
-				onclick={previousSubnet}
-			>
-				Previous Subnet
-			</button>
-			<button
-				class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
-				onclick={decrementCidr}
-			>
-				CIDR -
+				Supernet Mode
 			</button>
 		</div>
-	{:else}
-		<div class="flex flex-col gap-4">
+		{#if mode === "sub"}
 			<label class="flex flex-col gap-1">
-				IP addresses with CIDR or mask:
-				<textarea
-					id="inputAddresses"
+				IP address with CIDR or mask:
+				<input
 					class={"border w-100 p-3 " +
-						(invalidInput ? "border-terminalred text-terminalred" : "border-white + text-terminalgreen")}
-					rows="5"
-					bind:value={inputAddresses}
-				></textarea>
+						(invalidInput ? "border-terminalred text-terminalred" : "border-white text-terminalgreen")}
+					type="text"
+					maxlength="100"
+					bind:value={inputAddress}
+				/>
 			</label>
-			<label class="flex gap-3 mt-3" title={strictExplanation}>
-				Strict?
-				<input class="accent-terminalgreen" type="checkbox" bind:checked={strict} />
-			</label>
-			<div>Summary prefix{strict ? "(es)" : ""}:</div>
-			<div class="text-terminalgreen ml-3 whitespace-pre-line">{summaryPrefixes}</div>
-		</div>
-	{/if}
-	<table>
-		<tbody>
-			{#if mode === "sub"}
-				<tr>
-					<td class="border border-gray-500 px-4 py-3 font-bold">IP Address</td>
-					<td class="border border-gray-500 px-4 py-3">{address}</td>
-				</tr>
-			{/if}
-			{#each tableRows as row}
-				<tr>
-					<td class="border border-gray-500 px-4 py-3 font-bold">{row.label}</td>
-					{#each row.cols as col}
-						<td class="border border-gray-500 px-4 py-3 whitespace-pre-line">{col}</td>
-					{/each}
-				</tr>
-			{/each}
-		</tbody>
-	</table>
-</div>
+			<div class="grid grid-cols-2 gap-4">
+				<button
+					class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					onclick={nextSubnet}
+				>
+					Next Subnet
+				</button>
+				<button
+					class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					onclick={incrementCidr}
+				>
+					CIDR +
+				</button>
+				<button
+					class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					onclick={previousSubnet}
+				>
+					Previous Subnet
+				</button>
+				<button
+					class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					onclick={decrementCidr}
+				>
+					CIDR -
+				</button>
+			</div>
+		{:else}
+			<div class="flex flex-col gap-4">
+				<label class="flex flex-col gap-1">
+					IP addresses with CIDR or mask:
+					<textarea
+						id="inputAddresses"
+						class={"border w-100 p-3 " +
+							(invalidInput
+								? "border-terminalred text-terminalred"
+								: "border-white + text-terminalgreen")}
+						rows="4"
+						bind:value={inputAddresses}
+					></textarea>
+				</label>
+				<label class="flex gap-3 mt-3" title={strictExplanation}>
+					Strict?
+					<input class="accent-terminalgreen" type="checkbox" bind:checked={strict} />
+				</label>
+				<div>Summary prefix{strict ? "(es)" : ""}:</div>
+				<div class="text-terminalgreen ml-3 whitespace-pre-line">{summaryPrefixes}</div>
+			</div>
+		{/if}
+		<table>
+			<tbody>
+				{#if mode === "sub"}
+					<tr>
+						<td class="border border-gray-500 px-4 py-3 font-bold">IP Address</td>
+						<td class="border border-gray-500 px-4 py-3">{address}</td>
+					</tr>
+				{/if}
+				{#each tableRows as row}
+					<tr>
+						<td class="border border-gray-500 px-4 py-3 font-bold">{row.label}</td>
+						{#each row.cols as col}
+							<td class="border border-gray-500 px-4 py-3 whitespace-pre-line">{col}</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
+</StandardPageLayout>
