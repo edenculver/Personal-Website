@@ -47,7 +47,7 @@
 	const songRadius = 6;
 	const alphaDecay = 0.02;
 	const reheatAlpha = 0.5;
-	const collideIterations = 2;
+	const collideIterations = 1;
 	const manyBodyStrength = -100;
 	const linkDistance = 40;
 	const holdTime = 1000; // how long to wait after load before alpha decay starts

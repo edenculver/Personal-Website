@@ -1,7 +1,8 @@
 <script lang="ts">
-	import NavBar from "$lib/components/NavBar.svelte";
 	import { page } from "$app/state";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 </script>
 
-<NavBar />
-<h1 class="font-bold m-10 text-3xl">{page.status}: {page.error ? page.error.message : "Unknown error"}</h1>
+<StandardPageLayout>
+	<h1 class="mx-16 my-10 text-2xl font-bold">{page.status}: {page.error ? page.error.message : "Unknown error"}</h1>
+</StandardPageLayout>

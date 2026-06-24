@@ -7,7 +7,11 @@
 ### Dump
 
 ```bash
+cd /var/www/Personal-Website/
 sudo -u postgres pg_dump edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
+git add .
+git commit -m "dump"
+git push
 ```
 
 ### Log in
@@ -86,14 +90,13 @@ The key file needs to not have a password. Remove the password from the key you 
 openssl rsa -in ~/culverpi.key -out /var/www/Personal-Website/ssl/culverpi.key
 ```
 
-If you put these files somewhere else, put the paths in `/var/www/Personal-Website/.env`, such as:
-```bash
-CERT_PATH=ssl/domain.crt
-KEY_PATH=ssl/domain.key
-```
-
 Change `/etc/nginx/sites-available/default` to this:
 ```conf
+upstream sveltekit {
+	server 127.0.0.1:3000;
+	keepalive 8;
+}
+
 # redirect to HTTPS
 server {
 	listen 80;
@@ -111,26 +114,9 @@ server {
 	root /var/www/Personal-Website;
 	index index.html index.htm index.nginx-debian.html;
 
-	# redirect from root to home page
-	location = / {
-		return 301 /home/;
-	}
-
-	# pages
 	location / {
-		try_files $uri $uri/ =404;
-	}
-
-	# API
-	location /api {
-		proxy_pass https://localhost:3000;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection 'upgrade';
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_cache_bypass $http_upgrade;
+		proxy_pass http://sveltekit;
+		proxy_redirect off;
 	}
 }
 
@@ -183,24 +169,28 @@ Build the database using `databases/edenculverdb.sql`
 #### Website Setup
 
 Configure environment variables
-- Add to `/var/www/Personal-Website/.env`:
+- Create `/var/www/Personal-Website/edenculver/.env` like the following:
 ```bash
+HOST=127.0.0.1
 DB_USERNAME=readonly
 DB_PASSWORD=password123
 ```
 
-Install Node.js
-
 ```bash
+# install nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+# restart your terminal!
+# install/update Node.js
+nvm install node
+# update npm
+npm update -g npm
 # install packages
 cd /var/www/Personal-Website/edenculver/
 npm install
-
 # build production version
 npm run build
-
 # start server with pm2
-sudo pm2 start /var/www/Personal-Website/edenculver/build/index.js --name="edenculver" --watch
+sudo HOST=127.0.0.1 pm2 start /var/www/Personal-Website/edenculver/build/index.js --name="edenculver" --watch
 sudo pm2 save
 ```
 
