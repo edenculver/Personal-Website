@@ -335,7 +335,7 @@
 					subleitmotifs={selectedNode.subleitmotifs}
 					description={selectedNode.description}
 				/>
-				<div class="ml-6 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
+				<div class="ml-6 mr-3 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
 					{#each linkedNodes() as linkedSong}
 						<button
 							class="hover:underline text-left leading-tight cursor-pointer"
