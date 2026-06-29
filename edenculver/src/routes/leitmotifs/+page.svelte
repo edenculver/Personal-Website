@@ -9,8 +9,27 @@
 
 	let { data }: PageProps = $props();
 
-	const gameColorsBG = ["bg-utdrut", "bg-utdrch1", "bg-utdrch2", "bg-utdrch3", "bg-utdrch4"];
-	const gameColorsFill = ["fill-utdrut", "fill-utdrch1", "fill-utdrch2", "fill-utdrch3", "fill-utdrch4"];
+	const legend = ["UT", "Ch 1", "Ch 2", "Ch 3", "Ch 4", "Ch 5 (WIP)"];
+	const gameColorsBG = [
+		"bg-utdrut",
+		"bg-utdrch1",
+		"bg-utdrch2",
+		"bg-utdrch3",
+		"bg-utdrch4",
+		"bg-utdrch5",
+		"bg-utdrch6",
+		"bg-utdrch7",
+	];
+	const gameColorsFill = [
+		"fill-utdrut",
+		"fill-utdrch1",
+		"fill-utdrch2",
+		"fill-utdrch3",
+		"fill-utdrch4",
+		"fill-utdrch5",
+		"fill-utdrch6",
+		"fill-utdrch7",
+	];
 
 	let nodes: any[] = $state([]);
 	let links: any[] = $state([]);
@@ -139,7 +158,7 @@
 			.selectAll()
 			.data(links)
 			.join("line")
-			.attr("class", "stroke-[1.2] stroke-black dark:stroke-white");
+			.attr("class", "stroke-[1.2] stroke-gray-800 dark:stroke-gray-300");
 
 		// draw song nodes
 		const vSongs = svg
@@ -332,7 +351,7 @@
 					gameTitle={selectedNode.gameTitle}
 					trackNumber={selectedNode.trackNumber}
 				/>
-				<div class="min-h-0 p-4 bg-gray-300 dark:bg-gray-950 flex flex-col gap-5 overflow-y-auto">
+				<div class="min-h-0 p-4 bg-gray-200 dark:bg-gray-950 flex flex-col gap-5 overflow-y-auto">
 					{#if linkedNodes().length}
 						{#each linkedNodes() as linkedLeitmotif}
 							{#if linkedLeitmotif.subleitmotifs}
@@ -413,7 +432,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Leitmotif:</p>
 					<select
-						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-950"
+						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-900"
 						bind:value={dropdownSelectedLeitmotif}
 					>
 						<option value="x">---</option>
@@ -425,7 +444,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Song:</p>
 					<select
-						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-950"
+						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-900"
 						bind:value={dropdownSelectedSong}
 					>
 						<option value="x">---</option>
@@ -436,12 +455,12 @@
 				</label>
 			</div>
 		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-300 dark:bg-gray-950 flex-1"></svg>
+		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-200 dark:bg-gray-950 flex-1"></svg>
 		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
 			<div class="relative">
 				<button
-					class={"rounded-sm w-8 p-2 hover:bg-gray-300 dark:hover:bg-gray-950" +
-						(menuHidden ? "" : " bg-gray-300 dark:bg-gray-950")}
+					class={"rounded-sm w-8 p-2 hover:bg-gray-300 dark:hover:bg-gray-900" +
+						(menuHidden ? "" : " bg-gray-300 dark:bg-gray-900")}
 					title="Simulation parameters"
 					onclick={toggleMenu}
 				>
@@ -454,7 +473,7 @@
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						X force strength:
 						<input
-							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-950"
+							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-900"
 							type="number"
 							min="0"
 							max="1"
@@ -465,7 +484,7 @@
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						Y force strength:
 						<input
-							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-950"
+							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-900"
 							type="number"
 							min="0"
 							max="1"
@@ -476,7 +495,7 @@
 				</div>
 			</div>
 			<div class="h-1"></div>
-			{#each ["UT", "Ch 1", "Ch 2", "Ch 3", "Ch 4"] as game, i}
+			{#each legend as game, i}
 				<div class="text-xs flex gap-2 items-center">
 					<div class="w-3 h-3 {gameColorsBG[i]}"></div>
 					<p>{game}</p>

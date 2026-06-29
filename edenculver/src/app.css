@@ -24,6 +24,9 @@
 	--color-utdrch2: #31D989;
 	--color-utdrch3: #FEF960;
 	--color-utdrch4: #526AF3;
+	--color-utdrch5: #FF8DFF;
+	--color-utdrch6: #FFFFFF;
+	--color-utdrch7: #FFFFFF;
 	--animate-highlight: highlight 800ms linear infinite;
 
 	@keyframes highlight {

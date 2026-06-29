@@ -5,7 +5,6 @@ const leitmotifQuery = `
 	SELECT
 		l.id,
 		l.name,
-		l.subthemes,
 		array_agg(sl.name ORDER BY sl.sort_order, sl.name)
 			FILTER (WHERE sl.id IS NOT NULL)
 			AS subleitmotifs,
