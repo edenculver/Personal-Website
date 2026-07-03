@@ -2,6 +2,17 @@
 
 ---
 
+## Update Live Site
+
+```bash
+cd /var/www/Personal-Website/edenculver/
+git pull
+npm run build
+# typically takes 2-3 minutes
+sudo pm2 restart edenculver
+# may not be necessary
+```
+
 ## Database Operations
 
 ### Dump
