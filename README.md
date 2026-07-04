@@ -19,6 +19,7 @@ sudo pm2 restart edenculver
 
 ```bash
 cd /var/www/Personal-Website/
+git pull
 sudo -u postgres pg_dump edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
 git add .
 git commit -m "dump"
