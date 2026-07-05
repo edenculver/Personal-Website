@@ -7,7 +7,7 @@
 	<NavItem title="Home" href="/" />
 	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />
-	<NavItem title="Leitmotifs" href="/leitmotifs" />
+	<NavItem title="UTDR Leitmotifs" href="/leitmotifs" />
 	<NavItem title="Signal Flags" href="/signal-flags" />
 	<NavItem title="Steam Engine Sim" href="/steam-engine" />
 	<NavItem title="SV Fish" href="/fish" />

@@ -9,7 +9,7 @@
 
 	let { data }: PageProps = $props();
 
-	const legend = ["UT", "Ch 1", "Ch 2", "Ch 3", "Ch 4", "Ch 5 (WIP)"];
+	const legend = ["UT", "Ch 1", "Ch 2", "Ch 3", "Ch 4", "Ch 5"];
 	const gameColorsBG = [
 		"bg-utdrut",
 		"bg-utdrch1",
@@ -61,8 +61,8 @@
 	let simulation: d3.Simulation<any, any>;
 
 	// simulation magic numbers
-	let xStrength = $state(0.092);
-	let yStrength = $state(0.166);
+	let xStrength = $state(0.094);
+	let yStrength = $state(0.162);
 	const songRadius = 6;
 	const alphaDecay = 0.02;
 	const reheatAlpha = 0.5;
@@ -324,9 +324,6 @@
 
 <div class="h-dvh flex flex-col">
 	<NavBar />
-	<h1 class="border-b-2 border-b-utdrborder p-3 text-center text-2xl font-bold">
-		Undertale/Deltarune Leitmotifs Graph
-	</h1>
 	<div class="min-h-0 flex-1 flex">
 		<div class="w-[20vw] min-w-70 max-w-100 min-h-0 flex-1 flex flex-col gap-3">
 			{#if selectedNodeType === "l"}
