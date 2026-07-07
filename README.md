@@ -10,7 +10,6 @@ git pull
 npm run build
 # typically takes 2-3 minutes
 sudo pm2 restart edenculver
-# may not be necessary
 ```
 
 ---
@@ -23,7 +22,7 @@ sudo pm2 restart edenculver
 cd /var/www/Personal-Website/
 git pull
 sudo -u postgres pg_dump edenculverdb > /var/www/Personal-Website/database/edenculverdb.sql
-git add .
+git add /var/www/Personal-Website/database/edenculverdb.sql
 git commit -m "dump"
 git push
 ```
