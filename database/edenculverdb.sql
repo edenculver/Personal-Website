@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict dgNDjj0nOK5pMwxsf2zOzeTI7sT8eYjmSIObVVGoqH7qScLJve6bN38XSkRt4pI
+\restrict E8s2dU0wTZHJhzFRWZZmk1EdOW1DAcxNwkSUY5uPs6cCPhwWKNVikQcww4qfgSv
 
 -- Dumped from database version 13.23 (Raspbian 13.23-0+deb11u1)
 -- Dumped by pg_dump version 13.23 (Raspbian 13.23-0+deb11u1)
@@ -255,6 +255,7 @@ e4476218-b7fb-46fc-8c7e-01141726b14d	Flashback	\N
 adcccd92-790f-41ec-bda8-b5639dd6e964	Mike	\N
 a4791f74-6026-4b03-b0c3-2689d7b428ef	TV Time (HEY EVERY !)	This leitmotif is the theme song of the TV Time game show. It's associated with Spamton and Tenna.
 1f465eb3-0bf3-4b70-bb2c-e9f21b922ec7	Mettaton	\N
+27bec2ba-e975-475c-9f3f-31c990f6682e	Don't Forget	This is the main theme of Deltarune. It appears in 35 tracks as of Chapter 5, making it by far the most widespread leitmotif.
 a0049164-1ac1-4d83-b388-f3dae95f0c32	Gerson	Interestingly, all songs that contain Gerson's leitmotif also contain Undyne's. Their battles also share a SOUL mode.
 e3ce99a4-f6ed-44e7-947b-a18de33fe682	Battle Against a True Hero	This leitmotif is associated with boss fights in violent routes: Undertale's Genocide Route, Chapter 2's Weird Route, and Chapter 3's Sword Route.
 d26f0150-4332-40b9-9cef-362609586701	Lancer	\N
@@ -274,28 +275,36 @@ eff2beef-104c-4a1d-aac6-08689486ef62	Uwa!!	This leitmotif is associated with...w
 1e0c01ed-3940-4cd6-bdac-d83848dfb883	Enemy Approaching	Undertale's battle theme.
 4c8d2893-e3e6-4f38-8750-3b98cc386f07	Once Upon a Time	This is the main theme of Undertale. It appears in 17 tracks from Undertale, and is the most widespread leitmotif in the game.
 4b5ed6ed-0ff4-4e2a-932c-9ac5001e4f1f	Queen	\N
-60af1344-d7ac-4a91-bfb9-4bb5c1d8a3e2	Freedom (The World Revolving)	This leitmotif is mostly associated with Shadow Crystal bosses. It's known as the Freedom leitmotif because freedom is mentioned in many of these bosses' flavor text.
 29346f17-7569-48cd-a290-184746526cb5	Alphys	It's not known why Alphys' leitmotif appears in "Bird That Carries You Over A Disproportionately Small Gap". The bird doesn't seem to be related to Alphys at all.
 5cfedc63-a2d0-4686-97ce-abac8e62f02d	Another Medium	I would call this the Hotland leitmotif if it didn't also appear in Waterfall.
 f8575489-195e-44f1-89f1-9bb1033ebf69	Dess	I believe that this leitmotif, which is commonly known as Lost Girl, will turn out to be Dess' theme.
 6873ec98-400d-4391-910f-62fd2715edfc	Your Best Nightmare	This leitmotif is used when Flowey and later Susie are being intimidating.
-27bec2ba-e975-475c-9f3f-31c990f6682e	Don't Forget	This is the main theme of Deltarune. It appears in 27 tracks as of Chapter 4, making it by far the most widespread leitmotif.
 0aef2ab8-a3e8-4fe8-913b-9c2bc7497d46	Dummy Coda	This isn't really a leitmotif, but BIG SHOT samples it.
 ef4f3b91-afcb-4c1a-9a51-a439f75a51cf	Game Over (Determination)	Undertale's game over theme.
 392f6198-ddd9-49cd-9b57-58e9989ee4b7	Hotel	The leitmotif of Mettaton's cooking show and the MTT Resort.
 feedb901-15f2-4966-aa43-adbe815d20aa	Powers Combined	The leitmotif of the battle against GIGA Queen.
 f7dcf7fd-4d37-4b8b-b655-b8faedd1ecfd	Gaster	This leitmotif first appears in Gaster's Theme, which is not on the official Undertale soundtrack. Due to how simple the theme is, it's very easy to hear it in places where it probably wasn't intended.
 e2431100-5cf6-4370-86ca-bfade3a678bc	Rude Buster	Deltarune's battle theme.
-e2be06db-6028-42f5-97df-a228dccbd30c	Noelle	Noelle B appears in Friends, which plays in a scene that has no relation to Noelle. Depending on how this leitmotif is used in future chapters, I may break it out into its own leitmotif that represents friendship.
 b0fa7f8f-ee10-4487-8f56-d6002db4d5ea	Monster (Snowdin)	I believe this leitmotif represents all monsters. It first appears in Snowdin, and returns in many emotional moments throughout Undertale.
+e2be06db-6028-42f5-97df-a228dccbd30c	Noelle	\N
 09f67641-9722-4e82-bb8b-ef9d41231715	The Roaring Knight	\N
 fe306722-253b-481c-b615-5488f6d51925	Undyne	Undyne's theme. In Deltarune, this theme is also associated with Gerson. This leitmotif is often syncopated, such as in the intro of Spear of Justice.
 924e21ae-2e24-4959-86ba-497bc1839e44	Second Sanctuary	\N
 68bc9b3e-d442-48f3-bf5f-bd0b1895e068	Spooktune	Napstablook's masterpiece.
 3a975d33-87d5-498d-8375-481f082c0f20	Tenna	This leitmotif has the most appearances after Once Upon a Time and Don't Forget.
 80a87b09-030a-401c-8f37-a5f303aed044	The Holy	\N
+60af1344-d7ac-4a91-bfb9-4bb5c1d8a3e2	Freedom (The World Revolving)	This leitmotif is mainly associated with Shadow Crystal bosses. It's known as the Freedom leitmotif because freedom is mentioned in many of these bosses' flavor text.
 b404c069-0951-4cc2-acec-857b108b6110	Roots	\N
 73271dd7-fb45-4b11-ad67-8aa551d8b54a	The Dark Truth	This leitmotif is associated with darkness and the Roaring.
+58ad50fd-0227-49b1-9637-07b75050fc4e	Checker Dance	\N
+205ded5d-f571-45c2-9450-b56757ad32d8	Weird Birds	\N
+398aadf4-f85e-499d-819c-dbe985b25c04	Flowery	\N
+ce616089-4d35-43a1-a982-0f0f334e99d7	Pink	\N
+48393850-3546-41b1-b865-5d363ec09f70	Flower Foyer	\N
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	Flowers	The leitmotif of the six colored flowers (not including Flowery, who has his own leitmotif).
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	Friends	\N
+8b2c113b-af84-4e03-a99c-32ff3a788237	Jingle Bells	\N
+a0959249-99f1-46f7-be02-0593629e8bc0	Death by Glamour	\N
 \.
 
 
@@ -529,8 +538,6 @@ bba34e6a-b2e4-4a07-a437-75f1b29eeb94	6fb34278-b184-42e6-8c3b-9e19f51d90cd
 80a87b09-030a-401c-8f37-a5f303aed044	395537f6-897f-4248-a848-06d9b78b57c2
 80a87b09-030a-401c-8f37-a5f303aed044	1a747669-38af-47fd-9be2-05bc1db8f26d
 e2be06db-6028-42f5-97df-a228dccbd30c	72d2879e-679f-4e8b-8d3e-86735176f449
-e2be06db-6028-42f5-97df-a228dccbd30c	5bae394a-7047-4e18-948e-f86e8f73b30e
-e2be06db-6028-42f5-97df-a228dccbd30c	52c37015-86cd-40da-be44-ba68b182b128
 e2be06db-6028-42f5-97df-a228dccbd30c	7184857d-1385-4fad-a5c4-abb359657287
 e2be06db-6028-42f5-97df-a228dccbd30c	2e877ab4-6045-4134-829c-f4cc302616a3
 4b5ed6ed-0ff4-4e2a-932c-9ac5001e4f1f	900e400f-a92c-456e-8c90-f608f17e183c
@@ -641,6 +648,69 @@ f8575489-195e-44f1-89f1-9bb1033ebf69	c51f6b0b-7679-4c7e-9790-c8c32b03f99c
 4c8d2893-e3e6-4f38-8750-3b98cc386f07	8fda3b80-c743-4dcb-b898-df6d1bd4e298
 0d19f646-5bea-4735-bf98-ae091d489dfd	18263566-6943-425a-9604-c4a386945480
 73271dd7-fb45-4b11-ad67-8aa551d8b54a	a877fa36-425a-4009-a1f6-04c5492a8fec
+58ad50fd-0227-49b1-9637-07b75050fc4e	543f02d1-16cd-4507-b8ff-e444ba5c10a5
+58ad50fd-0227-49b1-9637-07b75050fc4e	fb8b7ea6-8275-4251-98e5-7e1eed9f9f09
+205ded5d-f571-45c2-9450-b56757ad32d8	c6d11230-5751-4093-ab7d-1accc0672e64
+205ded5d-f571-45c2-9450-b56757ad32d8	3fef7c7c-a1cd-4a98-9f63-cde0c5ee8a49
+60af1344-d7ac-4a91-bfb9-4bb5c1d8a3e2	fb8b7ea6-8275-4251-98e5-7e1eed9f9f09
+924e21ae-2e24-4959-86ba-497bc1839e44	c9ca8b28-7467-4740-8387-db5d7bd4e44f
+c64e5087-6838-4c4e-92b1-07081503b2b6	c9ca8b28-7467-4740-8387-db5d7bd4e44f
+e2be06db-6028-42f5-97df-a228dccbd30c	4cc6ce1f-2e77-48b9-9f11-bbd672443edc
+27bec2ba-e975-475c-9f3f-31c990f6682e	4cc6ce1f-2e77-48b9-9f11-bbd672443edc
+b0fa7f8f-ee10-4487-8f56-d6002db4d5ea	a8a7bac4-b467-4ac3-8669-8696e01a7c2d
+b0fa7f8f-ee10-4487-8f56-d6002db4d5ea	e94d8fa0-524a-4df5-98e0-277fcc0c20e4
+e2be06db-6028-42f5-97df-a228dccbd30c	90aebae7-a1b5-4f98-a988-0e884a9e3f61
+27bec2ba-e975-475c-9f3f-31c990f6682e	90aebae7-a1b5-4f98-a988-0e884a9e3f61
+398aadf4-f85e-499d-819c-dbe985b25c04	7c4c5d8f-a867-4919-b723-5de63575877a
+4c8d2893-e3e6-4f38-8750-3b98cc386f07	36f2e643-53cc-4194-a9a1-f693ecca8950
+c8cfb9c9-e343-4b3e-b787-519f6dd71835	36f2e643-53cc-4194-a9a1-f693ecca8950
+27bec2ba-e975-475c-9f3f-31c990f6682e	36f2e643-53cc-4194-a9a1-f693ecca8950
+e2431100-5cf6-4370-86ca-bfade3a678bc	4446abad-40ce-443e-ae32-72c1557d7346
+ef4f3b91-afcb-4c1a-9a51-a439f75a51cf	4446abad-40ce-443e-ae32-72c1557d7346
+27bec2ba-e975-475c-9f3f-31c990f6682e	748e67d1-e513-45ef-84fd-7b72825e3572
+e2be06db-6028-42f5-97df-a228dccbd30c	748e67d1-e513-45ef-84fd-7b72825e3572
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	3d038c7a-b03f-404b-9a47-2d2328ba6242
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	d22b807b-a066-49ee-b653-6a6cb9df8279
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	45918706-7867-4838-bc3f-461590da8ac6
+398aadf4-f85e-499d-819c-dbe985b25c04	45918706-7867-4838-bc3f-461590da8ac6
+48393850-3546-41b1-b865-5d363ec09f70	4cad9b21-440e-48b7-87e8-3912ea10c3ca
+eee7dc83-0ec1-4cc2-b2c9-80c8601fb7a7	ff41ef1b-ad99-4c8d-9720-6334ec172ec3
+48393850-3546-41b1-b865-5d363ec09f70	dc87916a-e5d6-4d33-b448-abb79c6f4344
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	d970bc12-059d-4eb3-9e33-1a49b26f23a2
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	0f3c9387-afb2-45fb-a30a-9a29dceb4f06
+ce616089-4d35-43a1-a982-0f0f334e99d7	0f3c9387-afb2-45fb-a30a-9a29dceb4f06
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	8983d1e7-3fbd-4a86-8653-66d50b98168e
+398aadf4-f85e-499d-819c-dbe985b25c04	ebb233f0-4783-4d8d-8b39-86398eab5ddb
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	09a12576-c631-4148-a01a-b0e4dad69852
+ce616089-4d35-43a1-a982-0f0f334e99d7	f86ccf98-d528-4cd2-bfe8-27796e9aa65f
+ce616089-4d35-43a1-a982-0f0f334e99d7	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+27bec2ba-e975-475c-9f3f-31c990f6682e	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+60af1344-d7ac-4a91-bfb9-4bb5c1d8a3e2	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+68bc9b3e-d442-48f3-bf5f-bd0b1895e068	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+398aadf4-f85e-499d-819c-dbe985b25c04	7d06d273-5260-401e-a91d-4132e855687a
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	7d06d273-5260-401e-a91d-4132e855687a
+27bec2ba-e975-475c-9f3f-31c990f6682e	7d06d273-5260-401e-a91d-4132e855687a
+9cb9fc9f-68d9-4074-b562-24862c25c325	7d06d273-5260-401e-a91d-4132e855687a
+eee7dc83-0ec1-4cc2-b2c9-80c8601fb7a7	46e9484b-a996-486c-90af-1244af7665e8
+398aadf4-f85e-499d-819c-dbe985b25c04	fe736301-a72d-4bd8-a7f9-2e3e5cb31763
+398aadf4-f85e-499d-819c-dbe985b25c04	cd1b745c-1c9c-439c-870e-ea6ea574baa8
+e2be06db-6028-42f5-97df-a228dccbd30c	2abefa9d-cf23-4672-8f29-216bba94ae7b
+c8cfb9c9-e343-4b3e-b787-519f6dd71835	9c56008a-85da-445d-9fb5-d31d892a73e9
+398aadf4-f85e-499d-819c-dbe985b25c04	c4483568-1502-4fe1-8570-2a7326aa64e1
+398aadf4-f85e-499d-819c-dbe985b25c04	d22b807b-a066-49ee-b653-6a6cb9df8279
+27bec2ba-e975-475c-9f3f-31c990f6682e	fcc36e8a-101e-47af-a780-98aebbb717fb
+27bec2ba-e975-475c-9f3f-31c990f6682e	9c56008a-85da-445d-9fb5-d31d892a73e9
+a0959249-99f1-46f7-be02-0593629e8bc0	48a29ce4-fdc9-4c2b-941d-5ea25c6cf221
+a0959249-99f1-46f7-be02-0593629e8bc0	1a540624-ebb5-460e-b9ca-57d408f4023b
+a0959249-99f1-46f7-be02-0593629e8bc0	4f297de4-9cac-4369-bdcb-3b6ce8579c41
+8b2c113b-af84-4e03-a99c-32ff3a788237	5fbc991b-40a7-470c-a36b-4672d5df23ae
+8b2c113b-af84-4e03-a99c-32ff3a788237	0a385dd4-aff3-47f8-ade3-cb81958a62b9
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	7184857d-1385-4fad-a5c4-abb359657287
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	4cc6ce1f-2e77-48b9-9f11-bbd672443edc
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	90aebae7-a1b5-4f98-a988-0e884a9e3f61
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	748e67d1-e513-45ef-84fd-7b72825e3572
+bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	2abefa9d-cf23-4672-8f29-216bba94ae7b
+f7dcf7fd-4d37-4b8b-b655-b8faedd1ecfd	83b3ccd3-5f4a-4717-b9b3-b15c82509107
 \.
 
 
@@ -1213,6 +1283,7 @@ c2e6e756-11ad-4753-9325-b6bc9943dbde	182d7fe1-28b0-45e1-95ca-2bfd08cd3ff4	Dogson
 6aac8c7d-ca34-4c82-82c0-0340a8d2db3b	182d7fe1-28b0-45e1-95ca-2bfd08cd3ff4	Power of "NEO"	99
 6fb34278-b184-42e6-8c3b-9e19f51d90cd	9eecc3c4-0c95-448e-9735-19b6055b5260	It's Pronounced "Rules"	29
 39d24d4b-e09f-4c1a-b7d1-37f7032e5a0e	e5abb674-39be-4e7f-ad99-82070d669db0	AIRWAVES	77
+90aebae7-a1b5-4f98-a988-0e884a9e3f61	25ba7daa-308e-40e3-b25a-b429c273a277	I guess I'm in love feat. Itoki Hana	8
 d20ee51e-ad56-4e40-b436-c591c3e7fe82	edd2842d-9d8d-4a8a-a771-c67de8c0e7aa	Fanfare (from Rose of Winter)	14
 b14d38db-6282-42c9-a44c-db6b106d616c	9eecc3c4-0c95-448e-9735-19b6055b5260	Berdly (Rejected Concept)	47
 63438837-ecc8-4ea3-bf10-081cf1f19a81	e5abb674-39be-4e7f-ad99-82070d669db0	Knock You Down!! (Rhythm Ver.)	44
@@ -1224,11 +1295,9 @@ c9ca8b28-7467-4740-8387-db5d7bd4e44f	25ba7daa-308e-40e3-b25a-b429c273a277	4rd Sa
 4cc6ce1f-2e77-48b9-9f11-bbd672443edc	25ba7daa-308e-40e3-b25a-b429c273a277	Festival	5
 a8a7bac4-b467-4ac3-8669-8696e01a7c2d	25ba7daa-308e-40e3-b25a-b429c273a277	Catfession...?	6
 e94d8fa0-524a-4df5-98e0-277fcc0c20e4	25ba7daa-308e-40e3-b25a-b429c273a277	Bratfession...?	7
-90aebae7-a1b5-4f98-a988-0e884a9e3f61	25ba7daa-308e-40e3-b25a-b429c273a277	I guess I'm in love	8
 3fef7c7c-a1cd-4a98-9f63-cde0c5ee8a49	25ba7daa-308e-40e3-b25a-b429c273a277	Weirder Birds	9
 7c4c5d8f-a867-4919-b723-5de63575877a	25ba7daa-308e-40e3-b25a-b429c273a277	Your Dad's Best Friend	10
 36f2e643-53cc-4194-a9a1-f693ecca8950	25ba7daa-308e-40e3-b25a-b429c273a277	Garden of Hopes and Dreams	11
-4446abad-40ce-443e-ae32-72c1557d7346	25ba7daa-308e-40e3-b25a-b429c273a277	Rakuichi Buster	12
 748e67d1-e513-45ef-84fd-7b72825e3572	25ba7daa-308e-40e3-b25a-b429c273a277	The Diner Song of Best Friends	13
 d2960862-8ed6-4da1-a815-fdea342cf42e	25ba7daa-308e-40e3-b25a-b429c273a277	Ride the Board	14
 7022925f-6488-40e8-a32a-dd4adcd3bbd6	25ba7daa-308e-40e3-b25a-b429c273a277	Quiet Glade	15
@@ -1244,16 +1313,17 @@ d970bc12-059d-4eb3-9e33-1a49b26f23a2	25ba7daa-308e-40e3-b25a-b429c273a277	Flower
 691ec65b-3a77-435b-b380-5bbac4ef8938	25ba7daa-308e-40e3-b25a-b429c273a277	Thousand Cafe Zukan	25
 0f3c9387-afb2-45fb-a30a-9a29dceb4f06	25ba7daa-308e-40e3-b25a-b429c273a277	I'm Telling!	26
 8983d1e7-3fbd-4a86-8653-66d50b98168e	25ba7daa-308e-40e3-b25a-b429c273a277	Stop, Criminell!	27
+4446abad-40ce-443e-ae32-72c1557d7346	25ba7daa-308e-40e3-b25a-b429c273a277	Rakuichi Buster feat. Rakuichi	12
 f86ccf98-d528-4cd2-bfe8-27796e9aa65f	25ba7daa-308e-40e3-b25a-b429c273a277	Pink	31
-6dd5ee9c-2bf0-4970-938e-07865e4cb04f	25ba7daa-308e-40e3-b25a-b429c273a277	Cutie Mew Mew Magic	32
 fcc36e8a-101e-47af-a780-98aebbb717fb	25ba7daa-308e-40e3-b25a-b429c273a277	Running Sky	33
-7d06d273-5260-401e-a91d-4132e855687a	25ba7daa-308e-40e3-b25a-b429c273a277	Flower Man	34
 46e9484b-a996-486c-90af-1244af7665e8	25ba7daa-308e-40e3-b25a-b429c273a277	That Day	35
 fe736301-a72d-4bd8-a7f9-2e3e5cb31763	25ba7daa-308e-40e3-b25a-b429c273a277	Dreamwatchers	36
 cd1b745c-1c9c-439c-870e-ea6ea574baa8	25ba7daa-308e-40e3-b25a-b429c273a277	Weak Flowers	37
 2abefa9d-cf23-4672-8f29-216bba94ae7b	25ba7daa-308e-40e3-b25a-b429c273a277	Walking Home	38
 9c56008a-85da-445d-9fb5-d31d892a73e9	25ba7daa-308e-40e3-b25a-b429c273a277	Scarlet Forest (From "DELTARUNE Piano Collections Vol. 1") (Credits Version)	39
 c4483568-1502-4fe1-8570-2a7326aa64e1	25ba7daa-308e-40e3-b25a-b429c273a277	Goodnight, Sweet Prince	40
+6dd5ee9c-2bf0-4970-938e-07865e4cb04f	25ba7daa-308e-40e3-b25a-b429c273a277	Cutie Mew Mew Magic feat. Camellia	32
+7d06d273-5260-401e-a91d-4132e855687a	25ba7daa-308e-40e3-b25a-b429c273a277	Flower Man feat. Camellia	34
 \.
 
 
@@ -1322,14 +1392,18 @@ de00a11c-cf8e-4f04-8927-83e8ad06aac6	4b5ed6ed-0ff4-4e2a-932c-9ac5001e4f1f	B	\N
 7b8fc57c-1005-4391-b06e-dbb0d9e277ab	29346f17-7569-48cd-a290-184746526cb5	B	\N
 e34dbe77-c171-4ead-a6cf-093dec5d5d00	80a87b09-030a-401c-8f37-a5f303aed044	A	\N
 0ed253dd-11ff-478d-9e5c-2656becb69d0	80a87b09-030a-401c-8f37-a5f303aed044	B	\N
-1045d290-b9cd-4fe7-9dda-5ed9f40ce293	e2be06db-6028-42f5-97df-a228dccbd30c	A	\N
-b30ddb37-078b-416f-a78f-1f22f1741c0e	e2be06db-6028-42f5-97df-a228dccbd30c	B	\N
 f8f8eccd-c109-4414-93e7-66d2a4cdbaca	1e0c01ed-3940-4cd6-bdac-d83848dfb883	Dogsong Variant	3
 417d9422-e371-462c-b94b-1f03d4226bc5	1e0c01ed-3940-4cd6-bdac-d83848dfb883	Original	2
 624de1ab-5915-41ed-b2e2-ee9a5ac79cc0	0d19f646-5bea-4735-bf98-ae091d489dfd	Drums	\N
 7553243a-e0c7-400b-ad64-6302e87fa9db	4b5ed6ed-0ff4-4e2a-932c-9ac5001e4f1f	D	\N
 c511084c-113d-4b62-8c0d-22116f64df98	1e0c01ed-3940-4cd6-bdac-d83848dfb883	Intro	1
 10edb3fe-85c0-4279-be57-d3f7444c098c	b0fa7f8f-ee10-4487-8f56-d6002db4d5ea	C	\N
+ad3f7dca-663b-4447-be81-5052fd205a3a	ace9a60b-60ce-43f8-8329-b87edbc66d9e	A	\N
+df067690-75b0-4f8a-99b3-7aa5341a0be2	ace9a60b-60ce-43f8-8329-b87edbc66d9e	B	\N
+386fa0dc-4153-454d-8061-8512ca262fa0	ce616089-4d35-43a1-a982-0f0f334e99d7	A	\N
+0a176911-b6ed-4adc-833d-f9b275724cfb	ce616089-4d35-43a1-a982-0f0f334e99d7	B	\N
+648334ae-7773-45b6-8812-48b17128584a	f8575489-195e-44f1-89f1-9bb1033ebf69	A	\N
+571bac8e-198e-405f-bfd3-071ad5882fdf	f8575489-195e-44f1-89f1-9bb1033ebf69	B	\N
 \.
 
 
@@ -1440,8 +1514,6 @@ e34dbe77-c171-4ead-a6cf-093dec5d5d00	fcb68884-77a1-4526-b46a-68a99bf1dde8
 03defba6-381d-43fb-ac86-15da506a11ae	affc356b-21d5-4883-967d-4e6673abe424
 2451703d-3d7d-4c1b-a089-7674550dbd6c	697fc3e9-902d-4efa-b0b5-30763bda2f26
 2451703d-3d7d-4c1b-a089-7674550dbd6c	675ec961-ba98-4cec-893a-3ffd92e9960f
-1045d290-b9cd-4fe7-9dda-5ed9f40ce293	72d2879e-679f-4e8b-8d3e-86735176f449
-b30ddb37-078b-416f-a78f-1f22f1741c0e	72d2879e-679f-4e8b-8d3e-86735176f449
 a6b780e8-918a-4efb-b39e-dd2b16c769bd	c8dc8dd7-79d4-4bf8-b901-4bc8f2dc3b42
 bcf35a54-041a-4234-aeb9-965cfc63cb95	c8dc8dd7-79d4-4bf8-b901-4bc8f2dc3b42
 6fb478fc-4a5f-448c-9558-596109650b8b	c8dc8dd7-79d4-4bf8-b901-4bc8f2dc3b42
@@ -1484,8 +1556,6 @@ de00a11c-cf8e-4f04-8927-83e8ad06aac6	4de9fbd1-9824-4700-8f27-af95d8f7df7e
 c6e54649-f47c-43f2-a512-12df619f27e4	356b2f82-41c7-42e5-95de-583a180bf82b
 ee5ef5a9-0217-401a-875a-d128b3ded179	356b2f82-41c7-42e5-95de-583a180bf82b
 ee5ef5a9-0217-401a-875a-d128b3ded179	6fb34278-b184-42e6-8c3b-9e19f51d90cd
-1045d290-b9cd-4fe7-9dda-5ed9f40ce293	5bae394a-7047-4e18-948e-f86e8f73b30e
-1045d290-b9cd-4fe7-9dda-5ed9f40ce293	52c37015-86cd-40da-be44-ba68b182b128
 21721708-766b-4c28-b81a-9f66ec068b2f	a849b106-f405-46db-9bc1-9b5a64229025
 c8877ad7-167e-4732-810e-fd3284af8c04	a849b106-f405-46db-9bc1-9b5a64229025
 afbf7f8e-7cdd-4ec6-bff8-a56b8de81d4b	a849b106-f405-46db-9bc1-9b5a64229025
@@ -1510,10 +1580,8 @@ a6b780e8-918a-4efb-b39e-dd2b16c769bd	cf111277-24d2-4469-9c23-7d743484e740
 bcf35a54-041a-4234-aeb9-965cfc63cb95	cf111277-24d2-4469-9c23-7d743484e740
 10edb3fe-85c0-4279-be57-d3f7444c098c	64d9ce6a-0070-46b4-8f97-f266bc1d0bed
 10edb3fe-85c0-4279-be57-d3f7444c098c	45f2b6ea-7086-4d71-a971-144a5a1c844e
-b30ddb37-078b-416f-a78f-1f22f1741c0e	7184857d-1385-4fad-a5c4-abb359657287
 bcf35a54-041a-4234-aeb9-965cfc63cb95	b6a26697-8ae9-491b-84b5-e77aec15571b
 21721708-766b-4c28-b81a-9f66ec068b2f	63438837-ecc8-4ea3-bf10-081cf1f19a81
-b30ddb37-078b-416f-a78f-1f22f1741c0e	2e877ab4-6045-4134-829c-f4cc302616a3
 bcf35a54-041a-4234-aeb9-965cfc63cb95	736fa897-5a24-49db-a402-de1233f4fd6d
 9d50ccae-cf75-4a2b-9836-0de6ac899bdd	736fa897-5a24-49db-a402-de1233f4fd6d
 a6b780e8-918a-4efb-b39e-dd2b16c769bd	736fa897-5a24-49db-a402-de1233f4fd6d
@@ -1536,6 +1604,40 @@ a6b780e8-918a-4efb-b39e-dd2b16c769bd	fb6e9e3c-1cc1-4bb2-ba2f-2fff72afd55f
 21721708-766b-4c28-b81a-9f66ec068b2f	15e51479-8510-4143-bc4a-8d129f36b155
 026a66cf-ff88-4e4e-8e32-8d8eb1e874b0	39d24d4b-e09f-4c1a-b7d1-37f7032e5a0e
 4d6ae5b2-a132-44d2-ae6d-c1929c41a489	39d24d4b-e09f-4c1a-b7d1-37f7032e5a0e
+648334ae-7773-45b6-8812-48b17128584a	72d2879e-679f-4e8b-8d3e-86735176f449
+648334ae-7773-45b6-8812-48b17128584a	5bae394a-7047-4e18-948e-f86e8f73b30e
+648334ae-7773-45b6-8812-48b17128584a	52c37015-86cd-40da-be44-ba68b182b128
+648334ae-7773-45b6-8812-48b17128584a	94882a77-829b-45f4-9367-44b1759cfce7
+648334ae-7773-45b6-8812-48b17128584a	c51f6b0b-7679-4c7e-9790-c8c32b03f99c
+571bac8e-198e-405f-bfd3-071ad5882fdf	72d2879e-679f-4e8b-8d3e-86735176f449
+571bac8e-198e-405f-bfd3-071ad5882fdf	5bae394a-7047-4e18-948e-f86e8f73b30e
+571bac8e-198e-405f-bfd3-071ad5882fdf	52c37015-86cd-40da-be44-ba68b182b128
+4d6ae5b2-a132-44d2-ae6d-c1929c41a489	fb8b7ea6-8275-4251-98e5-7e1eed9f9f09
+bcf35a54-041a-4234-aeb9-965cfc63cb95	fb8b7ea6-8275-4251-98e5-7e1eed9f9f09
+a6b780e8-918a-4efb-b39e-dd2b16c769bd	fb8b7ea6-8275-4251-98e5-7e1eed9f9f09
+03defba6-381d-43fb-ac86-15da506a11ae	a8a7bac4-b467-4ac3-8669-8696e01a7c2d
+03defba6-381d-43fb-ac86-15da506a11ae	e94d8fa0-524a-4df5-98e0-277fcc0c20e4
+2451703d-3d7d-4c1b-a089-7674550dbd6c	36f2e643-53cc-4194-a9a1-f693ecca8950
+ad3f7dca-663b-4447-be81-5052fd205a3a	3d038c7a-b03f-404b-9a47-2d2328ba6242
+df067690-75b0-4f8a-99b3-7aa5341a0be2	3d038c7a-b03f-404b-9a47-2d2328ba6242
+ad3f7dca-663b-4447-be81-5052fd205a3a	d22b807b-a066-49ee-b653-6a6cb9df8279
+ad3f7dca-663b-4447-be81-5052fd205a3a	45918706-7867-4838-bc3f-461590da8ac6
+ad3f7dca-663b-4447-be81-5052fd205a3a	d970bc12-059d-4eb3-9e33-1a49b26f23a2
+ad3f7dca-663b-4447-be81-5052fd205a3a	0f3c9387-afb2-45fb-a30a-9a29dceb4f06
+df067690-75b0-4f8a-99b3-7aa5341a0be2	0f3c9387-afb2-45fb-a30a-9a29dceb4f06
+386fa0dc-4153-454d-8061-8512ca262fa0	0f3c9387-afb2-45fb-a30a-9a29dceb4f06
+ad3f7dca-663b-4447-be81-5052fd205a3a	8983d1e7-3fbd-4a86-8653-66d50b98168e
+df067690-75b0-4f8a-99b3-7aa5341a0be2	8983d1e7-3fbd-4a86-8653-66d50b98168e
+ad3f7dca-663b-4447-be81-5052fd205a3a	09a12576-c631-4148-a01a-b0e4dad69852
+df067690-75b0-4f8a-99b3-7aa5341a0be2	09a12576-c631-4148-a01a-b0e4dad69852
+386fa0dc-4153-454d-8061-8512ca262fa0	f86ccf98-d528-4cd2-bfe8-27796e9aa65f
+0a176911-b6ed-4adc-833d-f9b275724cfb	f86ccf98-d528-4cd2-bfe8-27796e9aa65f
+386fa0dc-4153-454d-8061-8512ca262fa0	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+0a176911-b6ed-4adc-833d-f9b275724cfb	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+4d6ae5b2-a132-44d2-ae6d-c1929c41a489	6dd5ee9c-2bf0-4970-938e-07865e4cb04f
+ad3f7dca-663b-4447-be81-5052fd205a3a	7d06d273-5260-401e-a91d-4132e855687a
+a6b780e8-918a-4efb-b39e-dd2b16c769bd	c9ca8b28-7467-4740-8387-db5d7bd4e44f
+bcf35a54-041a-4234-aeb9-965cfc63cb95	c9ca8b28-7467-4740-8387-db5d7bd4e44f
 \.
 
 
@@ -1835,5 +1937,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT SELECT ON TABL
 -- PostgreSQL database dump complete
 --
 
-\unrestrict dgNDjj0nOK5pMwxsf2zOzeTI7sT8eYjmSIObVVGoqH7qScLJve6bN38XSkRt4pI
+\unrestrict E8s2dU0wTZHJhzFRWZZmk1EdOW1DAcxNwkSUY5uPs6cCPhwWKNVikQcww4qfgSv
 
