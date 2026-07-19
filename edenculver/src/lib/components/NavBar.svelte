@@ -1,9 +1,15 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.svg";
 	import NavItem from "$lib/components/NavItem.svelte";
+
+	interface Props {
+		classes?: string;
+	}
+
+	let { classes = "border-b border-black dark:border-white flex flex-wrap" }: Props = $props();
 </script>
 
-<nav class="border-b border-black dark:border-white flex flex-wrap">
+<nav class={classes}>
 	<NavItem title="Home" href="/" />
 	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />

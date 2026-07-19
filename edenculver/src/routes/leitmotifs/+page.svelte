@@ -1,7 +1,9 @@
 <script lang="ts">
 	import * as d3 from "d3";
+	import config_active from "$lib/assets/config_active.png";
+	import config_hover from "$lib/assets/config_hover.png";
+	import config_inactive from "$lib/assets/config_inactive.png";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
-	import meatball from "$lib/assets/meatball.svg";
 	import NavBar from "$lib/components/NavBar.svelte";
 	import { onMount } from "svelte";
 	import SongInfo from "$lib/components/SongInfo.svelte";
@@ -63,7 +65,7 @@
 	// simulation magic numbers
 	let xStrength = $state(0.094);
 	let yStrength = $state(0.162);
-	const songRadius = 6;
+	const songRadius = 5;
 	const alphaDecay = 0.02;
 	const reheatAlpha = 0.5;
 	const collideIterations = 1;
@@ -158,7 +160,9 @@
 			.selectAll()
 			.data(links)
 			.join("line")
-			.attr("class", "stroke-[1.2] stroke-gray-800 dark:stroke-gray-300");
+			.attr("class", "stroke-[1.2] stroke-utdrlink")
+			.attr("data-source", (d) => d.source.id)
+			.attr("data-target", (d) => d.target.id);
 
 		// draw song nodes
 		const vSongs = svg
@@ -245,12 +249,18 @@
 
 	$effect(() => {
 		// remove highlights
-		document.querySelectorAll(".animate-highlight").forEach((d) => {
-			d.classList.remove("animate-highlight");
+		document.querySelectorAll(".animate-highlightnode, .animate-highlightlink").forEach((el) => {
+			el.classList.remove("animate-highlightnode", "animate-highlightlink");
 		});
-		// highlight selected node
+
+		// highlight selected node and links
 		if (selectedNodeType) {
-			document.querySelector(`[id='${selectedNode.id}']`)?.classList.add("animate-highlight");
+			document.querySelector(`[id='${selectedNode.id}']`)?.classList.add("animate-highlightnode");
+			document
+				.querySelectorAll(`[data-source='${selectedNode.id}'], [data-target='${selectedNode.id}']`)
+				?.forEach((el) => {
+					el.classList.add("animate-highlightlink");
+				});
 		}
 	});
 
@@ -323,7 +333,7 @@
 </script>
 
 <div class="h-dvh flex flex-col">
-	<NavBar />
+	<NavBar classes="border-b-2 border-utdrborder flex flex-wrap" />
 	<div class="min-h-0 flex-1 flex">
 		<div class="w-[20vw] min-w-70 max-w-100 min-h-0 flex-1 flex flex-col gap-3">
 			{#if selectedNodeType === "l"}
@@ -348,7 +358,7 @@
 					gameTitle={selectedNode.gameTitle}
 					trackNumber={selectedNode.trackNumber}
 				/>
-				<div class="min-h-0 p-4 bg-gray-200 dark:bg-gray-950 flex flex-col gap-5 overflow-y-auto">
+				<div class="min-h-0 p-4 bg-utdrbg flex flex-col gap-5 overflow-y-auto">
 					{#if linkedNodes().length}
 						{#each linkedNodes() as linkedLeitmotif}
 							{#if linkedLeitmotif.subleitmotifs}
@@ -429,7 +439,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Leitmotif:</p>
 					<select
-						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-900"
+						class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive w-full p-2"
 						bind:value={dropdownSelectedLeitmotif}
 					>
 						<option value="x">---</option>
@@ -441,7 +451,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Song:</p>
 					<select
-						class="rounded-sm w-full p-2 bg-gray-300 dark:bg-gray-900"
+						class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive w-full p-2"
 						bind:value={dropdownSelectedSong}
 					>
 						<option value="x">---</option>
@@ -452,25 +462,29 @@
 				</label>
 			</div>
 		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-x-utdrborder bg-gray-200 dark:bg-gray-950 flex-1"></svg>
-		<div class="m-3 mr-4 flex flex-col gap-1 items-start">
+		<svg bind:this={svgElement} class="border-x-2 border-utdrborder flex-1"></svg>
+		<div class="m-3 flex flex-col gap-1 items-start">
 			<div class="relative">
 				<button
-					class={"rounded-sm w-8 p-2 hover:bg-gray-300 dark:hover:bg-gray-900" +
-						(menuHidden ? "" : " bg-gray-300 dark:bg-gray-900")}
+					class="[image-rendering:pixelated]"
 					title="Simulation parameters"
 					onclick={toggleMenu}
+					style="background: url({config_hover});"
 				>
-					<img class="dark:invert" src={meatball} alt="Meatball menu." />
+					<img
+						class="hover:opacity-0 [image-rendering:pixelated]"
+						src={menuHidden ? config_inactive : config_active}
+						alt="Config menu."
+					/>
 				</button>
 				<div
-					class={"absolute right-0 border-2 border-utdrborder p-3 bg-white dark:bg-black flex flex-col gap-2 items-right" +
+					class={"absolute right-0 border-2 border-white p-3 bg-black flex flex-col gap-2 items-right" +
 						(menuHidden ? " hidden" : "")}
 				>
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						X force strength:
 						<input
-							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-900"
+							class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive px-2 py-1"
 							type="number"
 							min="0"
 							max="1"
@@ -481,7 +495,7 @@
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						Y force strength:
 						<input
-							class="rounded-sm px-2 py-1 bg-gray-300 dark:bg-gray-900"
+							class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive px-2 py-1"
 							type="number"
 							min="0"
 							max="1"

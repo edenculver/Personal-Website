@@ -18,21 +18,41 @@
 	--color-svwind: #FF9200;
 
 	/* leitmotifs */
-	--color-utdrborder: #614E6B;
+	/* from Dark World menu */
+	--color-utdrborder: #332033;
+	--color-utdrmenuactive: #FFC90E;
+	--color-utdrmenuinactive: #614E6B;
+	/* from battle box */
+	--color-utdrlink: #00C000;
+	/* currently from kris's outline, to be replaced */
+	--color-utdrbg: #0B0B3B;
+	/*  */
 	--color-utdrut: #A349A4;
-	--color-utdrch1: #851053;
+	/* from Field trees */
+	--color-utdrch1: #E02040;
+	/* from Cyber Field floor */
 	--color-utdrch2: #31D989;
+	/* from Tenna's tie */
 	--color-utdrch3: #FEF960;
+	/*  */
 	--color-utdrch4: #526AF3;
+	/*  */
 	--color-utdrch5: #FF8DFF;
-	--color-utdrch6: #FFFFFF;
-	--color-utdrch7: #FFFFFF;
-	--animate-highlight: highlight 800ms linear infinite;
+	--color-utdrch6: white;
+	--color-utdrch7: white;
+	--animate-highlightnode: highlightnode 900ms linear infinite;
+	--animate-highlightlink: highlightlink 900ms linear infinite;
 
-	@keyframes highlight {
+	@keyframes highlightnode {
 		50% {
 			fill: white;
 			filter: drop-shadow(0 0 8px white);
+		}
+	}
+
+	@keyframes highlightlink {
+		50% {
+			stroke: white;
 		}
 	}
 
