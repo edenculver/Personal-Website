@@ -61,7 +61,3 @@
 	--color-mcdarkgray: #4C4C4C;
 	--color-mcgreen: #218306;
 }
-
-html {
-	@apply dark:bg-black dark:text-white;
-}
