@@ -439,7 +439,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Leitmotif:</p>
 					<select
-						class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive w-full p-2"
+						class="border-2 border-utdrinactive hover:border-utdractive w-full p-2"
 						bind:value={dropdownSelectedLeitmotif}
 					>
 						<option value="x">---</option>
@@ -451,7 +451,7 @@
 				<label class="flex items-center">
 					<p class="w-28">Song:</p>
 					<select
-						class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive w-full p-2"
+						class="border-2 border-utdrinactive hover:border-utdractive w-full p-2"
 						bind:value={dropdownSelectedSong}
 					>
 						<option value="x">---</option>
@@ -484,7 +484,7 @@
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						X force strength:
 						<input
-							class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive px-2 py-1"
+							class="border-2 border-utdrinactive hover:border-utdractive px-2 py-1"
 							type="number"
 							min="0"
 							max="1"
@@ -495,7 +495,7 @@
 					<label class="flex items-center gap-2 whitespace-nowrap">
 						Y force strength:
 						<input
-							class="border-2 border-utdrmenuinactive hover:border-utdrmenuactive px-2 py-1"
+							class="border-2 border-utdrinactive hover:border-utdractive px-2 py-1"
 							type="number"
 							min="0"
 							max="1"

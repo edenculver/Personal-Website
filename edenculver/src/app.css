@@ -20,24 +20,19 @@
 	/* leitmotifs */
 	/* from Dark World menu */
 	--color-utdrborder: #332033;
-	--color-utdrmenuactive: #FFC90E;
-	--color-utdrmenuinactive: #614E6B;
-	/* from battle box */
-	--color-utdrlink: #00C000;
-	/* currently from kris's outline, to be replaced */
-	--color-utdrbg: #0B0B3B;
+	--color-utdractive: #FFC90E;
+	--color-utdrinactive: #614E6B;
+	--color-utdrlink: white;
+	/* from dark fountain, when you're near one */
+	--color-utdrbg: #27293F;
 	/*  */
 	--color-utdrut: #A349A4;
-	/* from Field trees */
-	--color-utdrch1: #E02040;
-	/* from Cyber Field floor */
-	--color-utdrch2: #31D989;
-	/* from Tenna's tie */
-	--color-utdrch3: #FEF960;
-	/*  */
-	--color-utdrch4: #526AF3;
-	/*  */
-	--color-utdrch5: #FF8DFF;
+	/* from Recruits menu */
+	--color-utdrch1: purple;
+	--color-utdrch2: aqua;
+	--color-utdrch3: green;
+	--color-utdrch4: blue;
+	--color-utdrch5: yellow;
 	--color-utdrch6: white;
 	--color-utdrch7: white;
 	--animate-highlightnode: highlightnode 900ms linear infinite;
@@ -52,7 +47,7 @@
 
 	@keyframes highlightlink {
 		50% {
-			stroke: white;
+			stroke: yellow;
 		}
 	}
 
