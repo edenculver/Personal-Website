@@ -97,7 +97,7 @@
 <StandardPageLayout>
 	<div class="mx-16 my-10 flex flex-col gap-8 items-start">
 		<h1 class="text-2xl font-bold">Chord Builder</h1>
-		<div class="grid grid-cols-[auto_auto] gap-8">
+		<div class="grid lg:grid-cols-[auto_auto] gap-8">
 			<Card>
 				<h2 class="text-xl font-bold">Root</h2>
 				<table>
@@ -107,7 +107,7 @@
 								{#each noteNames as noteName}
 									<td class="border border-black dark:border-white">
 										<button
-											class={"w-15 p-3 " +
+											class={"w-full p-3 " +
 												(root === noteName + accidental
 													? "bg-blue-500"
 													: wrapPitch(getPitch(root)) ===
@@ -247,7 +247,7 @@
 					</div>
 				{/if}
 			</Card>
-			<div class="col-span-2">
+			<div class="lg:col-span-2">
 				<Card>
 					<p class="text-xl font-bold">
 						{chordNames[chordStack as keyof typeof chordNames].replaceAll("R", root.replace("♮", ""))}

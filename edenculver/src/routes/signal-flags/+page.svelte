@@ -51,7 +51,7 @@
 
 <div class="h-dvh flex flex-col">
 	<NavBar />
-	<div class="bg-white dark:bg-black">
+	<div class="bg-white dark:bg-black overflow-x-auto">
 		<div class="p-10 flex flex-wrap gap-10">
 			<div class="mt-5 flex flex-col gap-5">
 				<h1 class="text-xl font-bold">
@@ -139,7 +139,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="p-10 flex gap-20 flex-1" style="background-color: {background};">
+	<div class="p-10 flex gap-20 flex-1 overflow-x-auto" style="background-color: {background};">
 		{#each parseMessage() as word}
 			<div class="flex flex-col gap-5">
 				{#each word as char}

@@ -101,7 +101,7 @@
 <audio bind:this={audioPlayer} src={click_stereo}></audio>
 <div class="h-dvh flex flex-col">
 	<NavBar />
-	<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col flex-1">
+	<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col flex-1 overflow-x-auto">
 		<div class="bg-white flex-1 mx-auto text-center w-300">
 			<h1 class="p-10 bg-black text-2xl text-white font-bold">Which Minecraft Villager Are You?</h1>
 			<div class="p-10 text-black flex flex-col gap-5 items-center">

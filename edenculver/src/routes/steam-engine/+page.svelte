@@ -163,7 +163,7 @@
 <StandardPageLayout>
 	<div class="mx-16 my-10 flex flex-col gap-6 items-start">
 		<h1 class="text-2xl font-bold">Minecraft Create Mod Steam Engine Simulator</h1>
-		<div class="grid grid-cols-[1fr_auto] gap-8">
+		<div class="grid xl:grid-cols-[1fr_auto] gap-8">
 			<Card>
 				<h2 class="text-xl font-bold">Size</h2>
 				<div class="flex gap-8">
