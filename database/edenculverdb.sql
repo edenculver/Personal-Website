@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict E8s2dU0wTZHJhzFRWZZmk1EdOW1DAcxNwkSUY5uPs6cCPhwWKNVikQcww4qfgSv
+\restrict o3QsV6ETwniaqnu7tb780n6sMQXwcvMm3NaKxwZoNyaRTKNYFYosYAnXeEjPez0
 
 -- Dumped from database version 13.23 (Raspbian 13.23-0+deb11u1)
 -- Dumped by pg_dump version 13.23 (Raspbian 13.23-0+deb11u1)
@@ -301,10 +301,10 @@ b404c069-0951-4cc2-acec-857b108b6110	Roots	\N
 398aadf4-f85e-499d-819c-dbe985b25c04	Flowery	\N
 ce616089-4d35-43a1-a982-0f0f334e99d7	Pink	\N
 48393850-3546-41b1-b865-5d363ec09f70	Flower Foyer	\N
-ace9a60b-60ce-43f8-8329-b87edbc66d9e	Flowers	The leitmotif of the six colored flowers (not including Flowery, who has his own leitmotif).
 bd27c47f-c38f-4dfc-9cf0-dcd779e6ac71	Friends	\N
 8b2c113b-af84-4e03-a99c-32ff3a788237	Jingle Bells	\N
 a0959249-99f1-46f7-be02-0593629e8bc0	Death by Glamour	\N
+ace9a60b-60ce-43f8-8329-b87edbc66d9e	Flowers	The leitmotif of the six colored flowers (not including Flowery, who has his own leitmotif). The Chapter 5 whistle jingle is a snippet of Flowers B.
 \.
 
 
@@ -1320,10 +1320,10 @@ fcc36e8a-101e-47af-a780-98aebbb717fb	25ba7daa-308e-40e3-b25a-b429c273a277	Runnin
 fe736301-a72d-4bd8-a7f9-2e3e5cb31763	25ba7daa-308e-40e3-b25a-b429c273a277	Dreamwatchers	36
 cd1b745c-1c9c-439c-870e-ea6ea574baa8	25ba7daa-308e-40e3-b25a-b429c273a277	Weak Flowers	37
 2abefa9d-cf23-4672-8f29-216bba94ae7b	25ba7daa-308e-40e3-b25a-b429c273a277	Walking Home	38
-9c56008a-85da-445d-9fb5-d31d892a73e9	25ba7daa-308e-40e3-b25a-b429c273a277	Scarlet Forest (From "DELTARUNE Piano Collections Vol. 1") (Credits Version)	39
 c4483568-1502-4fe1-8570-2a7326aa64e1	25ba7daa-308e-40e3-b25a-b429c273a277	Goodnight, Sweet Prince	40
 6dd5ee9c-2bf0-4970-938e-07865e4cb04f	25ba7daa-308e-40e3-b25a-b429c273a277	Cutie Mew Mew Magic feat. Camellia	32
 7d06d273-5260-401e-a91d-4132e855687a	25ba7daa-308e-40e3-b25a-b429c273a277	Flower Man feat. Camellia	34
+9c56008a-85da-445d-9fb5-d31d892a73e9	25ba7daa-308e-40e3-b25a-b429c273a277	Field of Hopes and Dreams (From "DELTARUNE Piano Collections Vol. 1") (Credits Version)	39
 \.
 
 
@@ -1638,6 +1638,7 @@ df067690-75b0-4f8a-99b3-7aa5341a0be2	09a12576-c631-4148-a01a-b0e4dad69852
 ad3f7dca-663b-4447-be81-5052fd205a3a	7d06d273-5260-401e-a91d-4132e855687a
 a6b780e8-918a-4efb-b39e-dd2b16c769bd	c9ca8b28-7467-4740-8387-db5d7bd4e44f
 bcf35a54-041a-4234-aeb9-965cfc63cb95	c9ca8b28-7467-4740-8387-db5d7bd4e44f
+df067690-75b0-4f8a-99b3-7aa5341a0be2	45918706-7867-4838-bc3f-461590da8ac6
 \.
 
 
@@ -1937,5 +1938,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT SELECT ON TABL
 -- PostgreSQL database dump complete
 --
 
-\unrestrict E8s2dU0wTZHJhzFRWZZmk1EdOW1DAcxNwkSUY5uPs6cCPhwWKNVikQcww4qfgSv
+\unrestrict o3QsV6ETwniaqnu7tb780n6sMQXwcvMm3NaKxwZoNyaRTKNYFYosYAnXeEjPez0
 
