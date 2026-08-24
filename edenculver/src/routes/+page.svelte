@@ -40,6 +40,13 @@
 				pixelated={true}
 			/>
 			<LinkCard
+				title="Vintage Story Alloy Calculator"
+				description=""
+				href="/alloy-calculator"
+				src=""
+				alt=""
+			/>
+			<LinkCard
 				title="Signal Flags Translator"
 				description="Translate messages into International Code of Signals (INTERCO) flags."
 				href="/signal-flags"

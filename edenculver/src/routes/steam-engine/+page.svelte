@@ -3,7 +3,7 @@
 	import blaze from "$lib/assets/blaze.png";
 	import blaze_idle from "$lib/assets/blaze_idle.png";
 	import blaze_super from "$lib/assets/blaze_super.png";
-	import range from "$lib/range";
+	import { range } from "$lib/util";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	// size

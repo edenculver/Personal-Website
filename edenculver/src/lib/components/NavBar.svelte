@@ -14,6 +14,7 @@
 	<NavItem title="IP Calc" href="/ip-calculator" />
 	<NavItem title="Battle Packs" href="/battle-packs" />
 	<NavItem title="UT/DR Leitmotifs" href="/leitmotifs" />
+	<NavItem title="VS Alloy Calc" href="/alloy-calculator" />
 	<NavItem title="Signal Flags" href="/signal-flags" />
 	<NavItem title="Steam Engine Sim" href="/steam-engine" />
 	<NavItem title="SV Fish" href="/fish" />
