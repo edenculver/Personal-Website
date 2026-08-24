@@ -105,7 +105,11 @@
 
 	// reset to middle of range
 	function resetIngredients() {
-		ingrAmounts = selectedAlloy.ingredients.map((ingr) => ((ingr.minPct + ingr.maxPct) * totalBits) / 200);
+		ingrAmounts = selectedAlloy.ingredients.map((ingr) =>
+			Math.round(((ingr.minPct + ingr.maxPct) * totalBits) / 200),
+		);
+		// rebalance to fix rounding errors
+		balanceIngredients(ingrAmounts.length - 1);
 	}
 
 	// try to preserve percentages
