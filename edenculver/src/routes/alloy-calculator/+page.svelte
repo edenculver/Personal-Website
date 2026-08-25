@@ -1,7 +1,6 @@
 <script lang="ts">
-	import AlloyBar from "$lib/components/AlloyBar.svelte";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 	import { clamp, range } from "$lib/util";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 	import { untrack } from "svelte";
 
 	const alloys = [
@@ -82,6 +81,7 @@
 	let oldTotalBits = 0;
 
 	let ingrAmounts = $state<number[]>([]);
+	let stacks = $derived(getStacks());
 
 	// reset ingredients when alloy is updated
 	$effect(() => {
@@ -103,20 +103,39 @@
 		return Math.floor((maxPct / 100) * totalBits);
 	}
 
+	function getStacks() {
+		let stacks = [];
+		for (let i = 0; i < selectedAlloy.ingredients.length; i++) {
+			let amount = ingrAmounts[i];
+
+			// add full stacks
+			while (amount >= 128) {
+				stacks.push({ metal: selectedAlloy.ingredients[i].metal, size: 128 });
+				amount -= 128;
+			}
+
+			// add remainder
+			if (amount > 0) {
+				stacks.push({ metal: selectedAlloy.ingredients[i].metal, size: ingrAmounts[i] % 128 });
+			}
+		}
+		return stacks;
+	}
+
 	// reset to middle of range
 	function resetIngredients() {
 		ingrAmounts = selectedAlloy.ingredients.map((ingr) =>
 			Math.round(((ingr.minPct + ingr.maxPct) * totalBits) / 200),
 		);
 		// rebalance to fix rounding errors
-		balanceIngredients(ingrAmounts.length - 1);
+		balanceIngredients(0);
 	}
 
 	// try to preserve percentages
 	function changeIngrAmounts() {
 		// failsafe to stop intial trigger
 		if (oldTotalBits !== 0) {
-			ingrAmounts = ingrAmounts.map((ingr) => Math.round((ingr / oldTotalBits) * totalBits));
+			ingrAmounts = ingrAmounts.map((amt) => Math.round((amt / oldTotalBits) * totalBits));
 			// rebalance to fix rounding errors
 			balanceIngredients(ingrAmounts.length - 1);
 		}
@@ -163,7 +182,7 @@
 			<label>
 				<p>Amount</p>
 				<select bind:value={selectedAmount}>
-					{#each range(1, 20) as i}
+					{#each range(1, 25) as i}
 						<option value={i}>{i} ingots ({i * 20} bits)</option>
 					{/each}
 				</select>
@@ -189,6 +208,20 @@
 		</div>
 
 		<h2>Crucible</h2>
-		x x x x
+		<div class="flex gap-4">
+			{#each stacks as s, i}
+				<div
+					class={"border p-2 w-30 flex flex-col gap-4 items-center " +
+						(i > 3 ? "border-red-500" : "border-white")}
+				>
+					<p>{s.metal}</p>
+					<img class="w-6" src="/images/alloy-calculator/{s.metal} nugget.png" alt="{s.metal} nugget." />
+					<p>{s.size}</p>
+				</div>
+			{/each}
+		</div>
+		{#if stacks.length > 4}
+			<p class="text-red-500">Crucibles only have 4 slots.</p>
+		{/if}
 	</div>
 </StandardPageLayout>
