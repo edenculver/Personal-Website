@@ -42,10 +42,11 @@
 			/>
 			<LinkCard
 				title="Vintage Story Alloy Calculator"
-				description=""
+				description="Calculate how much of each metal you need to make the alloy you want in Vintage Story."
 				href="/alloy-calculator"
-				src="/images/home/Vintage Story.png"
-				alt="Vintage Story logo. A tree with a clock in it on a patch of grass, with metal gears underground."
+				src="/images/alloy-calculator/Brass ingot.png"
+				alt="Brass ingot item from Vintage Story."
+				pixelated={true}
 			/>
 			<LinkCard
 				title="Signal Flags Translator"
