@@ -4,9 +4,9 @@
 	--font-sans: Verdana, Tahoma, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
 
-	/* ip-calculator */
-	--color-terminalred: #FF0000;
-	--color-terminalgreen: #00FF00;
+	/* alloy-calculator */
+	--color-vsbg: #FDE0C0;
+	--color-vsborder: #29221C;
 
 	/* fish */
 	--color-svtan: #F9BA66;
@@ -16,6 +16,10 @@
 	--color-svsky: #80EAFF;
 	--color-svsun: #FEFF00;
 	--color-svwind: #FF9200;
+
+	/* ip-calculator */
+	--color-terminalred: #FF0000;
+	--color-terminalgreen: #00FF00;
 
 	/* leitmotifs */
 	/* from Dark World menu */

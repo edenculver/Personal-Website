@@ -12,6 +12,7 @@
 		<h1 class="text-3xl font-bold">EdenCulver.net</h1>
 	</header>
 	<NavBar />
+
 	<div class="mx-16 my-10 flex flex-col gap-4 flex-1">
 		<h2 class="text-xl font-bold">About</h2>
 		<p>Hi! I'm Eden (she/her). Welcome to my website! I make things that I think are neat.</p>
@@ -43,8 +44,8 @@
 				title="Vintage Story Alloy Calculator"
 				description=""
 				href="/alloy-calculator"
-				src=""
-				alt=""
+				src="/images/home/Vintage Story.png"
+				alt="Vintage Story logo. A tree with a clock in it on a patch of grass, with metal gears underground."
 			/>
 			<LinkCard
 				title="Signal Flags Translator"
@@ -84,6 +85,7 @@
 				alt="A whole note triad."
 			/>
 		</BigGrid>
+
 		<h2 class="mt-8 text-xl font-bold">Links</h2>
 		<BigGrid>
 			<LinkCard
@@ -105,6 +107,7 @@
 				alt="Favicon of gmail.com."
 			/>
 		</BigGrid>
+
 		<h2 class="mt-8 text-xl font-bold">Cool stuff other people have made</h2>
 		<BigGrid>
 			<LinkCard
@@ -151,5 +154,6 @@
 			/>
 		</BigGrid>
 	</div>
+
 	<PrivacyPolicy />
 </div>

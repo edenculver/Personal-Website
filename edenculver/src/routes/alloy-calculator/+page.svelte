@@ -2,6 +2,8 @@
 	import { clamp, range } from "$lib/util";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 	import { untrack } from "svelte";
+	import VsItemSlot from "$lib/components/VsItemSlot.svelte";
+	import { quantile } from "d3";
 
 	const alloys = [
 		{
@@ -73,9 +75,7 @@
 
 	// inputs
 	let selectedAlloyName = $state();
-	let selectedAlloy = $derived(
-		alloys.find((a) => a.alloy === selectedAlloyName) ?? { alloy: "DEFAULT", ingredients: [] },
-	);
+	let selectedAlloy = $derived(alloys.find((a) => a.alloy === selectedAlloyName) ?? alloys[0]);
 	let selectedAmount = $state<number>();
 	let totalBits = $derived((selectedAmount ?? 0) * 20);
 	let oldTotalBits = 0;
@@ -170,18 +170,25 @@
 	<div class="mx-16 my-10 flex flex-col gap-6 items-start">
 		<h1 class="text-2xl font-bold">Vintage Story Alloy Calculator</h1>
 
-		<div class="grid grid-cols-2 gap-6">
-			<label>
-				<p>Alloy</p>
-				<select bind:value={selectedAlloyName}>
+		<div class="border dark:border-white rounded-sm p-6 flex gap-8">
+			<img
+				class="w-12 my-auto [image-rendering:pixelated]"
+				src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
+				alt="{selectedAlloy.alloy} ingot."
+			/>
+
+			<label class="flex flex-col gap-2">
+				<p class="font-bold">Target Alloy</p>
+				<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAlloyName}>
 					{#each alloys as a}
 						<option>{a.alloy}</option>
 					{/each}
 				</select>
 			</label>
-			<label>
-				<p>Amount</p>
-				<select bind:value={selectedAmount}>
+
+			<label class="flex flex-col gap-2">
+				<p class="font-bold">Amount</p>
+				<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAmount}>
 					{#each range(1, 25) as i}
 						<option value={i}>{i} ingots ({i * 20} bits)</option>
 					{/each}
@@ -189,39 +196,48 @@
 			</label>
 		</div>
 
-		<p>Ratios</p>
-		<div class="grid grid-cols-[auto_auto_auto_auto] gap-6">
-			{#each selectedAlloy.ingredients as ingr, i}
-				<img class="w-6" src="/images/alloy-calculator/{ingr.metal} bits.png" alt="{ingr.metal} bits." />
-				<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
-				<input
-					type="range"
-					min={getMinBits(ingr.minPct)}
-					max={getMaxBits(ingr.maxPct)}
-					bind:value={ingrAmounts[i]}
-					oninput={() => {
-						balanceIngredients(i);
-					}}
-				/>
-				<p>{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
-			{/each}
+		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
+			<p class="font-bold">Ratios</p>
+
+			<div class="grid grid-cols-[auto_auto_auto_auto] gap-5 items-center">
+				{#each selectedAlloy.ingredients as ingr, i}
+					<img
+						class="w-8 [image-rendering:pixelated]"
+						src="/images/alloy-calculator/{ingr.metal} bits.png"
+						alt="{ingr.metal} bits."
+					/>
+					<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
+					<input
+						type="range"
+						min={getMinBits(ingr.minPct)}
+						max={getMaxBits(ingr.maxPct)}
+						bind:value={ingrAmounts[i]}
+						oninput={() => {
+							balanceIngredients(i);
+						}}
+					/>
+					<p>{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
+				{/each}
+			</div>
 		</div>
 
-		<h2>Crucible</h2>
-		<div class="flex gap-4">
-			{#each stacks as s, i}
-				<div
-					class={"border p-2 w-30 flex flex-col gap-4 items-center " +
-						(i > 3 ? "border-red-500" : "border-white")}
-				>
-					<p>{s.metal}</p>
-					<img class="w-6" src="/images/alloy-calculator/{s.metal} nugget.png" alt="{s.metal} nugget." />
-					<p>{s.size}</p>
-				</div>
-			{/each}
+		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
+			<p class="font-bold">Crucible</p>
+
+			<div class="flex gap-4">
+				{#each stacks as s}
+					<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} />
+				{/each}
+				{#if stacks.length < 4}
+					{#each range(stacks.length, 3)}
+						<VsItemSlot item="" quantity={0} />
+					{/each}
+				{/if}
+			</div>
+
+			{#if stacks.length > 4}
+				<p class="text-red-500">Crucibles only have 4 slots.</p>
+			{/if}
 		</div>
-		{#if stacks.length > 4}
-			<p class="text-red-500">Crucibles only have 4 slots.</p>
-		{/if}
 	</div>
 </StandardPageLayout>
