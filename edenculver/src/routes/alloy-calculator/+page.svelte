@@ -167,18 +167,18 @@
 </script>
 
 <StandardPageLayout>
-	<div class="mx-16 my-10 flex flex-col gap-6 items-start">
-		<h1 class="text-2xl font-bold">Vintage Story Alloy Calculator</h1>
+	<div class="m-6 md:mx-16 md:my-10 max-w-3xl text-sm md:text-base flex flex-col gap-6">
+		<h1 class="mx-auto md:mx-0 text-lg md:text-2xl font-bold">Vintage Story Alloy Calculator</h1>
 
-		<div class="border dark:border-white rounded-sm p-6 flex gap-8">
+		<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-8">
 			<img
-				class="w-12 my-auto [image-rendering:pixelated]"
+				class="w-8 md:w-12 my-auto object-contain [image-rendering:pixelated]"
 				src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
 				alt="{selectedAlloy.alloy} ingot."
 			/>
 
 			<label class="flex flex-col gap-2">
-				<p class="font-bold">Target Alloy</p>
+				<p class="font-bold">Target alloy</p>
 				<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAlloyName}>
 					{#each alloys as a}
 						<option>{a.alloy}</option>
@@ -197,34 +197,39 @@
 		</div>
 
 		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
-			<p class="font-bold">Ratios</p>
+			<p class="font-bold">Ingredient ratios</p>
 
-			<div class="grid grid-cols-[auto_auto_auto_auto] gap-5 items-center">
+			<div class="flex flex-col gap-4">
 				{#each selectedAlloy.ingredients as ingr, i}
-					<img
-						class="w-8 [image-rendering:pixelated]"
-						src="/images/alloy-calculator/{ingr.metal} bits.png"
-						alt="{ingr.metal} bits."
-					/>
-					<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
-					<input
-						type="range"
-						min={getMinBits(ingr.minPct)}
-						max={getMaxBits(ingr.maxPct)}
-						bind:value={ingrAmounts[i]}
-						oninput={() => {
-							balanceIngredients(i);
-						}}
-					/>
-					<p>{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
+					<div class="flex gap-6">
+						<img
+							class="w-6 md:w-8 object-contain [image-rendering:pixelated]"
+							src="/images/alloy-calculator/{ingr.metal} bits.png"
+							alt="{ingr.metal} bits."
+						/>
+						<p class="w-38">{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
+						<input
+							class="flex-1"
+							type="range"
+							min={getMinBits(ingr.minPct)}
+							max={getMaxBits(ingr.maxPct)}
+							bind:value={ingrAmounts[i]}
+							oninput={() => {
+								balanceIngredients(i);
+							}}
+						/>
+						<p class="w-36 text-right">
+							{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)
+						</p>
+					</div>
 				{/each}
 			</div>
 		</div>
 
 		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
-			<p class="font-bold">Crucible</p>
+			<p class="font-bold">Crucible inputs required</p>
 
-			<div class="flex gap-4">
+			<div class="flex flex-wrap gap-4">
 				{#each stacks as s}
 					<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} />
 				{/each}
