@@ -10,11 +10,11 @@
 
 <div class="flex flex-col items-center">
 	<div
-		class="mb-2 border-5 border-vsborder w-16 md:w-24 h-16 md:h-24 bg-vsbg flex flex-col gap-6 items-center justify-center"
+		class="mb-2 border-3 lg:border-5 border-vsborder w-16 lg:w-24 h-16 lg:h-24 bg-vsbg flex flex-col gap-6 items-center justify-center"
 	>
 		{#if quantity > 0}
 			<img
-				class="w-8 md:w-12 [image-rendering:pixelated]"
+				class="w-8 lg:w-12 [image-rendering:pixelated]"
 				src="/images/alloy-calculator/{item}.png"
 				alt="{item}."
 			/>

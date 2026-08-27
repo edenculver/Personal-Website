@@ -167,12 +167,12 @@
 </script>
 
 <StandardPageLayout>
-	<div class="m-6 md:mx-16 md:my-10 max-w-3xl text-sm md:text-base flex flex-col gap-6">
-		<h1 class="mx-auto md:mx-0 text-lg md:text-2xl font-bold">Vintage Story Alloy Calculator</h1>
+	<div class="mx-auto lg:mx-16 my-6 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6">
+		<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl font-bold">Vintage Story Alloy Calculator</h1>
 
 		<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-8">
 			<img
-				class="w-8 md:w-12 my-auto object-contain [image-rendering:pixelated]"
+				class="w-8 lg:w-12 my-auto object-contain [image-rendering:pixelated]"
 				src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
 				alt="{selectedAlloy.alloy} ingot."
 			/>
@@ -203,11 +203,12 @@
 				{#each selectedAlloy.ingredients as ingr, i}
 					<div class="flex gap-6">
 						<img
-							class="w-6 md:w-8 object-contain [image-rendering:pixelated]"
+							class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
 							src="/images/alloy-calculator/{ingr.metal} bits.png"
 							alt="{ingr.metal} bits."
 						/>
-						<p class="w-38">{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
+						<p class="w-20">{ingr.metal}</p>
+						<p class="w-20 text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
 						<input
 							class="flex-1"
 							type="range"

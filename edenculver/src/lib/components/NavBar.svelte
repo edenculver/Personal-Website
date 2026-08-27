@@ -6,7 +6,7 @@
 		classes?: string;
 	}
 
-	let { classes = "border-b border-black dark:border-white flex flex-wrap" }: Props = $props();
+	let { classes = "flex overflow-x-auto" }: Props = $props();
 </script>
 
 <nav class={classes}>
@@ -20,5 +20,10 @@
 	<NavItem title="SV Fish" href="/fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chord-builder" />
-	<img class="ml-auto mr-2 w-6" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
+	<div class="border-b border-black dark:border-white flex-1"></div>
+	<img
+		class="border-b border-black dark:border-white w-8 pr-2"
+		src={favicon}
+		alt="Icon of two sandhill cranes on a blue hexagon."
+	/>
 </nav>

@@ -10,10 +10,10 @@
 </script>
 
 <a
-	class="hover:bg-gray-500 duration-250 no-underline p-2 px-3 text-center text-sm text-black dark:text-white transition {page
+	class="border-black dark:border-white hover:bg-gray-500 duration-250 no-underline p-2 px-3 text-center text-xs lg:text-sm text-black dark:text-white transition whitespace-nowrap {page
 		.url.pathname === href
-		? 'bg-gray-500'
-		: null}"
+		? 'border-x border-t'
+		: 'border-b'}"
 	{href}
 >
 	{title}

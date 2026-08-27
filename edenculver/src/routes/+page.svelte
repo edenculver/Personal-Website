@@ -4,14 +4,14 @@
 	import LinkCard from "$lib/components/LinkCard.svelte";
 	import NavBar from "$lib/components/NavBar.svelte";
 	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 </script>
 
-<div class="h-dvh flex flex-col">
+<StandardPageLayout>
 	<header class="p-4 bg-black dark:bg-white flex items-center gap-4 text-white dark:text-black">
 		<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
 		<h1 class="text-3xl font-bold">EdenCulver.net</h1>
 	</header>
-	<NavBar />
 
 	<div class="mx-16 my-10 flex flex-col gap-4 flex-1">
 		<h2 class="text-xl font-bold">About</h2>
@@ -155,6 +155,4 @@
 			/>
 		</BigGrid>
 	</div>
-
-	<PrivacyPolicy />
-</div>
+</StandardPageLayout>
