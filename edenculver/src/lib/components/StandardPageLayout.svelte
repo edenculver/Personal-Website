@@ -7,7 +7,7 @@
 
 <div class="min-h-dvh flex flex-col">
 	<NavBar />
-	<div class="flex-1 overflow-x-auto">
+	<div class="flex-1">
 		{@render children()}
 	</div>
 	<PrivacyPolicy />

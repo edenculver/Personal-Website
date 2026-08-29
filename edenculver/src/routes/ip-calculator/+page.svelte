@@ -217,56 +217,64 @@
 </script>
 
 <StandardPageLayout>
-	<div class="mx-16 my-10 font-mono flex flex-col gap-6 items-start">
-		<h1 class="text-2xl font-bold">IP Calculator</h1>
-		<div class="flex">
+	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 text-sm lg:text-base font-mono flex flex-col gap-6 lg:items-start">
+		<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">IP Calculator</h1>
+
+		<div class="mx-auto lg:mx-0 grid grid-cols-2">
 			<button
-				class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
-					(mode === "sub" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
+				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen hover:text-black {mode ===
+				'sub'
+					? 'bg-terminalgreen text-black'
+					: 'text-terminalgreen'}"
 				onclick={() => (mode = "sub")}
 			>
 				Subnet Mode
 			</button>
 			<button
-				class={"bg-black border border-terminalgreen w-50 p-2 hover:bg-terminalgreen hover:text-black " +
-					(mode === "super" ? "bg-terminalgreen text-black" : "text-terminalgreen")}
+				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen hover:text-black {mode ===
+				'super'
+					? 'bg-terminalgreen text-black'
+					: 'text-terminalgreen'}"
 				onclick={() => (mode = "super")}
 			>
 				Supernet Mode
 			</button>
 		</div>
+
 		{#if mode === "sub"}
 			<label class="flex flex-col gap-1">
-				IP address with CIDR or mask:
+				<p>IP address with CIDR or mask:</p>
 				<input
-					class={"border w-100 p-3 " +
-						(invalidInput ? "border-terminalred text-terminalred" : "border-white text-terminalgreen")}
+					class="border w-full lg:w-100 p-3 {invalidInput
+						? 'border-terminalred text-terminalred'
+						: 'border-white text-terminalgreen'}"
 					type="text"
 					maxlength="100"
 					bind:value={inputAddress}
 				/>
 			</label>
-			<div class="grid grid-cols-2 gap-4">
+
+			<div class="grid grid-cols-[auto_auto] gap-4">
 				<button
-					class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
 					onclick={nextSubnet}
 				>
 					Next Subnet
 				</button>
 				<button
-					class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
 					onclick={incrementCidr}
 				>
 					CIDR +
 				</button>
 				<button
-					class="bg-black border border-terminalgreen w-45 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
 					onclick={previousSubnet}
 				>
 					Previous Subnet
 				</button>
 				<button
-					class="bg-black border border-terminalgreen w-25 p-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+					class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
 					onclick={decrementCidr}
 				>
 					CIDR -
@@ -275,13 +283,12 @@
 		{:else}
 			<div class="flex flex-col gap-4">
 				<label class="flex flex-col gap-1">
-					IP addresses with CIDR or mask:
+					<p>IP addresses with CIDR or mask:</p>
 					<textarea
 						id="inputAddresses"
-						class={"border w-100 p-3 " +
-							(invalidInput
-								? "border-terminalred text-terminalred"
-								: "border-white + text-terminalgreen")}
+						class="border w-full lg:w-100 p-3 {invalidInput
+							? 'border-terminalred text-terminalred'
+							: 'border-white + text-terminalgreen'}"
 						rows="4"
 						bind:value={inputAddresses}
 					></textarea>
@@ -294,23 +301,26 @@
 				<div class="text-terminalgreen ml-3 whitespace-pre-line">{summaryPrefixes}</div>
 			</div>
 		{/if}
-		<table>
-			<tbody>
-				{#if mode === "sub"}
-					<tr>
-						<td class="border border-gray-500 px-4 py-3 font-bold">IP Address</td>
-						<td class="border border-gray-500 px-4 py-3">{address}</td>
-					</tr>
-				{/if}
-				{#each tableRows as row}
-					<tr>
-						<td class="border border-gray-500 px-4 py-3 font-bold">{row.label}</td>
-						{#each row.cols as col}
-							<td class="border border-gray-500 px-4 py-3 whitespace-pre-line">{col}</td>
-						{/each}
-					</tr>
-				{/each}
-			</tbody>
-		</table>
+
+		<div class="overflow-x-auto">
+			<table>
+				<tbody>
+					{#if mode === "sub"}
+						<tr>
+							<td class="border border-gray-500 px-4 py-3 font-bold">IP Address</td>
+							<td class="border border-gray-500 px-4 py-3">{address}</td>
+						</tr>
+					{/if}
+					{#each tableRows as row}
+						<tr>
+							<td class="border border-gray-500 px-4 py-3 font-bold">{row.label}</td>
+							{#each row.cols as col}
+								<td class="border border-gray-500 px-4 py-3 whitespace-pre-line">{col}</td>
+							{/each}
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
 	</div>
 </StandardPageLayout>
