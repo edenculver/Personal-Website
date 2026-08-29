@@ -199,8 +199,34 @@
 		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6 lg:items-start">
 			<p class="font-bold">Ingredient ratios</p>
 
-			<div>
-				<table class="items-start">
+			<div class="flex sm:hidden flex-col gap-3">
+				{#each selectedAlloy.ingredients as ingr, i}
+					<div class="flex flex-wrap gap-2">
+						<img
+							class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
+							src="/images/alloy-calculator/{ingr.metal} bits.png"
+							alt="{ingr.metal} bits."
+						/>
+						<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
+						<p class="ml-auto text-right">
+							{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)
+						</p>
+					</div>
+					<input
+						class="mb-4"
+						type="range"
+						min={getMinBits(ingr.minPct)}
+						max={getMaxBits(ingr.maxPct)}
+						bind:value={ingrAmounts[i]}
+						oninput={() => {
+							balanceIngredients(i);
+						}}
+					/>
+				{/each}
+			</div>
+
+			<div class="hidden sm:block">
+				<table>
 					<tbody>
 						{#each selectedAlloy.ingredients as ingr, i}
 							<tr>
@@ -211,10 +237,10 @@
 										alt="{ingr.metal} bits."
 									/>
 								</td>
-								<td class="p-2 align-middle">
+								<td class="p-2">
 									<p>{ingr.metal}</p>
 								</td>
-								<td class="p-2 align-middle">
+								<td class="p-2">
 									<p class="text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
 								</td>
 								<td class="p-2">
