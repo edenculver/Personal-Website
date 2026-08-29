@@ -3,18 +3,21 @@
 		item: string;
 		itemName?: string;
 		quantity: number;
+		red?: boolean;
 	}
 
-	let { item, itemName = item, quantity }: Props = $props();
+	let { item, itemName = item, quantity, red = false }: Props = $props();
 </script>
 
 <div class="flex flex-col items-center">
 	<div
-		class="mb-2 border-3 lg:border-5 border-vsborder w-16 lg:w-24 h-16 lg:h-24 bg-vsbg flex flex-col gap-6 items-center justify-center"
+		class="mb-2 border-3 lg:border-4 {red
+			? 'border-red-500'
+			: 'border-vsborder'} w-16 lg:w-20 h-16 lg:h-20 bg-vsbg flex flex-col gap-6 items-center justify-center"
 	>
 		{#if quantity > 0}
 			<img
-				class="w-8 lg:w-12 [image-rendering:pixelated]"
+				class="w-8 lg:w-10 [image-rendering:pixelated]"
 				src="/images/alloy-calculator/{item}.png"
 				alt="{item}."
 			/>

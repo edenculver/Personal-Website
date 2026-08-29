@@ -167,10 +167,10 @@
 </script>
 
 <StandardPageLayout>
-	<div class="mx-auto lg:mx-16 my-6 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6">
-		<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl font-bold">Vintage Story Alloy Calculator</h1>
+	<div class="mx-auto lg:mx-16 my-4 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6">
+		<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">Vintage Story Alloy Calculator</h1>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-8">
+		<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-6">
 			<img
 				class="w-8 lg:w-12 my-auto object-contain [image-rendering:pixelated]"
 				src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
@@ -196,34 +196,51 @@
 			</label>
 		</div>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
+		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6 lg:items-start">
 			<p class="font-bold">Ingredient ratios</p>
 
-			<div class="flex flex-col gap-4">
-				{#each selectedAlloy.ingredients as ingr, i}
-					<div class="flex gap-6">
-						<img
-							class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
-							src="/images/alloy-calculator/{ingr.metal} bits.png"
-							alt="{ingr.metal} bits."
-						/>
-						<p class="w-20">{ingr.metal}</p>
-						<p class="w-20 text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
-						<input
-							class="flex-1"
-							type="range"
-							min={getMinBits(ingr.minPct)}
-							max={getMaxBits(ingr.maxPct)}
-							bind:value={ingrAmounts[i]}
-							oninput={() => {
-								balanceIngredients(i);
-							}}
-						/>
-						<p class="w-36 text-right">
-							{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)
-						</p>
-					</div>
-				{/each}
+			<div>
+				<table class="items-start">
+					<tbody>
+						{#each selectedAlloy.ingredients as ingr, i}
+							<tr>
+								<td class="p-2">
+									<img
+										class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
+										src="/images/alloy-calculator/{ingr.metal} bits.png"
+										alt="{ingr.metal} bits."
+									/>
+								</td>
+								<td class="p-2 align-middle">
+									<p>{ingr.metal}</p>
+								</td>
+								<td class="p-2 align-middle">
+									<p class="text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
+								</td>
+								<td class="p-2">
+									<input
+										class="align-middle"
+										type="range"
+										min={getMinBits(ingr.minPct)}
+										max={getMaxBits(ingr.maxPct)}
+										bind:value={ingrAmounts[i]}
+										oninput={() => {
+											balanceIngredients(i);
+										}}
+									/>
+								</td>
+								<td class="p-2">
+									<p class="text-right">
+										{ingrAmounts[i]} bits
+									</p>
+								</td>
+								<td class="p-2">
+									<p class="text-right">({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
 			</div>
 		</div>
 
@@ -231,8 +248,8 @@
 			<p class="font-bold">Crucible inputs required</p>
 
 			<div class="flex flex-wrap gap-4">
-				{#each stacks as s}
-					<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} />
+				{#each stacks as s, i}
+					<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} red={i > 3} />
 				{/each}
 				{#if stacks.length < 4}
 					{#each range(stacks.length, 3)}
