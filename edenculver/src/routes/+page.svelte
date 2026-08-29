@@ -2,21 +2,22 @@
 	import BigGrid from "$lib/components/BigGrid.svelte";
 	import favicon from "$lib/assets/favicon.svg";
 	import LinkCard from "$lib/components/LinkCard.svelte";
-	import NavBar from "$lib/components/NavBar.svelte";
-	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 </script>
 
 <StandardPageLayout>
 	<header class="p-4 bg-black dark:bg-white flex items-center gap-4 text-white dark:text-black">
 		<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
-		<h1 class="text-3xl font-bold">EdenCulver.net</h1>
+		<h1 class="text-xl lg:text-3xl font-bold">EdenCulver.net</h1>
 	</header>
 
-	<div class="mx-16 my-10 flex flex-col gap-4 flex-1">
-		<h2 class="text-xl font-bold">About</h2>
-		<p>Hi! I'm Eden (she/her). Welcome to my website! I make things that I think are neat.</p>
-		<h2 class="mt-8 text-xl font-bold">Pages</h2>
+	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 flex flex-col gap-4 flex-1">
+		<h2 class="text-lg lg:text-xl font-bold">About</h2>
+		<p class="text-sm lg:text-base">
+			Hi! I'm Eden (she/her). Welcome to my website! I make things that I think are neat.
+		</p>
+
+		<h2 class="mt-8 text-lg lg:text-xl font-bold">Pages</h2>
 		<BigGrid>
 			<LinkCard
 				title="IP Calculator"
@@ -87,7 +88,7 @@
 			/>
 		</BigGrid>
 
-		<h2 class="mt-8 text-xl font-bold">Links</h2>
+		<h2 class="mt-8 text-lg lg:text-xl font-bold">Links</h2>
 		<BigGrid>
 			<LinkCard
 				title="GitHub"
@@ -96,10 +97,10 @@
 				alt="Favicon of github.com."
 			/>
 			<LinkCard
-				title="LinkedIn"
-				href="https://www.linkedin.com/in/edenculver/"
-				src="https://icon.horse/icon/www.linkedin.com"
-				alt="Favicon of linkedin.com."
+				title="LEGO MOCs @Avarice_Machine"
+				href="https://www.instagram.com/avarice_machine/"
+				src="https://icon.horse/icon/www.instagram.com"
+				alt="Favicon of instragram.com."
 			/>
 			<LinkCard
 				title="Email me!"
@@ -109,7 +110,7 @@
 			/>
 		</BigGrid>
 
-		<h2 class="mt-8 text-xl font-bold">Cool stuff other people have made</h2>
+		<h2 class="mt-8 text-lg lg:text-xl font-bold">Cool stuff other people have made</h2>
 		<BigGrid>
 			<LinkCard
 				title="Flag Color Codes"

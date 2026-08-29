@@ -10,7 +10,7 @@
 </script>
 
 <a
-	class="border-black dark:border-white rounded-t-sm hover:bg-gray-500 duration-250 no-underline p-2 px-3 text-center text-xs lg:text-sm text-black dark:text-white transition whitespace-nowrap {page
+	class="border-black dark:border-white rounded-t-sm hover:bg-gray-300 dark:hover:bg-gray-800 duration-250 no-underline p-2 px-3 text-center text-xs lg:text-sm text-black dark:text-white transition whitespace-nowrap {page
 		.url.pathname === href
 		? 'border-x border-t'
 		: 'border-b'}"

@@ -3,7 +3,6 @@
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 	import { untrack } from "svelte";
 	import VsItemSlot from "$lib/components/VsItemSlot.svelte";
-	import { quantile } from "d3";
 
 	const alloys = [
 		{
@@ -179,7 +178,7 @@
 
 			<label class="flex flex-col gap-2">
 				<p class="font-bold">Target alloy</p>
-				<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAlloyName}>
+				<select class="border dark:border-white rounded-sm px-2 py-1 text-sm lg:text-base" bind:value={selectedAlloyName}>
 					{#each alloys as a}
 						<option>{a.alloy}</option>
 					{/each}
@@ -196,7 +195,7 @@
 			</label>
 		</div>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6 lg:items-start">
+		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-4 lg:items-start">
 			<p class="font-bold">Ingredient ratios</p>
 
 			<div class="flex sm:hidden flex-col gap-3">
