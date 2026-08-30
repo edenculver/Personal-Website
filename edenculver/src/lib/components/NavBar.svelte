@@ -20,7 +20,7 @@
 	<NavItem title="SV Fish" href="/sv-fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chord-builder" />
-	<div class="border-b border-black dark:border-white flex-1"></div>
+	<div class="border-b border-black dark:border-white min-w-10 flex-1"></div>
 	<img
 		class="border-b border-black dark:border-white w-8 pr-2"
 		src={favicon}

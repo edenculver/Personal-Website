@@ -4,6 +4,7 @@
 	import McButton from "$lib/components/McButton.svelte";
 	import NavBar from "$lib/components/NavBar.svelte";
 	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	let audioPlayer: HTMLAudioElement;
 	let qIndex = $state(-1);
@@ -99,31 +100,27 @@
 </script>
 
 <audio bind:this={audioPlayer} src={click_stereo}></audio>
-<div class="h-dvh flex flex-col">
-	<NavBar />
-	<div class="bg-[url('/images/villager-quiz/darkdirt.png')] flex flex-col flex-1 overflow-x-auto">
-		<div class="bg-white flex-1 mx-auto text-center w-300">
-			<h1 class="p-10 bg-black text-2xl text-white font-bold">Which Minecraft Villager Are You?</h1>
-			<div class="p-10 text-black flex flex-col gap-5 items-center">
-				{#if qIndex === -1}
-					<div class="mt-5">
-						<McButton onclick={start}>Start</McButton>
-					</div>
-				{:else if qIndex === 12}
-					<p class="mt-5 text-lg">You are:</p>
-					<p class="text-2xl font-bold">{biome} {profession}</p>
-					<img class="h-100" {src} alt="Minecraft Villager." />
-					<McButton onclick={share}>Share (copy to clipboard)</McButton>
-					<McButton onclick={restart}>Take the quiz again!</McButton>
-				{:else}
-					<p class="m-5 text-xl">{qIndex + 1}. {bank[qIndex].text}</p>
-					<McButton onclick={() => answer(bank[qIndex].a.score)}>{bank[qIndex].a.text}</McButton>
-					<McButton onclick={() => answer(bank[qIndex].b.score)}>{bank[qIndex].b.text}</McButton>
-					<McButton onclick={() => answer(bank[qIndex].c.score)}>{bank[qIndex].c.text}</McButton>
-					<McButton onclick={() => answer(bank[qIndex].d.score)}>{bank[qIndex].d.text}</McButton>
-				{/if}
-			</div>
+
+<StandardPageLayout classes="bg-[url('/images/villager-quiz/darkdirt.png')] text-sm lg:text-base flex flex-col flex-1">
+	<div class="mx-auto w-full max-w-5xl bg-white text-center flex-1">
+		<h1 class="p-8 bg-black text-xl lg:text-2xl text-white font-bold">Which Minecraft Villager Are You?</h1>
+
+		<div class="mt-4 p-8 text-black flex flex-col gap-4 items-center">
+			{#if qIndex === -1}
+				<McButton onclick={start}>Start</McButton>
+			{:else if qIndex === 12}
+				<p class="text-base lg:text-lg">You are:</p>
+				<p class="text-xl lg:text-2xl font-bold">{biome} {profession}</p>
+				<img class="h-100" {src} alt="Minecraft Villager." />
+				<McButton onclick={share}>Share (copy to clipboard)</McButton>
+				<McButton onclick={restart}>Take the quiz again!</McButton>
+			{:else}
+				<p class="mb-4 text-base lg:text-lg">{qIndex + 1}. {bank[qIndex].text}</p>
+				<McButton onclick={() => answer(bank[qIndex].a.score)}>{bank[qIndex].a.text}</McButton>
+				<McButton onclick={() => answer(bank[qIndex].b.score)}>{bank[qIndex].b.text}</McButton>
+				<McButton onclick={() => answer(bank[qIndex].c.score)}>{bank[qIndex].c.text}</McButton>
+				<McButton onclick={() => answer(bank[qIndex].d.score)}>{bank[qIndex].d.text}</McButton>
+			{/if}
 		</div>
 	</div>
-	<PrivacyPolicy />
-</div>
+</StandardPageLayout>
