@@ -59,7 +59,7 @@
 			<LinkCard
 				title="Create Steam Engine Simulator"
 				description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
-				href="/steam-engine"
+				href="/create-steam-engine"
 				src="/images/home/steam_engine.png"
 				alt="A stylized piston made of copper and brass."
 			/>

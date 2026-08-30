@@ -216,9 +216,7 @@
 	}
 </script>
 
-<StandardPageLayout
-	classes="mx-auto lg:mx-16 my-4 lg:my-10 p-4 text-sm lg:text-base font-mono flex flex-col gap-6 flex-1 lg:items-start"
->
+<StandardPageLayout extraClasses="font-mono lg:items-start">
 	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">IP Calculator</h1>
 
 	<div class="mx-auto lg:mx-0 grid grid-cols-2">

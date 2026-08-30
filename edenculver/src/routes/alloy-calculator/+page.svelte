@@ -165,7 +165,7 @@
 	}
 </script>
 
-<StandardPageLayout classes="mx-auto lg:mx-16 my-4 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6 lg:items-start flex-1">
+<StandardPageLayout extraClasses="lg:items-start">
 	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">Vintage Story Alloy Calculator</h1>
 
 	<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-6">

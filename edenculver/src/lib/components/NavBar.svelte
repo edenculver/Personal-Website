@@ -16,7 +16,7 @@
 	<NavItem title="UT/DR Leitmotifs" href="/leitmotifs" />
 	<NavItem title="VS Alloy Calc" href="/alloy-calculator" />
 	<NavItem title="Signal Flags" href="/signal-flags" />
-	<NavItem title="Steam Engine Sim" href="/steam-engine" />
+	<NavItem title="Create Steam Engine" href="/create-steam-engine" />
 	<NavItem title="SV Fish" href="/fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chord-builder" />
