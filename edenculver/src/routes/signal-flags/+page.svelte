@@ -1,7 +1,6 @@
 <script lang="ts">
-	import NavBar from "$lib/components/NavBar.svelte";
-	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
 	import SignalFlag from "$lib/components/SignalFlag.svelte";
+	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	let message = $state("");
 	let w = $state(100);
@@ -49,12 +48,11 @@
 	}
 </script>
 
-<div class="h-dvh flex flex-col">
-	<NavBar />
-	<div class="bg-white dark:bg-black overflow-x-auto">
-		<div class="p-10 flex flex-wrap gap-10">
-			<div class="mt-5 flex flex-col gap-5">
-				<h1 class="text-xl font-bold">
+<StandardPageLayout classes="text-sm lg:text-base flex flex-col flex-1">
+	<div class="bg-white dark:bg-black">
+		<div class="p-10 flex flex-col lg:flex-row gap-10">
+			<div class="mt-4 flex flex-col gap-5">
+				<h1 class="text-lg lg:text-xl text-center lg:text-left font-bold">
 					Translate a message to
 					<a
 						class="text-blue-400 underline hover:no-underline visited:text-purple-400"
@@ -64,16 +62,19 @@
 					</a>
 					flags
 				</h1>
+
 				<input
-					class="border border-gray-500 rounded-md w-200 p-2 bg-white text-black"
+					class="border border-gray-500 rounded-sm w-full p-2 bg-white text-black"
 					type="text"
 					size="80"
 					placeholder="Message..."
 					bind:value={message}
 				/>
 			</div>
+
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="text-lg font-bold">Options</h2>
+				<h2 class="text-base lg:text-lg font-bold">Options</h2>
+
 				<div class="flex flex-col gap-1 items-end">
 					<label class="flex gap-2 items-center justify-right">
 						<p>Width:</p>
@@ -83,6 +84,7 @@
 							bind:value={w}
 						/>
 					</label>
+
 					<label class="flex gap-2 items-center justify-right">
 						<p>Height:</p>
 						<input
@@ -92,16 +94,19 @@
 						/>
 					</label>
 				</div>
+
 				<label
 					class="flex gap-3"
 					title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
 				>
 					<input type="checkbox" bind:checked={useSubs} />
-					Use substitutes?
+					<p>Use substitutes?</p>
 				</label>
 			</div>
+
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="text-lg font-bold">Colors</h2>
+				<h2 class="text-base lg:text-lg font-bold">Colors</h2>
+
 				<div class="flex gap-4">
 					<div class="flex flex-col gap-1 items-end">
 						<label class="flex gap-2 items-center justify-right">
@@ -112,24 +117,29 @@
 								bind:value={background}
 							/>
 						</label>
+
 						<label class="flex gap-2 items-center justify-right">
 							<p>Black:</p>
 							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={black} />
 						</label>
+
 						<label class="flex gap-2 items-center justify-right">
 							<p>White:</p>
 							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={white} />
 						</label>
 					</div>
+
 					<div class="flex flex-col gap-1 items-end">
 						<label class="flex gap-2 items-center justify-right">
 							<p>Red:</p>
 							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={red} />
 						</label>
+
 						<label class="flex gap-2 items-center justify-right">
 							<p>Yellow:</p>
 							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={yellow} />
 						</label>
+
 						<label class="flex gap-2 items-center justify-right">
 							<p>Blue:</p>
 							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={blue} />
@@ -139,6 +149,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="p-10 flex gap-20 flex-1 overflow-x-auto" style="background-color: {background};">
 		{#each parseMessage() as word}
 			<div class="flex flex-col gap-5">
@@ -148,5 +159,4 @@
 			</div>
 		{/each}
 	</div>
-	<PrivacyPolicy />
-</div>
+</StandardPageLayout>

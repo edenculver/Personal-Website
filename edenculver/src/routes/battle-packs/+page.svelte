@@ -7,7 +7,7 @@
 </script>
 
 <StandardPageLayout>
-	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">LEGO Star Wars Battle Packs Catalog</h1>
+	<h1 class="text-xl lg:text-2xl text-center font-bold">LEGO Star Wars Battle Packs Catalog</h1>
 
 	{#each data.battlePacks as battlePack}
 		<BattlePack {battlePack} />

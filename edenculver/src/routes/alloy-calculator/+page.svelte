@@ -165,127 +165,128 @@
 	}
 </script>
 
-<StandardPageLayout>
-	<div class="mx-auto lg:mx-16 my-4 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6">
-		<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">Vintage Story Alloy Calculator</h1>
+<StandardPageLayout classes="mx-auto lg:mx-16 my-4 lg:my-10 max-w-3xl p-4 text-sm lg:text-base flex flex-col gap-6 lg:items-start flex-1">
+	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">Vintage Story Alloy Calculator</h1>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-6">
-			<img
-				class="w-8 lg:w-12 my-auto object-contain [image-rendering:pixelated]"
-				src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
-				alt="{selectedAlloy.alloy} ingot."
-			/>
+	<div class="border dark:border-white rounded-sm p-6 flex flex-wrap gap-6">
+		<img
+			class="w-8 lg:w-12 my-auto object-contain [image-rendering:pixelated]"
+			src="/images/alloy-calculator/{selectedAlloy.alloy} ingot.png"
+			alt="{selectedAlloy.alloy} ingot."
+		/>
 
-			<label class="flex flex-col gap-2">
-				<p class="font-bold">Target alloy</p>
-				<select class="border dark:border-white rounded-sm px-2 py-1 text-sm lg:text-base" bind:value={selectedAlloyName}>
-					{#each alloys as a}
-						<option>{a.alloy}</option>
-					{/each}
-				</select>
-			</label>
+		<label class="flex flex-col gap-2">
+			<p class="font-bold">Target alloy</p>
+			<select
+				class="border dark:border-white rounded-sm px-2 py-1 text-sm lg:text-base"
+				bind:value={selectedAlloyName}
+			>
+				{#each alloys as a}
+					<option>{a.alloy}</option>
+				{/each}
+			</select>
+		</label>
 
-			<label class="flex flex-col gap-2">
-				<p class="font-bold">Amount</p>
-				<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAmount}>
-					{#each range(1, 25) as i}
-						<option value={i}>{i} ingots ({i * 20} bits)</option>
-					{/each}
-				</select>
-			</label>
-		</div>
+		<label class="flex flex-col gap-2">
+			<p class="font-bold">Amount</p>
+			<select class="border dark:border-white rounded-sm px-2 py-1" bind:value={selectedAmount}>
+				{#each range(1, 25) as i}
+					<option value={i}>{i} ingots ({i * 20} bits)</option>
+				{/each}
+			</select>
+		</label>
+	</div>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-4 lg:items-start">
-			<p class="font-bold">Ingredient ratios</p>
+	<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-4 lg:items-start">
+		<p class="font-bold">Ingredient ratios</p>
 
-			<div class="flex sm:hidden flex-col gap-3">
-				{#each selectedAlloy.ingredients as ingr, i}
-					<div class="flex flex-wrap gap-2">
-						<img
-							class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
-							src="/images/alloy-calculator/{ingr.metal} bits.png"
-							alt="{ingr.metal} bits."
-						/>
-						<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
-						<p class="ml-auto text-right">
-							{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)
-						</p>
-					</div>
-					<input
-						class="mb-4"
-						type="range"
-						min={getMinBits(ingr.minPct)}
-						max={getMaxBits(ingr.maxPct)}
-						bind:value={ingrAmounts[i]}
-						oninput={() => {
-							balanceIngredients(i);
-						}}
+		<div class="flex sm:hidden flex-col gap-3">
+			{#each selectedAlloy.ingredients as ingr, i}
+				<div class="flex flex-wrap gap-2">
+					<img
+						class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
+						src="/images/alloy-calculator/{ingr.metal} bits.png"
+						alt="{ingr.metal} bits."
 					/>
-				{/each}
-			</div>
-
-			<div class="hidden sm:block">
-				<table>
-					<tbody>
-						{#each selectedAlloy.ingredients as ingr, i}
-							<tr>
-								<td class="p-2">
-									<img
-										class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
-										src="/images/alloy-calculator/{ingr.metal} bits.png"
-										alt="{ingr.metal} bits."
-									/>
-								</td>
-								<td class="p-2">
-									<p>{ingr.metal}</p>
-								</td>
-								<td class="p-2">
-									<p class="text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
-								</td>
-								<td class="p-2">
-									<input
-										class="align-middle"
-										type="range"
-										min={getMinBits(ingr.minPct)}
-										max={getMaxBits(ingr.maxPct)}
-										bind:value={ingrAmounts[i]}
-										oninput={() => {
-											balanceIngredients(i);
-										}}
-									/>
-								</td>
-								<td class="p-2">
-									<p class="text-right">
-										{ingrAmounts[i]} bits
-									</p>
-								</td>
-								<td class="p-2">
-									<p class="text-right">({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
+					<p>{ingr.metal} ({ingr.minPct}-{ingr.maxPct}%)</p>
+					<p class="ml-auto text-right">
+						{ingrAmounts[i]} bits ({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)
+					</p>
+				</div>
+				<input
+					class="mb-4"
+					type="range"
+					min={getMinBits(ingr.minPct)}
+					max={getMaxBits(ingr.maxPct)}
+					bind:value={ingrAmounts[i]}
+					oninput={() => {
+						balanceIngredients(i);
+					}}
+				/>
+			{/each}
 		</div>
 
-		<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
-			<p class="font-bold">Crucible inputs required</p>
-
-			<div class="flex flex-wrap gap-4">
-				{#each stacks as s, i}
-					<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} red={i > 3} />
-				{/each}
-				{#if stacks.length < 4}
-					{#each range(stacks.length, 3)}
-						<VsItemSlot item="" quantity={0} />
+		<div class="hidden sm:block">
+			<table>
+				<tbody>
+					{#each selectedAlloy.ingredients as ingr, i}
+						<tr>
+							<td class="p-2">
+								<img
+									class="w-6 lg:w-8 object-contain [image-rendering:pixelated]"
+									src="/images/alloy-calculator/{ingr.metal} bits.png"
+									alt="{ingr.metal} bits."
+								/>
+							</td>
+							<td class="p-2">
+								<p>{ingr.metal}</p>
+							</td>
+							<td class="p-2">
+								<p class="text-right">({ingr.minPct}-{ingr.maxPct}%)</p>
+							</td>
+							<td class="p-2">
+								<input
+									class="align-middle"
+									type="range"
+									min={getMinBits(ingr.minPct)}
+									max={getMaxBits(ingr.maxPct)}
+									bind:value={ingrAmounts[i]}
+									oninput={() => {
+										balanceIngredients(i);
+									}}
+								/>
+							</td>
+							<td class="p-2">
+								<p class="text-right">
+									{ingrAmounts[i]} bits
+								</p>
+							</td>
+							<td class="p-2">
+								<p class="text-right">({Math.round((ingrAmounts[i] / totalBits) * 1000) / 10}%)</p>
+							</td>
+						</tr>
 					{/each}
-				{/if}
-			</div>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-			{#if stacks.length > 4}
-				<p class="text-red-500">Crucibles only have 4 slots.</p>
+	<div class="border dark:border-white rounded-sm p-6 flex flex-col gap-6">
+		<p class="font-bold">Crucible inputs required</p>
+
+		<div class="flex flex-wrap gap-4">
+			{#each stacks as s, i}
+				<VsItemSlot item="{s.metal} nugget" itemName={s.metal} quantity={s.size} red={i > 3} />
+			{/each}
+			{#if stacks.length < 4}
+				{#each range(stacks.length, 3)}
+					<VsItemSlot item="" quantity={0} />
+				{/each}
 			{/if}
 		</div>
+
+		{#if stacks.length > 4}
+			<p class="text-red-500">Crucibles only have 4 slots.</p>
+		{/if}
 	</div>
 </StandardPageLayout>
