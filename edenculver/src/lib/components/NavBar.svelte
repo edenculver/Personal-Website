@@ -17,7 +17,7 @@
 	<NavItem title="VS Alloy Calc" href="/alloy-calculator" />
 	<NavItem title="Signal Flags" href="/signal-flags" />
 	<NavItem title="Create Steam Engine" href="/create-steam-engine" />
-	<NavItem title="SV Fish" href="/fish" />
+	<NavItem title="SV Fish" href="/sv-fish" />
 	<NavItem title="Villager Quiz" href="/villager-quiz" />
 	<NavItem title="Chords" href="/chord-builder" />
 	<div class="border-b border-black dark:border-white flex-1"></div>

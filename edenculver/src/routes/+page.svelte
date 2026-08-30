@@ -66,8 +66,8 @@
 			<LinkCard
 				title="Stardew Valley Fish Cheat Sheet"
 				description="A cheat sheet for where and when to find fish in Stardew Valley."
-				href="/fish"
-				src="/images/fish/Bullhead.png"
+				href="/sv-fish"
+				src="/images/sv-fish/Bullhead.png"
 				alt="Pixel art of a bullhead, a brown catfish with long whiskers."
 				pixelated={true}
 			/>

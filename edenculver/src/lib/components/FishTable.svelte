@@ -40,8 +40,9 @@
 	}
 </script>
 
-<div class="border-3 border-svverydarktan rounded-lg p-6 bg-svtan flex flex-col gap-4">
-	<h2 class="text-xl font-bold">{location}</h2>
+<div class="border-2 lg:border-3 border-svverydarktan rounded-md p-6 bg-svtan flex flex-col gap-4 overflow-x-auto">
+	<h2 class="text-lg lg:text-xl font-bold">{location}</h2>
+
 	<table class="border border-svverydarktan">
 		<tbody>
 			<tr>
@@ -62,10 +63,10 @@
 			{#each fishes as fish}
 				<tr>
 					<td class="border border-svverydarktan px-3 py-2">
-						<div class="flex gap-3">
+						<div class="flex flex-wrap gap-3 items-center">
 							<img
 								class="w-8 h-8 [image-rendering:pixelated]"
-								src="/images/fish/{fish.name.replace(' ', '_')}.png"
+								src="/images/sv-fish/{fish.name.replace(' ', '_')}.png"
 								alt="{fish.name} sprite."
 							/>
 							<p>{fish.name}</p>
@@ -86,10 +87,10 @@
 					{/if}
 					{#if fish.bundle}
 						<td class="border border-svverydarktan px-3 py-2">
-							<div class="flex gap-3">
+							<div class="flex flex-wrap gap-3 items-center">
 								<img
 									class="w-8 h-8 [image-rendering:pixelated]"
-									src="/images/fish/{fish.bundle.replaceAll(' ', '_')}.png"
+									src="/images/sv-fish/{fish.bundle.replaceAll(' ', '_')}.png"
 									alt="{fish.bundle} sprite."
 								/>
 								<p>{fish.bundle}</p>
