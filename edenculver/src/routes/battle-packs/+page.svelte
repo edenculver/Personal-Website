@@ -7,10 +7,9 @@
 </script>
 
 <StandardPageLayout>
-	<div class="px-16 py-10 bg-gray-100 dark:bg-gray-900 flex flex-col gap-8">
-		<h1 class="text-2xl font-bold">LEGO Star Wars Battle Packs Catalog</h1>
-		{#each data.battlePacks as battlePack}
-			<BattlePack {battlePack} />
-		{/each}
-	</div>
+	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">LEGO Star Wars Battle Packs Catalog</h1>
+
+	{#each data.battlePacks as battlePack}
+		<BattlePack {battlePack} />
+	{/each}
 </StandardPageLayout>

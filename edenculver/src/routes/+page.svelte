@@ -5,7 +5,7 @@
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 </script>
 
-<StandardPageLayout>
+<StandardPageLayout classes="flex-1">
 	<header class="p-4 bg-black dark:bg-white flex items-center gap-4 text-white dark:text-black">
 		<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
 		<h1 class="text-xl lg:text-3xl font-bold">EdenCulver.net</h1>

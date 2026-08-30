@@ -80,10 +80,11 @@
 	}
 </script>
 
-<div class="border border-gray-500 rounded-2xl p-6 bg-white text-black flex flex-col gap-4">
-	<h2 class="text-xl font-bold">{battlePack.set_number} {battlePack.set_name}</h2>
-	<div class="flex flex-wrap gap-5">
-		<div class="m-2 flex flex-col gap-3">
+<div class="rounded-lg p-6 bg-white text-black flex flex-col gap-4">
+	<h2 class="text-lg lg:text-xl font-bold">{battlePack.set_number} {battlePack.set_name}</h2>
+
+	<div class="flex flex-col lg:flex-row gap-5 items-center lg:items-start">
+		<div class="m-2 flex lg:flex-col gap-3">
 			<table class="m-2">
 				<tbody>
 					{#each tableRows as row}
@@ -94,7 +95,8 @@
 					{/each}
 				</tbody>
 			</table>
-			<div class="flex gap-4 justify-center">
+			
+			<div class="m-auto grid lg:grid-cols-3 gap-4">
 				{#each links as link}
 					<a class="text-center no-underline" href={link.href} title={link.title}>
 						<img src={link.src} alt={link.alt} />
@@ -102,11 +104,13 @@
 				{/each}
 			</div>
 		</div>
+
 		<img
-			class="max-w-100"
+			class="w-full max-w-100 object-contain"
 			src="https://img.bricklink.com/ItemImage/ON/0/{battlePack.set_number}-1.png"
 			alt="Photograph of this set's box."
 		/>
+		
 		<MinifigTable minifigs={battlePack.minifigs} />
 	</div>
 </div>
