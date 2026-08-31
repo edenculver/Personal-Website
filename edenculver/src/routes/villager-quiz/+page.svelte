@@ -2,8 +2,6 @@
 	import bank from "$lib/villager_quiz.json";
 	import click_stereo from "$lib/assets/click_stereo.ogg";
 	import McButton from "$lib/components/McButton.svelte";
-	import NavBar from "$lib/components/NavBar.svelte";
-	import PrivacyPolicy from "$lib/components/PrivacyPolicy.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	let audioPlayer: HTMLAudioElement;
