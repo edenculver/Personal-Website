@@ -189,7 +189,9 @@ export default class IpAddress {
 			{ start: "169.254.0.0", end: "169.254.255.255", type: "Link-Local (169.254.0.0/16)" },
 			{ start: "169.255.0.0", end: "172.15.255.255", type: "Public" },
 			{ start: "172.16.0.0", end: "172.31.255.255", type: "Private (172.16.0.0/12)" },
-			{ start: "172.32.0.0", end: "192.0.1.255", type: "Public" },
+			{ start: "172.32.0.0", end: "191.255.255.255", type: "Public" },
+			{ start: "192.0.0.0", end: "192.0.0.255", type: "IETF protocol assignments (192.0.0.0/24)" },
+			{ start: "192.0.1.0", end: "192.0.1.255", type: "Public" },
 			{ start: "192.0.2.0", end: "192.0.2.255", type: "Documentation TEST-NET-1 (192.0.2.0/24)" },
 			{ start: "192.0.3.0", end: "192.88.98.255", type: "Public" },
 			{ start: "192.88.99.0", end: "192.88.99.255", type: "6to4 anycast (192.88.99.0/24)" },
@@ -205,7 +207,8 @@ export default class IpAddress {
 			{ start: "224.0.0.0", end: "233.251.255.255", type: "Multicast (224.0.0.0/4)" },
 			{ start: "233.252.0.0", end: "233.252.0.255", type: "Documentation (233.252.0.0/24)" },
 			{ start: "233.252.1.0", end: "239.255.255.255", type: "Multicast (224.0.0.0/4)" },
-			{ start: "240.0.0.0", end: "255.255.255.255", type: "Reserved (240.0.0.0/4)" },
+			{ start: "240.0.0.0", end: "255.255.255.254", type: "Reserved (240.0.0.0/4)" },
+			{ start: "255.255.255.255", end: "255.255.255.255", type: "Limited broadcast address (255.255.255.255/32)" },
 		];
 
 		// check input against each range
