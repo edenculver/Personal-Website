@@ -3,7 +3,6 @@ import { DB_USERNAME } from "$env/static/private";
 import { DB_PASSWORD } from "$env/static/private";
 import { env } from "$env/dynamic/private";
 
-
 const db = new Pool({
 	user: DB_USERNAME,
 	password: DB_PASSWORD,

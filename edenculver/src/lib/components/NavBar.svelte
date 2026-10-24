@@ -1,12 +1,6 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.svg";
 	import NavItem from "$lib/components/NavItem.svelte";
-
-	interface Props {
-		classes?: string;
-	}
-
-	let { classes = "" }: Props = $props();
 </script>
 
 <nav class="bg-black text-white flex overflow-x-auto">

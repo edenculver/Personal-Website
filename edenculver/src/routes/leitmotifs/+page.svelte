@@ -333,7 +333,8 @@
 </script>
 
 <div class="h-dvh flex flex-col">
-	<NavBar classes="border-b-2 border-utdrborder flex flex-wrap" />
+	<NavBar />
+	
 	<div class="min-h-0 flex-1 flex">
 		<div class="w-[20vw] min-w-70 max-w-100 min-h-0 flex-1 flex flex-col gap-3">
 			{#if selectedNodeType === "l"}

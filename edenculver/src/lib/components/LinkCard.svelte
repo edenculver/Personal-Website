@@ -16,7 +16,11 @@
 	{href}
 >
 	<div class="flex gap-4 items-center">
-		<img class={"w-10 lg:w-12 h-10 lg:h-12 object-contain" + (pixelated ? " [image-rendering:pixelated]" : "")} {src} {alt} />
+		<img
+			class={"w-10 lg:w-12 h-10 lg:h-12 object-contain" + (pixelated ? " [image-rendering:pixelated]" : "")}
+			{src}
+			{alt}
+		/>
 		<p class="text-base lg:text-lg font-bold">{title}</p>
 	</div>
 	<p class="text-sm lg:text-base">{description}</p>

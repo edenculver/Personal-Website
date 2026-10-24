@@ -3,6 +3,28 @@
 	import favicon from "$lib/assets/favicon.svg";
 	import LinkCard from "$lib/components/LinkCard.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+
+	const allGreetings = [
+		"Hi! I'm Eden (she/her).",
+		"¡Hola! Me llamo Eden (ella).",
+		"はじめまして。私はイーデンです。",
+		"toki! mi jan Iten.",
+	];
+
+	let selectedGreetingIndex = $state(0);
+	let greeting = $derived(allGreetings[selectedGreetingIndex]);
+
+	function randomGreeting() {
+		if (allGreetings.length > 1) {
+			let candidateIndex = selectedGreetingIndex;
+
+			while (candidateIndex === selectedGreetingIndex) {
+				candidateIndex = Math.floor(Math.random() * allGreetings.length);
+			}
+
+			selectedGreetingIndex = candidateIndex;
+		}
+	}
 </script>
 
 <StandardPageLayout classes="flex-1">
@@ -13,9 +35,10 @@
 
 	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 flex flex-col gap-4 flex-1">
 		<h2 class="text-lg lg:text-xl font-bold">About</h2>
-		<p class="text-sm lg:text-base">
-			Hi! I'm Eden (she/her). Welcome to my website! I make things that I think are neat.
-		</p>
+		<button class="text-left text-sm lg:text-base" onclick={() => randomGreeting()}>
+			{greeting}
+		</button>
+		<p>Welcome to my website! I make things that I think are neat.</p>
 
 		<h2 class="mt-8 text-lg lg:text-xl font-bold">Pages</h2>
 		<BigGrid>

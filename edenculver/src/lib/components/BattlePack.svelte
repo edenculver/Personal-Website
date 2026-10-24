@@ -95,7 +95,7 @@
 					{/each}
 				</tbody>
 			</table>
-			
+
 			<div class="m-auto grid lg:grid-cols-3 gap-4">
 				{#each links as link}
 					<a class="text-center no-underline" href={link.href} title={link.title}>
@@ -110,7 +110,7 @@
 			src="https://img.bricklink.com/ItemImage/ON/0/{battlePack.set_number}-1.png"
 			alt="Photograph of this set's box."
 		/>
-		
+
 		<MinifigTable minifigs={battlePack.minifigs} />
 	</div>
 </div>
