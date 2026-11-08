@@ -1,6 +1,8 @@
 <script lang="ts">
 	import BigGrid from "$lib/components/BigGrid.svelte";
-	import favicon from "$lib/assets/favicon.svg";
+	import H1 from "$lib/components/H1.svelte";
+	import H2 from "$lib/components/H2.svelte";
+	import Icon from "$lib/components/Icon.svelte";
 	import LinkCard from "$lib/components/LinkCard.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
@@ -28,19 +30,19 @@
 </script>
 
 <StandardPageLayout classes="flex-1">
-	<header class="p-4 bg-black dark:bg-white flex items-center gap-4 text-white dark:text-black">
-		<img class="w-16" src={favicon} alt="Icon of two sandhill cranes on a blue hexagon." />
-		<h1 class="text-xl lg:text-3xl font-bold">EdenCulver.net</h1>
+	<header class="p-4 bg-accent flex items-center gap-4 text-black">
+		<Icon classes="w-16" />
+		<H1 classes="text-xl lg:text-3xl font-bold">EdenCulver.net</H1>
 	</header>
 
 	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 flex flex-col gap-4 flex-1">
-		<h2 class="text-lg lg:text-xl font-bold">About</h2>
+		<H2>About</H2>
 		<button class="text-left text-sm lg:text-base" onclick={() => randomGreeting()}>
 			{greeting}
 		</button>
 		<p>Welcome to my website! I make things that I think are neat.</p>
 
-		<h2 class="mt-8 text-lg lg:text-xl font-bold">Pages</h2>
+		<H2 extraClasses="mt-8">Pages</H2>
 		<BigGrid>
 			<LinkCard
 				title="IP Calculator"
@@ -111,7 +113,7 @@
 			/>
 		</BigGrid>
 
-		<h2 class="mt-8 text-lg lg:text-xl font-bold">Links</h2>
+		<H2 extraClasses="mt-8">Links</H2>
 		<BigGrid>
 			<LinkCard
 				title="GitHub"
@@ -133,7 +135,7 @@
 			/>
 		</BigGrid>
 
-		<h2 class="mt-8 text-lg lg:text-xl font-bold">Cool stuff other people have made</h2>
+		<H2 extraClasses="mt-8">Cool stuff other people have made</H2>
 		<BigGrid>
 			<LinkCard
 				title="Flag Color Codes"

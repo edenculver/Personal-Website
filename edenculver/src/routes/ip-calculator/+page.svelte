@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
+	import H1 from "$lib/components/H1.svelte";
 	import IpAddress from "$lib/IpAddress";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
@@ -216,24 +217,22 @@
 	}
 </script>
 
-<StandardPageLayout extraClasses="font-mono lg:items-start">
-	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">IP Calculator</h1>
+<StandardPageLayout extraClasses="lg:items-start">
+	<H1 extraClasses="mx-auto lg:mx-0 font-bold">IP Calculator</H1>
 
 	<div class="mx-auto lg:mx-0 grid grid-cols-2">
 		<button
-			class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen hover:text-black {mode ===
-			'sub'
-				? 'bg-terminalgreen text-black'
-				: 'text-terminalgreen'}"
+			class="border border-accent px-4 py-2 hover:bg-accent hover:text-bg {mode === 'sub'
+				? 'bg-accent text-bg'
+				: 'text-accent'}"
 			onclick={() => (mode = "sub")}
 		>
 			Subnet Mode
 		</button>
 		<button
-			class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen hover:text-black {mode ===
-			'super'
-				? 'bg-terminalgreen text-black'
-				: 'text-terminalgreen'}"
+			class="border border-accent px-4 py-2 hover:bg-accent hover:text-bg {mode === 'super'
+				? 'bg-accent text-bg'
+				: 'text-accent'}"
 			onclick={() => (mode = "super")}
 		>
 			Supernet Mode
@@ -244,9 +243,9 @@
 		<label class="flex flex-col gap-1">
 			<p>IP address with CIDR or mask:</p>
 			<input
-				class="border w-full lg:w-100 p-3 {invalidInput
-					? 'border-terminalred text-terminalred'
-					: 'border-white text-terminalgreen'}"
+				class="border w-full lg:w-100 p-3 font-mono {invalidInput
+					? 'border-err text-err'
+					: 'border-fg text-accent'}"
 				type="text"
 				maxlength="100"
 				bind:value={inputAddress}
@@ -255,25 +254,25 @@
 
 		<div class="grid grid-cols-[auto_auto] gap-4">
 			<button
-				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
 				onclick={nextSubnet}
 			>
 				Next Subnet
 			</button>
 			<button
-				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
 				onclick={incrementCidr}
 			>
 				CIDR +
 			</button>
 			<button
-				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
 				onclick={previousSubnet}
 			>
 				Previous Subnet
 			</button>
 			<button
-				class="bg-black border border-terminalgreen px-4 py-2 hover:bg-terminalgreen text-terminalgreen hover:text-black"
+				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
 				onclick={decrementCidr}
 			>
 				CIDR -
@@ -285,19 +284,18 @@
 				<p>IP addresses with CIDR or mask:</p>
 				<textarea
 					id="inputAddresses"
-					class="border w-full lg:w-100 p-3 {invalidInput
-						? 'border-terminalred text-terminalred'
-						: 'border-white + text-terminalgreen'}"
+					class="border w-full lg:w-100 p-3 font-mono {invalidInput
+						? 'border-err text-err'
+						: 'border-fg + text-accent'}"
 					rows="4"
-					bind:value={inputAddresses}
-				></textarea>
+					bind:value={inputAddresses}></textarea>
 			</label>
 			<label class="flex gap-3 mt-3" title={strictExplanation}>
 				Strict?
-				<input class="accent-terminalgreen" type="checkbox" bind:checked={strict} />
+				<input class="accent-accent" type="checkbox" bind:checked={strict} />
 			</label>
 			<div>Summary prefix{strict ? "(es)" : ""}:</div>
-			<div class="text-terminalgreen ml-3 whitespace-pre-line">{summaryPrefixes}</div>
+			<div class="text-accent ml-3 font-mono whitespace-pre-line">{summaryPrefixes}</div>
 		</div>
 	{/if}
 
@@ -306,15 +304,15 @@
 			<tbody>
 				{#if mode === "sub"}
 					<tr>
-						<td class="border border-gray-500 px-4 py-3 font-bold">IP Address</td>
-						<td class="border border-gray-500 px-4 py-3">{address}</td>
+						<td class="border border-midg px-4 py-3 font-bold">IP Address</td>
+						<td class="border border-midg px-4 py-3 font-mono">{address}</td>
 					</tr>
 				{/if}
 				{#each tableRows as row}
 					<tr>
-						<td class="border border-gray-500 px-4 py-3 font-bold">{row.label}</td>
+						<td class="border border-midg px-4 py-3 font-bold">{row.label}</td>
 						{#each row.cols as col}
-							<td class="border border-gray-500 px-4 py-3 whitespace-pre-line">{col}</td>
+							<td class="border border-midg px-4 py-3 font-mono whitespace-pre-line">{col}</td>
 						{/each}
 					</tr>
 				{/each}

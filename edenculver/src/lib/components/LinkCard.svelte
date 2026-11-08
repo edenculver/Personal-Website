@@ -12,7 +12,7 @@
 </script>
 
 <a
-	class="border border-black dark:border-white rounded-md p-6 hover:bg-gray-300 dark:hover:bg-gray-900 duration-250 flex-1 flex flex-col gap-4"
+	class="border border-fg hover:border-accent rounded-md p-6 hover:text-accent duration-250 flex-1 flex flex-col gap-4"
 	{href}
 >
 	<div class="flex gap-4 items-center">
@@ -23,5 +23,5 @@
 		/>
 		<p class="text-base lg:text-lg font-bold">{title}</p>
 	</div>
-	<p class="text-sm lg:text-base">{description}</p>
+	<p class="text-sm lg:text-base text-fg">{description}</p>
 </a>

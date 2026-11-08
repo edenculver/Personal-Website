@@ -1,4 +1,5 @@
 <script lang="ts">
+	import H2 from "./H2.svelte";
 	import MinifigTable from "./MinifigTable.svelte";
 	import type { Minifig } from "./MinifigTable.svelte";
 
@@ -81,7 +82,7 @@
 </script>
 
 <div class="rounded-lg p-6 bg-white text-black flex flex-col gap-4">
-	<h2 class="text-lg lg:text-xl font-bold">{battlePack.set_number} {battlePack.set_name}</h2>
+	<H2>{battlePack.set_number} {battlePack.set_name}</H2>
 
 	<div class="flex flex-col lg:flex-row gap-5 items-center lg:items-start">
 		<div class="m-2 flex lg:flex-col gap-3">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Card from "$lib/components/Card.svelte";
+	import H1 from "$lib/components/H1.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
-	import { range } from "$lib/util";
 
 	/*
 	Terms used:
@@ -11,7 +11,7 @@
 			F#
 	noteName┘└accidental
 	
-	pitch =  number of half steps from middle C
+	pitch = number of half steps from middle C
 	*/
 
 	const pianoKeys = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -104,24 +104,26 @@
 </script>
 
 <StandardPageLayout extraClasses="lg:items-start">
-	<h1 class="mx-auto lg:mx-0 text-xl lg:text-2xl text-center font-bold">Chord Builder</h1>
+	<H1 extraClasses="mx-auto lg:mx-0 text-center">Chord Builder</H1>
 
 	<div class="grid lg:grid-cols-[auto_auto] gap-8">
 		<Card>
-			<h2 class="text-lg lg:text-xl font-bold">Root</h2>
+			<p class="text-lg lg:text-xl font-bold">Root</p>
 
 			<table>
 				<tbody>
 					{#each accidentals as accidental}
 						<tr>
 							{#each noteNames as noteName}
-								<td class="border border-black dark:border-white">
+								<td class="border border-fg">
 									<button
-										class="w-full p-3 {root === noteName + accidental
-											? 'bg-blue-500'
-											: wrapPitch(getPitch(root)) === wrapPitch(getPitch(noteName + accidental))
-												? 'bg-sky-300 hover:bg-sky-700'
-												: 'hover:bg-gray-500'}"
+										class={"w-full p-3 hover:bg-accenthover" +
+											(root === noteName + accidental
+												? " bg-accent"
+												: wrapPitch(getPitch(root)) ===
+													  wrapPitch(getPitch(noteName + accidental))
+													? " bg-accentsoft"
+													: "")}
 										onclick={() => (root = noteName + accidental)}
 									>
 										{noteName}{accidental}
@@ -135,67 +137,65 @@
 		</Card>
 
 		<Card>
-			<h2 class="text-lg lg:text-xl font-bold">Interval Qualities</h2>
+			<p class="text-lg lg:text-xl font-bold">Interval Qualities</p>
 
-			<table class="border border-black dark:border-white">
+			<table class="border border-fg">
 				<tbody>
 					<tr>
-						<th class="border border-black dark:border-white p-3">1</th>
-						<th class="border border-black dark:border-white p-3">third</th>
-						<th class="border border-black dark:border-white p-3">3</th>
-						<th class="border border-black dark:border-white p-3">third</th>
-						<th class="border border-black dark:border-white p-3">5</th>
+						<th class="border border-fg p-3">1</th>
+						<th class="border border-fg p-3">third</th>
+						<th class="border border-fg p-3">3</th>
+						<th class="border border-fg p-3">third</th>
+						<th class="border border-fg p-3">5</th>
 						{#if useSeventh}
-							<th class="border border-black dark:border-white p-3">third</th>
-							<th class="border border-black dark:border-white p-3">7</th>
+							<th class="border border-fg p-3">third</th>
+							<th class="border border-fg p-3">7</th>
 						{/if}
 					</tr>
 					<tr>
-						<td class="border border-black dark:border-white text-center w-20" rowspan="2">
+						<td class="border border-fg w-20 text-center" rowspan="2">
 							{root.replace("♮", "")}
 						</td>
-						<td class="border border-black dark:border-white">
+						<td class="border border-fg">
 							<button
-								class={"w-full p-3 " + (third1Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 hover:bg-accenthover" + (third1Quality === 3 ? " bg-accent" : "")}
 								onclick={() => (third1Quality = 3)}
 							>
 								minor
 							</button>
 						</td>
 						<td
-							class={"border border-black dark:border-white text-center w-20" +
-								(three.includes("?") ? " text-red-500" : "")}
+							class={"border border-fg text-center w-20" + (three.includes("?") ? " text-err" : "")}
 							rowspan="2"
 						>
 							{three.replace("♮", "")}
 						</td>
-						<td class="border border-black dark:border-white">
+						<td class="border border-fg">
 							<button
-								class={"w-full p-3 " + (third2Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 hover:bg-accenthover" + (third2Quality === 3 ? " bg-accent" : "")}
 								onclick={() => (third2Quality = 3)}
 							>
 								minor
 							</button>
 						</td>
 						<td
-							class={"border border-black dark:border-white text-center w-20" +
-								(five.includes("?") ? " text-red-500" : "")}
+							class={"border border-fg text-center w-20" + (five.includes("?") ? " text-err" : "")}
 							rowspan="2"
 						>
 							{five.replace("♮", "")}
 						</td>
 						{#if useSeventh}
-							<td class="border border-black dark:border-white">
+							<td class="border border-fg">
 								<button
-									class={"w-full p-3 " + (third3Quality === 3 ? "bg-blue-500" : "hover:bg-gray-500")}
+									class={"w-full p-3 hover:bg-accenthover" +
+										(third3Quality === 3 ? " bg-accent" : "")}
 									onclick={() => (third3Quality = 3)}
 								>
 									minor
 								</button>
 							</td>
 							<td
-								class={"border border-black dark:border-white text-center w-20" +
-									(seven.includes("?") ? " text-red-500" : "")}
+								class={"border border-fg w-20 text-center" + (seven.includes("?") ? " text-err" : "")}
 								rowspan="2"
 							>
 								{seven.replace("♮", "")}
@@ -203,26 +203,27 @@
 						{/if}
 					</tr>
 					<tr>
-						<td class="border border-black dark:border-white">
+						<td class="border border-fg">
 							<button
-								class={"w-full p-3 " + (third1Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 hover:bg-accenthover" + (third1Quality === 4 ? " bg-accent" : "")}
 								onclick={() => (third1Quality = 4)}
 							>
 								major
 							</button>
 						</td>
-						<td class="border border-black dark:border-white">
+						<td class="border border-fg">
 							<button
-								class={"w-full p-3 " + (third2Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+								class={"w-full p-3 hover:bg-accenthover" + (third2Quality === 4 ? " bg-accent" : "")}
 								onclick={() => (third2Quality = 4)}
 							>
 								major
 							</button>
 						</td>
 						{#if useSeventh}
-							<td class="border border-black dark:border-white">
+							<td class="border border-fg">
 								<button
-									class={"w-full p-3 " + (third3Quality === 4 ? "bg-blue-500" : "hover:bg-gray-500")}
+									class={"w-full p-3 hover:bg-accenthover" +
+										(third3Quality === 4 ? " bg-accent" : "")}
 									onclick={() => (third3Quality = 4)}
 								>
 									major
@@ -231,7 +232,7 @@
 						{/if}
 					</tr>
 					<tr>
-						<th class="border border-black dark:border-white p-3" colspan="5">
+						<th class="border border-fg p-3" colspan="5">
 							{qualities[(fivePitch - rootPitch) as keyof typeof qualities]} fifth
 						</th>
 					</tr>
@@ -246,14 +247,14 @@
 			</table>
 
 			<label class="flex gap-2">
-				<input type="checkbox" bind:checked={useSeventh} />
+				<input class="accent-accent" type="checkbox" bind:checked={useSeventh} />
 				Seventh?
 			</label>
 
 			{#if three.includes("?") || five.includes("?") || (useSeventh && seven.includes("?"))}
-				<div class="text-red-500">
+				<div class="text-err">
 					<p>This chord is impossible! The notes in red do not exist.</p>
-					<p>Try an enharmonic root note (light blue).</p>
+					<p>Try an enharmonic root note (highlighted).</p>
 				</div>
 			{/if}
 		</Card>
@@ -267,7 +268,7 @@
 				<svg class="border border-black bg-black" width={(whiteKeyW + 1) * 14 - 1} height={whiteKeyH}>
 					{#each whiteKeyPitches as p, i}
 						<rect
-							class={pitches.includes(p) ? "fill-blue-500" : "fill-white"}
+							class={pitches.includes(p) ? "fill-accent" : "fill-white"}
 							x={(whiteKeyW + 1) * i}
 							y={0}
 							width={whiteKeyW}
@@ -276,7 +277,7 @@
 					{/each}
 					{#each blackKeyPitches as p, i}
 						<rect
-							class={pitches.includes(p) ? "fill-blue-500" : "fill-black"}
+							class={pitches.includes(p) ? "fill-accent" : "fill-black"}
 							x={blackKeyPositions[i] * (whiteKeyW + 1) - blackKeyW / 2 - 1}
 							y={0}
 							width={blackKeyW}

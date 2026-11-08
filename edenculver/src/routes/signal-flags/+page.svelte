@@ -1,4 +1,5 @@
 <script lang="ts">
+	import H1 from "$lib/components/H1.svelte";
 	import SignalFlag from "$lib/components/SignalFlag.svelte";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
@@ -49,22 +50,22 @@
 </script>
 
 <StandardPageLayout classes="text-sm lg:text-base flex flex-col flex-1">
-	<div class="bg-white dark:bg-black">
+	<div class="bg-bg">
 		<div class="p-10 flex flex-col lg:flex-row gap-10">
 			<div class="mt-4 flex flex-col gap-5">
-				<h1 class="text-lg lg:text-xl text-center lg:text-left font-bold">
+				<H1 classes="text-lg lg:text-xl text-center lg:text-left font-bold">
 					Translate a message to
 					<a
-						class="text-blue-400 underline hover:no-underline visited:text-purple-400"
+						class="text-accent underline hover:no-underline"
 						href="https://en.wikipedia.org/wiki/International_Code_of_Signals"
 					>
 						International Code of Signals (INTERCO)
 					</a>
 					flags
-				</h1>
+				</H1>
 
 				<input
-					class="border border-gray-500 rounded-sm w-full p-2 bg-white text-black"
+					class="border border-midg rounded-sm w-full p-2 bg-white text-black"
 					type="text"
 					size="80"
 					placeholder="Message..."
@@ -73,13 +74,13 @@
 			</div>
 
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="text-base lg:text-lg font-bold">Options</h2>
+				<p class="text-base lg:text-lg font-bold">Options</p>
 
 				<div class="flex flex-col gap-1 items-end">
 					<label class="flex gap-2 items-center justify-right">
 						<p>Width:</p>
 						<input
-							class="border border-gray-500 rounded-sm w-20 p-1 bg-white text-black"
+							class="border border-midg rounded-sm w-20 p-1 bg-white text-black"
 							type="number"
 							bind:value={w}
 						/>
@@ -88,7 +89,7 @@
 					<label class="flex gap-2 items-center justify-right">
 						<p>Height:</p>
 						<input
-							class="border border-gray-500 rounded-sm w-20 p-1 bg-white text-black"
+							class="border border-midg rounded-sm w-20 p-1 bg-white text-black"
 							type="number"
 							bind:value={h}
 						/>
@@ -99,20 +100,20 @@
 					class="flex gap-3"
 					title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
 				>
-					<input type="checkbox" bind:checked={useSubs} />
+					<input class="accent-accent" type="checkbox" bind:checked={useSubs} />
 					<p>Use substitutes?</p>
 				</label>
 			</div>
 
 			<div class="flex flex-col gap-2 items-center">
-				<h2 class="text-base lg:text-lg font-bold">Colors</h2>
+				<p class="text-base lg:text-lg font-bold">Colors</p>
 
 				<div class="flex gap-4">
 					<div class="flex flex-col gap-1 items-end">
 						<label class="flex gap-2 items-center justify-right">
 							<p>Background:</p>
 							<input
-								class="border border-gray-500 rounded-md w-20"
+								class="border border-midg hover:border-accent rounded-md w-20"
 								type="color"
 								bind:value={background}
 							/>
@@ -120,29 +121,49 @@
 
 						<label class="flex gap-2 items-center justify-right">
 							<p>Black:</p>
-							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={black} />
+							<input
+								class="border border-midg hover:border-accent rounded-md w-20"
+								type="color"
+								bind:value={black}
+							/>
 						</label>
 
 						<label class="flex gap-2 items-center justify-right">
 							<p>White:</p>
-							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={white} />
+							<input
+								class="border border-midg hover:border-accent rounded-md w-20"
+								type="color"
+								bind:value={white}
+							/>
 						</label>
 					</div>
 
 					<div class="flex flex-col gap-1 items-end">
 						<label class="flex gap-2 items-center justify-right">
 							<p>Red:</p>
-							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={red} />
+							<input
+								class="border border-midg hover:border-accent rounded-md w-20"
+								type="color"
+								bind:value={red}
+							/>
 						</label>
 
 						<label class="flex gap-2 items-center justify-right">
 							<p>Yellow:</p>
-							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={yellow} />
+							<input
+								class="border border-midg hover:border-accent rounded-md w-20"
+								type="color"
+								bind:value={yellow}
+							/>
 						</label>
 
 						<label class="flex gap-2 items-center justify-right">
 							<p>Blue:</p>
-							<input class="border border-gray-500 rounded-md w-20" type="color" bind:value={blue} />
+							<input
+								class="border border-midg hover:border-accent rounded-md w-20"
+								type="color"
+								bind:value={blue}
+							/>
 						</label>
 					</div>
 				</div>

@@ -1,34 +1,40 @@
 @import "tailwindcss";
 
 @theme {
+	/* override Tailwind vars */
 	--font-sans: Verdana, Tahoma, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
 
+	/* theme */
+	--color-bg: black;
+	--color-midg: #646464;
+	--color-fg: white;
+	--color-accent: #ff5100;
+	--color-accenthover: #d40000;
+	--color-accentsoft: #7a240e;
+	--color-err: red;
+
 	/* alloy-calculator */
-	--color-vsbg: #FDE0C0;
-	--color-vsborder: #29221C;
+	--color-vsbg: #fde0c0;
+	--color-vsborder: #29221c;
 
 	/* sv-fish */
-	--color-svtan: #F9BA66;
-	--color-svdarktan: #965C3A;
-	--color-svverydarktan: #5B2B2A;
-	--color-svrain: #8388FD;
-	--color-svsky: #80EAFF;
-	--color-svsun: #FEFF00;
-	--color-svwind: #FF9200;
-
-	/* ip-calculator */
-	--color-terminalred: #FF0000;
-	--color-terminalgreen: #00FF00;
+	--color-svtan: #f9ba66;
+	--color-svdarktan: #965c3a;
+	--color-svverydarktan: #5b2b2a;
+	--color-svrain: #8388fd;
+	--color-svsky: #80eaff;
+	--color-svsun: #feff00;
+	--color-svwind: #ff9200;
 
 	/* leitmotifs */
 	/* from Dark World menu */
 	--color-utdrborder: #332033;
-	--color-utdractive: #FFC90E;
-	--color-utdrinactive: #614E6B;
+	--color-utdractive: #ffc90e;
+	--color-utdrinactive: #614e6b;
 	--color-utdrlink: white;
 	/* from dark fountain, when you're near one */
-	--color-utdrbg: #27293F;
+	--color-utdrbg: #27293f;
 	--color-utdrut: red;
 	/* from Recruits menu */
 	--color-utdrch1: purple;
@@ -55,7 +61,7 @@
 	}
 
 	/* villager-quiz */
-	--color-mclightgray: #C6C6C6;
-	--color-mcdarkgray: #4C4C4C;
+	--color-mclightgray: #c6c6c6;
+	--color-mcdarkgray: #4c4c4c;
 	--color-mcgreen: #218306;
 }

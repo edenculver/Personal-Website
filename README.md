@@ -67,15 +67,15 @@ npm run dev -- --open
 - TS classes in PascalCase
 - All postgresql tables and columns in snake_case
 - All Tailwind classes sorted in this order:
-	1. Positioning
-	2. Margin
-	3. Border, border color, rounded
-	4. Width, height
-	5. Padding
-	6. BG color
-	7. Text alignment, text size, font weight
-	8. Flex, gap, items, justify
-	9. Anything else
+    1.  Positioning
+    2.  Margin
+    3.  Border, border color, rounded
+    4.  Width, height
+    5.  Padding
+    6.  BG color
+    7.  Text alignment, text size, font weight
+    8.  Flex, gap, items, justify
+    9.  Anything else, in alphabetical order
 
 ---
 

@@ -479,7 +479,7 @@
 					/>
 				</button>
 				<div
-					class={"absolute right-0 border-2 border-white p-3 bg-black flex flex-col gap-2 items-right" +
+					class={"absolute right-0 border-2 border-fg p-3 bg-bg flex flex-col gap-2 items-right" +
 						(menuHidden ? " hidden" : "")}
 				>
 					<label class="flex items-center gap-2 whitespace-nowrap">

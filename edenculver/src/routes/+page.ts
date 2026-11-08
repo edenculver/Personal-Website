@@ -3,4 +3,4 @@ export const load = () => {
 		title: "Home",
 		description: "The homepage of EdenCulver.net.",
 	};
-}
+};

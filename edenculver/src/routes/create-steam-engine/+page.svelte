@@ -3,6 +3,7 @@
 	import blaze from "$lib/assets/blaze.png";
 	import blaze_idle from "$lib/assets/blaze_idle.png";
 	import blaze_super from "$lib/assets/blaze_super.png";
+	import H1 from "$lib/components/H1.svelte";
 	import { range } from "$lib/util";
 	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
@@ -161,7 +162,7 @@
 </script>
 
 <StandardPageLayout extraClasses="lg:items-start">
-	<h1 class="text-xl lg:text-2xl text-center font-bold">Minecraft Create Mod Steam Engine Simulator</h1>
+	<H1 extraClasses="text-center">Minecraft Create Mod Steam Engine Simulator</H1>
 
 	<div class="grid xl:grid-cols-[auto_auto] gap-8">
 		<Card>
@@ -172,12 +173,12 @@
 					<p>Footprint</p>
 
 					<label class="flex gap-2">
-						<input type="radio" value={2} bind:group={width} />
+						<input class="accent-accent" type="radio" value={2} bind:group={width} />
 						<p>2x2</p>
 					</label>
 
 					<label class="flex gap-2">
-						<input type="radio" value={3} bind:group={width} />
+						<input class="accent-accent" type="radio" value={3} bind:group={width} />
 						<p>3x3</p>
 					</label>
 				</div>
@@ -187,16 +188,21 @@
 
 					<div class="flex gap-2">
 						<p>1</p>
-						<input class="w-full max-w-80" type="range" min="1" max="16" bind:value={height} />
+						<input
+							class="w-full max-w-80 accent-accent"
+							type="range"
+							min="1"
+							max="16"
+							bind:value={height}
+						/>
 						<p>16</p>
 					</div>
 				</div>
 
 				<div class="flex flex-col gap-3">
 					<p>Volume: {volume} blocks</p>
-					<button
-						class="rounded-sm w-full p-2 bg-black dark:bg-white hover:bg-gray-500 text-white dark:text-black"
-						onclick={optimizeForSize}>Optimize for this size</button
+					<button class="rounded-sm w-full p-2 bg-white hover:bg-accent text-black" onclick={optimizeForSize}
+						>Optimize for this size</button
 					>
 				</div>
 			</div>
@@ -211,7 +217,7 @@
 						{#each activeBlazeIndices[width as keyof typeof activeBlazeIndices] as row}
 							{#each row as blaze}
 								<button
-									class="rounded-sm w-full p-2 bg-black dark:bg-white hover:bg-gray-500 text-white dark:text-black"
+									class="rounded-sm w-full p-2 bg-white hover:bg-accent text-black"
 									onclick={() => addHeat(blaze)}
 								>
 									<img
@@ -240,12 +246,12 @@
 					<p>Pumps</p>
 
 					<label class="flex gap-2">
-						<input type="radio" value={1} bind:group={pumps} />
+						<input class="accent-accent" type="radio" value={1} bind:group={pumps} />
 						<p>1</p>
 					</label>
 
 					<label class="flex gap-2">
-						<input type="radio" value={2} bind:group={pumps} />
+						<input class="accent-accent" type="radio" value={2} bind:group={pumps} />
 						<p>2</p>
 					</label>
 				</div>
@@ -255,7 +261,13 @@
 
 					<div class="flex gap-2">
 						<p>0</p>
-						<input class="w-full max-w-100" type="range" min="0" max="256" bind:value={pumpSpeed} />
+						<input
+							class="w-full max-w-100 accent-accent"
+							type="range"
+							min="0"
+							max="256"
+							bind:value={pumpSpeed}
+						/>
 						<p>256</p>
 					</div>
 				</div>
@@ -269,7 +281,7 @@
 				<p class="text-base lg:text-lg font-bold">Boiler Status: {boilerLvlReadable}</p>
 
 				<div class="flex flex-wrap gap-6">
-					<table class="border border-separate border-black dark:border-white w-70">
+					<table class="border border-separate border-fg w-70">
 						<tbody>
 							{#each [{ name: "Size", lvl: sizeLvl }, { name: "Water", lvl: waterLvl }, { name: "Heat", lvl: heatLvl }] as row}
 								<tr title="Lvl {row.lvl}">
@@ -298,11 +310,9 @@
 				<div class="grid grid-cols-6 gap-1">
 					{#each range(1, 18) as lvl}
 						<button
-							class="rounded-sm w-10 p-2 bg-black dark:bg-white hover:bg-gray-500 {suboptimalLvls.includes(
-								lvl,
-							)
-								? 'text-red-500'
-								: 'text-white dark:text-black'}"
+							class="rounded-sm w-10 p-2 bg-white hover:bg-accent text-black {suboptimalLvls.includes(lvl)
+								? 'text-err'
+								: 'text-black'}"
 							title={suboptimalLvls.includes(lvl)
 								? "This boiler level cannot be perfectly optimized."
 								: undefined}
