@@ -1,13 +1,21 @@
 <script lang="ts">
 	import * as d3 from "d3";
+	import {
+		bgSelectedSecondary,
+		borderClickablePrimary,
+		borderSoft,
+		borderStrong,
+		textClickable,
+	} from "$lib/colorClasses";
 	import config_active from "$lib/assets/config_active.png";
 	import config_hover from "$lib/assets/config_hover.png";
 	import config_inactive from "$lib/assets/config_inactive.png";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
-	import NavBar from "$lib/components/NavBar.svelte";
 	import { onMount } from "svelte";
 	import SongInfo from "$lib/components/SongInfo.svelte";
+	import Page from "$lib/components/Page.svelte";
 	import type { PageProps } from "./$types";
+	import { Bars3 } from "svelte-heros-v2";
 
 	let { data }: PageProps = $props();
 
@@ -332,68 +340,100 @@
 	}
 </script>
 
-<div class="h-dvh flex flex-col">
-	<NavBar />
-	
-	<div class="min-h-0 flex-1 flex">
-		<div class="w-[20vw] min-w-70 max-w-100 min-h-0 flex-1 flex flex-col gap-3">
-			{#if selectedNodeType === "l"}
-				<LeitmotifInfo
-					name={selectedNode.name}
-					subleitmotifs={selectedNode.subleitmotifs}
-					description={selectedNode.description}
-				/>
-				<div class="ml-6 mr-3 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
-					{#each linkedNodes() as linkedSong}
-						<button
-							class="hover:underline text-left leading-tight cursor-pointer"
-							onclick={() => selectSong(linkedSong)}
-						>
-							{linkedSong.numberTitle}
-						</button>
-					{/each}
-				</div>
-			{:else if selectedNodeType === "s"}
-				<SongInfo
-					title={selectedNode.title}
-					gameTitle={selectedNode.gameTitle}
-					trackNumber={selectedNode.trackNumber}
-				/>
-				<div class="min-h-0 p-4 bg-utdrbg flex flex-col gap-5 overflow-y-auto">
-					{#if linkedNodes().length}
-						{#each linkedNodes() as linkedLeitmotif}
-							{#if linkedLeitmotif.subleitmotifs}
-								{#each data.links.find((link) => link.leitmotif === linkedLeitmotif.id && link.song === selectedNode.id).subleitmotifs as linkedSubleitmotif}
+<Page title="EdenCulver.net > Reference > Undertale/Deltarune Leitmotifs Graph">
+	<div class="border-b-2 {borderSoft} flex flex-col flex-1">
+		<div class="min-h-0 flex-1 flex">
+			<div class="w-[20vw] min-w-70 max-w-100 min-h-0 flex-1 flex flex-col gap-3">
+				{#if selectedNodeType === "l"}
+					<LeitmotifInfo
+						name={selectedNode.name}
+						subleitmotifs={selectedNode.subleitmotifs}
+						description={selectedNode.description}
+					/>
+					<div class="ml-6 mr-3 min-h-0 flex-1 flex flex-col gap-2 overflow-y-auto">
+						{#each linkedNodes() as linkedSong}
+							<button
+								class="hover:underline text-left leading-tight cursor-pointer"
+								onclick={() => selectSong(linkedSong)}
+							>
+								{linkedSong.numberTitle}
+							</button>
+						{/each}
+					</div>
+				{:else if selectedNodeType === "s"}
+					<SongInfo
+						title={selectedNode.title}
+						gameTitle={selectedNode.gameTitle}
+						trackNumber={selectedNode.trackNumber}
+					/>
+					<div class="min-h-0 p-4 {bgSelectedSecondary} flex flex-col gap-5 overflow-y-auto">
+						{#if linkedNodes().length}
+							{#each linkedNodes() as linkedLeitmotif}
+								{#if linkedLeitmotif.subleitmotifs}
+									{#each data.links.find((link) => link.leitmotif === linkedLeitmotif.id && link.song === selectedNode.id).subleitmotifs as linkedSubleitmotif}
+										<div class="flex flex-col gap-1">
+											<button
+												class="mb-1 text-left font-bold leading-tight hover:underline cursor-pointer"
+												onclick={() => selectLeitmotif(linkedLeitmotif)}
+											>
+												{linkedLeitmotif.name}
+												{linkedSubleitmotif}
+											</button>
+											<div class="flex items-center">
+												<p class="w-16 text-xs">Identity</p>
+												{#key `${linkedLeitmotif.name} ${linkedSubleitmotif}`}
+													<audio class="w-full" controls>
+														<source
+															src={getAudioSrc(
+																linkedLeitmotif.name,
+																linkedLeitmotif.name,
+																linkedSubleitmotif,
+															)}
+														/>
+													</audio>
+												{/key}
+											</div>
+											<div class="flex items-center">
+												<p class="w-16 text-xs">Snippet</p>
+												{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
+													<audio class="w-full" controls>
+														<source
+															src={getAudioSrc(
+																linkedLeitmotif.name,
+																linkedSubleitmotif,
+																selectedNode.numberTitle,
+															)}
+														/>
+													</audio>
+												{/key}
+											</div>
+										</div>
+									{/each}
+								{:else}
 									<div class="flex flex-col gap-1">
 										<button
 											class="mb-1 text-left font-bold leading-tight hover:underline cursor-pointer"
 											onclick={() => selectLeitmotif(linkedLeitmotif)}
 										>
 											{linkedLeitmotif.name}
-											{linkedSubleitmotif}
 										</button>
 										<div class="flex items-center">
 											<p class="w-16 text-xs">Identity</p>
-											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif}`}
+											{#key linkedLeitmotif.name}
 												<audio class="w-full" controls>
 													<source
-														src={getAudioSrc(
-															linkedLeitmotif.name,
-															linkedLeitmotif.name,
-															linkedSubleitmotif,
-														)}
+														src={getAudioSrc(linkedLeitmotif.name, linkedLeitmotif.name)}
 													/>
 												</audio>
 											{/key}
 										</div>
 										<div class="flex items-center">
 											<p class="w-16 text-xs">Snippet</p>
-											{#key `${linkedLeitmotif.name} ${linkedSubleitmotif} ${selectedNode.numberTitle}`}
+											{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
 												<audio class="w-full" controls>
 													<source
 														src={getAudioSrc(
 															linkedLeitmotif.name,
-															linkedSubleitmotif,
 															selectedNode.numberTitle,
 														)}
 													/>
@@ -401,118 +441,84 @@
 											{/key}
 										</div>
 									</div>
-								{/each}
-							{:else}
-								<div class="flex flex-col gap-1">
-									<button
-										class="mb-1 text-left font-bold leading-tight hover:underline cursor-pointer"
-										onclick={() => selectLeitmotif(linkedLeitmotif)}
-									>
-										{linkedLeitmotif.name}
-									</button>
-									<div class="flex items-center">
-										<p class="w-16 text-xs">Identity</p>
-										{#key linkedLeitmotif.name}
-											<audio class="w-full" controls>
-												<source src={getAudioSrc(linkedLeitmotif.name, linkedLeitmotif.name)} />
-											</audio>
-										{/key}
-									</div>
-									<div class="flex items-center">
-										<p class="w-16 text-xs">Snippet</p>
-										{#key `${linkedLeitmotif.name} ${selectedNode.numberTitle}`}
-											<audio class="w-full" controls>
-												<source
-													src={getAudioSrc(linkedLeitmotif.name, selectedNode.numberTitle)}
-												/>
-											</audio>
-										{/key}
-									</div>
-								</div>
-							{/if}
-						{/each}
-					{:else}
-						<p>None</p>
-					{/if}
-				</div>
-			{/if}
-			<div class="m-3 mt-auto flex flex-col gap-2">
-				<label class="flex items-center">
-					<p class="w-28">Leitmotif:</p>
-					<select
-						class="border-2 border-utdrinactive hover:border-utdractive w-full p-2"
-						bind:value={dropdownSelectedLeitmotif}
-					>
-						<option value="x">---</option>
-						{#each data.leitmotifs as leitmotif}
-							<option value={leitmotif.id}>{leitmotif.name}</option>
-						{/each}
-					</select>
-				</label>
-				<label class="flex items-center">
-					<p class="w-28">Song:</p>
-					<select
-						class="border-2 border-utdrinactive hover:border-utdractive w-full p-2"
-						bind:value={dropdownSelectedSong}
-					>
-						<option value="x">---</option>
-						{#each data.songs as song}
-							<option value={song.id}>{getNumberTitle(song)}</option>
-						{/each}
-					</select>
-				</label>
-			</div>
-		</div>
-		<svg bind:this={svgElement} class="border-x-2 border-utdrborder flex-1"></svg>
-		<div class="m-3 flex flex-col gap-1 items-start">
-			<div class="relative">
-				<button
-					class="[image-rendering:pixelated]"
-					title="Simulation parameters"
-					onclick={toggleMenu}
-					style="background: url({config_hover});"
-				>
-					<img
-						class="hover:opacity-0 [image-rendering:pixelated]"
-						src={menuHidden ? config_inactive : config_active}
-						alt="Config menu."
-					/>
-				</button>
-				<div
-					class={"absolute right-0 border-2 border-fg p-3 bg-bg flex flex-col gap-2 items-right" +
-						(menuHidden ? " hidden" : "")}
-				>
-					<label class="flex items-center gap-2 whitespace-nowrap">
-						X force strength:
-						<input
-							class="border-2 border-utdrinactive hover:border-utdractive px-2 py-1"
-							type="number"
-							min="0"
-							max="1"
-							step="0.001"
-							bind:value={xStrength}
-						/>
+								{/if}
+							{/each}
+						{:else}
+							<p>None</p>
+						{/if}
+					</div>
+				{/if}
+				<div class="m-3 mt-auto flex flex-col gap-2">
+					<label class="flex items-center">
+						<p class="w-28">Leitmotif:</p>
+						<select
+							class="border-2 {borderStrong} {borderClickablePrimary} w-full p-2"
+							bind:value={dropdownSelectedLeitmotif}
+						>
+							<option value="x">---</option>
+							{#each data.leitmotifs as leitmotif}
+								<option value={leitmotif.id}>{leitmotif.name}</option>
+							{/each}
+						</select>
 					</label>
-					<label class="flex items-center gap-2 whitespace-nowrap">
-						Y force strength:
-						<input
-							class="border-2 border-utdrinactive hover:border-utdractive px-2 py-1"
-							type="number"
-							min="0"
-							max="1"
-							step="0.001"
-							bind:value={yStrength}
-						/>
+					<label class="flex items-center">
+						<p class="w-28">Song:</p>
+						<select
+							class="border-2 {borderStrong} {borderClickablePrimary} w-full p-2"
+							bind:value={dropdownSelectedSong}
+						>
+							<option value="x">---</option>
+							{#each data.songs as song}
+								<option value={song.id}>{getNumberTitle(song)}</option>
+							{/each}
+						</select>
 					</label>
 				</div>
 			</div>
-			<div class="h-1"></div>
-			{#each legend as game, i}
-				<div class="text-xs flex gap-2 items-center">
-					<div class="w-3 h-3 {gameColorsBG[i]}"></div>
-					<p>{game}</p>
+
+			<svg bind:this={svgElement} class="border-x-2 {borderSoft} bg-black flex-1"></svg>
+
+			<div class="m-3 flex flex-col gap-1 items-start">
+				<div class="relative">
+					<button class="mb-3" title="Simulation parameters" onclick={toggleMenu}>
+						<Bars3 class={textClickable} />
+					</button>
+					<div
+						class="absolute right-0 border-2 {borderStrong} p-3 bg-white dark:bg-black flex flex-col gap-2 items-right {menuHidden
+							? ' hidden'
+							: ''}"
+					>
+						<label class="flex items-center gap-2 whitespace-nowrap">
+							X force strength:
+							<input
+								class="border-2 {borderStrong} {borderClickablePrimary} px-2 py-1"
+								type="number"
+								min="0"
+								max="1"
+								step="0.001"
+								bind:value={xStrength}
+							/>
+						</label>
+						<label class="flex items-center gap-2 whitespace-nowrap">
+							Y force strength:
+							<input
+								class="border-2 {borderStrong} {borderClickablePrimary} px-2 py-1"
+								type="number"
+								min="0"
+								max="1"
+								step="0.001"
+								bind:value={yStrength}
+							/>
+						</label>
+					</div>
 				</div>
-			{/each}
+				{#each legend as game, i}
+					<div class="text-xs flex gap-2 items-center">
+						<div class="w-3 h-3 {gameColorsBG[i]}"></div>
+						<p>{game}</p>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
-</div>
+</Page>

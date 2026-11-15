@@ -2,7 +2,7 @@
 	import bank from "$lib/villager_quiz.json";
 	import click_stereo from "$lib/assets/click_stereo.ogg";
 	import McButton from "$lib/components/McButton.svelte";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+	import Page from "$lib/components/Page.svelte";
 
 	let audioPlayer: HTMLAudioElement;
 	let qIndex = $state(-1);
@@ -99,11 +99,11 @@
 
 <audio bind:this={audioPlayer} src={click_stereo}></audio>
 
-<StandardPageLayout classes="bg-[url('/images/villager-quiz/darkdirt.png')] text-sm lg:text-base flex flex-col flex-1">
-	<div class="mx-auto w-full max-w-5xl bg-white text-center flex-1">
-		<h1 class="p-8 bg-black text-xl lg:text-2xl text-white font-bold">Which Minecraft Villager Are You?</h1>
-
-		<div class="mt-4 p-8 text-black flex flex-col gap-4 items-center">
+<Page title="EdenCulver.net > Fun > Which Minecraft Villager Are You?">
+	<div class="bg-[url('/images/villager-quiz/darkdirt.png')] text-sm lg:text-base flex flex-col flex-1">
+		<div
+			class="mx-auto w-full max-w-5xl p-8 bg-white text-center text-black flex flex-col gap-4 items-center flex-1"
+		>
 			{#if qIndex === -1}
 				<McButton onclick={start}>Start</McButton>
 			{:else if qIndex === 12}
@@ -121,4 +121,4 @@
 			{/if}
 		</div>
 	</div>
-</StandardPageLayout>
+</Page>

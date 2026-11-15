@@ -19,13 +19,7 @@
 	--color-svwind: #ff9200;
 
 	/* leitmotifs */
-	/* from Dark World menu */
-	--color-utdrborder: #332033;
-	--color-utdractive: #ffc90e;
-	--color-utdrinactive: #614e6b;
 	--color-utdrlink: white;
-	/* from dark fountain, when you're near one */
-	--color-utdrbg: #27293f;
 	--color-utdrut: red;
 	/* from Recruits menu */
 	--color-utdrch1: purple;

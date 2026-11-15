@@ -11,4 +11,4 @@ export const borderStrong = "border-gray-600 dark:border-gray-400";
 export const textClickable = "hover:text-green-600 dark:hover:text-green-400 duration-100";
 export const textError = "text-red-500";
 export const textPrimary = "text-green-600 dark:text-green-400";
-export const textSecondary = "text-gray-400 dark:text-gray-600";
+export const textSecondary = "text-gray-800 dark:text-gray-600";

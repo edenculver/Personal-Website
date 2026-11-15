@@ -41,7 +41,7 @@
 
 <div class="min-h-dvh bg-white dark:bg-black text-black dark:text-white flex flex-col">
 	<header class="border-b-2 {borderSoft} px-4 py-2 flex gap-3 items-center">
-		<button onclick={() => toggleLeftPane()}>
+		<button onclick={toggleLeftPane}>
 			<Bars3 class={textClickable} />
 		</button>
 		<Icon classes="ml-2 w-10" />
@@ -61,7 +61,7 @@
 					</NavItem>
 
 					<NavItem
-						title="Vintage Story Alloy Calculator"
+						title="Vintage Story Alloy Calc"
 						shortTitle="VS Alloy Calc"
 						href="/tools/vs-alloy-calculator"
 					>

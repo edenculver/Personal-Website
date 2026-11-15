@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { bgSelectedSecondary } from "$lib/colorClasses";
+
 	interface Props {
 		name: string;
 		subleitmotifs?: string[];
@@ -13,7 +15,7 @@
 <div class="flex flex-col gap-2">
 	<p class="m-4 mb-0 text-xl font-bold">{name}</p>
 	<p class="mx-4 text-sm italic">Leitmotif</p>
-	<div class="my-1 p-4 bg-utdrbg flex flex-col gap-3">
+	<div class="my-1 p-4 {bgSelectedSecondary} flex flex-col gap-3">
 		<img
 			class="mx-auto [image-rendering:pixelated]"
 			src="/images/leitmotifs/{name.replace('?', '')}.png"
