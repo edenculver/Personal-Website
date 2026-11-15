@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { borderError } from "$lib/colorClasses";
+
 	interface Props {
 		item: string;
 		itemName?: string;
@@ -12,13 +14,13 @@
 <div class="flex flex-col items-center">
 	<div
 		class="mb-2 border-3 lg:border-4 {red
-			? 'border-red-500'
+			? borderError
 			: 'border-vsborder'} w-16 lg:w-20 h-16 lg:h-20 bg-vsbg flex flex-col gap-6 items-center justify-center"
 	>
 		{#if quantity > 0}
 			<img
 				class="w-8 lg:w-10 [image-rendering:pixelated]"
-				src="/images/alloy-calculator/{item}.png"
+				src="/images/vs-alloy-calculator/{item}.png"
 				alt="{item}."
 			/>
 		{/if}

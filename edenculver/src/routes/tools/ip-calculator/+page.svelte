@@ -1,11 +1,28 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
-	import H1 from "$lib/components/H1.svelte";
 	import IpAddress from "$lib/IpAddress";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+	import {
+		accent,
+		bgClickablePrimary,
+		bgSelectedPrimary,
+		borderError,
+		borderPrimary,
+		borderSoft,
+		borderStrong,
+		textError,
+		textPrimary,
+	} from "$lib/colorClasses";
+	import Page from "$lib/components/Page.svelte";
 
 	const strictExplanation =
 		"Strict: Summarize without including address space that isn't included in the input addresses. This usually results in multiple supernets.\nLoose: Summarize to one supernet.";
+
+	const btns = [
+		{ text: "Next Subnet", function: nextSubnet },
+		{ text: "CIDR +", function: incrementCidr },
+		{ text: "Previous Subnet", function: previousSubnet },
+		{ text: "CIDR -", function: decrementCidr },
+	];
 
 	// load states from sessionStorage (client-side only)
 	let mode: string = $state(browser ? window.sessionStorage.getItem("mode") || "sub" : "sub");
@@ -217,106 +234,90 @@
 	}
 </script>
 
-<StandardPageLayout extraClasses="lg:items-start">
-	<H1 extraClasses="mx-auto lg:mx-0 font-bold">IP Calculator</H1>
-
-	<div class="mx-auto lg:mx-0 grid grid-cols-2">
-		<button
-			class="border border-accent px-4 py-2 hover:bg-accent hover:text-bg {mode === 'sub'
-				? 'bg-accent text-bg'
-				: 'text-accent'}"
-			onclick={() => (mode = "sub")}
-		>
-			Subnet Mode
-		</button>
-		<button
-			class="border border-accent px-4 py-2 hover:bg-accent hover:text-bg {mode === 'super'
-				? 'bg-accent text-bg'
-				: 'text-accent'}"
-			onclick={() => (mode = "super")}
-		>
-			Supernet Mode
-		</button>
-	</div>
-
-	{#if mode === "sub"}
-		<label class="flex flex-col gap-1">
-			<p>IP address with CIDR or mask:</p>
-			<input
-				class="border w-full lg:w-100 p-3 font-mono {invalidInput
-					? 'border-err text-err'
-					: 'border-fg text-accent'}"
-				type="text"
-				maxlength="100"
-				bind:value={inputAddress}
-			/>
-		</label>
-
-		<div class="grid grid-cols-[auto_auto] gap-4">
+<Page title="EdenCulver.net > Tools > IP Calculator">
+	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 text-sm lg:text-base flex flex-col gap-6 lg:items-start flex-1">
+		<div class="mx-auto lg:mx-0 grid grid-cols-2">
 			<button
-				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
-				onclick={nextSubnet}
+				class="border-y border-l {borderPrimary} rounded-l-sm px-4 py-2 {bgClickablePrimary} {mode === 'sub'
+					? bgSelectedPrimary
+					: ''}"
+				onclick={() => (mode = "sub")}
 			>
-				Next Subnet
+				Subnet Mode
 			</button>
 			<button
-				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
-				onclick={incrementCidr}
+				class="border-y border-r {borderPrimary} rounded-r-sm px-4 py-2 {bgClickablePrimary} {mode === 'super'
+					? bgSelectedPrimary
+					: ''}"
+				onclick={() => (mode = "super")}
 			>
-				CIDR +
-			</button>
-			<button
-				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
-				onclick={previousSubnet}
-			>
-				Previous Subnet
-			</button>
-			<button
-				class="border border-accent px-4 py-2 hover:bg-accent text-accent hover:text-bg"
-				onclick={decrementCidr}
-			>
-				CIDR -
+				Supernet Mode
 			</button>
 		</div>
-	{:else}
-		<div class="flex flex-col gap-4">
+
+		{#if mode === "sub"}
 			<label class="flex flex-col gap-1">
-				<p>IP addresses with CIDR or mask:</p>
-				<textarea
-					id="inputAddresses"
+				<p>IP address with CIDR or mask:</p>
+				<input
 					class="border w-full lg:w-100 p-3 font-mono {invalidInput
-						? 'border-err text-err'
-						: 'border-fg + text-accent'}"
-					rows="4"
-					bind:value={inputAddresses}></textarea>
+						? `${borderError} ${textError}`
+						: 'border-black dark:border-white ' + textPrimary}"
+					type="text"
+					maxlength="100"
+					bind:value={inputAddress}
+				/>
 			</label>
-			<label class="flex gap-3 mt-3" title={strictExplanation}>
-				Strict?
-				<input class="accent-accent" type="checkbox" bind:checked={strict} />
-			</label>
-			<div>Summary prefix{strict ? "(es)" : ""}:</div>
-			<div class="text-accent ml-3 font-mono whitespace-pre-line">{summaryPrefixes}</div>
-		</div>
-	{/if}
 
-	<div class="overflow-x-auto">
-		<table>
-			<tbody>
-				{#if mode === "sub"}
-					<tr>
-						<td class="border border-midg px-4 py-3 font-bold">IP Address</td>
-						<td class="border border-midg px-4 py-3 font-mono">{address}</td>
-					</tr>
-				{/if}
-				{#each tableRows as row}
-					<tr>
-						<td class="border border-midg px-4 py-3 font-bold">{row.label}</td>
-						{#each row.cols as col}
-							<td class="border border-midg px-4 py-3 font-mono whitespace-pre-line">{col}</td>
-						{/each}
-					</tr>
+			<div class="grid grid-cols-[auto_auto] gap-4">
+				{#each btns as btn}
+					<button
+						class="border {borderPrimary} rounded-sm px-4 py-2 {bgClickablePrimary}"
+						onclick={btn.function}
+					>
+						{btn.text}
+					</button>
 				{/each}
-			</tbody>
-		</table>
+			</div>
+		{:else}
+			<div class="flex flex-col gap-4">
+				<label class="flex flex-col gap-1">
+					<p>IP addresses with CIDR or mask:</p>
+					<textarea
+						id="inputAddresses"
+						class="border w-full lg:w-100 p-3 font-mono {invalidInput
+							? `${borderError} ${textError}`
+							: 'border-black dark:border-white ' + textPrimary}"
+						rows="4"
+						bind:value={inputAddresses}></textarea>
+				</label>
+				<label class="flex gap-3 mt-3" title={strictExplanation}>
+					Strict?
+					<input class={accent} type="checkbox" bind:checked={strict} />
+				</label>
+				<div>Summary prefix{strict ? "(es)" : ""}:</div>
+				<div class="{textPrimary} ml-3 font-mono whitespace-pre-line">{summaryPrefixes}</div>
+			</div>
+		{/if}
+
+		<div class="overflow-x-auto">
+			<table>
+				<tbody>
+					{#if mode === "sub"}
+						<tr>
+							<td class="border {borderSoft} px-4 py-3 font-bold">IP Address</td>
+							<td class="border {borderSoft} px-4 py-3 font-mono">{address}</td>
+						</tr>
+					{/if}
+					{#each tableRows as row}
+						<tr>
+							<td class="border {borderSoft} px-4 py-3 font-bold">{row.label}</td>
+							{#each row.cols as col}
+								<td class="border {borderSoft} px-4 py-3 font-mono whitespace-pre-line">{col}</td>
+							{/each}
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
 	</div>
-</StandardPageLayout>
+</Page>

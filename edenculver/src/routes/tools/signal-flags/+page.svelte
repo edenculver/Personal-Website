@@ -1,7 +1,7 @@
 <script lang="ts">
-	import H1 from "$lib/components/H1.svelte";
+	import { accent, borderClickablePrimary, borderSoft, textPrimary } from "$lib/colorClasses";
+	import Page from "$lib/components/Page.svelte";
 	import SignalFlag from "$lib/components/SignalFlag.svelte";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
 
 	let message = $state("");
 	let w = $state(100);
@@ -49,135 +49,137 @@
 	}
 </script>
 
-<StandardPageLayout classes="text-sm lg:text-base flex flex-col flex-1">
-	<div class="bg-bg">
-		<div class="p-10 flex flex-col lg:flex-row gap-10">
-			<div class="mt-4 flex flex-col gap-5">
-				<H1 classes="text-lg lg:text-xl text-center lg:text-left font-bold">
-					Translate a message to
-					<a
-						class="text-accent underline hover:no-underline"
-						href="https://en.wikipedia.org/wiki/International_Code_of_Signals"
-					>
-						International Code of Signals (INTERCO)
-					</a>
-					flags
-				</H1>
+<Page title="EdenCulver.net > Tools > Signal Flag Translator">
+	<div class="text-sm lg:text-base flex flex-col flex-1">
+		<div class="bg-white dark:bg-black">
+			<div class="p-10 flex flex-col lg:flex-row gap-10">
+				<div class="mt-4 flex flex-col gap-5">
+					<h2 class="text-lg lg:text-xl text-center lg:text-left font-bold">
+						Translate a message to
+						<a
+							class="{textPrimary} underline hover:no-underline"
+							href="https://en.wikipedia.org/wiki/International_Code_of_Signals"
+						>
+							International Code of Signals (INTERCO)
+						</a>
+						flags
+					</h2>
 
-				<input
-					class="border border-midg rounded-sm w-full p-2 bg-white text-black"
-					type="text"
-					size="80"
-					placeholder="Message..."
-					bind:value={message}
-				/>
-			</div>
-
-			<div class="flex flex-col gap-2 items-center">
-				<p class="text-base lg:text-lg font-bold">Options</p>
-
-				<div class="flex flex-col gap-1 items-end">
-					<label class="flex gap-2 items-center justify-right">
-						<p>Width:</p>
-						<input
-							class="border border-midg rounded-sm w-20 p-1 bg-white text-black"
-							type="number"
-							bind:value={w}
-						/>
-					</label>
-
-					<label class="flex gap-2 items-center justify-right">
-						<p>Height:</p>
-						<input
-							class="border border-midg rounded-sm w-20 p-1 bg-white text-black"
-							type="number"
-							bind:value={h}
-						/>
-					</label>
+					<input
+						class="border {borderSoft} rounded-sm w-full p-2 bg-white text-black"
+						type="text"
+						size="80"
+						placeholder="Message..."
+						bind:value={message}
+					/>
 				</div>
 
-				<label
-					class="flex gap-3"
-					title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
-				>
-					<input class="accent-accent" type="checkbox" bind:checked={useSubs} />
-					<p>Use substitutes?</p>
-				</label>
-			</div>
+				<div class="flex flex-col gap-2 items-center">
+					<p class="text-base lg:text-lg font-bold">Options</p>
 
-			<div class="flex flex-col gap-2 items-center">
-				<p class="text-base lg:text-lg font-bold">Colors</p>
-
-				<div class="flex gap-4">
 					<div class="flex flex-col gap-1 items-end">
 						<label class="flex gap-2 items-center justify-right">
-							<p>Background:</p>
+							<p>Width:</p>
 							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={background}
+								class="border {borderSoft} rounded-sm w-20 p-1 bg-white text-black"
+								type="number"
+								bind:value={w}
 							/>
 						</label>
 
 						<label class="flex gap-2 items-center justify-right">
-							<p>Black:</p>
+							<p>Height:</p>
 							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={black}
-							/>
-						</label>
-
-						<label class="flex gap-2 items-center justify-right">
-							<p>White:</p>
-							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={white}
+								class="border {borderSoft} rounded-sm w-20 p-1 bg-white text-black"
+								type="number"
+								bind:value={h}
 							/>
 						</label>
 					</div>
 
-					<div class="flex flex-col gap-1 items-end">
-						<label class="flex gap-2 items-center justify-right">
-							<p>Red:</p>
-							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={red}
-							/>
-						</label>
+					<label
+						class="flex gap-3"
+						title="Replaces repeated flags with substitutes. Allows any four letter or number combination to be sent using only one set of flags."
+					>
+						<input class={accent} type="checkbox" bind:checked={useSubs} />
+						<p>Use substitutes?</p>
+					</label>
+				</div>
 
-						<label class="flex gap-2 items-center justify-right">
-							<p>Yellow:</p>
-							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={yellow}
-							/>
-						</label>
+				<div class="flex flex-col gap-2 items-center">
+					<p class="text-base lg:text-lg font-bold">Colors</p>
 
-						<label class="flex gap-2 items-center justify-right">
-							<p>Blue:</p>
-							<input
-								class="border border-midg hover:border-accent rounded-md w-20"
-								type="color"
-								bind:value={blue}
-							/>
-						</label>
+					<div class="flex gap-4">
+						<div class="flex flex-col gap-1 items-end">
+							<label class="flex gap-2 items-center justify-right">
+								<p>Background:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={background}
+								/>
+							</label>
+
+							<label class="flex gap-2 items-center justify-right">
+								<p>Black:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={black}
+								/>
+							</label>
+
+							<label class="flex gap-2 items-center justify-right">
+								<p>White:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={white}
+								/>
+							</label>
+						</div>
+
+						<div class="flex flex-col gap-1 items-end">
+							<label class="flex gap-2 items-center justify-right">
+								<p>Red:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={red}
+								/>
+							</label>
+
+							<label class="flex gap-2 items-center justify-right">
+								<p>Yellow:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={yellow}
+								/>
+							</label>
+
+							<label class="flex gap-2 items-center justify-right">
+								<p>Blue:</p>
+								<input
+									class="border {borderSoft} {borderClickablePrimary} rounded-sm w-20"
+									type="color"
+									bind:value={blue}
+								/>
+							</label>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="p-10 flex gap-20 flex-1 overflow-x-auto" style="background-color: {background};">
-		{#each parseMessage() as word}
-			<div class="flex flex-col gap-5">
-				{#each word as char}
-					<SignalFlag {w} {h} {black} {white} {red} {yellow} {blue} {char} />
-				{/each}
-			</div>
-		{/each}
+		<div class="p-10 flex gap-20 flex-1 overflow-x-auto" style="background-color: {background};">
+			{#each parseMessage() as word}
+				<div class="flex flex-col gap-5">
+					{#each word as char}
+						<SignalFlag {w} {h} {black} {white} {red} {yellow} {blue} {char} />
+					{/each}
+				</div>
+			{/each}
+		</div>
 	</div>
-</StandardPageLayout>
+</Page>

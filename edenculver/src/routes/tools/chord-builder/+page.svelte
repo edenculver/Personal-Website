@@ -1,7 +1,14 @@
 <script lang="ts">
 	import Card from "$lib/components/Card.svelte";
-	import H1 from "$lib/components/H1.svelte";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+	import Page from "$lib/components/Page.svelte";
+	import {
+		borderStrong,
+		bgClickablePrimary,
+		bgSelectedPrimary,
+		bgSelectedSecondary,
+		textError,
+		accent,
+	} from "$lib/colorClasses";
 
 	/*
 	Terms used:
@@ -103,189 +110,200 @@
 	}
 </script>
 
-<StandardPageLayout extraClasses="lg:items-start">
-	<H1 extraClasses="mx-auto lg:mx-0 text-center">Chord Builder</H1>
+<Page title="EdenCulver.net > Tools > Chord Builder">
+	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 text-sm lg:text-base flex flex-col gap-6 lg:items-start flex-1">
+		<div class="grid lg:grid-cols-[auto_auto] gap-8">
+			<Card>
+				<p class="text-lg lg:text-xl font-bold">Root</p>
 
-	<div class="grid lg:grid-cols-[auto_auto] gap-8">
-		<Card>
-			<p class="text-lg lg:text-xl font-bold">Root</p>
-
-			<table>
-				<tbody>
-					{#each accidentals as accidental}
-						<tr>
-							{#each noteNames as noteName}
-								<td class="border border-fg">
-									<button
-										class={"w-full p-3 hover:bg-accenthover" +
-											(root === noteName + accidental
-												? " bg-accent"
+				<table>
+					<tbody>
+						{#each accidentals as accidental}
+							<tr>
+								{#each noteNames as noteName}
+									<td class="border {borderStrong}">
+										<button
+											class="w-full p-3 {bgClickablePrimary} {root === noteName + accidental
+												? bgSelectedPrimary
 												: wrapPitch(getPitch(root)) ===
 													  wrapPitch(getPitch(noteName + accidental))
-													? " bg-accentsoft"
-													: "")}
-										onclick={() => (root = noteName + accidental)}
-									>
-										{noteName}{accidental}
-									</button>
-								</td>
-							{/each}
+													? bgSelectedSecondary
+													: ''}"
+											onclick={() => (root = noteName + accidental)}
+										>
+											{noteName}{accidental}
+										</button>
+									</td>
+								{/each}
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</Card>
+
+			<Card>
+				<p class="text-lg lg:text-xl font-bold">Interval Qualities</p>
+
+				<table class="border {borderStrong}">
+					<tbody>
+						<tr>
+							<th class="border {borderStrong} p-3">1</th>
+							<th class="border {borderStrong} p-3">third</th>
+							<th class="border {borderStrong} p-3">3</th>
+							<th class="border {borderStrong} p-3">third</th>
+							<th class="border {borderStrong} p-3">5</th>
+							{#if useSeventh}
+								<th class="border {borderStrong} p-3">third</th>
+								<th class="border {borderStrong} p-3">7</th>
+							{/if}
 						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</Card>
-
-		<Card>
-			<p class="text-lg lg:text-xl font-bold">Interval Qualities</p>
-
-			<table class="border border-fg">
-				<tbody>
-					<tr>
-						<th class="border border-fg p-3">1</th>
-						<th class="border border-fg p-3">third</th>
-						<th class="border border-fg p-3">3</th>
-						<th class="border border-fg p-3">third</th>
-						<th class="border border-fg p-3">5</th>
-						{#if useSeventh}
-							<th class="border border-fg p-3">third</th>
-							<th class="border border-fg p-3">7</th>
-						{/if}
-					</tr>
-					<tr>
-						<td class="border border-fg w-20 text-center" rowspan="2">
-							{root.replace("♮", "")}
-						</td>
-						<td class="border border-fg">
-							<button
-								class={"w-full p-3 hover:bg-accenthover" + (third1Quality === 3 ? " bg-accent" : "")}
-								onclick={() => (third1Quality = 3)}
-							>
-								minor
-							</button>
-						</td>
-						<td
-							class={"border border-fg text-center w-20" + (three.includes("?") ? " text-err" : "")}
-							rowspan="2"
-						>
-							{three.replace("♮", "")}
-						</td>
-						<td class="border border-fg">
-							<button
-								class={"w-full p-3 hover:bg-accenthover" + (third2Quality === 3 ? " bg-accent" : "")}
-								onclick={() => (third2Quality = 3)}
-							>
-								minor
-							</button>
-						</td>
-						<td
-							class={"border border-fg text-center w-20" + (five.includes("?") ? " text-err" : "")}
-							rowspan="2"
-						>
-							{five.replace("♮", "")}
-						</td>
-						{#if useSeventh}
-							<td class="border border-fg">
+						<tr>
+							<td class="border {borderStrong} w-20 text-center" rowspan="2">
+								{root.replace("♮", "")}
+							</td>
+							<td class="border {borderStrong}">
 								<button
-									class={"w-full p-3 hover:bg-accenthover" +
-										(third3Quality === 3 ? " bg-accent" : "")}
-									onclick={() => (third3Quality = 3)}
+									class="w-full p-3 {bgClickablePrimary} {third1Quality === 3
+										? bgSelectedPrimary
+										: ''}"
+									onclick={() => (third1Quality = 3)}
 								>
 									minor
 								</button>
 							</td>
 							<td
-								class={"border border-fg w-20 text-center" + (seven.includes("?") ? " text-err" : "")}
+								class="border {borderStrong} w-20 text-center {three.includes('?') ? textError : ''}"
 								rowspan="2"
 							>
-								{seven.replace("♮", "")}
+								{three.replace("♮", "")}
 							</td>
-						{/if}
-					</tr>
-					<tr>
-						<td class="border border-fg">
-							<button
-								class={"w-full p-3 hover:bg-accenthover" + (third1Quality === 4 ? " bg-accent" : "")}
-								onclick={() => (third1Quality = 4)}
-							>
-								major
-							</button>
-						</td>
-						<td class="border border-fg">
-							<button
-								class={"w-full p-3 hover:bg-accenthover" + (third2Quality === 4 ? " bg-accent" : "")}
-								onclick={() => (third2Quality = 4)}
-							>
-								major
-							</button>
-						</td>
-						{#if useSeventh}
-							<td class="border border-fg">
+							<td class="border {borderStrong}">
 								<button
-									class={"w-full p-3 hover:bg-accenthover" +
-										(third3Quality === 4 ? " bg-accent" : "")}
-									onclick={() => (third3Quality = 4)}
+									class="w-full p-3 {bgClickablePrimary} {third2Quality === 3
+										? bgSelectedPrimary
+										: ''}"
+									onclick={() => (third2Quality = 3)}
+								>
+									minor
+								</button>
+							</td>
+							<td
+								class="border {borderStrong} w-20 text-center {five.includes('?') ? textError : ''}"
+								rowspan="2"
+							>
+								{five.replace("♮", "")}
+							</td>
+							{#if useSeventh}
+								<td class="border {borderStrong}">
+									<button
+										class="w-full p-3 {bgClickablePrimary} {third3Quality === 3
+											? bgSelectedPrimary
+											: ''}"
+										onclick={() => (third3Quality = 3)}
+									>
+										minor
+									</button>
+								</td>
+								<td
+									class="border {borderStrong} w-20 text-center {seven.includes('?')
+										? textError
+										: ''}"
+									rowspan="2"
+								>
+									{seven.replace("♮", "")}
+								</td>
+							{/if}
+						</tr>
+						<tr>
+							<td class="border {borderStrong}">
+								<button
+									class="w-full p-3 {bgClickablePrimary} {third1Quality === 4
+										? bgSelectedPrimary
+										: ''}"
+									onclick={() => (third1Quality = 4)}
 								>
 									major
 								</button>
 							</td>
-						{/if}
-					</tr>
-					<tr>
-						<th class="border border-fg p-3" colspan="5">
-							{qualities[(fivePitch - rootPitch) as keyof typeof qualities]} fifth
-						</th>
-					</tr>
-					{#if useSeventh}
+							<td class="border {borderStrong}">
+								<button
+									class="w-full p-3 {bgClickablePrimary} {third2Quality === 4
+										? bgSelectedPrimary
+										: ''}"
+									onclick={() => (third2Quality = 4)}
+								>
+									major
+								</button>
+							</td>
+							{#if useSeventh}
+								<td class="border {borderStrong}">
+									<button
+										class="w-full p-3 {bgClickablePrimary} {third3Quality === 4
+											? bgSelectedPrimary
+											: ''}"
+										onclick={() => (third3Quality = 4)}
+									>
+										major
+									</button>
+								</td>
+							{/if}
+						</tr>
 						<tr>
-							<th class="p-3" colspan="7">
-								{qualities[(sevenPitch - rootPitch) as keyof typeof qualities]} seventh
+							<th class="border {borderStrong} p-3" colspan="5">
+								{qualities[(fivePitch - rootPitch) as keyof typeof qualities]} fifth
 							</th>
 						</tr>
-					{/if}
-				</tbody>
-			</table>
+						{#if useSeventh}
+							<tr>
+								<th class="p-3" colspan="7">
+									{qualities[(sevenPitch - rootPitch) as keyof typeof qualities]} seventh
+								</th>
+							</tr>
+						{/if}
+					</tbody>
+				</table>
 
-			<label class="flex gap-2">
-				<input class="accent-accent" type="checkbox" bind:checked={useSeventh} />
-				Seventh?
-			</label>
+				<label class="flex gap-2">
+					<input class={accent} type="checkbox" bind:checked={useSeventh} />
+					Seventh?
+				</label>
 
-			{#if three.includes("?") || five.includes("?") || (useSeventh && seven.includes("?"))}
-				<div class="text-err">
-					<p>This chord is impossible! The notes in red do not exist.</p>
-					<p>Try an enharmonic root note (highlighted).</p>
-				</div>
-			{/if}
-		</Card>
-
-		<div class="lg:col-span-2">
-			<Card>
-				<p class="text-lg lg:text-xl font-bold">
-					{chordNames[chordStack as keyof typeof chordNames].replaceAll("R", root.replace("♮", ""))}
-				</p>
-
-				<svg class="border border-black bg-black" width={(whiteKeyW + 1) * 14 - 1} height={whiteKeyH}>
-					{#each whiteKeyPitches as p, i}
-						<rect
-							class={pitches.includes(p) ? "fill-accent" : "fill-white"}
-							x={(whiteKeyW + 1) * i}
-							y={0}
-							width={whiteKeyW}
-							height={whiteKeyH}
-						></rect>
-					{/each}
-					{#each blackKeyPitches as p, i}
-						<rect
-							class={pitches.includes(p) ? "fill-accent" : "fill-black"}
-							x={blackKeyPositions[i] * (whiteKeyW + 1) - blackKeyW / 2 - 1}
-							y={0}
-							width={blackKeyW}
-							height={blackKeyH}
-						></rect>
-					{/each}
-				</svg>
+				{#if three.includes("?") || five.includes("?") || (useSeventh && seven.includes("?"))}
+					<div class={textError}>
+						<p>This chord is impossible! The notes in red do not exist.</p>
+						<p>Try an enharmonic root note (highlighted).</p>
+					</div>
+				{/if}
 			</Card>
+
+			<div class="lg:col-span-2">
+				<Card>
+					<p class="text-lg lg:text-xl font-bold">
+						{chordNames[chordStack as keyof typeof chordNames].replaceAll("R", root.replace("♮", ""))}
+					</p>
+
+					<svg class="border border-black bg-black" width={(whiteKeyW + 1) * 14 - 1} height={whiteKeyH}>
+						{#each whiteKeyPitches as p, i}
+							<rect
+								class={pitches.includes(p) ? "fill-green-600" : "fill-white"}
+								x={(whiteKeyW + 1) * i}
+								y={0}
+								width={whiteKeyW}
+								height={whiteKeyH}
+							></rect>
+						{/each}
+						{#each blackKeyPitches as p, i}
+							<rect
+								class={pitches.includes(p) ? "fill-green-600" : "fill-black"}
+								x={blackKeyPositions[i] * (whiteKeyW + 1) - blackKeyW / 2 - 1}
+								y={0}
+								width={blackKeyW}
+								height={blackKeyH}
+							></rect>
+						{/each}
+					</svg>
+				</Card>
+			</div>
 		</div>
 	</div>
-</StandardPageLayout>
+</Page>

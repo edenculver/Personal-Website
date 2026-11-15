@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { bgClickableSecondary } from "$lib/colorClasses";
 	import { ChevronDown, ChevronUp } from "svelte-heros-v2";
 
 	interface Props {
@@ -16,10 +17,7 @@
 </script>
 
 <div class="flex flex-col">
-	<button
-		class="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 duration-100 font-bold flex cursor-pointer"
-		onclick={() => toggleCollapsed()}
-	>
+	<button class="px-3 py-2 {bgClickableSecondary} font-bold flex cursor-pointer" onclick={() => toggleCollapsed()}>
 		<p class="text-left text-sm flex-1">{title}</p>
 		{#if collapsed}
 			<ChevronUp variation="mini" />

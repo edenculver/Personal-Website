@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { bgClickableSecondary, borderSoft, textClickable } from "$lib/colorClasses";
+
 	interface Props {
 		title: string;
 		description?: string;
@@ -12,7 +14,7 @@
 </script>
 
 <a
-	class="border border-gray-400 dark:border-gray-600 hover:border-green-600 dark:hover:border-green-400 rounded-md p-6 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-green-600 dark:hover:text-green-400 duration-100 flex-1 flex flex-col gap-4"
+	class="border {borderSoft} hover:border-green-600 dark:hover:border-green-400 rounded-md p-6 {bgClickableSecondary} {textClickable} flex-1 flex flex-col gap-4"
 	{href}
 >
 	<div class="flex gap-4 items-center">

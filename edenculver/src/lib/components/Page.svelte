@@ -12,6 +12,7 @@
 		Share,
 		UserGroup,
 	} from "svelte-heros-v2";
+	import { borderSoft, textClickable, textSecondary } from "$lib/colorClasses";
 	import { browser } from "$app/environment";
 	import Icon from "./Icon.svelte";
 	import NavItem from "./NavItem.svelte";
@@ -39,17 +40,17 @@
 </script>
 
 <div class="min-h-dvh bg-white dark:bg-black text-black dark:text-white flex flex-col">
-	<header class="border-b-2 border-gray-400 dark:border-gray-600 px-4 py-2 flex gap-3 items-center">
+	<header class="border-b-2 {borderSoft} px-4 py-2 flex gap-3 items-center">
 		<button onclick={() => toggleLeftPane()}>
-			<Bars3 class="hover:text-green-600 dark:hover:text-green-400 duration-100" />
+			<Bars3 class={textClickable} />
 		</button>
 		<Icon classes="ml-2 w-10" />
 		<h1 class="text-xl lg:text-2xl font-bold">{title}</h1>
 	</header>
 
-	<div class="flex">
+	<div class="flex flex-1">
 		{#if leftPaneVisible}
-			<div class="border-r-2 border-gray-400 dark:border-gray-600 flex flex-col">
+			<div class="border-r-2 {borderSoft} flex flex-col">
 				<NavItem title="Home" href="/">
 					<Home variation="mini" />
 				</NavItem>
@@ -62,7 +63,7 @@
 					<NavItem
 						title="Vintage Story Alloy Calculator"
 						shortTitle="VS Alloy Calc"
-						href="/tools/alloy-calculator"
+						href="/tools/vs-alloy-calculator"
 					>
 						<Fire variation="mini" />
 					</NavItem>
@@ -111,13 +112,11 @@
 		{/if}
 
 		<div class="flex flex-col flex-1">
-			<div class="flex-1">
+			<div class="flex flex-col flex-1">
 				{@render children()}
 			</div>
 
-			<footer
-				class="p-1 text-center lg:text-right text-[11px] lg:text-xs text-gray-500 dark:text-gray-500 italic"
-			>
+			<footer class="p-1 text-center lg:text-right text-[11px] lg:text-xs {textSecondary} italic">
 				This website does not collect, track, or store any of your data.
 			</footer>
 		</div>

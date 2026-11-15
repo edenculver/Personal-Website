@@ -40,36 +40,36 @@
 			<LinkCard
 				title="IP Calculator"
 				description="A handy calculator for IPv4 subnet and supernet math. Calculate address ranges, masks, total addresses, summary addresses, and more."
-				href="/ip-calculator"
+				href="/tools/ip-calculator"
 				src="/images/home/router.svg"
 				alt="Icon of a short blue cylinder with four white arrows on the top, representing a router."
 			/>
 			<LinkCard
 				title="Vintage Story Alloy Calculator"
 				description="Calculate how much of each metal you need to make the alloy you want in Vintage Story."
-				href="/alloy-calculator"
-				src="/images/alloy-calculator/Brass ingot.png"
+				href="/tools/vs-alloy-calculator"
+				src="/images/vs-alloy-calculator/Brass ingot.png"
 				alt="Brass ingot item from Vintage Story."
 				pixelated={true}
 			/>
 			<LinkCard
 				title="Signal Flags Translator"
 				description="Translate messages into International Code of Signals (INTERCO) flags."
-				href="/signal-flags"
+				href="/tools/signal-flags"
 				src="/images/home/interco.png"
 				alt="Four square signal flags: A yellow square with a black circle in the center; a 4x4 blue and white checkerboard; five horizontal stripes of blue, white, red, white, blue; and a square divided diagonally from top left to bottom right, with the top right half red and the bottom left half yellow. The message translates to IN CO."
 			/>
 			<LinkCard
 				title="Chord Builder"
 				description="Construct triads and 7th chords from a root note and stacked intervals."
-				href="/chord-builder"
+				href="/tools/chord-builder"
 				src="/images/home/triad.svg"
 				alt="A whole note triad."
 			/>
 			<LinkCard
 				title="Create Steam Engine Simulator"
 				description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
-				href="/create-steam-engine"
+				href="/tools/create-steam-engine"
 				src="/images/home/steam_engine.png"
 				alt="A stylized piston made of copper and brass."
 			/>
@@ -80,14 +80,14 @@
 			<LinkCard
 				title="Battle Packs Catalog"
 				description="A complete catalog of every LEGO Star Wars Battle Pack."
-				href="/battle-packs"
+				href="/reference/battle-packs"
 				src="/images/home/legostarwars.png"
 				alt="LEGO Star Wars logo."
 			/>
 			<LinkCard
 				title="Undertale/Deltarune Leitmotifs Graph"
 				description="An interactive node graph of how the Undertale and Deltarune's soundtracks are connected through leitmotifs."
-				href="/leitmotifs"
+				href="/reference/leitmotifs"
 				src="/images/home/soul.png"
 				alt="Pixel art of a red heart."
 				pixelated={true}
@@ -95,7 +95,7 @@
 			<LinkCard
 				title="Stardew Valley Fish Cheat Sheet"
 				description="A cheat sheet for where and when to find fish in Stardew Valley."
-				href="/sv-fish"
+				href="/reference/sv-fish"
 				src="/images/sv-fish/Bullhead.png"
 				alt="Pixel art of a bullhead, a brown catfish with long whiskers."
 				pixelated={true}
@@ -107,7 +107,7 @@
 			<LinkCard
 				title="Which Minecraft Villager Are You?"
 				description="Take this personality quiz to find out which Minecraft villager you are!"
-				href="/villager-quiz"
+				href="/fun/villager-quiz"
 				src="/images/home/emerald.png"
 				alt="Pixel art of a bright green emerald."
 				pixelated={true}
