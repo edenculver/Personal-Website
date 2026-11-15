@@ -1,22 +1,20 @@
 <script lang="ts">
-	import {
-		Bars3,
-		BookOpen,
-		CalendarDays,
-		CircleStack,
-		Cog8Tooth,
-		Fire,
-		Flag,
-		Home,
-		MusicalNote,
-		Share,
-		UserGroup,
-	} from "svelte-heros-v2";
+	import Bars3 from "svelte-heros-v2/Bars3.svelte";
+	import BookOpen from "svelte-heros-v2/BookOpen.svelte";
 	import { borderSoft, textClickable, textSecondary } from "$lib/colorClasses";
 	import { browser } from "$app/environment";
+	import CalendarDays from "svelte-heros-v2/CalendarDays.svelte";
+	import CircleStack from "svelte-heros-v2/CircleStack.svelte";
+	import Cog8Tooth from "svelte-heros-v2/Cog8Tooth.svelte";
+	import Fire from "svelte-heros-v2/Fire.svelte";
+	import Flag from "svelte-heros-v2/Flag.svelte";
+	import Home from "svelte-heros-v2/Home.svelte";
 	import Icon from "./Icon.svelte";
-	import NavItem from "./NavItem.svelte";
+	import MusicalNote from "svelte-heros-v2/MusicalNote.svelte";
 	import NavDrawer from "./NavDrawer.svelte";
+	import NavItem from "./NavItem.svelte";
+	import Share from "svelte-heros-v2/Share.svelte";
+	import UserGroup from "svelte-heros-v2/UserGroup.svelte";
 
 	interface Props {
 		title: string;

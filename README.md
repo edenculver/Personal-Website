@@ -7,8 +7,13 @@
 ```bash
 cd /var/www/Personal-Website/edenculver/
 git pull
+
+# if packages were updated
+npm install
+
 npm run build
 # typically takes 2-3 minutes
+
 sudo pm2 restart edenculver
 ```
 

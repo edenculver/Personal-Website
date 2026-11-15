@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as d3 from "d3";
+	import Bars3 from "svelte-heros-v2/Bars3.svelte";
 	import {
 		bgSelectedSecondary,
 		borderClickablePrimary,
@@ -12,10 +13,9 @@
 	import config_inactive from "$lib/assets/config_inactive.png";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
 	import { onMount } from "svelte";
-	import SongInfo from "$lib/components/SongInfo.svelte";
 	import Page from "$lib/components/Page.svelte";
+	import SongInfo from "$lib/components/SongInfo.svelte";
 	import type { PageProps } from "./$types";
-	import { Bars3 } from "svelte-heros-v2";
 
 	let { data }: PageProps = $props();
 

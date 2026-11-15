@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { bgClickableSecondary } from "$lib/colorClasses";
-	import { ChevronDown, ChevronUp } from "svelte-heros-v2";
+	import ChevronDown from "svelte-heros-v2/ChevronDown.svelte";
+	import ChevronUp from "svelte-heros-v2/ChevronUp.svelte";
 
 	interface Props {
 		title: string;
