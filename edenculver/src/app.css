@@ -5,15 +5,6 @@
 	--font-sans: Verdana, Tahoma, sans-serif;
 	--font-mono: "Courier New", Courier, monospace;
 
-	/* theme */
-	--color-bg: black;
-	--color-midg: #646464;
-	--color-fg: white;
-	--color-accent: #ff5100;
-	--color-accenthover: #d40000;
-	--color-accentsoft: #7a240e;
-	--color-err: red;
-
 	/* alloy-calculator */
 	--color-vsbg: #fde0c0;
 	--color-vsborder: #29221c;

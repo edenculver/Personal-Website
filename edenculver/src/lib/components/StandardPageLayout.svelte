@@ -15,7 +15,7 @@
 	}: Props = $props();
 </script>
 
-<div class="min-h-dvh flex flex-col">
+<div class="min-h-dvh bg-bg text-fg flex flex-col">
 	<NavBar />
 
 	<div class={extraClasses ? `${classes} ${extraClasses}` : classes}>

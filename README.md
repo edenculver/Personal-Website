@@ -77,6 +77,10 @@ npm run dev -- --open
     8.  Flex, gap, items, justify
     9.  Anything else, in alphabetical order
 
+## Resources
+
+[Heroicons](https://heroicons.com/)
+
 ---
 
 ## How To Deploy

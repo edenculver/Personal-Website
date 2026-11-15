@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from "./Icon.svelte";
-	import NavItem from "$lib/components/NavItem.svelte";
+	import NavItem from "$lib/components/NavItemOld.svelte";
 </script>
 
 <nav class="flex overflow-x-auto">

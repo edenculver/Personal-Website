@@ -1,15 +1,13 @@
 <script lang="ts">
 	import BigGrid from "$lib/components/BigGrid.svelte";
-	import H1 from "$lib/components/H1.svelte";
 	import H2 from "$lib/components/H2.svelte";
-	import Icon from "$lib/components/Icon.svelte";
 	import LinkCard from "$lib/components/LinkCard.svelte";
-	import StandardPageLayout from "$lib/components/StandardPageLayout.svelte";
+	import Page from "$lib/components/Page.svelte";
 
 	const allGreetings = [
 		"Hi! I'm Eden (she/her).",
 		"¡Hola! Me llamo Eden (ella).",
-		"はじめまして。私はイーデンです。",
+		"はじめまして。私はイデンです。",
 		"toki! mi jan Iten.",
 	];
 
@@ -29,12 +27,7 @@
 	}
 </script>
 
-<StandardPageLayout classes="flex-1">
-	<header class="p-4 bg-accent flex items-center gap-4 text-black">
-		<Icon classes="w-16" />
-		<H1 classes="text-xl lg:text-3xl font-bold">EdenCulver.net</H1>
-	</header>
-
+<Page title="EdenCulver.net">
 	<div class="mx-auto lg:mx-16 my-4 lg:my-10 p-4 flex flex-col gap-4 flex-1">
 		<H2>About</H2>
 		<button class="text-left text-sm lg:text-base" onclick={() => randomGreeting()}>
@@ -42,7 +35,7 @@
 		</button>
 		<p>Welcome to my website! I make things that I think are neat.</p>
 
-		<H2 extraClasses="mt-8">Pages</H2>
+		<H2 extraClasses="mt-8">Tools</H2>
 		<BigGrid>
 			<LinkCard
 				title="IP Calculator"
@@ -50,21 +43,6 @@
 				href="/ip-calculator"
 				src="/images/home/router.svg"
 				alt="Icon of a short blue cylinder with four white arrows on the top, representing a router."
-			/>
-			<LinkCard
-				title="Battle Packs Catalog"
-				description="A complete catalog of every LEGO Star Wars Battle Pack."
-				href="/battle-packs"
-				src="/images/home/legostarwars.png"
-				alt="LEGO Star Wars logo."
-			/>
-			<LinkCard
-				title="Undertale/Deltarune Leitmotifs Graph"
-				description="An interactive node graph of how the Undertale and Deltarune's soundtracks are connected through leitmotifs."
-				href="/leitmotifs"
-				src="/images/home/soul.png"
-				alt="Pixel art of a red heart."
-				pixelated={true}
 			/>
 			<LinkCard
 				title="Vintage Story Alloy Calculator"
@@ -82,11 +60,37 @@
 				alt="Four square signal flags: A yellow square with a black circle in the center; a 4x4 blue and white checkerboard; five horizontal stripes of blue, white, red, white, blue; and a square divided diagonally from top left to bottom right, with the top right half red and the bottom left half yellow. The message translates to IN CO."
 			/>
 			<LinkCard
+				title="Chord Builder"
+				description="Construct triads and 7th chords from a root note and stacked intervals."
+				href="/chord-builder"
+				src="/images/home/triad.svg"
+				alt="A whole note triad."
+			/>
+			<LinkCard
 				title="Create Steam Engine Simulator"
 				description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
 				href="/create-steam-engine"
 				src="/images/home/steam_engine.png"
 				alt="A stylized piston made of copper and brass."
+			/>
+		</BigGrid>
+
+		<H2 extraClasses="mt-8">Reference</H2>
+		<BigGrid>
+			<LinkCard
+				title="Battle Packs Catalog"
+				description="A complete catalog of every LEGO Star Wars Battle Pack."
+				href="/battle-packs"
+				src="/images/home/legostarwars.png"
+				alt="LEGO Star Wars logo."
+			/>
+			<LinkCard
+				title="Undertale/Deltarune Leitmotifs Graph"
+				description="An interactive node graph of how the Undertale and Deltarune's soundtracks are connected through leitmotifs."
+				href="/leitmotifs"
+				src="/images/home/soul.png"
+				alt="Pixel art of a red heart."
+				pixelated={true}
 			/>
 			<LinkCard
 				title="Stardew Valley Fish Cheat Sheet"
@@ -96,6 +100,10 @@
 				alt="Pixel art of a bullhead, a brown catfish with long whiskers."
 				pixelated={true}
 			/>
+		</BigGrid>
+
+		<H2 extraClasses="mt-8">Fun</H2>
+		<BigGrid>
 			<LinkCard
 				title="Which Minecraft Villager Are You?"
 				description="Take this personality quiz to find out which Minecraft villager you are!"
@@ -103,13 +111,6 @@
 				src="/images/home/emerald.png"
 				alt="Pixel art of a bright green emerald."
 				pixelated={true}
-			/>
-			<LinkCard
-				title="Chord Builder"
-				description="Construct triads and 7th chords from a root note and stacked intervals."
-				href="/chord-builder"
-				src="/images/home/triad.svg"
-				alt="A whole note triad."
 			/>
 		</BigGrid>
 
@@ -181,4 +182,4 @@
 			/>
 		</BigGrid>
 	</div>
-</StandardPageLayout>
+</Page>
