@@ -8,7 +8,6 @@
 		borderError,
 		borderPrimary,
 		borderSoft,
-		borderStrong,
 		textError,
 		textPrimary,
 	} from "$lib/colorClasses";

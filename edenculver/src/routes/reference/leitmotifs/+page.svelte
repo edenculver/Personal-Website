@@ -2,15 +2,12 @@
 	import * as d3 from "d3";
 	import Bars3 from "svelte-heros-v2/Bars3.svelte";
 	import {
+		bgClickableSecondary,
 		bgSelectedSecondary,
 		borderClickablePrimary,
 		borderSoft,
 		borderStrong,
-		textClickable,
 	} from "$lib/colorClasses";
-	import config_active from "$lib/assets/config_active.png";
-	import config_hover from "$lib/assets/config_hover.png";
-	import config_inactive from "$lib/assets/config_inactive.png";
 	import LeitmotifInfo from "$lib/components/LeitmotifInfo.svelte";
 	import { onMount } from "svelte";
 	import Page from "$lib/components/Page.svelte";
@@ -98,6 +95,16 @@
 			},
 			true,
 		);
+
+		// update dynamic forces when SVG size changes
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (let entry of entries) {
+				forceX.x(entry.contentRect.width / 2);
+				forceY.y(entry.contentRect.height / 2);
+				simulation.alpha(reheatAlpha).restart();
+			}
+		});
+		resizeObserver.observe(svgElement);
 
 		// create leitmotif nodes
 		data.leitmotifs.forEach((l) => {
@@ -213,13 +220,6 @@
 				.attr("x2", (d) => d.target.x)
 				.attr("y2", (d) => d.target.y);
 			collide.initialize(nodes, Math.random);
-		});
-
-		// update dynamic forces when the window size changes
-		d3.select(window).on("resize", () => {
-			forceX.x(svgElement.clientWidth / 2);
-			forceY.y(svgElement.clientHeight / 2);
-			simulation.alpha(reheatAlpha).restart();
 		});
 
 		// start decaying after hold time
@@ -452,7 +452,7 @@
 					<label class="flex items-center">
 						<p class="w-28">Leitmotif:</p>
 						<select
-							class="border-2 {borderStrong} {borderClickablePrimary} w-full p-2"
+							class="border {borderStrong} {borderClickablePrimary} rounded-sm w-full p-2"
 							bind:value={dropdownSelectedLeitmotif}
 						>
 							<option value="x">---</option>
@@ -464,7 +464,7 @@
 					<label class="flex items-center">
 						<p class="w-28">Song:</p>
 						<select
-							class="border-2 {borderStrong} {borderClickablePrimary} w-full p-2"
+							class="border {borderStrong} {borderClickablePrimary} rounded-sm w-full p-2"
 							bind:value={dropdownSelectedSong}
 						>
 							<option value="x">---</option>
@@ -480,18 +480,23 @@
 
 			<div class="m-3 flex flex-col gap-1 items-start">
 				<div class="relative">
-					<button class="mb-3" title="Simulation parameters" onclick={toggleMenu}>
-						<Bars3 class={textClickable} />
+					<button
+						class="rounded-sm p-2 {bgClickableSecondary}"
+						title="Simulation parameters"
+						onclick={toggleMenu}
+					>
+						<Bars3 />
 					</button>
+
 					<div
-						class="absolute right-0 border-2 {borderStrong} p-3 bg-white dark:bg-black flex flex-col gap-2 items-right {menuHidden
+						class="absolute right-0 border-2 {borderStrong} rounded-sm p-3 bg-white dark:bg-black flex flex-col gap-2 items-right {menuHidden
 							? ' hidden'
 							: ''}"
 					>
 						<label class="flex items-center gap-2 whitespace-nowrap">
 							X force strength:
 							<input
-								class="border-2 {borderStrong} {borderClickablePrimary} px-2 py-1"
+								class="border {borderStrong} {borderClickablePrimary} rounded-sm px-2 py-1"
 								type="number"
 								min="0"
 								max="1"
@@ -499,10 +504,11 @@
 								bind:value={xStrength}
 							/>
 						</label>
+
 						<label class="flex items-center gap-2 whitespace-nowrap">
 							Y force strength:
 							<input
-								class="border-2 {borderStrong} {borderClickablePrimary} px-2 py-1"
+								class="border {borderStrong} {borderClickablePrimary} rounded-sm px-2 py-1"
 								type="number"
 								min="0"
 								max="1"
@@ -512,6 +518,9 @@
 						</label>
 					</div>
 				</div>
+
+				<div class="h-1"></div>
+
 				{#each legend as game, i}
 					<div class="text-xs flex gap-2 items-center">
 						<div class="w-3 h-3 {gameColorsBG[i]}"></div>

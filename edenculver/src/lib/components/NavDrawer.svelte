@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { bgClickableSecondary } from "$lib/colorClasses";
+	import { bgClickableSecondary, textPrimary } from "$lib/colorClasses";
 	import ChevronDown from "svelte-heros-v2/ChevronDown.svelte";
 	import ChevronUp from "svelte-heros-v2/ChevronUp.svelte";
 
@@ -18,7 +18,7 @@
 </script>
 
 <div class="flex flex-col">
-	<button class="px-3 py-2 {bgClickableSecondary} font-bold flex cursor-pointer" onclick={() => toggleCollapsed()}>
+	<button class="px-3 py-2 {bgClickableSecondary} {textPrimary} font-bold flex cursor-pointer" onclick={() => toggleCollapsed()}>
 		<p class="text-left text-sm flex-1">{title}</p>
 		{#if collapsed}
 			<ChevronUp variation="mini" />

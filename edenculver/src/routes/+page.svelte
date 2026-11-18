@@ -67,7 +67,7 @@
 				alt="A whole note triad."
 			/>
 			<LinkCard
-				title="Create Steam Engine Simulator"
+				title="Minecraft Create Mod Steam Engine Simulator"
 				description="Simulate steam engines from the Minecraft Create mod to test optimal size/water/heat ratios."
 				href="/tools/create-steam-engine"
 				src="/images/home/steam_engine.png"
@@ -78,7 +78,7 @@
 		<H2 extraClasses="mt-8">Reference</H2>
 		<BigGrid>
 			<LinkCard
-				title="Battle Packs Catalog"
+				title="LEGO Star Wars Battle Packs Catalog"
 				description="A complete catalog of every LEGO Star Wars Battle Pack."
 				href="/reference/battle-packs"
 				src="/images/home/legostarwars.png"

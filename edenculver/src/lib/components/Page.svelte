@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Bars3 from "svelte-heros-v2/Bars3.svelte";
 	import BookOpen from "svelte-heros-v2/BookOpen.svelte";
-	import { borderSoft, textClickable, textSecondary } from "$lib/colorClasses";
+	import { bgClickableSecondary, borderSoft, textClickable, textSecondary } from "$lib/colorClasses";
 	import { browser } from "$app/environment";
 	import CalendarDays from "svelte-heros-v2/CalendarDays.svelte";
 	import CircleStack from "svelte-heros-v2/CircleStack.svelte";
@@ -23,32 +23,38 @@
 
 	let { title, children }: Props = $props();
 
-	// load state from sessionStorage (client-side only)
-	let leftPaneVisibleSaved = $state(browser ? window.sessionStorage.getItem("leftPaneVisible") || "false" : "false");
-	let leftPaneVisible = $state(leftPaneVisibleSaved === "true");
+	const navPaneWidth = "w-40 lg:w-64";
 
-	function toggleLeftPane() {
-		leftPaneVisible = !leftPaneVisible;
+	// load state from sessionStorage (client-side only)
+	let navPaneVisibleSaved = $state(browser ? window.sessionStorage.getItem("navPaneVisible") || "true" : "true");
+	let navPaneVisible = $derived(navPaneVisibleSaved === "true");
+
+	function toggleNavPane() {
+		navPaneVisible = !navPaneVisible;
 
 		// save state to sessionStorage (client-side only)
 		if (browser) {
-			window.sessionStorage.setItem("leftPaneVisible", leftPaneVisible.toString());
+			window.sessionStorage.setItem("navPaneVisible", navPaneVisible.toString());
 		}
 	}
 </script>
 
-<div class="min-h-dvh bg-white dark:bg-black text-black dark:text-white flex flex-col">
-	<header class="border-b-2 {borderSoft} px-4 py-2 flex gap-3 items-center">
-		<button onclick={toggleLeftPane}>
-			<Bars3 class={textClickable} />
+<div class="h-dvh bg-white dark:bg-black text-black dark:text-white flex flex-col">
+	<header class="border-b-2 {borderSoft} p-2 flex gap-3 items-center">
+		<button class="rounded-sm p-2 {bgClickableSecondary}" onclick={toggleNavPane}>
+			<Bars3 />
 		</button>
-		<Icon classes="ml-2 w-10" />
-		<h1 class="text-xl lg:text-2xl font-bold">{title}</h1>
+		<Icon classes="w-10" />
+		<h1 class="text-lg lg:text-xl font-bold">{title}</h1>
 	</header>
 
-	<div class="flex flex-1">
-		{#if leftPaneVisible}
-			<div class="border-r-2 {borderSoft} flex flex-col">
+	<div class="min-h-0 flex flex-1">
+		<div
+			class="border-r-2 {borderSoft} {navPaneVisible
+				? navPaneWidth
+				: 'w-0'} flex flex-col transition-[width] duration-300 ease-in-out overflow-hidden"
+		>
+			<div class={navPaneWidth}>
 				<NavItem title="Home" href="/">
 					<Home variation="mini" />
 				</NavItem>
@@ -102,14 +108,14 @@
 				</NavDrawer>
 
 				<NavDrawer title="Fun">
-					<NavItem title="Villager Quiz" href="/fun/villager-quiz">
+					<NavItem title="Which Villager Are You?" shortTitle="Villager Quiz" href="/fun/villager-quiz">
 						<UserGroup variation="mini" />
 					</NavItem>
 				</NavDrawer>
 			</div>
-		{/if}
+		</div>
 
-		<div class="flex flex-col flex-1">
+		<div class="min-h-0 flex flex-col flex-1 overflow-y-auto">
 			<div class="flex flex-col flex-1">
 				{@render children()}
 			</div>
