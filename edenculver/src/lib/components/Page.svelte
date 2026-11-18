@@ -50,9 +50,9 @@
 
 	<div class="min-h-0 flex flex-1">
 		<div
-			class="border-r-2 {borderSoft} {navPaneVisible
-				? navPaneWidth
-				: 'w-0'} flex flex-col transition-[width] duration-300 ease-in-out overflow-hidden"
+			class="{borderSoft} {navPaneVisible
+				? `border-r-2 ${navPaneWidth}`
+				: 'w-0'} flex flex-col transition-all duration-100 ease-in-out overflow-hidden"
 		>
 			<div class={navPaneWidth}>
 				<NavItem title="Home" href="/">

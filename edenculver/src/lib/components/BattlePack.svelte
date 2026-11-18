@@ -65,7 +65,7 @@
 			alt: "Favicon of BrickLink.com.",
 		},
 		{
-			href: `https://brickset.com/sets/{battlePack.set_number}-1/${battlePack.set_name.replace("& ", "").replace(".", "").replaceAll(" ", "-")}`,
+			href: `https://brickset.com/sets/${battlePack.set_number}-1/${battlePack.set_name.replace("& ", "").replace(".", "").replaceAll(" ", "-")}`,
 			title: "View on Brickset",
 			src: "https://brickset.com/assets/images/icons/favicon-32x32.png",
 			alt: "Favicon of Brickset.com.",
