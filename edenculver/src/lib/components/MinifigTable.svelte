@@ -5,7 +5,6 @@
 	export interface Minifig {
 		bricklink_id: string;
 		name: string;
-		specification?: string;
 		count: number;
 		is_unique: boolean;
 	}

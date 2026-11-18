@@ -2,7 +2,7 @@ import type { PageServerLoad } from "./$types";
 import db from "$lib/db";
 
 const battlePacksQuery = `
-	select
+	SELECT
 		b.set_number,
 		b.set_name,
 		b.release_year,
@@ -11,24 +11,26 @@ const battlePacksQuery = `
 		json_build_object(
 			'title', s.title,
 			'short_title', s.short_title
-		) as source,
+		) AS source,
 		(
-			select json_agg(
+			SELECT json_agg(
 				json_build_object(
 					'bricklink_id', m.bricklink_id,
 					'name', m.name,
-					'specification', m.specification,
 					'count', m_b.count,
 					'is_unique', m.is_unique
 				)
+				ORDER BY name, bricklink_id
 			)
-			from minifig_in_battle_pack m_b
-			join minifig m on m_b.minifig = m.id
-			where b.id = m_b.battle_pack
-		) as minifigs
-	from battle_pack b
-	join source s on b.source = s.id
-	order by release_year, set_number;
+			FROM minifig_in_battle_pack m_b
+			JOIN minifig m
+				ON m_b.minifig = m.id
+			WHERE b.id = m_b.battle_pack
+		) AS minifigs
+	FROM battle_pack b
+	JOIN source s
+		ON b.source = s.id
+	ORDER BY release_year, set_number;
 `;
 
 export const load: PageServerLoad = async () => {

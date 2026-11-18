@@ -10,7 +10,7 @@
 
 <tr class="align-top">
 	{#each minifigs as minifig}
-		<td colspan={minifig.count} style="max-width: {200 * minifig.count}px;">
+		<td colspan={minifig.count} style="max-width: {96 * minifig.count}px;">
 			<div class="p-3 flex flex-col gap-1">
 				<p
 					class={minifig.is_unique ? "font-bold" : undefined}
